@@ -1,16 +1,16 @@
 import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar/Navbar";
-import Home from "./pages/Home";
-import Signin from "./pages/Signin";
-import Signup from "./pages/Signup";
-import Dog from "./pages/Dog";
-import Profile from "./pages/Profile";
-import OwnList from "./pages/OwnList";
-import DogCreate from "./pages/DogCreate";
-import DogEdit from "./pages/DogEdit";
-import Browse from "./pages/Browse";
-import MatchList from "./pages/MatchList";
-import NotFound from "./pages/NotFound";
+import Home from "./pages/Home/Home";
+import Signin from "./pages/Forms/Signin";
+import Signup from "./pages/Forms/Signup";
+import Dog from "./pages/Dog/Dog";
+import Profile from "./pages/Profile/Profile";
+import OwnList from "./pages/OwnList/OwnList";
+import DogCreate from "./pages/Forms/DogCreate";
+import DogEdit from "./pages/Forms/DogEdit";
+import Browse from "./pages/Browse/Browse";
+import MatchList from "./pages/MatchList/MatchList";
+import NotFound from "./pages/NotFound/NotFound";
 import PrivateRoute from "./components/ProtectedRoute/PrivateRoute";
 
 function App() {
