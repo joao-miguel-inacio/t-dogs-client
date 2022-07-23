@@ -2,15 +2,21 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import service from "../../services/apiHandler";
 
-const FormSignUp = () => {
-  const [user, setUser] = useState({
+const FormDogCreate = () => {
+  const [dog, setDog] = useState({
+    image: "",
     name: "",
-    email: "",
-    password: "",
-    address: "",
-    hasChildren: "",
-    hasExperience: "",
-    hasPets: "",
+    breed: "",
+    age: "",
+    gender: "",
+    size: "",
+    openToStrangers: "",
+    playful: "",
+    chippedAndVaccinated: "",
+    childFriendly: "",
+    requiresExperience: "",
+    goodWithOtherDogs: "",
+    price: "",
   });
   const [error, setError] = useState(null);
   const navigate = useNavigate();
@@ -18,7 +24,7 @@ const FormSignUp = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await service.signup(user);
+      const res = await service.signup(dog);
       console.log(res);
       navigate("/signin");
     } catch (error) {
@@ -33,9 +39,9 @@ const FormSignUp = () => {
         <label htmlFor="name">Name</label>
         <input
           onChange={(e) =>
-            setUser({ ...user, [e.target.name]: e.target.value })
+            setDog({ ...dog, [e.target.name]: e.target.value })
           }
-          value={user.name}
+          value={dog.name}
           type="text"
           id="name"
           name="name"
@@ -43,9 +49,9 @@ const FormSignUp = () => {
         <label htmlFor="email">Email</label>
         <input
           onChange={(e) =>
-            setUser({ ...user, [e.target.name]: e.target.value })
+            setDog({ ...dog, [e.target.name]: e.target.value })
           }
-          value={user.email}
+          value={dog.email}
           type="email"
           id="email"
           name="email"
@@ -53,9 +59,9 @@ const FormSignUp = () => {
         <label htmlFor="password">Password</label>
         <input
           onChange={(e) =>
-            setUser({ ...user, [e.target.name]: e.target.value })
+            setDog({ ...dog, [e.target.name]: e.target.value })
           }
-          value={user.password}
+          value={dog.password}
           type="password"
           id="password"
           name="password"
@@ -66,4 +72,4 @@ const FormSignUp = () => {
   );
 };
 
-export default FormSignUp;
+export default FormDogCreate;

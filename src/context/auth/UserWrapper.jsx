@@ -1,6 +1,6 @@
-import { useState, useEffect, useCallback } from "react"
-import UserContext from "./UserContext"
-import service from "../../services/apiHandler"
+import { useState, useEffect, useCallback } from "react";
+import UserContext from "./UserContext";
+import service from "../../services/apiHandler";
 
 const UserWrapper = ({ children }) => {
 	const [auth, setAuth] = useState({
@@ -10,7 +10,7 @@ const UserWrapper = ({ children }) => {
 	})
 
 	const authenticateUser = useCallback(async () => {
-		const storedToken = localStorage.getItem("authToken")
+		const storedToken = localStorage.getItem("authToken");
 		if (storedToken) {
 			try {
 				const user = await service.isLoggedIn()
@@ -20,32 +20,32 @@ const UserWrapper = ({ children }) => {
 					"display: inline-block ; border: 3px solid red ; border-radius: 7px ; " +
 						"padding: 10px ; margin: 20px ;"
 				)
-				setAuth({ currentUser: user, isLoading: false, isLoggedIn: true })
+				setAuth({ currentUser: user, isLoading: false, isLoggedIn: true });
 			} catch (error) {
-				setAuth({ currentUser: null, isLoading: false, isLoggedIn: false })
+				setAuth({ currentUser: null, isLoading: false, isLoggedIn: false });
 			}
 		} else {
-			setAuth({ currentUser: null, isLoading: false, isLoggedIn: false })
+			setAuth({ currentUser: null, isLoading: false, isLoggedIn: false });
 		}
 	})
 
 	useEffect(() => {
-		authenticateUser()
+		authenticateUser();
 	}, [])
 
 	// the useCallback hook allow us to save (memoize) those functions so that they don't need to be created everytime we rerender
 	const removeUser = useCallback(() => {
-		removeToken()
-		authenticateUser()
+		removeToken();
+		authenticateUser();
 	})
 
 	const removeToken = useCallback(() => {
-		localStorage.removeItem("authToken")
-	})
+		localStorage.removeItem("authToken");
+	});
 
 	const storeToken = useCallback((token) => {
-		localStorage.setItem("authToken", token)
-	})
+		localStorage.setItem("authToken", token);
+	});
 
 	const authValues = {
 		currentUser: auth.currentUser,
@@ -54,11 +54,11 @@ const UserWrapper = ({ children }) => {
 		removeUser,
 		storeToken,
 		authenticateUser,
-	}
+	};
 
 	return (
 		<UserContext.Provider value={authValues}>{children}</UserContext.Provider>
 	)
 }
 
-export default UserWrapper
+export default UserWrapper;
