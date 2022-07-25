@@ -3,12 +3,12 @@ import { useNavigate } from "react-router-dom";
 import service from "../../services/apiHandler";
 
 const FormProfileEdit = async () => {
-
-  const {user} = await service.isLoggedin();
+  const { user } = await service.isLoggedin();
   console.log(user);
 
-  const {name, address, hasChildren, hasExperience, hasPets, willingToPay} = user;
-  
+  const { name, address, hasChildren, hasExperience, hasPets, willingToPay } =
+    user;
+
   const [data, setData] = useState({
     name: name,
     address: address,
@@ -31,17 +31,6 @@ const FormProfileEdit = async () => {
       setError(e.message);
     }
   };
-
-  /*
-  service.editProfile = async () => {
-  try {
-    const { newDog } = await service.post("/common");
-    return newDog;
-  } catch (error) {
-    errorHandler(error);
-  }
-}; 
-*/
 
   return (
     <>
@@ -93,7 +82,7 @@ const FormProfileEdit = async () => {
           name="address"
         />
 
-{hasChildren ? (
+        {hasChildren ? (
           <>
             <label htmlFor="hasChildren">Children?</label>
             <input

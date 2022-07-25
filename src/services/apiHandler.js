@@ -104,6 +104,15 @@ service.getOwnedDogs = async (dog) => {
 // },
 // }
 
+service.editProfile = async () => {
+  try {
+    const { newDog } = await service.post("/common");
+    return newDog;
+  } catch (error) {
+    errorHandler(error);
+  }
+};
+
 //! Error handling to use in the catch
 function errorHandler(error) {
   if (error.response.data) {
