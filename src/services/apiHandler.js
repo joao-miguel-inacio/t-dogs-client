@@ -21,6 +21,7 @@ service.interceptors.request.use((config) => {
 service.signup = async (user) => {
   try {
     const { data } = await service.post("/auth/signup", user);
+    console.log("works");
     return data;
   } catch (error) {
     errorHandler(error);
@@ -48,8 +49,27 @@ service.isLoggedIn = async () => {
 
 service.createDog = async () => {
   try {
-    const { newDog } = await service.post("/owner/");
+    const { newDog } = await service.post("/owner");
+    console.log(newDog);
     return newDog;
+  } catch (error) {
+    errorHandler(error);
+  }
+};
+
+service.editDog = async (dog) => {
+  try {
+    const { editDog } = await service.put("/owner", dog);
+    return editDog;
+  } catch (error) {
+    errorHandler(error);
+  }
+};
+
+service.getOwnedDogs = async (dog) => {
+  try {
+    const { allOwnedDogs } = await service.get("/owner", dog);
+    return allOwnedDogs;
   } catch (error) {
     errorHandler(error);
   }

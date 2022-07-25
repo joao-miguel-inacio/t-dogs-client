@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import service from "../../services/apiHandler";
 
 const FormSignUp = () => {
-  
   const [userType, setUserType] = useState("isBuyer");
 
   const [user, setUser] = useState({
@@ -102,7 +101,7 @@ const FormSignUp = () => {
       console.log(res);
       navigate("/signin");
     } catch (error) {
-      setError(e.message);
+      setError(error.message);
     }
   };
 
