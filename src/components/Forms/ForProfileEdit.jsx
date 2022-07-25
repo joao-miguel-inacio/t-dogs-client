@@ -3,12 +3,21 @@ import { useNavigate } from "react-router-dom";
 import service from "../../services/apiHandler";
 
 const FormProfileEdit = async () => {
-
-  const {user} = await service.isLoggedin();
+  const { user } = await service.isLoggedin();
   console.log(user);
 
-  const {name, address, hasChildren, hasExperience, hasPets, willingToPay} = user;
-  
+  const {
+    name,
+    address,
+    hasChildren,
+    hasExperience,
+    hasPets,
+    willingToPay,
+    profilePicture,
+    description,
+    phoneNumber,
+  } = user;
+
   const [data, setData] = useState({
     name: name,
     address: address,
@@ -16,6 +25,9 @@ const FormProfileEdit = async () => {
     hasExperience: hasExperience,
     hasPets: hasPets,
     willingToPay: willingToPay,
+    profilePicture: profilePicture,
+    description: description,
+    phoneNumber: phoneNumber,
   });
 
   const [error, setError] = useState(null);
@@ -46,7 +58,7 @@ const FormProfileEdit = async () => {
   return (
     <>
       {error && <h3 className="error">{error.message}</h3>}
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} encType="multipart/form-data">
         <h2>Edit Profile</h2>
 
         <label htmlFor="name">Name</label>
@@ -93,7 +105,46 @@ const FormProfileEdit = async () => {
           name="address"
         />
 
-{hasChildren ? (
+        <label htmlFor="Profile picture">Profile Picture</label>
+        <input
+          onChange={(e) =>
+            setData({ ...data, [e.target.name]: e.target.value })
+          }
+          value={data.profilePicture}
+          type="file"
+          id="profilePicture"
+          name="profilePicture"
+        />
+
+        <label htmlFor="Description">Description</label>
+        <input
+          onChange={(e) =>
+            setData({ ...data, [e.target.name]: e.target.value })
+          }
+          value={data.description}
+          type="text"
+          id="description"
+          name="description"
+        />
+
+        {!hasChildren ? (
+          <>
+            <label htmlFor="Phone Number">Phone Number</label>
+            <input
+              onChange={(e) =>
+                setData({ ...data, [e.target.name]: e.target.value })
+              }
+              value={data.phoneNumber}
+              type="text"
+              id="phoneNumber"
+              name="phoneNumber"
+            />
+          </>
+        ) : (
+          ""
+        )}
+
+        {hasChildren ? (
           <>
             <label htmlFor="hasChildren">Children?</label>
             <input
