@@ -44,17 +44,6 @@ const FormProfileEdit = async () => {
     }
   };
 
-  /*
-  service.editProfile = async () => {
-  try {
-    const { newDog } = await service.post("/common");
-    return newDog;
-  } catch (error) {
-    errorHandler(error);
-  }
-}; 
-*/
-
   return (
     <>
       {error && <h3 className="error">{error.message}</h3>}

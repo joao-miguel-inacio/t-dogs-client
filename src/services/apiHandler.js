@@ -3,7 +3,7 @@ import axios from "axios";
 // We can create an instance of axios and set it with some base values like the URL to our API.
 
 const service = axios.create({
-  baseURL: process.env.REACT_APP_API_URL,
+  baseURL: process.env.REACT_APP_API_URL || "http://localhost:5005/api",
   withCredentials: true,
 });
 
@@ -47,10 +47,21 @@ service.isLoggedIn = async () => {
   }
 };
 
-service.createDog = async () => {
+service.dogCreate = async (dog, image) => {
   try {
-    const { newDog } = await service.post("/owner");
-    console.log(newDog);
+    console.log("in the browser2, from inside apiHandler", dog, image);
+    const storedToken = localStorage.getItem("authToken");
+    const { newDog } = await axios.post(
+      process.env.REACT_APP_API_URL + "/owner",
+      { dog, image: image },
+      // {
+      //   id: dog.id,
+      //   image: dogImage.fileUrl,
+      // },
+      {
+        headers: { Authorization: `Bearer ${storedToken}` },
+      }
+    );
     return newDog;
   } catch (error) {
     errorHandler(error);
@@ -65,6 +76,16 @@ service.editDog = async (dog) => {
     errorHandler(error);
   }
 };
+
+// service.uploadImage = async (dogImage) => {
+//   try {
+//     const uploadDogImage = await service.post("/owner", dogImage);
+//     console.log(uploadDogImage.data);
+//     return uploadDogImage.data;
+//   } catch (error) {
+//     errorHandler(error);
+//   }
+// };
 
 service.getOwnedDogs = async (dog) => {
   try {
@@ -82,6 +103,15 @@ service.getOwnedDogs = async (dog) => {
 // 		.catch(errorHandler);
 // },
 // }
+
+service.editProfile = async () => {
+  try {
+    const { newDog } = await service.post("/common");
+    return newDog;
+  } catch (error) {
+    errorHandler(error);
+  }
+};
 
 //! Error handling to use in the catch
 function errorHandler(error) {

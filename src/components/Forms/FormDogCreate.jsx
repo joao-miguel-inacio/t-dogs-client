@@ -1,14 +1,15 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import service from "../../services/apiHandler";
 import FormStyling from "./Form.css";
+import axios from "axios";
+const API_URL = process.env.REACT_APP_API_URL;
 
 const FormDogCreate = () => {
   const [dog, setDog] = useState({
-    image: "",
-    name: "",
-    breed: "",
-    age: "",
+    name: "Lukas",
+    breed: "poodle",
+    age: 3,
     gender: "female",
     size: "small",
     openToStrangers: false,
@@ -17,19 +18,28 @@ const FormDogCreate = () => {
     childFriendly: false,
     requiresExperience: false,
     goodWithOtherDogs: false,
-    price: "",
+    price: 4,
   });
+  const [image, setImage] = useState(null);
   const [error, setError] = useState(null);
+  //const [image, setImage] = useState(null);
+
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const res = await service.createDog(dog);
-      console.log(dog);
+      console.log("in the browser: ", dog, image);
+      //const dogData = new FormData();
+
+      // const dogImage = await service.uploadImage(dogData);
+      // console.log(dogImage);
+      // dogData.append("image", dogImage);
+
+      /* const res = await service.createDog(dog); */
+      const response = await service.dogCreate(dog, image);
       navigate("/own-list");
-      return res;
     } catch (error) {
       setError(error.message);
     }
@@ -38,9 +48,24 @@ const FormDogCreate = () => {
   return (
     <div>
       {error && <h3 className="error">{error.message}</h3>}
-      <form className="dog-form" onSubmit={handleSubmit}>
+      <form
+        className="dog-form"
+        onSubmit={handleSubmit}
+        encType="multipart/form-data"
+      >
         <h2>Create a Dog</h2>
+
         <div>
+          <label htmlFor="image">Dog Image</label>
+          <input
+            type="file"
+            name="image"
+            multiple
+            onChange={(e) => setImage({ [e.target.name]: e.target.files[0] })}
+          />
+        </div>
+
+        {/* <div>
           <label htmlFor="name">Name</label>
           <input
             onChange={(e) =>
@@ -195,27 +220,69 @@ const FormDogCreate = () => {
         <div>
           <label htmlFor="childFriendly">Child Friendly</label>
           <div>
-            <input type="radio" value={true} name="childFriendly" />
+            <input
+              onChange={(e) =>
+                setDog({ ...dog, [e.target.name]: e.target.value })
+              }
+              type="radio"
+              value={true}
+              name="childFriendly"
+            />
             Yes
-            <input type="radio" value={false} name="childFriendly" />
+            <input
+              onChange={(e) =>
+                setDog({ ...dog, [e.target.name]: e.target.value })
+              }
+              type="radio"
+              value={false}
+              name="childFriendly"
+            />
             No
           </div>
         </div>
         <div>
           <label htmlFor="requiresExperience">Requires Experience</label>
           <div>
-            <input type="radio" value={true} name="requiresExperience" />
+            <input
+              onChange={(e) =>
+                setDog({ ...dog, [e.target.name]: e.target.value })
+              }
+              type="radio"
+              value={true}
+              name="requiresExperience"
+            />
             Yes
-            <input type="radio" value={false} name="requiresExperience" />
+            <input
+              onChange={(e) =>
+                setDog({ ...dog, [e.target.name]: e.target.value })
+              }
+              type="radio"
+              value={false}
+              name="requiresExperience"
+            />
             No
           </div>
         </div>
         <div>
           <label htmlFor="goodWithOtherDogs">Good With Other Dogs</label>
           <div>
-            <input type="radio" value={true} name="goodWithOtherDogs" />
+            <input
+              onChange={(e) =>
+                setDog({ ...dog, [e.target.name]: e.target.value })
+              }
+              type="radio"
+              value={true}
+              name="goodWithOtherDogs"
+            />
             Yes
-            <input type="radio" value={false} name="goodWithOtherDogs" />
+            <input
+              onChange={(e) =>
+                setDog({ ...dog, [e.target.name]: e.target.value })
+              }
+              type="radio"
+              value={false}
+              name="goodWithOtherDogs"
+            />
             No
           </div>
         </div>
@@ -230,7 +297,7 @@ const FormDogCreate = () => {
             id="price"
             name="price"
           />
-        </div>
+        </div> */}
 
         <button>Submit</button>
       </form>
