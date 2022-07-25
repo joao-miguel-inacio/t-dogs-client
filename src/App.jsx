@@ -21,15 +21,15 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/signin" element={<Signin />} />
         <Route path="/signup" element={<Signup />} />
-        {/* <Route element={<PrivateRoute />}> */}
-        <Route path="/dog" element={<Dog />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/own-list" element={<OwnList />} />
-        <Route path="/dog-create" element={<DogCreate />} />
-        <Route path="/dog-edit" element={<DogEdit />} />
-        <Route path="/browse" element={<Browse />} />
-        <Route path="/match-list" element={<MatchList />} />
-
+        <Route element={<PrivateRoute />}>
+          <Route path="/dog" element={<Dog />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/own-list" element={<OwnList />} />
+          <Route path="/dog-create" element={<DogCreate />} />
+          <Route path="/dog-edit" element={<DogEdit />} />
+          <Route path="/browse" element={<Browse />} />
+          <Route path="/match-list" element={<MatchList />} />
+        </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
     </div>
