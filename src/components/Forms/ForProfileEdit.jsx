@@ -2,19 +2,20 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import service from "../../services/apiHandler";
 
-const FormSignUp = () => {
-  const [userType, setUserType] = useState("isBuyer");
+const FormProfileEdit = async () => {
 
-  const [user, setUser] = useState({
-    userType: userType,
-    name: "",
-    email: "",
-    password: "",
-    address: "",
-    hasChildren: false,
-    hasExperience: false,
-    hasPets: false,
-    lookingToBuy: false,
+  const {user} = await service.isLoggedin();
+  console.log(user);
+
+  const {name, address, hasChildren, hasExperience, hasPets, willingToPay} = user;
+  
+  const [data, setData] = useState({
+    name: name,
+    address: address,
+    hasChildren: hasChildren,
+    hasExperience: hasExperience,
+    hasPets: hasPets,
+    willingToPay: willingToPay,
   });
 
   const [error, setError] = useState(null);
@@ -23,36 +24,37 @@ const FormSignUp = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await service.signup(user);
+      const res = await service.editProfile(data);
       console.log(res);
-      navigate("/signin");
+      navigate("/profile");
     } catch (error) {
-      setError(error.message);
+      setError(e.message);
     }
   };
 
+  /*
+  service.editProfile = async () => {
+  try {
+    const { newDog } = await service.post("/common");
+    return newDog;
+  } catch (error) {
+    errorHandler(error);
+  }
+}; 
+*/
+
   return (
     <>
-      {userType === "isBuyer" ? (
-        <button onClick={() => setUserType("isOwner")}>
-          I am looking to rehome a dog
-        </button>
-      ) : (
-        <button onClick={() => setUserType("isBuyer")}>
-          I am looking to adopt a dog
-        </button>
-      )}
-
       {error && <h3 className="error">{error.message}</h3>}
       <form onSubmit={handleSubmit}>
-        <h2>Signup</h2>
+        <h2>Edit Profile</h2>
 
         <label htmlFor="name">Name</label>
         <input
           onChange={(e) =>
-            setUser({ ...user, [e.target.name]: e.target.value })
+            setData({ ...data, [e.target.name]: e.target.value })
           }
-          value={user.name}
+          value={data.name}
           type="text"
           id="name"
           name="name"
@@ -61,9 +63,9 @@ const FormSignUp = () => {
         <label htmlFor="email">Email</label>
         <input
           onChange={(e) =>
-            setUser({ ...user, [e.target.name]: e.target.value })
+            setData({ ...data, [e.target.name]: e.target.value })
           }
-          value={user.email}
+          value={data.email}
           type="email"
           id="email"
           name="email"
@@ -72,9 +74,9 @@ const FormSignUp = () => {
         <label htmlFor="password">Password</label>
         <input
           onChange={(e) =>
-            setUser({ ...user, [e.target.name]: e.target.value })
+            setData({ ...data, [e.target.name]: e.target.value })
           }
-          value={user.password}
+          value={data.password}
           type="password"
           id="password"
           name="password"
@@ -83,19 +85,20 @@ const FormSignUp = () => {
         <label htmlFor="address">Address</label>
         <input
           onChange={(e) =>
-            setUser({ ...user, [e.target.name]: e.target.value })
+            setData({ ...data, [e.target.name]: e.target.value })
           }
-          value={user.address}
+          value={data.address}
           type="text"
           id="address"
           name="address"
         />
-        {userType === "isBuyer" ? (
+
+{hasChildren ? (
           <>
             <label htmlFor="hasChildren">Children?</label>
             <input
               onChange={(e) =>
-                setUser({ ...user, [e.target.name]: e.target.value })
+                setData({ ...data, [e.target.name]: e.target.value })
               }
               value={true}
               type="radio"
@@ -105,7 +108,7 @@ const FormSignUp = () => {
             <label htmlFor="hasChildren">Yes</label>
             <input
               onChange={(e) =>
-                setUser({ ...user, [e.target.name]: e.target.value })
+                setData({ ...data, [e.target.name]: e.target.value })
               }
               value={false}
               type="radio"
@@ -118,7 +121,7 @@ const FormSignUp = () => {
             <label htmlFor="hasExperience">Experience?</label>
             <input
               onChange={(e) =>
-                setUser({ ...user, [e.target.name]: e.target.value })
+                setData({ ...data, [e.target.name]: e.target.value })
               }
               value={true}
               type="radio"
@@ -128,7 +131,7 @@ const FormSignUp = () => {
             <label htmlFor="hasExperience">Yes</label>
             <input
               onChange={(e) =>
-                setUser({ ...user, [e.target.name]: e.target.value })
+                setData({ ...data, [e.target.name]: e.target.value })
               }
               value={false}
               type="radio"
@@ -141,7 +144,7 @@ const FormSignUp = () => {
             <label htmlFor="hasPets">Pets?</label>
             <input
               onChange={(e) =>
-                setUser({ ...user, [e.target.name]: e.target.value })
+                setData({ ...data, [e.target.name]: e.target.value })
               }
               value={true}
               type="radio"
@@ -151,7 +154,7 @@ const FormSignUp = () => {
             <label htmlFor="hasPets">Yes</label>
             <input
               onChange={(e) =>
-                setUser({ ...user, [e.target.name]: e.target.value })
+                setData({ ...data, [e.target.name]: e.target.value })
               }
               value={false}
               type="radio"
@@ -164,7 +167,7 @@ const FormSignUp = () => {
             <label htmlFor="willingToPay">Looking to Buy?</label>
             <input
               onChange={(e) =>
-                setUser({ ...user, [e.target.name]: e.target.value })
+                setData({ ...data, [e.target.name]: e.target.value })
               }
               value={true}
               type="radio"
@@ -174,7 +177,7 @@ const FormSignUp = () => {
             <label htmlFor="willingToPay">Yes</label>
             <input
               onChange={(e) =>
-                setUser({ ...user, [e.target.name]: e.target.value })
+                setData({ ...data, [e.target.name]: e.target.value })
               }
               value={false}
               type="radio"
@@ -187,10 +190,11 @@ const FormSignUp = () => {
         ) : (
           ""
         )}
+
         <button>Submit</button>
       </form>
     </>
   );
 };
 
-export default FormSignUp;
+export default FormProfileEdit;
