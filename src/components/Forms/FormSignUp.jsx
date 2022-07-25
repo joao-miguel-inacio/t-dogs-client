@@ -27,7 +27,7 @@ const FormSignUp = () => {
       console.log(res);
       navigate("/signin");
     } catch (error) {
-      setError(e.message);
+      setError(error.message);
     }
   };
 

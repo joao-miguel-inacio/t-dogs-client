@@ -24,18 +24,19 @@ const FormDogCreate = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     try {
       const res = await service.createDog(dog);
-      console.log(res);
-      navigate("/");
       console.log(dog);
+      navigate("/own-list");
+      return res;
     } catch (error) {
-      setError(e.message);
+      setError(error.message);
     }
   };
 
   return (
-    <>
+    <div>
       {error && <h3 className="error">{error.message}</h3>}
       <form className="dog-form" onSubmit={handleSubmit}>
         <h2>Create a Dog</h2>
@@ -233,7 +234,7 @@ const FormDogCreate = () => {
 
         <button>Submit</button>
       </form>
-    </>
+    </div>
   );
 };
 
