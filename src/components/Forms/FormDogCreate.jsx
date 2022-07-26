@@ -1,7 +1,6 @@
-import { useState, useContext } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import service from "../../services/apiHandler";
-import FormStyling from "./Form.css";
 
 const FormDogCreate = () => {
   const [dog, setDog] = useState({
@@ -18,21 +17,19 @@ const FormDogCreate = () => {
     goodWithOtherDogs: false,
     price: "",
   });
-  const [image, setImage] = useState(null);
+  const [image, setImage] = useState("");
   const [error, setError] = useState(null);
-
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     try {
       const dogData = new FormData();
       dogData.append("image", image);
       for (const [key, value] of Object.entries(dog)) {
         dogData.append(key, value);
       }
-      const response = await service.dogCreate(dogData);
+      await service.dogCreate(dogData);
       navigate("/own-list");
     } catch (error) {
       setError(error.message);
@@ -50,7 +47,6 @@ const FormDogCreate = () => {
           <input
             type="file"
             name="image"
-            multiple
             onChange={(e) => setImage(e.target.files[0])}
           />
         </div>

@@ -48,8 +48,7 @@ service.isLoggedIn = async () => {
 service.dogCreate = async (data) => {
     try {
       const storedToken = localStorage.getItem("authToken");
-      const { newDog } = await axios.post(
-        process.env.REACT_APP_API_URL + "/owner",
+      const { newDog } = await service.post("/owner",
         data,
         {
           headers: { Authorization: `Bearer ${storedToken}` },
@@ -79,10 +78,25 @@ service.getOwnedDogs = async (dog) => {
   }
 };
 
-service.editProfile = async () => {
+service.getUserInfo = async () => {
   try {
-    const { newDog } = await service.post("/common");
-    return newDog;
+    const user = await service.get("/common");
+    return user.data.user;
+  } catch (error) {
+    errorHandler(error);
+  }
+};
+
+service.editProfile = async (data) => {
+  try {
+    const storedToken = localStorage.getItem("authToken");
+      const { user } = await service.put("/common",
+        data,
+        {
+          headers: { Authorization: `Bearer ${storedToken}` },
+        }
+      );
+    return user;
   } catch (error) {
     errorHandler(error);
   }

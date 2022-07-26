@@ -1,43 +1,45 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import service from "../../services/apiHandler";
 
-const FormProfileEdit = async () => {
-  const { user } = await service.isLoggedin();
-  console.log(user);
+const FormProfileEdit = () => {
+  useEffect(() => {
+    const fecthData = async () => {
+      try {
+        const response = await service.getUserInfo();
+        setUserData(response);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fecthData();
+  }, []);
 
-  const {
-    name,
-    address,
-    hasChildren,
-    hasExperience,
-    hasPets,
-    willingToPay,
-    profilePicture,
-    description,
-    phoneNumber,
-  } = user;
-
-  const [data, setData] = useState({
-    name: name,
-    address: address,
-    hasChildren: hasChildren,
-    hasExperience: hasExperience,
-    hasPets: hasPets,
-    willingToPay: willingToPay,
-    profilePicture: profilePicture,
-    description: description,
-    phoneNumber: phoneNumber,
+  const [userData, setUserData] = useState({
+    name: "",
+    address: "",
+    hasChildren: "",
+    hasExperience: false,
+    hasPets: false,
+    willingToPay: false,
+    description: "",
+    phoneNumber: "",
+    profilePicture: "",
   });
-
+  const [image, setImage] = useState("");
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await service.editProfile(data);
-      console.log(res);
+      const formData = new FormData();
+      formData.append("profilePicture", image);
+      for (const [key, value] of Object.entries(userData)) {
+        console.log(key, value)
+        formData.append(key, value);
+      }
+      await service.editProfile(formData);
       navigate("/profile");
     } catch (error) {
       setError(e.message);
@@ -46,16 +48,26 @@ const FormProfileEdit = async () => {
 
   return (
     <>
+      <h2>Edit Profile</h2>
+      <img src={`${userData.profilePicture}`} alt="alternative user image"/>
+            
       {error && <h3 className="error">{error.message}</h3>}
-      <form onSubmit={handleSubmit} encType="multipart/form-data">
-        <h2>Edit Profile</h2>
+      <form onSubmit={handleSubmit}>
+      <div>
+        <label htmlFor="profilePicture">ProfilePicture</label>
+        <input
+          type="file"
+          name="profilePicture"
+          onChange={(e) => setImage(e.target.files[0])}
+        />
+      </div>
 
         <label htmlFor="name">Name</label>
         <input
           onChange={(e) =>
-            setData({ ...data, [e.target.name]: e.target.value })
+            setUserData({ ...userData, [e.target.name]: e.target.value })
           }
-          value={data.name}
+          value={userData.name}
           type="text"
           id="name"
           name="name"
@@ -64,66 +76,46 @@ const FormProfileEdit = async () => {
         <label htmlFor="email">Email</label>
         <input
           onChange={(e) =>
-            setData({ ...data, [e.target.name]: e.target.value })
+            setUserData({ ...userData, [e.target.name]: e.target.value })
           }
-          value={data.email}
+          value={userData.email}
           type="email"
           id="email"
           name="email"
         />
 
-        <label htmlFor="password">Password</label>
-        <input
-          onChange={(e) =>
-            setData({ ...data, [e.target.name]: e.target.value })
-          }
-          value={data.password}
-          type="password"
-          id="password"
-          name="password"
-        />
-
         <label htmlFor="address">Address</label>
         <input
           onChange={(e) =>
-            setData({ ...data, [e.target.name]: e.target.value })
+            setUserData({ ...userData, [e.target.name]: e.target.value })
           }
-          value={data.address}
+          value={userData.address}
           type="text"
           id="address"
           name="address"
         />
 
-        <label htmlFor="Profile picture">Profile Picture</label>
-        <input
-          onChange={(e) =>
-            setData({ ...data, [e.target.name]: e.target.value })
-          }
-          value={data.profilePicture}
-          type="file"
-          id="profilePicture"
-          name="profilePicture"
-        />
-
         <label htmlFor="Description">Description</label>
-        <input
+        <textarea
           onChange={(e) =>
-            setData({ ...data, [e.target.name]: e.target.value })
+            setUserData({ ...userData, [e.target.name]: e.target.value })
           }
-          value={data.description}
+          value={userData.description}
           type="text"
           id="description"
           name="description"
-        />
+          cols="40"
+          rows="5"
+        ></textarea>
 
-        {!hasChildren ? (
+        {!userData.hasChildren ? (
           <>
             <label htmlFor="Phone Number">Phone Number</label>
             <input
               onChange={(e) =>
-                setData({ ...data, [e.target.name]: e.target.value })
+                setUserData({ ...userData, [e.target.name]: e.target.value })
               }
-              value={data.phoneNumber}
+              value={userData.phoneNumber}
               type="text"
               id="phoneNumber"
               name="phoneNumber"
@@ -133,99 +125,260 @@ const FormProfileEdit = async () => {
           ""
         )}
 
-        {hasChildren ? (
+        {userData.hasChildren ? (
           <>
-            <label htmlFor="hasChildren">Children?</label>
-            <input
-              onChange={(e) =>
-                setData({ ...data, [e.target.name]: e.target.value })
-              }
-              value={true}
-              type="radio"
-              id="hasChildren"
-              name="hasChildren"
-            />
-            <label htmlFor="hasChildren">Yes</label>
-            <input
-              onChange={(e) =>
-                setData({ ...data, [e.target.name]: e.target.value })
-              }
-              value={false}
-              type="radio"
-              id="!hasChildren"
-              name="hasChildren"
-              checked
-            />
-            <label htmlFor="!hasChildren">No</label>
-
-            <label htmlFor="hasExperience">Experience?</label>
-            <input
-              onChange={(e) =>
-                setData({ ...data, [e.target.name]: e.target.value })
-              }
-              value={true}
-              type="radio"
-              id="hasExperience"
-              name="hasExperience"
-            />
-            <label htmlFor="hasExperience">Yes</label>
-            <input
-              onChange={(e) =>
-                setData({ ...data, [e.target.name]: e.target.value })
-              }
-              value={false}
-              type="radio"
-              id="!hasExperience"
-              name="hasExperience"
-              checked
-            />
-            <label htmlFor="!hasExperience">No</label>
-
-            <label htmlFor="hasPets">Pets?</label>
-            <input
-              onChange={(e) =>
-                setData({ ...data, [e.target.name]: e.target.value })
-              }
-              value={true}
-              type="radio"
-              id="hasPets"
-              name="hasPets"
-            />
-            <label htmlFor="hasPets">Yes</label>
-            <input
-              onChange={(e) =>
-                setData({ ...data, [e.target.name]: e.target.value })
-              }
-              value={false}
-              type="radio"
-              id="!hasPets"
-              name="hasPets"
-              checked
-            />
-            <label htmlFor="!hasPets">No</label>
-
-            <label htmlFor="willingToPay">Looking to Buy?</label>
-            <input
-              onChange={(e) =>
-                setData({ ...data, [e.target.name]: e.target.value })
-              }
-              value={true}
-              type="radio"
-              id="willingToPay"
-              name="willingToPay"
-            />
-            <label htmlFor="willingToPay">Yes</label>
-            <input
-              onChange={(e) =>
-                setData({ ...data, [e.target.name]: e.target.value })
-              }
-              value={false}
-              type="radio"
-              id="!willingToPay"
-              name="willingToPay"
-              checked
-            />
-            <label htmlFor="!willingToPay">No</label>
+            {userData.hasChildren === true ? (
+              <>
+                <label htmlFor="hasChildren">Children?</label>
+                <input
+                  onChange={(e) =>
+                    setUserData({
+                      ...userData,
+                      [e.target.name]: e.target.value,
+                    })
+                  }
+                  value={true}
+                  type="radio"
+                  id="hasChildren"
+                  name="hasChildren"
+                  checked
+                />
+                <label htmlFor="hasChildren">Yes</label>
+                <input
+                  onChange={(e) =>
+                    setUserData({
+                      ...userData,
+                      [e.target.name]: e.target.value,
+                    })
+                  }
+                  value={false}
+                  type="radio"
+                  id="!hasChildren"
+                  name="hasChildren"
+                />
+                <label htmlFor="!hasChildren">No</label>
+              </>
+            ) : (
+              <>
+                <label htmlFor="hasChildren">Children?</label>
+                <input
+                  onChange={(e) =>
+                    setUserData({
+                      ...userData,
+                      [e.target.name]: e.target.value,
+                    })
+                  }
+                  value={true}
+                  type="radio"
+                  id="hasChildren"
+                  name="hasChildren"
+                />
+                <label htmlFor="hasChildren">Yes</label>
+                <input
+                  onChange={(e) =>
+                    setUserData({
+                      ...userData,
+                      [e.target.name]: e.target.value,
+                    })
+                  }
+                  value={false}
+                  type="radio"
+                  id="!hasChildren"
+                  name="hasChildren"
+                  checked
+                />
+                <label htmlFor="!hasChildren">No</label>
+              </>
+            )}
+            {userData.hasExperience === true ? (
+              <>
+                <label htmlFor="hasExperience">Experience?</label>
+                <input
+                  onChange={(e) =>
+                    setUserData({
+                      ...userData,
+                      [e.target.name]: e.target.value,
+                    })
+                  }
+                  value={true}
+                  type="radio"
+                  id="hasExperience"
+                  name="hasExperience"
+                  checked
+                />
+                <label htmlFor="hasExperience">Yes</label>
+                <input
+                  onChange={(e) =>
+                    setUserData({
+                      ...userData,
+                      [e.target.name]: e.target.value,
+                    })
+                  }
+                  value={false}
+                  type="radio"
+                  id="!hasExperience"
+                  name="hasExperience"
+                />
+                <label htmlFor="!hasExperience">No</label>
+              </>
+            ) : (
+              <>
+                <label htmlFor="hasExperience">Experience?</label>
+                <input
+                  onChange={(e) =>
+                    setUserData({
+                      ...userData,
+                      [e.target.name]: e.target.value,
+                    })
+                  }
+                  value={true}
+                  type="radio"
+                  id="hasExperience"
+                  name="hasExperience"
+                />
+                <label htmlFor="hasExperience">Yes</label>
+                <input
+                  onChange={(e) =>
+                    setUserData({
+                      ...userData,
+                      [e.target.name]: e.target.value,
+                    })
+                  }
+                  value={false}
+                  type="radio"
+                  id="!hasExperience"
+                  name="hasExperience"
+                  checked
+                />
+                <label htmlFor="!hasExperience">No</label>
+              </>
+            )}
+            {userData.hasPets === true ? (
+              <>
+                <label htmlFor="hasPets">Pets?</label>
+                <input
+                  onChange={(e) =>
+                    setUserData({
+                      ...userData,
+                      [e.target.name]: e.target.value,
+                    })
+                  }
+                  value={true}
+                  type="radio"
+                  id="hasPets"
+                  name="hasPets"
+                />
+                <label htmlFor="hasPets">Yes</label>
+                <input
+                  onChange={(e) =>
+                    setUserData({
+                      ...userData,
+                      [e.target.name]: e.target.value,
+                    })
+                  }
+                  value={false}
+                  type="radio"
+                  id="!hasPets"
+                  name="hasPets"
+                  checked
+                />
+                <label htmlFor="!hasPets">No</label>
+              </>
+            ) : (
+              <>
+                <label htmlFor="hasPets">Pets?</label>
+                <input
+                  onChange={(e) =>
+                    setUserData({
+                      ...userData,
+                      [e.target.name]: e.target.value,
+                    })
+                  }
+                  value={true}
+                  type="radio"
+                  id="hasPets"
+                  name="hasPets"
+                  checked
+                />
+                <label htmlFor="hasPets">Yes</label>
+                <input
+                  onChange={(e) =>
+                    setUserData({
+                      ...userData,
+                      [e.target.name]: e.target.value,
+                    })
+                  }
+                  value={false}
+                  type="radio"
+                  id="!hasPets"
+                  name="hasPets"
+                />
+                <label htmlFor="!hasPets">No</label>
+              </>
+            )}
+            {userData.willingToPay === true ? (
+              <>
+                <label htmlFor="willingToPay">Looking to Buy?</label>
+                <input
+                  onChange={(e) =>
+                    setUserData({
+                      ...userData,
+                      [e.target.name]: e.target.value,
+                    })
+                  }
+                  value={true}
+                  type="radio"
+                  id="willingToPay"
+                  name="willingToPay"
+                  checked
+                />
+                <label htmlFor="willingToPay">Yes</label>
+                <input
+                  onChange={(e) =>
+                    setUserData({
+                      ...userData,
+                      [e.target.name]: e.target.value,
+                    })
+                  }
+                  value={false}
+                  type="radio"
+                  id="!willingToPay"
+                  name="willingToPay"
+                />
+                <label htmlFor="!willingToPay">No</label>
+              </>
+            ) : (
+              <>
+                <label htmlFor="willingToPay">Looking to Buy?</label>
+                <input
+                  onChange={(e) =>
+                    setUserData({
+                      ...userData,
+                      [e.target.name]: e.target.value,
+                    })
+                  }
+                  value={true}
+                  type="radio"
+                  id="willingToPay"
+                  name="willingToPay"
+                />
+                <label htmlFor="willingToPay">Yes</label>
+                <input
+                  onChange={(e) =>
+                    setUserData({
+                      ...userData,
+                      [e.target.name]: e.target.value,
+                    })
+                  }
+                  value={false}
+                  type="radio"
+                  id="!willingToPay"
+                  name="willingToPay"
+                  checked
+                />
+                <label htmlFor="!willingToPay">No</label>
+              </>
+            )}
           </>
         ) : (
           ""
