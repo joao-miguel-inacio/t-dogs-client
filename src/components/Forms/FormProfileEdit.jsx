@@ -19,14 +19,14 @@ const FormProfileEdit = () => {
     name: "",
     address: "",
     hasChildren: "",
-    hasExperience: false,
-    hasPets: false,
-    willingToPay: false,
+    hasExperience: "",
+    hasPets: "",
+    willingToPay: "",
     description: "",
     phoneNumber: "",
     profilePicture: "",
   });
-  const [image, setImage] = useState("");
+  const [image, setImage] = useState(null);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
@@ -36,7 +36,6 @@ const FormProfileEdit = () => {
       const formData = new FormData();
       formData.append("profilePicture", image);
       for (const [key, value] of Object.entries(userData)) {
-        console.log(key, value)
         formData.append(key, value);
       }
       await service.editProfile(formData);
@@ -73,17 +72,6 @@ const FormProfileEdit = () => {
           name="name"
         />
 
-        <label htmlFor="email">Email</label>
-        <input
-          onChange={(e) =>
-            setUserData({ ...userData, [e.target.name]: e.target.value })
-          }
-          value={userData.email}
-          type="email"
-          id="email"
-          name="email"
-        />
-
         <label htmlFor="address">Address</label>
         <input
           onChange={(e) =>
@@ -108,24 +96,7 @@ const FormProfileEdit = () => {
           rows="5"
         ></textarea>
 
-        {!userData.hasChildren ? (
-          <>
-            <label htmlFor="Phone Number">Phone Number</label>
-            <input
-              onChange={(e) =>
-                setUserData({ ...userData, [e.target.name]: e.target.value })
-              }
-              value={userData.phoneNumber}
-              type="text"
-              id="phoneNumber"
-              name="phoneNumber"
-            />
-          </>
-        ) : (
-          ""
-        )}
-
-        {userData.hasChildren ? (
+        {userData.hasChildren === true || userData.hasChildren === false ? (
           <>
             {userData.hasChildren === true ? (
               <>
@@ -381,7 +352,18 @@ const FormProfileEdit = () => {
             )}
           </>
         ) : (
-          ""
+          <>
+            <label htmlFor="Phone Number">Phone Number</label>
+            <input
+              onChange={(e) =>
+                setUserData({ ...userData, [e.target.name]: e.target.value })
+              }
+              value={userData.phoneNumber}
+              type="text"
+              id="phoneNumber"
+              name="phoneNumber"
+            />
+          </>
         )}
 
         <button>Submit</button>

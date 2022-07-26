@@ -17,7 +17,7 @@ const FormDogCreate = () => {
     goodWithOtherDogs: false,
     price: "",
   });
-  const [image, setImage] = useState("");
+  const [image, setImage] = useState(null);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
