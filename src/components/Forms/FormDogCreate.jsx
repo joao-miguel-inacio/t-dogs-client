@@ -32,24 +32,12 @@ const FormDogCreate = () => {
       console.log("in the browser 1, image: ", image)
       const dogData = new FormData();
 
-      dogData.append("name", dog.name)
-      dogData.append("breed", dog.name)
-      dogData.append("age", dog.age)
-      dogData.append("gender", dog.gender)
-      dogData.append("openToStrangers", dog.openToStrangers)
-      dogData.append("playful", dog.playful)
-      dogData.append("chippedAndVaccinated", dog.chippedAndVaccinated)
-      dogData.append("childFriendly", dog.childFriendly)
-      dogData.append("requiresExperience", dog.requiresExperience)
-      dogData.append("goodWithOtherDogs", dog.goodWithOtherDogs)
-      dogData.append("size", dog.size)
-      dogData.append("price", dog.price)
       dogData.append("image", image)
 
-    //   for (let [key, value] of dogData.entries()) {
-    //     dogData.append(key, value)
-    //  }
-      // const response = await service.dogCreate(dog, image);
+      for (const [key, value] of Object.entries(dog)) {
+        dogData.append(key, value);
+      }
+      
       const response = await service.dogCreate(dogData);
       navigate("/own-list");
     } catch (error) {
