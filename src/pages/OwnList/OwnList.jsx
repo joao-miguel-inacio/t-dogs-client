@@ -1,21 +1,52 @@
 import React from "react";
-import { useEffect } from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { NavLink } from "react-router-dom";
+import axios from "axios";
 import service from "../../services/apiHandler";
+const API_URL = process.env.REACT_APP_API_URL;
 
 const OwnList = () => {
-  const [ownDog, setOwnDog] = useState([]);
-
-  const getOwnDogs = async () => {
-    const res = await service.getOwnedDogs(ownDog);
-    console.log(res);
-    setOwnDog(res);
-  };
+  const [ownDogs, setOwnDogs] = useState();
 
   useEffect(() => {
+    const getOwnDogs = async () => {
+      try {
+        const storedToken = localStorage.getItem("authToken");
+        const response = await service.get(`/owner`, {
+          headers: { Authorization: `Bearer ${storedToken}` },
+        });
+        console.log(response);
+        setOwnDogs(response.data);
+      } catch (error) {
+        console.log(error.message);
+      }
+    };
+
     getOwnDogs();
   }, []);
-  return <div>OwnList</div>;
+
+  const displayDogs = () => {
+    return ownDogs.map((dog) => (
+      <div>
+        <h2>
+          {dog.name} ({dog.breed}) , {dog.age} years old
+        </h2>
+        <img src={dog.image} alt="" />
+        <NavLink key={dog._id} to={`/${dog._id}/dog-edit`}>
+          Edit{" "}
+        </NavLink>
+        <NavLink key={dog._id} to={`/${dog._id}`}>
+          See Details{" "}
+        </NavLink>
+      </div>
+    ));
+  };
+  return (
+    <div>
+      <h1>Owned Dogs</h1>
+      {ownDogs ? displayDogs() : <p>Loading your dogs ...</p>}
+    </div>
+  );
 };
 
 export default OwnList;

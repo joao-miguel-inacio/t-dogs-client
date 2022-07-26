@@ -23,12 +23,12 @@ function App() {
         <Route path="/signin" element={<Signin />} />
         <Route path="/signup" element={<Signup />} />
         <Route element={<PrivateRoute />}>
-          <Route path="/dog" element={<Dog />} />
+          <Route path="/:id" element={<Dog />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/profile/edit" element={<FormProfileEdit />} />
           <Route path="/own-list" element={<OwnList />} />
           <Route path="/dog-create" element={<DogCreate />} />
-          <Route path="/dog-edit" element={<DogEdit />} />
+          <Route path="/:id/dog-edit" element={<DogEdit />} />
           <Route path="/browse" element={<Browse />} />
           <Route path="/match-list" element={<MatchList />} />
         </Route>
