@@ -7,7 +7,7 @@ const FormDogCreate = () => {
     name: "",
     breed: "",
     age: "",
-    gender: "",
+    gender: "female",
     size: "",
     openToStrangers: false,
     playful: false,
