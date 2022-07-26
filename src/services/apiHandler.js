@@ -49,11 +49,20 @@ service.isLoggedIn = async () => {
 
 service.dogCreate = async (dog, image) => {
   try {
-    console.log("in the browser2, from inside apiHandler", dog, image);
     const storedToken = localStorage.getItem("authToken");
+    console.log("in the browser2, from inside apiHandler", dog, image);
+    const dogData = new FormData();
+
+      dogData.append("dog", dog)
+      dogData.append("image", image)
+
+      for (let [key, value] of dogData.entries()) {
+        console.log("in the browser3, from inside apiHandler, formData", key, value)
+     }
+
     const { newDog } = await axios.post(
       process.env.REACT_APP_API_URL + "/owner",
-      { dog, image: image },
+      dogData,
       // {
       //   id: dog.id,
       //   image: dogImage.fileUrl,

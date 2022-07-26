@@ -12,7 +12,7 @@ import Browse from "./pages/Browse/Browse";
 import MatchList from "./pages/MatchList/MatchList";
 import NotFound from "./pages/NotFound/NotFound";
 import PrivateRoute from "./components/ProtectedRoute/PrivateRoute";
-import FormProfileEdit from "./components/Forms/ForProfileEdit";
+import FormProfileEdit from "./components/Forms/FormProfileEdit";
 
 function App() {
   return (

@@ -2,8 +2,6 @@ import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import service from "../../services/apiHandler";
 import FormStyling from "./Form.css";
-import axios from "axios";
-const API_URL = process.env.REACT_APP_API_URL;
 
 const FormDogCreate = () => {
   const [dog, setDog] = useState({
@@ -30,14 +28,9 @@ const FormDogCreate = () => {
     e.preventDefault();
 
     try {
-      console.log("in the browser: ", dog, image);
-      //const dogData = new FormData();
+      console.log("in the browser 1, dog: ", dog)
+      console.log("in the browser 1, image: ", image)
 
-      // const dogImage = await service.uploadImage(dogData);
-      // console.log(dogImage);
-      // dogData.append("image", dogImage);
-
-      /* const res = await service.createDog(dog); */
       const response = await service.dogCreate(dog, image);
       navigate("/own-list");
     } catch (error) {
@@ -50,6 +43,7 @@ const FormDogCreate = () => {
       {error && <h3 className="error">{error.message}</h3>}
       <form
         className="dog-form"
+        id="dog-form"
         onSubmit={handleSubmit}
         encType="multipart/form-data"
       >
@@ -61,7 +55,7 @@ const FormDogCreate = () => {
             type="file"
             name="image"
             multiple
-            onChange={(e) => setImage({ [e.target.name]: e.target.files[0] })}
+            onChange={(e) => setImage(e.target.files)}
           />
         </div>
 
