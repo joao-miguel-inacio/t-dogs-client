@@ -21,7 +21,6 @@ service.interceptors.request.use((config) => {
 service.signup = async (user) => {
   try {
     const { data } = await service.post("/auth/signup", user);
-    console.log("works");
     return data;
   } catch (error) {
     errorHandler(error);
@@ -31,7 +30,6 @@ service.signup = async (user) => {
 service.signin = async (user) => {
   try {
     const { data } = await service.post("/auth/signin", user);
-    console.log(data);
     return data;
   } catch (error) {
     errorHandler(error);
@@ -47,35 +45,23 @@ service.isLoggedIn = async () => {
   }
 };
 
-service.dogCreate = async (dog, image) => {
-  try {
-    const storedToken = localStorage.getItem("authToken");
-    console.log("in the browser2, from inside apiHandler", dog, image);
-    const dogData = new FormData();
-
-      dogData.append("dog", dog)
-      dogData.append("image", image)
-
-      for (let [key, value] of dogData.entries()) {
-        console.log("in the browser3, from inside apiHandler, formData", key, value)
-     }
-
-    const { newDog } = await axios.post(
-      process.env.REACT_APP_API_URL + "/owner",
-      dogData,
-      // {
-      //   id: dog.id,
-      //   image: dogImage.fileUrl,
-      // },
-      {
-        headers: { Authorization: `Bearer ${storedToken}` },
-      }
-    );
-    return newDog;
-  } catch (error) {
-    errorHandler(error);
-  }
-};
+service.dogCreate = async (data) => {
+    try {
+      const storedToken = localStorage.getItem("authToken");
+      console.log("in the browser3, from inside apiHandler", data);
+  
+      const { newDog } = await axios.post(
+        process.env.REACT_APP_API_URL + "/owner",
+        data,
+        {
+          headers: { Authorization: `Bearer ${storedToken}` },
+        }
+      );
+      return newDog;
+    } catch (error) {
+      errorHandler(error);
+    }
+  };
 
 service.editDog = async (dog) => {
   try {
@@ -86,16 +72,6 @@ service.editDog = async (dog) => {
   }
 };
 
-// service.uploadImage = async (dogImage) => {
-//   try {
-//     const uploadDogImage = await service.post("/owner", dogImage);
-//     console.log(uploadDogImage.data);
-//     return uploadDogImage.data;
-//   } catch (error) {
-//     errorHandler(error);
-//   }
-// };
-
 service.getOwnedDogs = async (dog) => {
   try {
     const { allOwnedDogs } = await service.get("/owner", dog);
@@ -104,14 +80,6 @@ service.getOwnedDogs = async (dog) => {
     errorHandler(error);
   }
 };
-// ? Example of a function created to...  getAllTheCats
-// service.getAllTheCats = () {
-// 	return service
-// 		.get("/api/cats")
-// 		.then((res) => res.data)
-// 		.catch(errorHandler);
-// },
-// }
 
 service.editProfile = async () => {
   try {
