@@ -12,7 +12,7 @@ import Browse from "./pages/Browse/Browse";
 import MatchList from "./pages/MatchList/MatchList";
 import NotFound from "./pages/NotFound/NotFound";
 import PrivateRoute from "./components/ProtectedRoute/PrivateRoute";
-import FormProfileEdit from "./components/Forms/FormProfileEdit";
+import ProfileEdit from "./pages/Forms/ProfileEdit";
 
 function App() {
   return (
@@ -25,7 +25,7 @@ function App() {
         <Route element={<PrivateRoute />}>
           <Route path="/:id" element={<Dog />} />
           <Route path="/profile" element={<Profile />} />
-          <Route path="/profile/edit" element={<FormProfileEdit />} />
+          <Route path="/profile-edit" element={<ProfileEdit />} />
           <Route path="/own-list" element={<OwnList />} />
           <Route path="/dog-create" element={<DogCreate />} />
           <Route path="/:id/dog-edit" element={<DogEdit />} />
