@@ -1,8 +1,8 @@
-import React from 'react';
+import DogDetails from "../../components/Dog/DogDetails";
+
+import React from "react";
 const Dog = () => {
-  return (
-    <div>Dog</div>
-  )
-}
+  return <DogDetails></DogDetails>;
+};
 
 export default Dog;

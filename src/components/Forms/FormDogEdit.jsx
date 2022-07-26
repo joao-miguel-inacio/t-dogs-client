@@ -7,7 +7,7 @@ const API_URL = process.env.REACT_APP_API_URL;
 
 const FormDogEdit = () => {
   const { id } = useParams();
-  console.log(id);
+
   const [dog, setDog] = useState({
     name: "",
     breed: "",
@@ -31,7 +31,7 @@ const FormDogEdit = () => {
   useEffect(() => {
     const getDogData = async () => {
       try {
-        const { data } = await axios.get(`${API_URL}/owner/${id}`);
+        const { data } = await service.get(`${API_URL}/owner/${id}`);
         console.log(data);
       } catch (error) {
         console.log(error);
@@ -48,6 +48,11 @@ const FormDogEdit = () => {
       const { data } = await axios.put(`${API_URL}/owner/${id}`, editDog, {
         headers: { Authorization: `Bearer ${storedToken}` },
       });
+      const dogImage = new FormData();
+      dogImage.append("image", image);
+      for (const [key, value] of Object.entries(editDog)) {
+        dogImage.append(key, value);
+      }
       console.log(data);
       setEditDog(data);
       navigate("/own-list");
@@ -62,15 +67,17 @@ const FormDogEdit = () => {
       <form className="dog-form" id="dog-form" onSubmit={handleEditDog}>
         <h2>Edit </h2>
 
-        {/* <div>
+        <div>
           <label htmlFor="image">Dog Image</label>
           <input
             type="file"
             name="image"
             multiple
-            onChange={(e) => setImage(e.target.files[0])}
+            onChange={(e) =>
+              setImage({ ...image, [e.target.name]: e.target.value })
+            }
           />
-        </div> */}
+        </div>
 
         <div>
           <label htmlFor="name">Name</label>
@@ -84,13 +91,13 @@ const FormDogEdit = () => {
             name="name"
           />
         </div>
-        {/* <div>
+        <div>
           <label htmlFor="breed">Breed</label>
           <input
             onChange={(e) =>
-              setDog({ ...dog, [e.target.name]: e.target.value })
+              setEditDog({ ...editDog, [e.target.name]: e.target.value })
             }
-            value={dog.breed}
+            value={editDog.breed}
             type="text"
             id="breed"
             name="breed"
@@ -100,9 +107,9 @@ const FormDogEdit = () => {
           <label htmlFor="age">Age</label>
           <input
             onChange={(e) =>
-              setDog({ ...dog, [e.target.name]: e.target.value })
+              setEditDog({ ...editDog, [e.target.name]: e.target.value })
             }
-            value={dog.age}
+            value={editDog.age}
             type="number"
             id="age"
             name="age"
@@ -112,7 +119,7 @@ const FormDogEdit = () => {
           <label htmlFor="gender">Gender</label>
           <input
             onChange={(e) =>
-              setDog({ ...dog, [e.target.name]: e.target.value })
+              setEditDog({ ...editDog, [e.target.name]: e.target.value })
             }
             type="radio"
             value={"female"}
@@ -121,7 +128,7 @@ const FormDogEdit = () => {
           Female
           <input
             onChange={(e) =>
-              setDog({ ...dog, [e.target.name]: e.target.value })
+              setEditDog({ ...editDog, [e.target.name]: e.target.value })
             }
             type="radio"
             value={"male"}
@@ -134,7 +141,7 @@ const FormDogEdit = () => {
           <label htmlFor="size">Size</label>
           <input
             onChange={(e) =>
-              setDog({ ...dog, [e.target.name]: e.target.value })
+              setEditDog({ ...editDog, [e.target.name]: e.target.value })
             }
             value={"large"}
             type="radio"
@@ -144,7 +151,7 @@ const FormDogEdit = () => {
           Large
           <input
             onChange={(e) =>
-              setDog({ ...dog, [e.target.name]: e.target.value })
+              setEditDog({ ...editDog, [e.target.name]: e.target.value })
             }
             value={"medium"}
             type="radio"
@@ -154,7 +161,7 @@ const FormDogEdit = () => {
           Medium
           <input
             onChange={(e) =>
-              setDog({ ...dog, [e.target.name]: e.target.value })
+              setEditDog({ ...editDog, [e.target.name]: e.target.value })
             }
             value={"small"}
             type="radio"
@@ -168,7 +175,7 @@ const FormDogEdit = () => {
           <div>
             <input
               onChange={(e) =>
-                setDog({ ...dog, [e.target.name]: e.target.value })
+                setEditDog({ ...editDog, [e.target.name]: e.target.value })
               }
               type="radio"
               value={true}
@@ -177,7 +184,7 @@ const FormDogEdit = () => {
             Yes
             <input
               onChange={(e) =>
-                setDog({ ...dog, [e.target.name]: e.target.value })
+                setEditDog({ ...editDog, [e.target.name]: e.target.value })
               }
               type="radio"
               value={false}
@@ -191,7 +198,7 @@ const FormDogEdit = () => {
           <div>
             <input
               onChange={(e) =>
-                setDog({ ...dog, [e.target.name]: e.target.value })
+                setEditDog({ ...editDog, [e.target.name]: e.target.value })
               }
               type="radio"
               value={true}
@@ -206,7 +213,7 @@ const FormDogEdit = () => {
           <div>
             <input
               onChange={(e) =>
-                setDog({ ...dog, [e.target.name]: e.target.value })
+                setEditDog({ ...editDog, [e.target.name]: e.target.value })
               }
               type="radio"
               value={true}
@@ -215,7 +222,7 @@ const FormDogEdit = () => {
             Yes
             <input
               onChange={(e) =>
-                setDog({ ...dog, [e.target.name]: e.target.value })
+                setEditDog({ ...editDog, [e.target.name]: e.target.value })
               }
               type="radio"
               value={false}
@@ -229,7 +236,7 @@ const FormDogEdit = () => {
           <div>
             <input
               onChange={(e) =>
-                setDog({ ...dog, [e.target.name]: e.target.value })
+                setEditDog({ ...editDog, [e.target.name]: e.target.value })
               }
               type="radio"
               value={true}
@@ -238,7 +245,7 @@ const FormDogEdit = () => {
             Yes
             <input
               onChange={(e) =>
-                setDog({ ...dog, [e.target.name]: e.target.value })
+                setEditDog({ ...editDog, [e.target.name]: e.target.value })
               }
               type="radio"
               value={false}
@@ -252,7 +259,7 @@ const FormDogEdit = () => {
           <div>
             <input
               onChange={(e) =>
-                setDog({ ...dog, [e.target.name]: e.target.value })
+                setEditDog({ ...editDog, [e.target.name]: e.target.value })
               }
               type="radio"
               value={true}
@@ -261,7 +268,7 @@ const FormDogEdit = () => {
             Yes
             <input
               onChange={(e) =>
-                setDog({ ...dog, [e.target.name]: e.target.value })
+                setEditDog({ ...editDog, [e.target.name]: e.target.value })
               }
               type="radio"
               value={false}
@@ -275,7 +282,7 @@ const FormDogEdit = () => {
           <div>
             <input
               onChange={(e) =>
-                setDog({ ...dog, [e.target.name]: e.target.value })
+                setEditDog({ ...editDog, [e.target.name]: e.target.value })
               }
               type="radio"
               value={true}
@@ -284,7 +291,7 @@ const FormDogEdit = () => {
             Yes
             <input
               onChange={(e) =>
-                setDog({ ...dog, [e.target.name]: e.target.value })
+                setEditDog({ ...editDog, [e.target.name]: e.target.value })
               }
               type="radio"
               value={false}
@@ -297,14 +304,14 @@ const FormDogEdit = () => {
           <label htmlFor="price">Price</label>
           <input
             onChange={(e) =>
-              setDog({ ...dog, [e.target.name]: e.target.value })
+              setEditDog({ ...editDog, [e.target.name]: e.target.value })
             }
             value={dog.price}
             type="number"
             id="price"
             name="price"
           />
-        </div> */}
+        </div>
 
         <button>Confirm</button>
       </form>
