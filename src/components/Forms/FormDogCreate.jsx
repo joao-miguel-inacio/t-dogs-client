@@ -5,22 +5,21 @@ import FormStyling from "./Form.css";
 
 const FormDogCreate = () => {
   const [dog, setDog] = useState({
-    name: "Lukas",
-    breed: "poodle",
-    age: 3,
-    gender: "female",
-    size: "small",
+    name: "",
+    breed: "",
+    age: "",
+    gender: "",
+    size: "",
     openToStrangers: false,
     playful: false,
     chippedAndVaccinated: false,
     childFriendly: false,
     requiresExperience: false,
     goodWithOtherDogs: false,
-    price: 4,
+    price: "",
   });
   const [image, setImage] = useState(null);
   const [error, setError] = useState(null);
-  //const [image, setImage] = useState(null);
 
   const navigate = useNavigate();
 
@@ -28,16 +27,11 @@ const FormDogCreate = () => {
     e.preventDefault();
 
     try {
-      console.log("in the browser 1, dog: ", dog)
-      console.log("in the browser 1, image: ", image)
       const dogData = new FormData();
-
-      dogData.append("image", image)
-
+      dogData.append("image", image);
       for (const [key, value] of Object.entries(dog)) {
         dogData.append(key, value);
       }
-      
       const response = await service.dogCreate(dogData);
       navigate("/own-list");
     } catch (error) {
@@ -48,11 +42,7 @@ const FormDogCreate = () => {
   return (
     <div>
       {error && <h3 className="error">{error.message}</h3>}
-      <form
-        className="dog-form"
-        id="dog-form"
-        onSubmit={handleSubmit}
-      >
+      <form className="dog-form" id="dog-form" onSubmit={handleSubmit}>
         <h2>Create a Dog</h2>
 
         <div>
@@ -65,7 +55,7 @@ const FormDogCreate = () => {
           />
         </div>
 
-        {/* <div>
+        <div>
           <label htmlFor="name">Name</label>
           <input
             onChange={(e) =>
@@ -108,7 +98,7 @@ const FormDogCreate = () => {
               setDog({ ...dog, [e.target.name]: e.target.value })
             }
             type="radio"
-            value={dog.gender}
+            value={"female"}
             name="gender"
           />
           Female
@@ -117,7 +107,7 @@ const FormDogCreate = () => {
               setDog({ ...dog, [e.target.name]: e.target.value })
             }
             type="radio"
-            value={dog.gender}
+            value={"male"}
             name="gender"
           />
           Male
@@ -129,7 +119,7 @@ const FormDogCreate = () => {
             onChange={(e) =>
               setDog({ ...dog, [e.target.name]: e.target.value })
             }
-            value={dog.size}
+            value={"large"}
             type="radio"
             id="size"
             name="size"
@@ -139,7 +129,7 @@ const FormDogCreate = () => {
             onChange={(e) =>
               setDog({ ...dog, [e.target.name]: e.target.value })
             }
-            value={dog.size}
+            value={"medium"}
             type="radio"
             id="size"
             name="size"
@@ -149,7 +139,7 @@ const FormDogCreate = () => {
             onChange={(e) =>
               setDog({ ...dog, [e.target.name]: e.target.value })
             }
-            value={dog.size}
+            value={"small"}
             type="radio"
             id="size"
             name="size"
@@ -293,11 +283,11 @@ const FormDogCreate = () => {
               setDog({ ...dog, [e.target.name]: e.target.value })
             }
             value={dog.price}
-            type="text"
+            type="number"
             id="price"
             name="price"
           />
-        </div> */}
+        </div>
 
         <button>Submit</button>
       </form>

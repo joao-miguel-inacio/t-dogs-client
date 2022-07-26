@@ -48,8 +48,6 @@ service.isLoggedIn = async () => {
 service.dogCreate = async (data) => {
     try {
       const storedToken = localStorage.getItem("authToken");
-      console.log("in the browser3, from inside apiHandler", data);
-  
       const { newDog } = await axios.post(
         process.env.REACT_APP_API_URL + "/owner",
         data,
