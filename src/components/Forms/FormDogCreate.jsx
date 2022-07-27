@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import service from "../../services/apiHandler";
+import FormStyling from "./Form.css";
 
 const FormDogCreate = () => {
   const [dog, setDog] = useState({
@@ -39,7 +40,7 @@ const FormDogCreate = () => {
   return (
     <div>
       {error && <h3 className="error">{error.message}</h3>}
-      <form className="dog-form" id="dog-form" onSubmit={handleSubmit}>
+      <form className="dog-form" onSubmit={handleSubmit}>
         <h2>Create a Dog</h2>
 
         <div>
@@ -52,7 +53,7 @@ const FormDogCreate = () => {
         </div>
 
         <div>
-          <label htmlFor="name">Name</label>
+          <label htmlFor="name">Name: </label>
           <input
             onChange={(e) =>
               setDog({ ...dog, [e.target.name]: e.target.value })
@@ -64,7 +65,7 @@ const FormDogCreate = () => {
           />
         </div>
         <div>
-          <label htmlFor="breed">Breed</label>
+          <label htmlFor="breed">Breed: </label>
           <input
             onChange={(e) =>
               setDog({ ...dog, [e.target.name]: e.target.value })
@@ -76,7 +77,7 @@ const FormDogCreate = () => {
           />
         </div>
         <div>
-          <label htmlFor="age">Age</label>
+          <label htmlFor="age">Age: </label>
           <input
             onChange={(e) =>
               setDog({ ...dog, [e.target.name]: e.target.value })
@@ -88,7 +89,35 @@ const FormDogCreate = () => {
           />
         </div>
         <div>
-          <label htmlFor="gender">Gender</label>
+          <label htmlFor="shortDescription">Short Description: </label>
+          <textarea
+            onChange={(e) =>
+              setDog({ ...dog, [e.target.name]: e.target.value })
+            }
+            value={dog.shortDescription}
+            rows={3}
+            cols={40}
+            type="text"
+            id="shortDescription"
+            name="shortDescription"
+          />
+        </div>
+        <div>
+          <label htmlFor="description">Description: </label>
+          <textarea
+            onChange={(e) =>
+              setDog({ ...dog, [e.target.name]: e.target.value })
+            }
+            value={dog.description}
+            rows={6}
+            cols={40}
+            type="text"
+            id="description"
+            name="description"
+          />
+        </div>
+        <div>
+          <label htmlFor="gender">Gender: </label>
           <input
             onChange={(e) =>
               setDog({ ...dog, [e.target.name]: e.target.value })
@@ -110,7 +139,7 @@ const FormDogCreate = () => {
         </div>
 
         <div>
-          <label htmlFor="size">Size</label>
+          <label htmlFor="size">Size: </label>
           <input
             onChange={(e) =>
               setDog({ ...dog, [e.target.name]: e.target.value })
@@ -143,7 +172,7 @@ const FormDogCreate = () => {
           Small
         </div>
         <div>
-          <label htmlFor="openToStrangers">open to Strangers</label>
+          <label htmlFor="openToStrangers">open to Strangers?</label>
           <div>
             <input
               onChange={(e) =>
@@ -166,7 +195,7 @@ const FormDogCreate = () => {
           </div>
         </div>
         <div>
-          <label htmlFor="playful">Playful</label>
+          <label htmlFor="playful">Playful?</label>
           <div>
             <input
               onChange={(e) =>
@@ -181,7 +210,7 @@ const FormDogCreate = () => {
           </div>
         </div>
         <div>
-          <label htmlFor="chippedAndVaccinated">Chipped and Vaccinated</label>
+          <label htmlFor="chippedAndVaccinated">Chipped and Vaccinated?</label>
           <div>
             <input
               onChange={(e) =>
@@ -204,7 +233,7 @@ const FormDogCreate = () => {
           </div>
         </div>
         <div>
-          <label htmlFor="childFriendly">Child Friendly</label>
+          <label htmlFor="childFriendly">Child Friendly?</label>
           <div>
             <input
               onChange={(e) =>
@@ -227,7 +256,7 @@ const FormDogCreate = () => {
           </div>
         </div>
         <div>
-          <label htmlFor="requiresExperience">Requires Experience</label>
+          <label htmlFor="requiresExperience">Requires Experience?</label>
           <div>
             <input
               onChange={(e) =>
@@ -250,7 +279,7 @@ const FormDogCreate = () => {
           </div>
         </div>
         <div>
-          <label htmlFor="goodWithOtherDogs">Good With Other Dogs</label>
+          <label htmlFor="goodWithOtherDogs">Good With Other Dogs?</label>
           <div>
             <input
               onChange={(e) =>
@@ -273,7 +302,7 @@ const FormDogCreate = () => {
           </div>
         </div>
         <div>
-          <label htmlFor="price">Price</label>
+          <label htmlFor="price">Price </label>
           <input
             onChange={(e) =>
               setDog({ ...dog, [e.target.name]: e.target.value })

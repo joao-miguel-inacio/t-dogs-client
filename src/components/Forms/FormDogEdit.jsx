@@ -77,7 +77,7 @@ const FormDogEdit = () => {
         </div>
 
         <div>
-          <label htmlFor="name">Name</label>
+          <label htmlFor="name">Name: </label>
           <input
             onChange={(e) =>
               setEditDog({ ...editDog, [e.target.name]: e.target.value })
@@ -89,7 +89,7 @@ const FormDogEdit = () => {
           />
         </div>
         <div>
-          <label htmlFor="breed">Breed</label>
+          <label htmlFor="breed">Breed: </label>
           <input
             onChange={(e) =>
               setEditDog({ ...editDog, [e.target.name]: e.target.value })
@@ -101,7 +101,7 @@ const FormDogEdit = () => {
           />
         </div>
         <div>
-          <label htmlFor="age">Age</label>
+          <label htmlFor="age">Age: </label>
           <input
             onChange={(e) =>
               setEditDog({ ...editDog, [e.target.name]: e.target.value })
@@ -113,7 +113,35 @@ const FormDogEdit = () => {
           />
         </div>
         <div>
-          <label htmlFor="gender">Gender</label>
+          <label htmlFor="shortDescription">Short Description: </label>
+          <textarea
+            onChange={(e) =>
+              setEditDog({ ...editDog, [e.target.name]: e.target.value })
+            }
+            value={editDog.shortDescription}
+            rows={3}
+            cols={40}
+            type="text"
+            id="shortDescription"
+            name="shortDescription"
+          />
+        </div>
+        <div>
+          <label htmlFor="description">Description: </label>
+          <textarea
+            onChange={(e) =>
+              setEditDog({ ...editDog, [e.target.name]: e.target.value })
+            }
+            value={editDog.description}
+            rows={6}
+            cols={40}
+            type="text"
+            id="description"
+            name="description"
+          />
+        </div>
+        <div>
+          <label htmlFor="gender">Gender: </label>
           <input
             onChange={(e) =>
               setEditDog({ ...editDog, [e.target.name]: e.target.value })
@@ -135,7 +163,7 @@ const FormDogEdit = () => {
         </div>
 
         <div>
-          <label htmlFor="size">Size</label>
+          <label htmlFor="size">Size: </label>
           <input
             onChange={(e) =>
               setEditDog({ ...editDog, [e.target.name]: e.target.value })
@@ -168,7 +196,7 @@ const FormDogEdit = () => {
           Small
         </div>
         <div>
-          <label htmlFor="openToStrangers">open to Strangers</label>
+          <label htmlFor="openToStrangers">open to Strangers? </label>
           <div>
             <input
               onChange={(e) =>

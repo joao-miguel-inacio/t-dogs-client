@@ -1,8 +1,8 @@
 .dog-form {
+  font-size: 1.5rem;
   display: flex;
   flex-direction: column;
-  width: 80%;
-  font-size: 1.5rem;
+  align-items: stretch;
 }
 
 .dog-form label {

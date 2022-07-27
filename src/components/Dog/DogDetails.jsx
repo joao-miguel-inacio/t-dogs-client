@@ -25,6 +25,8 @@ const DogDetails = () => {
     fetchDogDetails();
   }, [id]);
 
+  const getBooleanValue = (value) => (value ? "Yes" : "No");
+
   const displayDogs = () => {
     return (
       <div>
@@ -40,12 +42,23 @@ const DogDetails = () => {
           <p>Size: {dogDetails.size} </p>
           <p>Price: {dogDetails.price}</p>
           <p>Description: {dogDetails.description}</p>
-          <p>Open to Strangers? {dogDetails.openToStrangers}</p>
-          <p>Playful?: {dogDetails.playful}</p>
-          <p>Chipped and Vaccinated?: {dogDetails.chippedAndVaccinated}</p>
-          <p>Child Friendly?: {dogDetails.childFriendly}</p>
-          <p>Requires Experience?: {dogDetails.requiresExperience}</p>
-          <p>Good with Other Dogs?: {dogDetails.goodWithOtherDogs}</p>
+          <p>
+            Open to Strangers? {getBooleanValue(dogDetails.openToStrangers)}
+          </p>
+          <p>Playful?: {getBooleanValue(dogDetails.playful)}</p>
+          <p>
+            Chipped and Vaccinated?:{" "}
+            {getBooleanValue(dogDetails.chippedAndVaccinated)}
+          </p>
+          <p>Child Friendly?: {getBooleanValue(dogDetails.childFriendly)}</p>
+          <p>
+            Requires Experience?:{" "}
+            {getBooleanValue(dogDetails.requiresExperience)}
+          </p>
+          <p>
+            Good with Other Dogs?:{" "}
+            {getBooleanValue(dogDetails.goodWithOtherDogs)}
+          </p>
         </div>
       </div>
     );
