@@ -84,6 +84,8 @@ service.getUserInfo = async () => {
   }
 };
 
+// get profile Data
+
 service.editProfile = async (data) => {
   try {
     const storedToken = localStorage.getItem("authToken");

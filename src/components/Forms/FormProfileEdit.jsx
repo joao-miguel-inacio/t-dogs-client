@@ -4,7 +4,7 @@ import service from "../../services/apiHandler";
 
 const FormProfileEdit = () => {
   useEffect(() => {
-    const fecthData = async () => {
+    const fetchData = async () => {
       try {
         const response = await service.getUserInfo();
         setUserData(response);
@@ -12,7 +12,7 @@ const FormProfileEdit = () => {
         console.error(error);
       }
     };
-    fecthData();
+    fetchData();
   }, []);
 
   const [userData, setUserData] = useState({
@@ -48,18 +48,18 @@ const FormProfileEdit = () => {
   return (
     <>
       <h2>Edit Profile</h2>
-      <img src={`${userData.profilePicture}`} alt="alternative user image"/>
-            
+      <img src={`${userData.profilePicture}`} alt="alternative user image" />
+
       {error && <h3 className="error">{error.message}</h3>}
       <form onSubmit={handleSubmit}>
-      <div>
-        <label htmlFor="profilePicture">ProfilePicture</label>
-        <input
-          type="file"
-          name="profilePicture"
-          onChange={(e) => setImage(e.target.files[0])}
-        />
-      </div>
+        <div>
+          <label htmlFor="profilePicture">ProfilePicture</label>
+          <input
+            type="file"
+            name="profilePicture"
+            onChange={(e) => setImage(e.target.files[0])}
+          />
+        </div>
 
         <label htmlFor="name">Name</label>
         <input
