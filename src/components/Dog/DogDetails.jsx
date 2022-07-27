@@ -1,51 +1,56 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 import axios from "axios";
 import service from "../../services/apiHandler";
-const API_URL = process.env.REACT_APP_API_URL;
+/* const API_URL = process.env.REACT_APP_API_URL; */
 
 const DogDetails = () => {
+  const { id } = useParams();
   const [dogDetails, setDogDetails] = useState();
 
   useEffect(() => {
-    const getDogDetails = async () => {
+    const fetchDogDetails = async () => {
       try {
         const storedToken = localStorage.getItem("authToken");
-        const response = await service.get(`/owner`, {
+        const response = await service.get(`/common/${id}`, {
           headers: { Authorization: `Bearer ${storedToken}` },
         });
-        console.log(response);
-        setDogDetails(response.data);
+        console.log(response.data.dog);
+        setDogDetails(response.data.dog);
       } catch (error) {
         console.log(error.message);
       }
     };
-    getDogDetails();
-  }, []);
+    fetchDogDetails();
+  }, [id]);
 
   const displayDogs = () => {
-    return dogDetails.map((dog) => (
+    return (
       <div>
-        <h2>
-          <img src={dog.image} alt="" />
-          {dog.name} ({dog.breed}) , {dog.age} years old
-        </h2>
-        <NavLink key={dog._id} to={`/${dog._id}/dog-edit`}>
-          Edit{" "}
-        </NavLink>
-        <NavLink key={dog._id} to={`/${dog._id}`}>
-          See Details{" "}
-        </NavLink>
+        <div>
+          <h2>
+            {dogDetails.name} ({dogDetails.breed}) , {dogDetails.age} years old
+          </h2>
+        </div>
+        <img src={dogDetails.image} alt="" />
+        <h2>{dogDetails.shortDescription} </h2>
+        <div>
+          <p>Gender: {dogDetails.gender} </p>
+          <p>Size: {dogDetails.size} </p>
+          <p>Price: {dogDetails.price}</p>
+          <p>Description: {dogDetails.description}</p>
+          <p>Open to Strangers? {dogDetails.openToStrangers}</p>
+          <p>Playful?: {dogDetails.playful}</p>
+          <p>Chipped and Vaccinated?: {dogDetails.chippedAndVaccinated}</p>
+          <p>Child Friendly?: {dogDetails.childFriendly}</p>
+          <p>Requires Experience?: {dogDetails.requiresExperience}</p>
+          <p>Good with Other Dogs?: {dogDetails.goodWithOtherDogs}</p>
+        </div>
       </div>
-    ));
+    );
   };
-  return (
-    <div>
-      <h1>Here are your dogs</h1>
-      {dogDetails ? displayDogs() : <p>Loading your dogs ...</p>}
-    </div>
-  );
+  return <div>{dogDetails ? displayDogs() : <p>Loading your dogs ...</p>}</div>;
 };
 
 export default DogDetails;

@@ -46,24 +46,21 @@ service.isLoggedIn = async () => {
 };
 
 service.dogCreate = async (data) => {
-    try {
-      const storedToken = localStorage.getItem("authToken");
-      const { newDog } = await service.post("/owner",
-        data,
-        {
-          headers: { Authorization: `Bearer ${storedToken}` },
-        }
-      );
-      return newDog;
-    } catch (error) {
-      errorHandler(error);
-    }
-  };
-
-service.editDog = async (dog) => {
   try {
-    const { editDog } = await service.put("/owner", dog);
-    return editDog;
+    const storedToken = localStorage.getItem("authToken");
+    const { newDog } = await service.post("/owner", data, {
+      headers: { Authorization: `Bearer ${storedToken}` },
+    });
+    return newDog;
+  } catch (error) {
+    errorHandler(error);
+  }
+};
+
+service.dogEdit = async (dog) => {
+  try {
+    const { dogEdit } = await service.put("/owner", dog);
+    return dogEdit;
   } catch (error) {
     errorHandler(error);
   }
@@ -90,12 +87,9 @@ service.getUserInfo = async () => {
 service.editProfile = async (data) => {
   try {
     const storedToken = localStorage.getItem("authToken");
-      const { user } = await service.put("/common",
-        data,
-        {
-          headers: { Authorization: `Bearer ${storedToken}` },
-        }
-      );
+    const { user } = await service.put("/common", data, {
+      headers: { Authorization: `Bearer ${storedToken}` },
+    });
     return user;
   } catch (error) {
     errorHandler(error);

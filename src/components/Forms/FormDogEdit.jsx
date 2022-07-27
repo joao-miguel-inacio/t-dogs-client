@@ -2,8 +2,6 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import service from "../../services/apiHandler";
 import FormStyling from "./Form.css";
-import axios from "axios";
-const API_URL = process.env.REACT_APP_API_URL;
 
 const FormDogEdit = () => {
   const { id } = useParams();
@@ -24,37 +22,37 @@ const FormDogEdit = () => {
   });
   const [image, setImage] = useState(null);
   const [error, setError] = useState(null);
-  const [editDog, setEditDog] = useState({});
+  const [editDog, setEditDog] = useState("");
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    const getDogData = async () => {
+    const fetchData = async () => {
       try {
-        const { data } = await service.get(`${API_URL}/owner/${id}`);
-        console.log(data);
+        const { data } = await service.get(`common/${id}`);
+        console.log(data.dog);
+        setEditDog(data.dog);
       } catch (error) {
         console.log(error);
       }
     };
-    getDogData();
-  }, [id]);
+    fetchData();
+  }, []);
 
   const handleEditDog = async (e) => {
     e.preventDefault();
 
     try {
       const storedToken = localStorage.getItem("authToken");
-      const { data } = await axios.put(`${API_URL}/owner/${id}`, editDog, {
+      const dogData = new FormData();
+      dogData.append("image", image);
+      for (const [key, value] of Object.entries(editDog)) {
+        dogData.append(key, value);
+      }
+      const res = await service.put(`/owner/${id}`, dogData, {
         headers: { Authorization: `Bearer ${storedToken}` },
       });
-      const dogImage = new FormData();
-      dogImage.append("image", image);
-      for (const [key, value] of Object.entries(editDog)) {
-        dogImage.append(key, value);
-      }
-      console.log(data);
-      setEditDog(data);
+      console.log(res);
       navigate("/own-list");
     } catch (error) {
       setError(error.message);
@@ -71,11 +69,10 @@ const FormDogEdit = () => {
           <label htmlFor="image">Dog Image</label>
           <input
             type="file"
+            id="image"
             name="image"
             multiple
-            onChange={(e) =>
-              setImage({ ...image, [e.target.name]: e.target.value })
-            }
+            onChange={(e) => setImage(e.target.files[0])}
           />
         </div>
 
@@ -296,6 +293,29 @@ const FormDogEdit = () => {
               type="radio"
               value={false}
               name="goodWithOtherDogs"
+            />
+            No
+          </div>
+        </div>
+        <div>
+          <label htmlFor="alreadyAdopted">Dog is already adopted</label>
+          <div>
+            <input
+              onChange={(e) =>
+                setEditDog({ ...editDog, [e.target.name]: e.target.value })
+              }
+              type="radio"
+              value={true}
+              name="alreadyAdopted"
+            />
+            Yes
+            <input
+              onChange={(e) =>
+                setEditDog({ ...editDog, [e.target.name]: e.target.value })
+              }
+              type="radio"
+              value={false}
+              name="alreadyAdopted"
             />
             No
           </div>
