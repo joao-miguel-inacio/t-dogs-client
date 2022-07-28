@@ -20,6 +20,7 @@ const FormDogCreate = () => {
   });
   const [image, setImage] = useState(null);
   const [error, setError] = useState(null);
+  const [description, setDescription] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -88,7 +89,12 @@ const FormDogCreate = () => {
             name="age"
           />
         </div>
-        <div>
+        {description === false ? <>
+        <p> Dogs with thorough descriptions attract more potential owners.</p>
+        <button onClick={() =>{setDescription(!description)}}>Add Description Now</button>
+      </> : <> 
+      
+      <button onClick={() =>{setDescription(!description)}}>Add Description Later</button><div>
           <label htmlFor="shortDescription">Short Description: </label>
           <textarea
             onChange={(e) =>
@@ -116,6 +122,7 @@ const FormDogCreate = () => {
             name="description"
           />
         </div>
+        </>}
         <div>
           <label htmlFor="gender">Gender: </label>
           <input
@@ -134,6 +141,7 @@ const FormDogCreate = () => {
             type="radio"
             value={"male"}
             name="gender"
+            checked
           />
           Male
         </div>
@@ -168,6 +176,7 @@ const FormDogCreate = () => {
             type="radio"
             id="size"
             name="size"
+            checked
           />
           Small
         </div>
@@ -190,6 +199,7 @@ const FormDogCreate = () => {
               type="radio"
               value={false}
               name="openToStrangers"
+              checked
             />{" "}
             No
           </div>
@@ -206,7 +216,16 @@ const FormDogCreate = () => {
               name="playful"
             />{" "}
             Yes
-            <input type="radio" value={false} name="playful" /> No
+            <input
+              onChange={(e) =>
+                setDog({ ...dog, [e.target.name]: e.target.value })
+              }
+              type="radio"
+              value={false}
+              name="playful"
+              checked
+            />{" "}
+            No
           </div>
         </div>
         <div>
@@ -228,6 +247,7 @@ const FormDogCreate = () => {
               type="radio"
               value={false}
               name="chippedAndVaccinated"
+              checked
             />
             No
           </div>
@@ -251,6 +271,7 @@ const FormDogCreate = () => {
               type="radio"
               value={false}
               name="childFriendly"
+              checked
             />
             No
           </div>
@@ -274,6 +295,7 @@ const FormDogCreate = () => {
               type="radio"
               value={false}
               name="requiresExperience"
+              checked
             />
             No
           </div>
@@ -297,6 +319,7 @@ const FormDogCreate = () => {
               type="radio"
               value={false}
               name="goodWithOtherDogs"
+              checked
             />
             No
           </div>
