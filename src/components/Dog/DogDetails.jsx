@@ -1,9 +1,7 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import { NavLink, useParams } from "react-router-dom";
-import axios from "axios";
+import { useParams } from "react-router-dom";
 import service from "../../services/apiHandler";
-/* const API_URL = process.env.REACT_APP_API_URL; */
 
 const DogDetails = () => {
   const { id } = useParams();
@@ -36,27 +34,39 @@ const DogDetails = () => {
           </h2>
         </div>
         <img src={dogDetails.image} alt="" />
-        <h2>{dogDetails.shortDescription} </h2>
+        {dogDetails.shortDescription ? (
+          <>
+            <h2>{dogDetails.shortDescription} </h2>{" "}
+          </>
+        ) : (
+          ""
+        )}
         <div>
           <p>Gender: {dogDetails.gender} </p>
           <p>Size: {dogDetails.size} </p>
           <p>Price: {dogDetails.price}</p>
-          <p>Description: {dogDetails.description}</p>
+          {dogDetails.description ? (
+            <>
+              <p>Description: {dogDetails.description}</p>
+            </>
+          ) : (
+            ""
+          )}
           <p>
             Open to Strangers? {getBooleanValue(dogDetails.openToStrangers)}
           </p>
           <p>Playful?: {getBooleanValue(dogDetails.playful)}</p>
           <p>
-            Chipped and Vaccinated?:{" "}
+            Chipped and Vaccinated?{" "}
             {getBooleanValue(dogDetails.chippedAndVaccinated)}
           </p>
-          <p>Child Friendly?: {getBooleanValue(dogDetails.childFriendly)}</p>
+          <p>Child Friendly? {getBooleanValue(dogDetails.childFriendly)}</p>
           <p>
-            Requires Experience?:{" "}
+            Requires Experience?{" "}
             {getBooleanValue(dogDetails.requiresExperience)}
           </p>
           <p>
-            Good with Other Dogs?:{" "}
+            Good with Other Dogs?{" "}
             {getBooleanValue(dogDetails.goodWithOtherDogs)}
           </p>
         </div>
