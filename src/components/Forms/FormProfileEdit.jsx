@@ -238,7 +238,7 @@ const FormProfileEdit = () => {
                   type="radio"
                   id="hasPets"
                   name="hasPets"
-                  checked
+                  checked={userData.hasPets}
                 />
                 <label htmlFor="hasPets">Yes</label>
                 <input
@@ -252,6 +252,7 @@ const FormProfileEdit = () => {
                   type="radio"
                   id="!hasPets"
                   name="hasPets"
+                  checked={!userData.hasPets}
                 />
                 <label htmlFor="!hasPets">No</label>
               </>

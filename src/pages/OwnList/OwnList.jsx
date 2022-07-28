@@ -48,15 +48,11 @@ const OwnList = () => {
         </div>
         <div>
           <div className="button-group">
-            <Button className="button" variant="contained" endIcon={<EditIcon />}>
-              <Link className="no-styles" to={`/${dog._id}/dog-edit`}>
+            <Button component={Link} to={`/${dog._id}/dog-edit`} className="button" variant="contained" endIcon={<EditIcon />}>
                 Edit{" "}
-              </Link>
             </Button>
-            <Button className="button" variant="contained" endIcon={<InfoIcon />}>
-              <Link className="no-styles" to={`/${dog._id}`}>
+            <Button component={Link} to={`/${dog._id}`} className="button" variant="contained" endIcon={<InfoIcon />}>
                 Details{" "}
-              </Link>
             </Button>
           </div>
         </div>
