@@ -4,7 +4,7 @@ import service from "../../services/apiHandler";
 
 const FormProfileEdit = () => {
   useEffect(() => {
-    const fecthData = async () => {
+    const fetchData = async () => {
       try {
         const response = await service.getUserInfo();
         setUserData(response);
@@ -12,7 +12,7 @@ const FormProfileEdit = () => {
         console.error(error);
       }
     };
-    fecthData();
+    fetchData();
   }, []);
 
   const [userData, setUserData] = useState({

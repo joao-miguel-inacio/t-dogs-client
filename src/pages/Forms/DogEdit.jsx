@@ -4,7 +4,7 @@ import FormDogEdit from "../../components/Forms/FormDogEdit";
 const DogEdit = () => {
   return (
     <div>
-      <FormDogEdit></FormDogEdit>
+      <FormDogEdit />
     </div>
   );
 };
