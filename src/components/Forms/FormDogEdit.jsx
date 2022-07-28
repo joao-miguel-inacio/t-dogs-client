@@ -151,7 +151,7 @@ const FormDogEdit = () => {
                   type="radio"
                   value={"female"}
                   name="gender"
-                  checked
+                  checked={dog.gender}
                 />
                 Female
                 <input
@@ -184,7 +184,7 @@ const FormDogEdit = () => {
                 type="radio"
                 value={"male"}
                 name="gender"
-                checked
+                checked={dog.gender}
               />
               Male
             </div>
@@ -201,7 +201,7 @@ const FormDogEdit = () => {
                   type="radio"
                   id="size"
                   name="size"
-                  checked
+                  checked={dog.size}
                 />
                 Large
                 <input
@@ -251,7 +251,7 @@ const FormDogEdit = () => {
                   type="radio"
                   id="size"
                   name="size"
-                  checked
+                  checked={dog.size}
                 />
                 Medium
                 <input
@@ -301,7 +301,7 @@ const FormDogEdit = () => {
                   type="radio"
                   id="size"
                   name="size"
-                  checked
+                  checked={dog.size}
                 />
                 Small
               </div>
@@ -321,7 +321,7 @@ const FormDogEdit = () => {
                     type="radio"
                     value={true}
                     name="openToStrangers"
-                    checked
+                    checked={dog.openToStrangers}
                   />{" "}
                   Yes
                   <input
@@ -357,7 +357,7 @@ const FormDogEdit = () => {
                     type="radio"
                     value={false}
                     name="openToStrangers"
-                    checked
+                    checked={!dog.openToStrangers}
                   />{" "}
                   No
                 </div>
@@ -376,7 +376,7 @@ const FormDogEdit = () => {
                     type="radio"
                     value={true}
                     name="playful"
-                    checked
+                    checked={dog.playful}
                   />{" "}
                   Yes
                   <input
@@ -412,7 +412,7 @@ const FormDogEdit = () => {
                     type="radio"
                     value={false}
                     name="playful"
-                    checked
+                    checked={!dog.playful}
                   />{" "}
                   No
                 </div>
@@ -433,7 +433,7 @@ const FormDogEdit = () => {
                     type="radio"
                     value={true}
                     name="chippedAndVaccinated"
-                    checked
+                    checked={dog.chippedAndVaccinated}
                   />
                   Yes
                   <input
@@ -471,7 +471,7 @@ const FormDogEdit = () => {
                     type="radio"
                     value={false}
                     name="chippedAndVaccinated"
-                    checked
+                    checked={!dog.chippedAndVaccinated}
                   />
                   No
                 </div>
@@ -490,7 +490,7 @@ const FormDogEdit = () => {
                     type="radio"
                     value={true}
                     name="childFriendly"
-                    checked
+                    checked={dog.childFriendly}
                   />
                   Yes
                   <input
@@ -526,7 +526,7 @@ const FormDogEdit = () => {
                     type="radio"
                     value={false}
                     name="childFriendly"
-                    checked
+                    checked={!dog.childFriendly}
                   />
                   No
                 </div>
@@ -545,7 +545,7 @@ const FormDogEdit = () => {
                     type="radio"
                     value={true}
                     name="requiresExperience"
-                    checked
+                    checked={dog.requiresExperience}
                   />
                   Yes
                   <input
@@ -581,7 +581,7 @@ const FormDogEdit = () => {
                     type="radio"
                     value={false}
                     name="requiresExperience"
-                    checked
+                    checked={!dog.requiresExperience}
                   />
                   No
                 </div>
@@ -600,7 +600,7 @@ const FormDogEdit = () => {
                     type="radio"
                     value={true}
                     name="goodWithOtherDogs"
-                    checked
+                    checked={dog.goodWithOtherDogs}
                   />
                   Yes
                   <input
@@ -636,7 +636,7 @@ const FormDogEdit = () => {
                     type="radio"
                     value={false}
                     name="goodWithOtherDogs"
-                    checked
+                    checked={!dog.goodWithOtherDogs}
                   />
                   No
                 </div>
