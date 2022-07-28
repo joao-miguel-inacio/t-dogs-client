@@ -10,7 +10,6 @@ const Profile = () => {
     const fetchProfileData = async () => {
       try {
         const response = await service.get(`/common`);
-        console.log(response.data.user);
         setUser(response.data.user);
       } catch (error) {
         console.log(error);
