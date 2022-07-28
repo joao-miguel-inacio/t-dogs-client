@@ -15,7 +15,6 @@ const OwnList = () => {
         const response = await service.get(`/owner`, {
           headers: { Authorization: `Bearer ${storedToken}` },
         });
-        console.log(response);
         setOwnDogs(response.data);
       } catch (error) {
         console.log(error.message);
@@ -27,15 +26,15 @@ const OwnList = () => {
 
   const displayDogs = () => {
     return ownDogs.map((dog) => (
-      <div>
+      <div key={dog._id} >
         <h2>
           {dog.name} ({dog.breed}) , {dog.age} years old
         </h2>
         <img src={dog.image} alt="" />
-        <NavLink key={dog._id} to={`/${dog._id}/dog-edit`}>
+        <NavLink to={`/${dog._id}/dog-edit`}>
           Edit{" "}
         </NavLink>
-        <NavLink key={dog._id} to={`/${dog._id}`}>
+        <NavLink to={`/${dog._id}`}>
           See Details{" "}
         </NavLink>
       </div>
