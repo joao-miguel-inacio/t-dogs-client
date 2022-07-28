@@ -7,6 +7,7 @@ const Profile = () => {
   const [user, setUser] = useState({});
 
   useEffect(() => {
+    document.getElementById('profile').classList.add('selected');
     const fetchProfileData = async () => {
       try {
         const response = await service.get(`/common`);
@@ -16,6 +17,9 @@ const Profile = () => {
       }
     };
     fetchProfileData();
+    return () => {
+      document.getElementById('profile').classList.remove('selected');
+      };
   }, []);
 
   const getBooleanValue = (value) => (value ? "Yes" : "No");

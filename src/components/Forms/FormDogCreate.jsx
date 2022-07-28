@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import service from "../../services/apiHandler";
-import FormStyling from "./Form.css";
 
 const FormDogCreate = () => {
   const [dog, setDog] = useState({

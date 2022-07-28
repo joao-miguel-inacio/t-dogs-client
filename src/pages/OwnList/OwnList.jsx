@@ -9,8 +9,8 @@ import "./OwnList.css";
 
 const OwnList = () => {
   const [ownDogs, setOwnDogs] = useState();
-
   useEffect(() => {
+    document.getElementById('dogs').classList.add('selected');
     const getOwnDogs = async () => {
       try {
         const storedToken = localStorage.getItem("authToken");
@@ -24,6 +24,9 @@ const OwnList = () => {
     };
 
     getOwnDogs();
+    return () => {
+      document.getElementById('dogs').classList.remove('selected');
+      };
   }, []);
 
   const displayDogs = () => {
