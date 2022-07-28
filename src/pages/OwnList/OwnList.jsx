@@ -1,9 +1,7 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
-import axios from "axios";
 import service from "../../services/apiHandler";
-const API_URL = process.env.REACT_APP_API_URL;
 
 const OwnList = () => {
   const [ownDogs, setOwnDogs] = useState();

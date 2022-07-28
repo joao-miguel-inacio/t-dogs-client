@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import service from "../../services/apiHandler";
-import FormStyling from "./Form.css";
 
 const FormDogEdit = () => {
   const { id } = useParams();
@@ -29,7 +28,6 @@ const FormDogEdit = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log(dog)
     const fetchData = async () => {
       try {
         const { data } = await service.get(`common/${id}`);
@@ -43,7 +41,6 @@ const FormDogEdit = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     try {
       const storedToken = localStorage.getItem("authToken");
       const dogData = new FormData();
@@ -52,7 +49,7 @@ const FormDogEdit = () => {
         console.log(key, value);
         dogData.append(key, value);
       }
-      const res = await service.put(`/owner/${id}`, dogData, {
+      await service.put(`/owner/${id}`, dogData, {
         headers: { Authorization: `Bearer ${storedToken}` },
       });
       navigate("/own-list");
@@ -312,7 +309,7 @@ const FormDogEdit = () => {
           ) : (
             ""
           )}
-          {dog.openToStrangers === "true" ? (
+          {dog.openToStrangers === true ? (
             <>
               <div>
                 <label htmlFor="openToStrangers">open to Strangers? </label>
@@ -591,7 +588,7 @@ const FormDogEdit = () => {
               </div>
             </>
           )}
-          {dog.goodWithOtherDog === true ? (
+          {dog.goodWithOtherDogs === true ? (
             <>
               <div>
                 <label htmlFor="goodWithOtherDogs">Good With Other Dogs</label>

@@ -96,7 +96,7 @@ const FormProfileEdit = () => {
           rows="5"
         ></textarea>
 
-        {userData.hasChildren === true || userData.hasChildren === false ? (
+        {userData.hasChildren !== undefined ? (
           <>
             {userData.hasChildren === true ? (
               <>
@@ -238,6 +238,7 @@ const FormProfileEdit = () => {
                   type="radio"
                   id="hasPets"
                   name="hasPets"
+                  checked
                 />
                 <label htmlFor="hasPets">Yes</label>
                 <input
@@ -251,7 +252,6 @@ const FormProfileEdit = () => {
                   type="radio"
                   id="!hasPets"
                   name="hasPets"
-                  checked
                 />
                 <label htmlFor="!hasPets">No</label>
               </>
@@ -269,7 +269,6 @@ const FormProfileEdit = () => {
                   type="radio"
                   id="hasPets"
                   name="hasPets"
-                  checked
                 />
                 <label htmlFor="hasPets">Yes</label>
                 <input
@@ -283,6 +282,7 @@ const FormProfileEdit = () => {
                   type="radio"
                   id="!hasPets"
                   name="hasPets"
+                  checked
                 />
                 <label htmlFor="!hasPets">No</label>
               </>
