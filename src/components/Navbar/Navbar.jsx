@@ -62,6 +62,7 @@ const Navbar = () => {
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
+    
   };
   const handleClose = () => {
     setAnchorEl(null);
@@ -71,24 +72,60 @@ const Navbar = () => {
       <nav className="large-navbar">
         <div className="navlinks ">
           <img
-            className="logo"
+            className="logo" alt="T-DOGS"
             src="https://res.cloudinary.com/dvru7nv6q/image/upload/v1657060337/T-Dogs/Logo_mgx5ax.png"
           />
-		  <NavLink className={({ isActive }) => isActive ? 'selected navlink-item' : 'navlink-item'} to="/about"><InfoIcon /> About</NavLink>
-          
+          <NavLink
+            className={({ isActive }) =>
+              isActive ? "selected navlink-item" : "navlink-item"
+            }
+            to="/about"
+          >
+            <InfoIcon /> About
+          </NavLink>
+
           {isLoggedIn && (
             <>
-			<NavLink className={({ isActive }) => isActive ? 'selected navlink-item' : 'navlink-item'} to="/profile"><PersonIcon /> Profile</NavLink>
+              <NavLink
+              id="profile"
+                className={({ isActive }) =>
+                  isActive ? "selected navlink-item" : "navlink-item profile"
+                }
+                to="/profile"
+              >
+                <PersonIcon /> Profile
+              </NavLink>
 
               {currentUser.hasChildren === undefined ? (
-                
-				<NavLink className={({ isActive }) => isActive ? 'selected navlink-item' : 'navlink-item'} to="/own-list"><PetsIcon /> Dogs</NavLink>
-            
-                
+                <NavLink
+                id="dogs"
+                  className={({ isActive }) =>
+                    isActive ? "selected navlink-item dogs" : "navlink-item dogs"
+                  }
+                  to="/own-list"
+                >
+                  <PetsIcon /> Dogs
+                </NavLink>
               ) : (
                 <>
-				<NavLink className={({ isActive }) => isActive ? 'selected navlink-item' : 'navlink-item'} to="/match-list"><FavoriteIcon /> Match List</NavLink>
-				<NavLink className={({ isActive }) => isActive ? 'selected navlink-item' : 'navlink-item'} to="/match-list"><FavoriteBorderIcon /> Browse</NavLink>
+                  <NavLink
+                  id="matchlist"
+                    className={({ isActive }) =>
+                      isActive ? "selected navlink-item" : "navlink-item"
+                    }
+                    to="/match-list"
+                  >
+                    <FavoriteIcon /> Match List
+                  </NavLink>
+
+                  <NavLink
+                    className={({ isActive }) =>
+                      isActive ? "selected navlink-item" : "navlink-item"
+                    }
+                    to="/browse"
+                  >
+                    <FavoriteBorderIcon /> Browse
+                  </NavLink>
                 </>
               )}
             </>
@@ -109,6 +146,7 @@ const Navbar = () => {
       <nav className="small-navbar">
         <img
           className="logo"
+          alt="T-DOGS"
           src="https://res.cloudinary.com/dvru7nv6q/image/upload/v1657060337/T-Dogs/Logo_mgx5ax.png"
         />
         <div>
@@ -124,39 +162,40 @@ const Navbar = () => {
             open={open}
             onClose={handleClose}
           >
-            <MenuItem disableRipple>
-              <InfoIcon />
-              <NavLink className={({ isActive }) => isActive ? 'selected navlink-item' : 'navlink-item'} to="/about">About</NavLink>
+            <MenuItem  disableRipple>
+                <InfoIcon />
+                <NavLink className="navlink-item" to="/about">About</NavLink>
             </MenuItem>
             {isLoggedIn && (
               <>
                 <MenuItem disableRipple>
-                  <PersonIcon />
-                  <NavLink className={({ isActive }) => isActive ? 'selected navlink-item' : 'navlink-item'}to="/profile">Profile</NavLink>
+                    <PersonIcon />
+                    <NavLink  className="navlink-item" to="/profile">Profile</NavLink>
                 </MenuItem>
                 {currentUser.hasChildren === undefined ? (
                   <>
                     <MenuItem disableRipple>
-                      <PetsIcon />
-                      <NavLink className={({ isActive }) => isActive ? 'selected navlink-item' : 'navlink-item'} to="/own-list">Dogs</NavLink>
+                        <PetsIcon />
+                        <NavLink  className= "navlink-item" to="/own-list" >Dogs</NavLink>
                     </MenuItem>
                   </>
                 ) : (
                   <>
                     <MenuItem disableRipple>
-                      <FavoriteIcon />
-                      <NavLink className={({ isActive }) => isActive ? 'selected navlink-item' : 'navlink-item'} to="/match-list">Match List</NavLink>
-                    </MenuItem>
+                        <FavoriteIcon />
+                        <NavLink  className="navlink-item" to="/match-list">Match List</NavLink>
+                      </MenuItem>
                     <MenuItem disableRipple>
-                      <FavoriteBorderIcon />
-                      <NavLink className={({ isActive }) => isActive ? 'selected navlink-item' : 'navlink-item'} to="/browse">Browse</NavLink>
+                        <FavoriteBorderIcon />
+                        <NavLink className="navlink-item" to="/browse">Browse</NavLink>
                     </MenuItem>
                   </>
                 )}
+                <Divider sx={{ my: 0.5 }} />
                 <MenuItem onClick={removeUser} disableRipple>
-                <LogoutIcon />
-                <NavLink className={({ isActive }) => isActive ? 'selected navlink-item' : 'navlink-item'} to="/browse">Sign Out</NavLink>
-              </MenuItem>
+                  <LogoutIcon />
+                  Sign Out
+                </MenuItem>
               </>
             )}
           </StyledMenu>

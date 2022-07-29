@@ -17,6 +17,9 @@
 	align-items: center;
 	gap: 1vw;
 }
+.menu-items{
+	display:flex;
+}
 .selected {
 	color:#FD297B;
 	text-decoration: underline;

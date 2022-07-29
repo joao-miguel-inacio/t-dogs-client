@@ -10,6 +10,13 @@ const MatchList = () => {
   const [matchDogs, setMatchDogs] = useState();
 
   useEffect(() => {
+    document.getElementById("matchlist").classList.add("selected");
+    return () => {
+      document.getElementById("matchlist").classList.remove("selected");
+    };
+  }, []);
+
+  useEffect(() => {
     const fetchData = async () => {
       try {
         const storedToken = localStorage.getItem("authToken");
