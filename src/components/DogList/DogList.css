@@ -5,34 +5,34 @@
     justify-content: center;
     gap: 2vw;
     padding: 5vw;
-}
-.dog-info {
+  }
+  .dog-info {
     display: flex;
     align-items: center;
     gap: 2vw;
-}
-.center {
+  }
+  .center {
     text-align: center;
-}
-.button-group {
+  }
+  .button-group {
     display: flex;
     gap: 1vw;
-}
-.button {
+  }
+  .button {
     background-image: linear-gradient(to right, #FD297B, #FF5864, #FF655B);
-}
-.button:hover{
+  }
+  .button:hover{
     background-image: linear-gradient(to right, #f42b78, #f2535d, #f2655b)
-}
-.no-styles {
+  }
+  .no-styles {
     text-decoration: none;
     color: inherit;
-}
-.hidden {
+  }
+  .hidden {
     display: none;
-}
-
-@media screen and (min-width: 481px) {
+  }
+  
+  @media screen and (min-width: 481px) {
     .card {
         flex-direction: row;
         gap: 5vw;
@@ -43,7 +43,7 @@
     }   
   }
   
-@media screen and (min-width: 769px) {
+  @media screen and (min-width: 769px) {
     .hidden {
         display: block;
     }
@@ -61,4 +61,5 @@
         gap: 0vw;
     }
   }
+  
   
