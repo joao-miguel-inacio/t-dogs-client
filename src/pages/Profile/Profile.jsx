@@ -1,13 +1,24 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import service from "../../services/apiHandler";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { Avatar, Button, Icon } from "@mui/material";
+import PersonIcon from "@mui/icons-material/Person";
+import LocationOnIcon from "@mui/icons-material/LocationOn";
+import InfoIcon from "@mui/icons-material/Info";
+import EditIcon from "@mui/icons-material/Edit";
+import ChildFriendlyIcon from "@mui/icons-material/ChildFriendly";
+import SchoolIcon from "@mui/icons-material/School";
+import PetsIcon from "@mui/icons-material/Pets";
+import MonetizationOnRoundedIcon from "@mui/icons-material/MonetizationOnRounded";
+import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
+import "./Profile.css";
+import Navbar2 from "../../components/Navbar2/Navbar2";
 
 const Profile = () => {
   const [user, setUser] = useState({});
-
   useEffect(() => {
-    document.getElementById('profile').classList.add('selected');
+    document.getElementById("profile").classList.add("selected");
     const fetchProfileData = async () => {
       try {
         const response = await service.get(`/common`);
@@ -18,38 +29,110 @@ const Profile = () => {
     };
     fetchProfileData();
     return () => {
-      document.getElementById('profile').classList.remove('selected');
-      };
+      document.getElementById("profile").classList.remove("selected");
+    };
   }, []);
-
-  const getBooleanValue = (value) => (value ? "Yes" : "No");
 
   const displayUserData = () => {
     return (
-      <div>
-        <img src={user.profilePicture} alt="" />
-        <h2>Name: {user.name} </h2>
-        <p>Address: {user.address} </p>
-        <p>Description: {user.description} </p>
-        { user.hasChildren === true || user.hasChildren === false ?
-        <>
-        <p>Do you have Children? {getBooleanValue(user.hasChildren)} </p>
-        <p>Do you have Experience? {getBooleanValue(user.hasExperience)} </p>
-        <p>Do you have Pets? {getBooleanValue(user.hasPets)} </p> 
-        <p>Are you willing to pay? {getBooleanValue(user.willingToPay)} </p>
-        </> :
-        <p>Phone Number {user.phoneNumber} </p> }
-        <button>
-          <NavLink to={"/profile-edit"}>Edit your Profile</NavLink>
-        </button>
-      </div>
+      <>
+        <div className="container">
+          <Avatar
+            className="center"
+            src={user.profilePicture}
+            alt={user.name}
+            sx={{ width: 224, height: 224 }}
+          />
+          <div className="small-container">
+            <div className="smaller-container grey">
+              <Icon className="icon">
+                <PersonIcon />
+              </Icon>
+              <p>Name</p>
+            </div>
+            <p className="user-info">{user.name}</p>
+          </div>
+          <div className="small-container">
+            <div className="smaller-container grey">
+              <Icon className="icon">
+                <LocationOnIcon />
+              </Icon>
+              <p>Address</p>
+            </div>
+            <p className="user-info">{user.address}</p>
+          </div>
+
+          {user.description ? (
+            <>
+              <div className="small-container">
+                <div className="smaller-container grey">
+                  <Icon className="icon">
+                    <InfoIcon />
+                  </Icon>
+                  <p>About</p>
+                </div>
+                <p className="user-info">{user.description}</p>
+              </div>
+            </>
+          ) : (
+            ""
+          )}
+
+          {user.hasChildren === true || user.hasChildren === false ? (
+            <div className="icons-container center">
+              {user.hasChildren ? (
+                <SchoolIcon className="color user-details" />
+              ) : (
+                <SchoolIcon className="grey user-details" />
+              )}
+              {user.hasExperience ? (
+                <ChildFriendlyIcon className="color user-details" />
+              ) : (
+                <ChildFriendlyIcon className="grey user-details" />
+              )}
+              {user.hasPets ? (
+                <PetsIcon className="color user-details" />
+              ) : (
+                <PetsIcon className="grey user-details" />
+              )}
+              {user.willingToPay ? (
+                <MonetizationOnRoundedIcon className="color user-details" />
+              ) : (
+                <MonetizationOnRoundedIcon className="grey user-details" />
+              )}
+            </div>
+          ) : (
+            <>
+              {user.phoneNumber ? (
+                <div className="small-container">
+                  <div className="smaller-container grey">
+                    <Icon className="icon">
+                      <LocalPhoneIcon />
+                    </Icon>
+                    <p>Contact</p>
+                  </div>
+                  <p className="user-info">{user.phoneNumber}</p>
+                </div>
+              ) : (
+                ""
+              )}
+            </>
+          )}
+          <Button
+            endIcon={<EditIcon />}
+            component={Link}
+            to={"/profile-edit"}
+            className="button center"
+          >
+            Edit
+          </Button>
+        </div>
+      </>
     );
   };
-
   return (
     <div>
-      <h1>Welcome to your profile, {user.name}</h1>
-
+      <Navbar2 page = "Profile" />
       {user ? displayUserData() : <p>Loading your personal data ...</p>}
     </div>
   );

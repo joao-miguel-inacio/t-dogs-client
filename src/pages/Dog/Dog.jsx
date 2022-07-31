@@ -1,4 +1,5 @@
 import DogDetails from "../../components/Dog/DogDetails";
+import Navbar2 from "../../components/Navbar2/Navbar2";
 import { useEffect } from "react";
 
 import React from "react";
@@ -16,7 +17,12 @@ const Dog = () => {
       }
    }
   }, []);
-  return <DogDetails></DogDetails>;
+  return (
+		<>	
+			<Navbar2 page = "Dog Details" />
+			<DogDetails />
+		</>
+	)
 };
 
 export default Dog;

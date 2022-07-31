@@ -1,7 +1,13 @@
 import FormSignUp from "../../components/Forms/FormSignUp";
+import Navbar2 from "../../components/Navbar2/Navbar2";
 
 const Signup = () => {
-	return <FormSignUp />
+	return (
+		<>	
+			<Navbar2 page = "SignUp" />
+			<FormSignUp />
+		</>
+	)
 };
 
 export default Signup;

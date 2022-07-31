@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import service from "../../services/apiHandler";
 import "./MatchList.css";
+import Navbar2 from "../../components/Navbar2/Navbar2";
 
 const MatchList = () => {
   const [matchDogs, setMatchDogs] = useState();
@@ -68,7 +69,7 @@ const MatchList = () => {
   };
   return (
     <div>
-      <h1 className="center">Your Matches</h1>
+      <Navbar2 page = "Matched Dogs" />
       {matchDogs ? displayDogs() : <p>Loading your dogs ...</p>}
     </div>
   );

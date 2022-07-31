@@ -6,9 +6,11 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import service from "../../services/apiHandler";
 import "./OwnList.css";
+import Navbar2 from "../../components/Navbar2/Navbar2";
 
 const OwnList = () => {
   const [ownDogs, setOwnDogs] = useState();
+
   useEffect(() => {
     document.getElementById('dogs').classList.add('selected');
     const getOwnDogs = async () => {
@@ -64,7 +66,7 @@ const OwnList = () => {
   };
   return (
     <div>
-      <h1 className="center">Owned Dogs</h1>
+      <Navbar2 page = "Own Dogs" />
       {ownDogs ? displayDogs() : <p>Loading your dogs ...</p>}
     </div>
   );
