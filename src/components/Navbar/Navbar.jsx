@@ -155,7 +155,7 @@ const Navbar = () => {
           src="https://res.cloudinary.com/dvru7nv6q/image/upload/v1657060337/T-Dogs/Logo_mgx5ax.png"
         />
         <div>
-          <IconButton onClick={handleClick}>
+          <IconButton className="menu-button" onClick={handleClick}>
             <MenuRoundedIcon />
           </IconButton>
           <StyledMenu
