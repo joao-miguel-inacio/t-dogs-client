@@ -5,6 +5,8 @@
 	display: none;
 }
 .small-navbar {
+	position: fixed;
+	width: 100%;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -12,7 +14,7 @@
 }
 .navlink-item {
 	text-decoration: none;
-	color: inherit;
+	color: black;
 	font-size: larger;
 	display: flex;
 	align-items: center;
@@ -30,8 +32,11 @@
 		display: none;
 	}
     .large-navbar {
-		padding: 0vw 2vw 0vw 2vw;
-		height: 8vh;
+		padding: 2vw 2vw 0vw 2vw;
+		box-sizing: border-box;
+    	position: fixed;
+		height: 8vw;
+		width: 100%;
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
@@ -45,8 +50,9 @@
 	.button {
 		background-image: linear-gradient(to right, #FD297B, #FF5864, #FF655B);
 		height: 50px;
+		max-width: 15vw;
+        min-width: 100px
 	}
-
 	.button:hover{
 		background-image: linear-gradient(to right, #f42b78, #f2535d, #f2655b)
 	}

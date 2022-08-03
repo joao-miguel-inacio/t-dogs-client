@@ -14,12 +14,14 @@ import MatchList from "./pages/MatchList/MatchList";
 import NotFound from "./pages/NotFound/NotFound";
 import PrivateRoute from "./components/ProtectedRoute/PrivateRoute";
 import ProfileEdit from "./pages/Forms/ProfileEdit";
+import "./App.css";
 
 function App() {
   return (
     <div className="App">
       <Navbar />
-      <Routes>
+      <div className="body">
+        <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/signin" element={<Signin />} />
@@ -37,6 +39,7 @@ function App() {
         <Route path="*" element={<NotFound />} />
       </Routes>
     </div>
+      </div>
   );
 }
 

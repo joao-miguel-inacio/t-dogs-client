@@ -2,6 +2,7 @@
     margin: 0;
 }
 .main-body{
+    margin-top: -60px;
     animation: changeBg 60s infinite;
     width: 100vw;
     height: 100vh;
@@ -11,23 +12,15 @@
     display: flex;
     align-items: center;
 }
-.large-navbar {
-    box-sizing: border-box;
-    position: fixed;
-    width: 100vw !important;
-    margin-top: 2vw;
-    justify-content: space-between !important;
-}
-.small-navbar {
-    position: fixed;
-    width: 100%;
-}
-.navlink-item, 
-.menu-button{
+.animated-navlink-item,
+.animated-menu-button {
     animation: changeColor 60s infinite;
 }
-.logo{
+.animated-logo{
     animation: changeLogo 60s infinite;
+}
+.button {
+    display: none !important;
 }
 @keyframes changeBg {
     0%, 5%  {background-image: url("https://res.cloudinary.com/dvru7nv6q/image/upload/v1658676256/T-Dogs/dogs%20:%20portrait/roberto-nickson--s5WfAx74fM-unsplash_lhi3pc.jpg"),  url("https://res.cloudinary.com/dvru7nv6q/image/upload/v1658676249/T-Dogs/dogs%20:%20portrait/jamie-street-DZ3ixpNPt7c-unsplash_yuqrrj.jpg");}
@@ -50,15 +43,24 @@
     70%, 80% {content:url("https://res.cloudinary.com/dvru7nv6q/image/upload/v1659531996/T-Dogs/Logo-white_buct9g.png")}
     95%, 100%  {content:url("https://res.cloudinary.com/dvru7nv6q/image/upload/v1657060337/T-Dogs/Logo_mgx5ax.png")}
 }
-.button {
-    display: none !important;
-}
 @media screen and (min-width: 481px) {
+    
+  }
+  
+  @media screen and (min-width: 769px) {
+    .main-body{
+        margin-top: -10vw;
+    }
+    @keyframes changeBg {
+        0%, 5%  {background-image: url("https://res.cloudinary.com/dvru7nv6q/image/upload/v1658676230/T-Dogs/dogs%20:%20landscape/pauline-loroy-U3aF7hgUSrk-unsplash_f6bpht.jpg"),  url("https://res.cloudinary.com/dvru7nv6q/image/upload/v1658676217/T-Dogs/dogs%20:%20landscape/anna-dudkova-urs_y9NwFcc-unsplash_ttxqj6.jpg");}
+        20%, 30%  {background-image: url("https://res.cloudinary.com/dvru7nv6q/image/upload/v1658676217/T-Dogs/dogs%20:%20landscape/anna-dudkova-urs_y9NwFcc-unsplash_ttxqj6.jpg"), url("https://res.cloudinary.com/dvru7nv6q/image/upload/v1658676235/T-Dogs/dogs%20:%20landscape/vincent-van-zalinge-v3k7Ub4lnGk-unsplash_fn87sl.jpg");}
+        45%, 55%  {background-image: url("https://res.cloudinary.com/dvru7nv6q/image/upload/v1658676235/T-Dogs/dogs%20:%20landscape/vincent-van-zalinge-v3k7Ub4lnGk-unsplash_fn87sl.jpg"), url("https://res.cloudinary.com/dvru7nv6q/image/upload/v1658676220/T-Dogs/dogs%20:%20landscape/christopher-ayme-ocZ-_Y7-Ptg-unsplash_hrgczf.jpg");}
+        70%, 80% {background-image: url("https://res.cloudinary.com/dvru7nv6q/image/upload/v1658676220/T-Dogs/dogs%20:%20landscape/christopher-ayme-ocZ-_Y7-Ptg-unsplash_hrgczf.jpg"), url("https://res.cloudinary.com/dvru7nv6q/image/upload/v1658676230/T-Dogs/dogs%20:%20landscape/pauline-loroy-U3aF7hgUSrk-unsplash_f6bpht.jpg");}
+        95%, 100%  {background-image: url("https://res.cloudinary.com/dvru7nv6q/image/upload/v1658676230/T-Dogs/dogs%20:%20landscape/pauline-loroy-U3aF7hgUSrk-unsplash_f6bpht.jpg");}
+    }
     .button{
         display: flex !important;
         align-items: center;
-        max-width: 15vw;
-        min-width: 100px !important;
         background-image: linear-gradient(to right, #FD297B, #FF5864, #FF655B);
     }
     .button:hover{
@@ -67,17 +69,6 @@
     .signup-button {
         margin-left: 15vw !important;
     }  
-    @keyframes changeBg {
-        0%, 5%  {background-image: url("https://res.cloudinary.com/dvru7nv6q/image/upload/v1658676230/T-Dogs/dogs%20:%20landscape/pauline-loroy-U3aF7hgUSrk-unsplash_f6bpht.jpg"),  url("https://res.cloudinary.com/dvru7nv6q/image/upload/v1658676217/T-Dogs/dogs%20:%20landscape/anna-dudkova-urs_y9NwFcc-unsplash_ttxqj6.jpg");}
-        20%, 30%  {background-image: url("https://res.cloudinary.com/dvru7nv6q/image/upload/v1658676217/T-Dogs/dogs%20:%20landscape/anna-dudkova-urs_y9NwFcc-unsplash_ttxqj6.jpg"), url("https://res.cloudinary.com/dvru7nv6q/image/upload/v1658676235/T-Dogs/dogs%20:%20landscape/vincent-van-zalinge-v3k7Ub4lnGk-unsplash_fn87sl.jpg");}
-        45%, 55%  {background-image: url("https://res.cloudinary.com/dvru7nv6q/image/upload/v1658676235/T-Dogs/dogs%20:%20landscape/vincent-van-zalinge-v3k7Ub4lnGk-unsplash_fn87sl.jpg"), url("https://res.cloudinary.com/dvru7nv6q/image/upload/v1658676220/T-Dogs/dogs%20:%20landscape/christopher-ayme-ocZ-_Y7-Ptg-unsplash_hrgczf.jpg");}
-        70%, 80% {background-image: url("https://res.cloudinary.com/dvru7nv6q/image/upload/v1658676220/T-Dogs/dogs%20:%20landscape/christopher-ayme-ocZ-_Y7-Ptg-unsplash_hrgczf.jpg"), url("https://res.cloudinary.com/dvru7nv6q/image/upload/v1658676230/T-Dogs/dogs%20:%20landscape/pauline-loroy-U3aF7hgUSrk-unsplash_f6bpht.jpg");}
-        95%, 100%  {background-image: url("https://res.cloudinary.com/dvru7nv6q/image/upload/v1658676230/T-Dogs/dogs%20:%20landscape/pauline-loroy-U3aF7hgUSrk-unsplash_f6bpht.jpg");}
-    }
-  }
-  
-  @media screen and (min-width: 769px) {
-
   }
   
   
