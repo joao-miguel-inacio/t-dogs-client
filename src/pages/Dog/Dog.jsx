@@ -1,6 +1,7 @@
 import DogDetails from "../../components/Dog/DogDetails";
 import Navbar2 from "../../components/Navbar2/Navbar2";
 import { useEffect } from "react";
+import "./Dog.css";
 
 import React from "react";
 const Dog = () => {
