@@ -31,6 +31,8 @@
 		display: none;
 	}
     .large-navbar {
+		padding: 0vw 2vw 0vw 2vw;
+		height: 8vh;
 		display: flex;
 		justify-content: space-between;
 		align-items: center;

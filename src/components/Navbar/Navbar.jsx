@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import useAuth from "../../context/auth/useAuth";
 import { Menu, MenuItem, Button, IconButton } from "@mui/material";
 import InfoIcon from "@mui/icons-material/Info";
@@ -9,6 +9,8 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import Divider from "@mui/material/Divider";
 import LogoutIcon from "@mui/icons-material/Logout";
 import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
+import LoginIcon from '@mui/icons-material/Login';
+import VpnKeyIcon from '@mui/icons-material/VpnKey';
 import "./Navbar.css";
 import { useState } from "react";
 import { styled, alpha } from "@mui/material/styles";
@@ -141,6 +143,9 @@ const Navbar = () => {
             Sign Out
           </Button>
         )}
+        {!isLoggedIn && 
+          <Button component={Link}
+              to={`/signin`} className="button">Sign In </Button>}
       </nav>
 
       <nav className="small-navbar">
@@ -166,6 +171,17 @@ const Navbar = () => {
                 <InfoIcon />
                 <NavLink className="navlink-item" to="/about">About</NavLink>
             </MenuItem>
+            {!isLoggedIn && 
+            <>
+                <MenuItem disableRipple>
+                    <VpnKeyIcon />
+                    <NavLink  className="navlink-item" to="/signup">Sign Up</NavLink>
+                </MenuItem>
+                <MenuItem disableRipple>
+                    <LoginIcon />
+                    <NavLink  className="navlink-item" to="/login">Log in</NavLink>
+                </MenuItem>
+            </>}
             {isLoggedIn && (
               <>
                 <MenuItem disableRipple>
