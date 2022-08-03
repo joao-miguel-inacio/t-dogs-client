@@ -12,24 +12,15 @@
 	align-items: center;
 	height: 60px;
 }
-.navlink-item {
-	text-decoration: none;
-	color: black;
-	font-size: larger;
-	display: flex;
-	align-items: center;
-	gap: 1vw;
-}
 .menu-items{
 	display:flex;
 }
-.selected {
-	color:#FD297B;
-	text-decoration: underline;
-}  
 @media screen and (min-width: 769px) {
 	.small-navbar {
 		display: none;
+	}
+	.logo{
+		width: 15vw;
 	}
     .large-navbar {
 		padding: 2vw 2vw 0vw 2vw;
@@ -41,6 +32,18 @@
 		justify-content: space-between;
 		align-items: center;
     }
+	.navlink-item {
+		text-decoration: none;
+		color: black;
+		font-size: x-large;
+		display: flex;
+		align-items: center;
+		gap: 1vw;
+	}
+	.selected {
+		color:#FD297B;
+		text-decoration: underline;
+	}  
 	.navlinks {
 	display: flex;
 	gap: 4vw;
