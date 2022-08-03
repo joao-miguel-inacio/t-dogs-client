@@ -72,6 +72,14 @@
         flex-direction: column;
         text-align: center;
     }
+    .icons{
+        display: flex;
+        gap: 10vw;
+        justify-content: center;
+    }
+    .break{
+        margin: 0;
+    }
     .owner-details{
         flex-direction: row;
     }

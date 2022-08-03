@@ -94,7 +94,8 @@ const DogDetails = () => {
           ) : (
             ""
           )}
-          <div className="icons-row break">
+          <div className="icons">
+            <div className="icons-row break">
             {dogDetails.openToStrangers === true ? (
               <ConnectWithoutContactIcon className="color icon" />
             ) : (
@@ -128,6 +129,8 @@ const DogDetails = () => {
               <PsychologyIcon className="grey icon" />
             )}
           </div>
+          </div>
+          
           {dogDetails.description ? (
             <div className="description">
               <InfoIcon />
