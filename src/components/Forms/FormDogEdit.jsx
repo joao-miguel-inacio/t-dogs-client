@@ -1,6 +1,12 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import service from "../../services/apiHandler";
+import Radio from "@mui/material/Radio";
+import RadioGroup from "@mui/material/RadioGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import FormControl from "@mui/material/FormControl";
+import FormLabel from "@mui/material/FormLabel";
+import Grid from "@mui/material/Grid";
 
 const FormDogEdit = () => {
   const { id } = useParams();
@@ -11,12 +17,12 @@ const FormDogEdit = () => {
     age: "",
     gender: "",
     size: "",
-    openToStrangers: "",
-    playful: "",
-    chippedAndVaccinated: "",
-    childFriendly: "",
-    requiresExperience: "",
-    goodWithOtherDogs: "",
+    openToStrangers: false,
+    playful: false,
+    chippedAndVaccinated: false,
+    childFriendly: false,
+    requiresExperience: false,
+    goodWithOtherDogs: false,
     price: "",
     description: "",
     shortDescription: "",
@@ -46,7 +52,6 @@ const FormDogEdit = () => {
       const dogData = new FormData();
       dogData.append("image", image);
       for (const [key, value] of Object.entries(dog)) {
-        console.log(key, value);
         dogData.append(key, value);
       }
       await service.put(`/owner/${id}`, dogData, {
@@ -61,11 +66,11 @@ const FormDogEdit = () => {
   return (
     <>
       <h2>Edit Dog </h2>
-      <img src={`${dog.image}`} alt="alternative dog image" />
+      {/* <img src={dog.image} alt="" /> */}
       <div>
         {error && <h3 className="error">{error.message}</h3>}
         <form className="dog-form" id="dog-form" onSubmit={handleSubmit}>
-          <div>
+          {/* <div>
             <label htmlFor="image">Dog Image</label>
             <input
               type="file"
@@ -75,7 +80,6 @@ const FormDogEdit = () => {
               onChange={(e) => setImage(e.target.files[0])}
             />
           </div>
-
           <div>
             <label htmlFor="name">Name: </label>
             <input
@@ -363,7 +367,65 @@ const FormDogEdit = () => {
                 </div>
               </div>
             </>
+          )}*/}
+          {dog.gender === "female" ? (
+            <Grid item>
+              <FormControl>
+                <FormLabel>Gender</FormLabel>
+                <RadioGroup
+                  name="gender"
+                  value={dog.gender}
+                  onChange={(e) =>
+                    setDog({ ...dog, [e.target.name]: e.target.value })
+                  }
+                  row
+                >
+                  <FormControlLabel
+                    key="male"
+                    value="male"
+                    control={<Radio size="small" />}
+                    label="male"
+                  />
+                  <FormControlLabel
+                    key="female"
+                    value="female"
+                    control={<Radio size="small" />}
+                    label="female"
+                    checked={dog.gender}
+                  />
+                </RadioGroup>
+              </FormControl>
+            </Grid>
+          ) : (
+            <Grid item>
+              <FormControl>
+                <FormLabel>Gender</FormLabel>
+                <RadioGroup
+                  name="gender"
+                  value={dog.gender}
+                  onChange={(e) =>
+                    setDog({ ...dog, [e.target.name]: e.target.value })
+                  }
+                  row
+                >
+                  <FormControlLabel
+                    key="male"
+                    value="male"
+                    control={<Radio size="small" />}
+                    label="male"
+                    checked={dog.gender}
+                  />
+                  <FormControlLabel
+                    key="female"
+                    value="female"
+                    control={<Radio size="small" />}
+                    label="female"
+                  />
+                </RadioGroup>
+              </FormControl>
+            </Grid>
           )}
+
           {dog.playful === true ? (
             <>
               <div>
@@ -478,7 +540,7 @@ const FormDogEdit = () => {
               </div>
             </>
           )}
-          {dog.childFriendly === true ? (
+          {/* {dog.childFriendly === true ? (
             <>
               <div>
                 <label htmlFor="childFriendly">Child Friendly</label>
@@ -698,7 +760,6 @@ const FormDogEdit = () => {
               </div>
             </>
           )}
-
           <div>
             <label htmlFor="price">Price</label>
             <input
@@ -710,8 +771,7 @@ const FormDogEdit = () => {
               id="price"
               name="price"
             />
-          </div>
-
+          </div>{" "} */}
           <button>Confirm</button>
         </form>
       </div>
