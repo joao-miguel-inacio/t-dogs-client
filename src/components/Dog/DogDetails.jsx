@@ -12,9 +12,9 @@ import PetsIcon from "@mui/icons-material/Pets";
 import CelebrationIcon from "@mui/icons-material/Celebration";
 import PsychologyIcon from "@mui/icons-material/Psychology";
 import BadgeIcon from "@mui/icons-material/Badge";
-import EmailIcon from '@mui/icons-material/Email';
-import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
-import LocationOnIcon from '@mui/icons-material/LocationOn';
+import EmailIcon from "@mui/icons-material/Email";
+import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
+import LocationOnIcon from "@mui/icons-material/LocationOn";
 
 const DogDetails = () => {
   const { id } = useParams();
@@ -27,7 +27,7 @@ const DogDetails = () => {
         const response = await service.get(`/common/${id}`, {
           headers: { Authorization: `Bearer ${storedToken}` },
         });
-        console.log(response.data.dog);
+        console.log(response.data.dog.owner);
         setDogDetails(response.data.dog);
       } catch (error) {
         console.log(error.message);
@@ -38,48 +38,51 @@ const DogDetails = () => {
   const displayDogs = () => {
     return (
       <>
-        <img src={dogDetails.image} alt="dog-image" className="dog-image" />
+        <img src={dogDetails.image} alt="dog" className="dog-image-small" />
         <div className="main-container">
-          <div className="basic-id-container">
-            {dogDetails.gender === "male" ? <MaleIcon /> : <FemaleIcon />}{" "}
-            <div>
-              <h2 className="dog-name">{dogDetails.name} </h2>
-              <h3>{dogDetails.breed}</h3>
-              <h4>
-                {dogDetails.age === 1 ? (
-                  <>{dogDetails.age} year old</>
-                ) : (
-                  <>{dogDetails.age} years old</>
-                )}{" "}
-              </h4>
+          <div className="large-screen-container">
+            <img src={dogDetails.image} alt="dog" className="dog-image-large" />
+            <div className="basic-id-container">
+              {dogDetails.gender === "male" ? <MaleIcon fontSize="large"/> : <FemaleIcon />}{" "}
+              <div>
+                <h2 className="dog-name">{dogDetails.name} </h2>
+                <h3>{dogDetails.breed}</h3>
+                <h4>
+                  {dogDetails.age === 1 ? (
+                    <>{dogDetails.age} year old</>
+                  ) : (
+                    <>{dogDetails.age} years old</>
+                  )}{" "}
+                </h4>
+              </div>
+              {dogDetails.size === "large" ? (
+                <img
+                  className="dog-size-image"
+                  src="https://res.cloudinary.com/dvru7nv6q/image/upload/v1659517103/T-Dogs/dog-size-large_dfvdky.png"
+                  alt="large"
+                />
+              ) : (
+                ""
+              )}
+              {dogDetails.size === "medium" ? (
+                <img
+                  className="dog-size-image"
+                  src="https://res.cloudinary.com/dvru7nv6q/image/upload/v1659517103/T-Dogs/dog-size-medium_qja8il.png"
+                  alt="medium"
+                />
+              ) : (
+                ""
+              )}
+              {dogDetails.size === "small" ? (
+                <img
+                  className="dog-size-image"
+                  src="https://res.cloudinary.com/dvru7nv6q/image/upload/v1659517103/T-Dogs/dog-size-small_orpey4.png"
+                  alt="small"
+                />
+              ) : (
+                ""
+              )}
             </div>
-            {dogDetails.size === "large" ? (
-              <img
-                className="dog-size-image"
-                src="https://res.cloudinary.com/dvru7nv6q/image/upload/v1659517103/T-Dogs/dog-size-large_dfvdky.png"
-                alt="large"
-              />
-            ) : (
-              ""
-            )}
-            {dogDetails.size === "medium" ? (
-              <img
-                className="dog-size-image"
-                src="https://res.cloudinary.com/dvru7nv6q/image/upload/v1659517103/T-Dogs/dog-size-medium_qja8il.png"
-                alt="medium"
-              />
-            ) : (
-              ""
-            )}
-            {dogDetails.size === "small" ? (
-              <img
-                className="dog-size-image"
-                src="https://res.cloudinary.com/dvru7nv6q/image/upload/v1659517103/T-Dogs/dog-size-small_orpey4.png"
-                alt="small"
-              />
-            ) : (
-              ""
-            )}
           </div>
 
           {dogDetails.shortDescription ? (
@@ -139,9 +142,24 @@ const DogDetails = () => {
               <p>{dogDetails.owner.name}</p>
             </div>
             <div>
-              <div className="id-item"><LocationOnIcon  fontSize="small"/> <p>{dogDetails.owner.address}</p></div>
-              <div className="id-item">{dogDetails.owner.phoneNumber ? <><LocalPhoneIcon  fontSize="small"/><p>{dogDetails.owner.phoneNumber}</p></> : ""}</div>
-              <div className="id-item"><EmailIcon  fontSize="small"/><p>{dogDetails.owner.email}</p></div>
+              <div className="id-item">
+                <LocationOnIcon fontSize="small" />{" "}
+                <p>{dogDetails.owner.address}</p>
+              </div>
+              <div className="id-item">
+                {dogDetails.owner.phoneNumber ? (
+                  <>
+                    <LocalPhoneIcon fontSize="small" />
+                    <p>{dogDetails.owner.phoneNumber}</p>
+                  </>
+                ) : (
+                  ""
+                )}
+              </div>
+              <div className="id-item">
+                <EmailIcon fontSize="small" />
+                <p>{dogDetails.owner.email}</p>
+              </div>
             </div>
           </div>
         </div>
