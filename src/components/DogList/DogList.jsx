@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import "./DogList.css";
 
 const DogList = ({ dogs, owner }) => {
+  console.log(owner)
   const displayDogs = () => {
     return dogs.map((dog) => (
       <div className="card" key={dog._id}>
@@ -22,8 +23,7 @@ const DogList = ({ dogs, owner }) => {
         <div className="hidden large-column center">
           <p>{dog.shortDescription}</p>
         </div>
-        <div>
-         {owner ? 
+        {owner ? 
           <div className="button-group">
             <Button
               component={Link}
@@ -45,7 +45,6 @@ const DogList = ({ dogs, owner }) => {
             </Button>
           </div>
           :
-          <div className="button-group">
             <Button
               component={Link}
               to={`/${dog._id}`}
@@ -55,9 +54,7 @@ const DogList = ({ dogs, owner }) => {
             >
               More{" "}
             </Button>
-          </div>
          }
-        </div>
       </div>
     ));
   };

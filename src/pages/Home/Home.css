@@ -19,7 +19,7 @@
 .animated-logo{
     animation: changeLogo 60s infinite;
 }
-.button {
+.signup-button {
     display: none !important;
 }
 @keyframes changeBg {

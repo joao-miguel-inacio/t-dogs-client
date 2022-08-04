@@ -15,6 +15,14 @@
 .menu-items{
 	display:flex;
 }
+.navlink-item {
+	text-decoration: none;
+	color: black;
+	font-size: x-large;
+	display: flex;
+	align-items: center;
+	gap: 1vw;
+}
 @media screen and (min-width: 769px) {
 	.small-navbar {
 		display: none;
@@ -32,14 +40,6 @@
 		justify-content: space-between;
 		align-items: center;
     }
-	.navlink-item {
-		text-decoration: none;
-		color: black;
-		font-size: x-large;
-		display: flex;
-		align-items: center;
-		gap: 1vw;
-	}
 	.selected {
 		color:#FD297B;
 		text-decoration: underline;
@@ -54,7 +54,7 @@
 		background-image: linear-gradient(to right, #FD297B, #FF5864, #FF655B);
 		height: 50px;
 		max-width: 15vw;
-        min-width: 100px
+        min-width: 130px !important; 
 	}
 	.button:hover{
 		background-image: linear-gradient(to right, #f42b78, #f2535d, #f2655b)

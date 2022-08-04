@@ -20,7 +20,6 @@ const OwnList = () => {
         console.log(error.message);
       }
     };
-
     getOwnDogs();
     return () => {
       document.getElementById('dogs').classList.remove('selected');

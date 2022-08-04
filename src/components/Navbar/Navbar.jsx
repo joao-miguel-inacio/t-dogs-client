@@ -1,4 +1,4 @@
-import { NavLink, Link, useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import useAuth from "../../context/auth/useAuth";
 import { Menu, MenuItem, Button, IconButton } from "@mui/material";
 import InfoIcon from "@mui/icons-material/Info";
@@ -57,7 +57,6 @@ const StyledMenu = styled((props) => (
     },
   },
 }));
-
 const Navbar = () => {
   const { isLoggedIn, currentUser, removeUser } = useAuth();
   const {pathname} = useLocation();
@@ -82,56 +81,49 @@ const Navbar = () => {
             alt="T-DOGS"
             src="https://res.cloudinary.com/dvru7nv6q/image/upload/v1657060337/T-Dogs/Logo_mgx5ax.png"
           />
-          <NavLink
+          <Link
             id="about"
             className={isHomePage ? "animated-navlink-item navlink-item" : "navlink-item"}
             to="/about"
           >
             <InfoIcon /> About
-          </NavLink>
+          </Link>
 
           {isLoggedIn && (
             <>
-              <NavLink
+              <Link
               id="profile"
-                className={({ isActive }) =>
-                  isActive ? "selected " : "navlink-item profile"
-                }
+              className={isHomePage ? "animated-navlink-item navlink-item" : "navlink-item"}
                 to="/profile"
               >
                 <PersonIcon /> Profile
-              </NavLink>
+              </Link>
 
               {currentUser.hasChildren === undefined ? (
-                <NavLink
+                <Link
                 id="dogs"
-                  className={({ isActive }) =>
-                    isActive ? "selected navlink-item dogs" : "navlink-item dogs"
-                  }
+                className={isHomePage ? "animated-navlink-item navlink-item" : "navlink-item"}
                   to="/own-list"
                 >
                   <PetsIcon /> Dogs
-                </NavLink>
+                </Link>
               ) : (
                 <>
-                  <NavLink
+                  <Link
                   id="matchlist"
-                    className={({ isActive }) =>
-                      isActive ? "selected navlink-item" : "navlink-item"
-                    }
+                  className={isHomePage ? "animated-navlink-item navlink-item" : "navlink-item"}
                     to="/match-list"
                   >
                     <FavoriteIcon /> Match List
-                  </NavLink>
+                  </Link>
 
-                  <NavLink
-                    className={({ isActive }) =>
-                      isActive ? "selected navlink-item" : "navlink-item"
-                    }
+                  <Link
+                  id="browse"
+                    className={isHomePage ? "animated-navlink-item navlink-item" : "navlink-item"}
                     to="/browse"
                   >
                     <FavoriteBorderIcon /> Browse
-                  </NavLink>
+                  </Link>
                 </>
               )}
             </>
@@ -173,41 +165,41 @@ const Navbar = () => {
           >
             <MenuItem  disableRipple>
                 <InfoIcon />
-                <NavLink className="navlink-item" to="/about">About</NavLink>
+                <Link className="navlink-item" to="/about">About</Link>
             </MenuItem>
             {!isLoggedIn && 
             <>
                 <MenuItem disableRipple>
                     <VpnKeyIcon />
-                    <NavLink  className="navlink-item" to="/signup">Sign Up</NavLink>
+                    <Link  className="navlink-item" to="/signup">Sign Up</Link>
                 </MenuItem>
                 <MenuItem disableRipple>
                     <LoginIcon />
-                    <NavLink  className="navlink-item" to="/login">Log in</NavLink>
+                    <Link  className="navlink-item" to="/login">Log in</Link>
                 </MenuItem>
             </>}
             {isLoggedIn && (
               <>
                 <MenuItem disableRipple>
                     <PersonIcon />
-                    <NavLink  className="navlink-item" to="/profile">Profile</NavLink>
+                    <Link  className="navlink-item" to="/profile">Profile</Link>
                 </MenuItem>
                 {currentUser.hasChildren === undefined ? (
                   <>
                     <MenuItem disableRipple>
                         <PetsIcon />
-                        <NavLink  className= "navlink-item" to="/own-list" >Dogs</NavLink>
+                        <Link  className= "navlink-item" to="/own-list" >Dogs</Link>
                     </MenuItem>
                   </>
                 ) : (
                   <>
                     <MenuItem disableRipple>
                         <FavoriteIcon />
-                        <NavLink  className="navlink-item" to="/match-list">Match List</NavLink>
+                        <Link  className="navlink-item" to="/match-list">Match List</Link>
                       </MenuItem>
                     <MenuItem disableRipple>
                         <FavoriteBorderIcon />
-                        <NavLink className="navlink-item" to="/browse">Browse</NavLink>
+                        <Link className="navlink-item" to="/browse">Browse</Link>
                     </MenuItem>
                   </>
                 )}
