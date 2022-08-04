@@ -71,19 +71,19 @@ const Browse = () => {
   return (
     <>
       <Navbar2 page="Browse" />
-      <div className="browse-body">
-        <IconButton className="left-button" onClick={handleLeftClick}>
-          <CancelIcon />
-        </IconButton>
-        <img
-          className="background"
-          src={currentDog.image}
-          alt={currentDog.name}
-        />
-        <h1>{currentDog.name}</h1>
-        <IconButton className="right-button" onClick={handleRightClick}>
-          <FavoriteIcon />
-        </IconButton>
+      <div
+        className="browse-body"
+        style={{ backgroundImage: `url(${currentDog.image})` }}
+      >
+        <h1>
+          <IconButton className="left-button" onClick={handleLeftClick}>
+            <CancelIcon fontSize="large" />
+          </IconButton>
+          {currentDog.name}
+          <IconButton className="right-button" onClick={handleRightClick}>
+            <FavoriteIcon fontSize="large" />
+          </IconButton>
+        </h1>
       </div>
     </>
   );
