@@ -23,12 +23,24 @@ h1{
     display: flex;
     align-items: center;
     justify-content: space-between;
+    height: 100px;
 }
 .right-button{
     color:black !important;
-    margin: 2vw !important;
+    margin-right: 2vw !important;
 }
 .left-button{
     color:black !important;
-    margin: 2vw !important;
+    margin-left: 2vw !important;
+}
+.alert{
+    position: absolute;
+    top: 90%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    width: 100%;
+    align-items: center;
+
+    height: 100px;
 }
