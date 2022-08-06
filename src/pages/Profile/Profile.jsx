@@ -14,9 +14,25 @@ import MonetizationOnRoundedIcon from "@mui/icons-material/MonetizationOnRounded
 import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
 import "./Profile.css";
 import Navbar2 from "../../components/Navbar2/Navbar2";
+import Popover from "@mui/material/Popover";
+import Typography from '@mui/material/Typography';
+import PopOver from "../../components/PopOver";
 
 const Profile = () => {
   const [user, setUser] = useState({});
+  const [popover, setPopOver] = useState(null);
+  const [popOverMessage, setpopOverMessage] = useState(null);
+
+  const handlePopoverOpen = (event, message) => {
+    setpopOverMessage(message)
+    setPopOver(event.currentTarget);
+  };
+
+  const handlePopoverClose = () => {
+    setPopOver(null);
+  };
+
+  const open = Boolean(popover);
   useEffect(() => {
     document.getElementById("profile").classList.add("selected");
     const fetchProfileData = async () => {
@@ -80,25 +96,98 @@ const Profile = () => {
 
           {user.hasChildren === true || user.hasChildren === false ? (
             <div className="icons-container center">
-              {user.hasChildren ? (
-                <SchoolIcon className="color user-details" />
+              {user.hasExperience === true ? (
+                <>
+                  {" "}
+                  <SchoolIcon
+                    className="color user-details"
+                    aria-owns={open ? "mouse-over-popover" : undefined}
+                    aria-haspopup="true"
+                    onMouseEnter={(e) => handlePopoverOpen(e, "You are an experienced owner")}
+                    onMouseLeave={handlePopoverClose}
+                  />
+                  <PopOver open = {open} popover = {popover} handlePopoverClose = {handlePopoverClose} popOverMessage = {popOverMessage}/>
+                </>
               ) : (
-                <SchoolIcon className="grey user-details" />
+                <>
+                  <SchoolIcon
+                    className="grey user-details"
+                    aria-owns={open ? "mouse-over-popover" : undefined}
+                    aria-haspopup="true"
+                    onMouseEnter={(e) => handlePopoverOpen(e, "You are not an experienced owner")}
+                    onMouseLeave={handlePopoverClose}
+                  />
+                  <PopOver open = {open} popover = {popover} handlePopoverClose = {handlePopoverClose} popOverMessage = {popOverMessage}/>
+                </>
               )}
               {user.hasExperience ? (
-                <ChildFriendlyIcon className="color user-details" />
+                <>
+                  <ChildFriendlyIcon
+                    className="color user-details"
+                    aria-owns={open ? "mouse-over-popover" : undefined}
+                    aria-haspopup="true"
+                    onMouseEnter={(e) => handlePopoverOpen(e, "You have children")}
+                    onMouseLeave={handlePopoverClose}
+                  />
+                  <PopOver open = {open} popover = {popover} handlePopoverClose = {handlePopoverClose} popOverMessage = {popOverMessage}/>
+                </>
               ) : (
-                <ChildFriendlyIcon className="grey user-details" />
+                <>
+                  <ChildFriendlyIcon
+                    className="grey user-details"
+                    aria-owns={open ? "mouse-over-popover" : undefined}
+                    aria-haspopup="true"
+                    onMouseEnter={(e) => handlePopoverOpen(e, "You do not have children")}
+                    onMouseLeave={handlePopoverClose}
+                  />
+                  <PopOver open = {open} popover = {popover} handlePopoverClose = {handlePopoverClose} popOverMessage = {popOverMessage}/>
+                </>
               )}
               {user.hasPets ? (
-                <PetsIcon className="color user-details" />
+                <>
+                  <PetsIcon
+                    className="color user-details"
+                    aria-owns={open ? "mouse-over-popover" : undefined}
+                    aria-haspopup="true"
+                    onMouseEnter={(e) => handlePopoverOpen(e, "You have other pets")}
+                    onMouseLeave={handlePopoverClose}
+                  />
+                  <PopOver open = {open} popover = {popover} handlePopoverClose = {handlePopoverClose} popOverMessage = {popOverMessage}/>
+                </>
               ) : (
-                <PetsIcon className="grey user-details" />
+                <>
+                  <PetsIcon
+                    className="grey user-details"
+                    aria-owns={open ? "mouse-over-popover" : undefined}
+                    aria-haspopup="true"
+                    onMouseEnter={(e) => handlePopoverOpen(e, "You do not have other pets")}
+                    onMouseLeave={handlePopoverClose}
+                  />
+                  <PopOver open = {open} popover = {popover} handlePopoverClose = {handlePopoverClose} popOverMessage = {popOverMessage}/>
+                </>
               )}
               {user.willingToPay ? (
-                <MonetizationOnRoundedIcon className="color user-details" />
+                <>
+                  <MonetizationOnRoundedIcon
+                    className="color user-details"
+                    aria-owns={open ? "mouse-over-popover" : undefined}
+                    aria-haspopup="true"
+                    onMouseEnter={(e) => handlePopoverOpen(e, "You would pay for a dog")}
+                    onMouseLeave={handlePopoverClose}
+                  />
+                  <PopOver open = {open} popover = {popover} handlePopoverClose = {handlePopoverClose} popOverMessage = {popOverMessage}/>
+                </>
               ) : (
-                <MonetizationOnRoundedIcon className="grey user-details" />
+                <>
+                  <MonetizationOnRoundedIcon
+                    className="grey user-details"
+                    aria-owns={open ? "mouse-over-popover" : undefined}
+                    aria-haspopup="true"
+                    onMouseEnter={(e) => handlePopoverOpen(e, "You wouldn't buy a dog")}
+                    onMouseLeave={handlePopoverClose}
+                  />
+                  <PopOver open = {open} popover = {popover} handlePopoverClose = {handlePopoverClose} popOverMessage = {popOverMessage}/>
+                </>
               )}
             </div>
           ) : (
@@ -132,7 +221,7 @@ const Profile = () => {
   };
   return (
     <div>
-      <Navbar2 page = "Profile" />
+      <Navbar2 page="Profile" />
       {user ? displayUserData() : <p>Loading your personal data ...</p>}
     </div>
   );
