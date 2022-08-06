@@ -1,11 +1,15 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import service from "../../services/apiHandler";
+import Box from "@mui/material/Box";
+import TextField from "@mui/material/TextField";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
+import { Avatar, Button } from "@mui/material";
+import { Typography } from "@mui/material";
 import Grid from "@mui/material/Grid";
 
 const FormDogEdit = () => {
@@ -23,6 +27,7 @@ const FormDogEdit = () => {
     childFriendly: false,
     requiresExperience: false,
     goodWithOtherDogs: false,
+    alreadyAdopted: false,
     price: "",
     description: "",
     shortDescription: "",
@@ -65,716 +70,311 @@ const FormDogEdit = () => {
 
   return (
     <>
-      <h2>Edit Dog </h2>
-      {/* <img src={dog.image} alt="" /> */}
-      <div>
-        {error && <h3 className="error">{error.message}</h3>}
-        <form className="dog-form" id="dog-form" onSubmit={handleSubmit}>
-          {/* <div>
-            <label htmlFor="image">Dog Image</label>
-            <input
-              type="file"
-              id="image"
-              name="image"
-              multiple
-              onChange={(e) => setImage(e.target.files[0])}
-            />
-          </div>
-          <div>
-            <label htmlFor="name">Name: </label>
-            <input
-              onChange={(e) =>
-                setDog({ ...dog, [e.target.name]: e.target.value })
-              }
-              value={dog.name}
-              type="text"
-              id="name"
-              name="name"
-            />
-          </div>
-          <div>
-            <label htmlFor="breed">Breed: </label>
-            <input
-              onChange={(e) =>
-                setDog({ ...dog, [e.target.name]: e.target.value })
-              }
-              value={dog.breed}
-              type="text"
-              id="breed"
-              name="breed"
-            />
-          </div>
-          <div>
-            <label htmlFor="age">Age: </label>
-            <input
-              onChange={(e) =>
-                setDog({ ...dog, [e.target.name]: e.target.value })
-              }
-              value={dog.age}
-              type="number"
-              id="age"
-              name="age"
-            />
-          </div>
-          <div>
-            <label htmlFor="shortDescription">Short Description: </label>
-            <textarea
-              onChange={(e) =>
-                setDog({ ...dog, [e.target.name]: e.target.value })
-              }
-              value={dog.shortDescription}
-              rows={3}
-              cols={40}
-              type="text"
-              id="shortDescription"
-              name="shortDescription"
-            />
-          </div>
-          <div>
-            <label htmlFor="description">Description: </label>
-            <textarea
-              onChange={(e) =>
-                setDog({ ...dog, [e.target.name]: e.target.value })
-              }
-              value={dog.description}
-              rows={6}
-              cols={40}
-              type="text"
-              id="description"
-              name="description"
-            />
-          </div>
-          {dog.gender === "female" ? (
-            <>
-              <div>
-                <label htmlFor="gender">Gender: </label>
-                <input
-                  onChange={(e) =>
-                    setDog({ ...dog, [e.target.name]: e.target.value })
-                  }
-                  type="radio"
-                  value={"female"}
-                  name="gender"
-                  checked={dog.gender}
-                />
-                Female
-                <input
-                  onChange={(e) =>
-                    setDog({ ...dog, [e.target.name]: e.target.value })
-                  }
-                  type="radio"
-                  value={"male"}
-                  name="gender"
-                />
-                Male
-              </div>
-            </>
-          ) : (
-            <div>
-              <label htmlFor="gender">Gender: </label>
-              <input
-                onChange={(e) =>
-                  setDog({ ...dog, [e.target.name]: e.target.value })
-                }
-                type="radio"
-                value={"female"}
-                name="gender"
-              />
-              Female
-              <input
-                onChange={(e) =>
-                  setDog({ ...dog, [e.target.name]: e.target.value })
-                }
-                type="radio"
-                value={"male"}
-                name="gender"
-                checked={dog.gender}
-              />
-              Male
-            </div>
-          )}
-          {dog.size === "large" ? (
-            <>
-              <div>
-                <label htmlFor="size">Size: </label>
-                <input
-                  onChange={(e) =>
-                    setDog({ ...dog, [e.target.name]: e.target.value })
-                  }
-                  value={"large"}
-                  type="radio"
-                  id="size"
-                  name="size"
-                  checked={dog.size}
-                />
-                Large
-                <input
-                  onChange={(e) =>
-                    setDog({ ...dog, [e.target.name]: e.target.value })
-                  }
-                  value={"medium"}
-                  type="radio"
-                  id="size"
-                  name="size"
-                />
-                Medium
-                <input
-                  onChange={(e) =>
-                    setDog({ ...dog, [e.target.name]: e.target.value })
-                  }
-                  value={"small"}
-                  type="radio"
-                  id="size"
-                  name="size"
-                />
-                Small
-              </div>
-            </>
-          ) : (
-            ""
-          )}
-          {dog.size === "medium" ? (
-            <>
-              <div>
-                <label htmlFor="size">Size: </label>
-                <input
-                  onChange={(e) =>
-                    setDog({ ...dog, [e.target.name]: e.target.value })
-                  }
-                  value={"large"}
-                  type="radio"
-                  id="size"
-                  name="size"
-                />
-                Large
-                <input
-                  onChange={(e) =>
-                    setDog({ ...dog, [e.target.name]: e.target.value })
-                  }
-                  value={"medium"}
-                  type="radio"
-                  id="size"
-                  name="size"
-                  checked={dog.size}
-                />
-                Medium
-                <input
-                  onChange={(e) =>
-                    setDog({ ...dog, [e.target.name]: e.target.value })
-                  }
-                  value={"small"}
-                  type="radio"
-                  id="size"
-                  name="size"
-                />
-                Small
-              </div>
-            </>
-          ) : (
-            ""
-          )}
-          {dog.size === "small" ? (
-            <>
-              <div>
-                <label htmlFor="size">Size: </label>
-                <input
-                  onChange={(e) =>
-                    setDog({ ...dog, [e.target.name]: e.target.value })
-                  }
-                  value={"large"}
-                  type="radio"
-                  id="size"
-                  name="size"
-                />
-                Large
-                <input
-                  onChange={(e) =>
-                    setDog({ ...dog, [e.target.name]: e.target.value })
-                  }
-                  value={"medium"}
-                  type="radio"
-                  id="size"
-                  name="size"
-                />
-                Medium
-                <input
-                  onChange={(e) =>
-                    setDog({ ...dog, [e.target.name]: e.target.value })
-                  }
-                  value={"small"}
-                  type="radio"
-                  id="size"
-                  name="size"
-                  checked={dog.size}
-                />
-                Small
-              </div>
-            </>
-          ) : (
-            ""
-          )}
-          {dog.openToStrangers === true ? (
-            <>
-              <div>
-                <label htmlFor="openToStrangers">open to Strangers? </label>
-                <div>
-                  <input
-                    onChange={(e) =>
-                      setDog({ ...dog, [e.target.name]: e.target.value })
-                    }
-                    type="radio"
-                    value={true}
-                    name="openToStrangers"
-                    checked={dog.openToStrangers}
-                  />{" "}
-                  Yes
-                  <input
-                    onChange={(e) =>
-                      setDog({ ...dog, [e.target.name]: e.target.value })
-                    }
-                    type="radio"
-                    value={false}
-                    name="openToStrangers"
-                  />{" "}
-                  No
-                </div>
-              </div>
-            </>
-          ) : (
-            <>
-              <div>
-                <label htmlFor="openToStrangers">open to Strangers? </label>
-                <div>
-                  <input
-                    onChange={(e) =>
-                      setDog({ ...dog, [e.target.name]: e.target.value })
-                    }
-                    type="radio"
-                    value={true}
-                    name="openToStrangers"
-                  />{" "}
-                  Yes
-                  <input
-                    onChange={(e) =>
-                      setDog({ ...dog, [e.target.name]: e.target.value })
-                    }
-                    type="radio"
-                    value={false}
-                    name="openToStrangers"
-                    checked={!dog.openToStrangers}
-                  />{" "}
-                  No
-                </div>
-              </div>
-            </>
-          )}*/}
-          {dog.gender === "female" ? (
-            <Grid item>
-              <FormControl>
-                <FormLabel>Gender</FormLabel>
-                <RadioGroup
-                  name="gender"
-                  value={dog.gender}
-                  onChange={(e) =>
-                    setDog({ ...dog, [e.target.name]: e.target.value })
-                  }
-                  row
-                >
-                  <FormControlLabel
-                    key="male"
-                    value="male"
-                    control={<Radio size="small" />}
-                    label="male"
-                  />
-                  <FormControlLabel
-                    key="female"
-                    value="female"
-                    control={<Radio size="small" />}
-                    label="female"
-                    checked={dog.gender}
-                  />
-                </RadioGroup>
-              </FormControl>
-            </Grid>
-          ) : (
-            <Grid item>
-              <FormControl>
-                <FormLabel>Gender</FormLabel>
-                <RadioGroup
-                  name="gender"
-                  value={dog.gender}
-                  onChange={(e) =>
-                    setDog({ ...dog, [e.target.name]: e.target.value })
-                  }
-                  row
-                >
-                  <FormControlLabel
-                    key="male"
-                    value="male"
-                    control={<Radio size="small" />}
-                    label="male"
-                    checked={dog.gender}
-                  />
-                  <FormControlLabel
-                    key="female"
-                    value="female"
-                    control={<Radio size="small" />}
-                    label="female"
-                  />
-                </RadioGroup>
-              </FormControl>
-            </Grid>
-          )}
+      <Box
+        sx={{
+          width: 600,
+          height: 200,
+          margin: "5em auto",
+          "& .MuiTextField-root": { m: 1, width: "35ch" },
+        }}
+        noValidate
+      >
+        {/* <img src={dog.image} alt="" /> */}
 
-          {dog.playful === true ? (
-            <>
-              <div>
-                <label htmlFor="playful">Playful</label>
+        {error && <h3 className="error">{error.message}</h3>}
+        <form className="dog-form" onSubmit={handleSubmit}>
+          <Grid container>
+            <div className="dogEditContainer">
+              <div className="dogEditLeft">
+                <Avatar
+                  src={dog.image}
+                  alt="D"
+                  sx={{ width: 156, height: 156 }}
+                />
                 <div>
                   <input
+                    type="file"
+                    id="image"
+                    name="image"
+                    multiple
+                    onChange={(e) => setImage(e.target.files[0])}
+                  />
+                </div>
+                <Grid item>
+                  <TextField
+                    name="name"
+                    label="Name"
+                    value={dog.name}
+                    variant="standard"
                     onChange={(e) =>
                       setDog({ ...dog, [e.target.name]: e.target.value })
                     }
-                    type="radio"
-                    value={true}
+                    required
+                  />
+                  <TextField
+                    name="breed"
+                    label="Breed"
+                    value={dog.breed}
+                    variant="standard"
+                    onChange={(e) =>
+                      setDog({ ...dog, [e.target.name]: e.target.value })
+                    }
+                    required
+                  />
+                  <TextField
+                    name="age"
+                    label="Age"
+                    value={dog.age}
+                    variant="standard"
+                    onChange={(e) =>
+                      setDog({ ...dog, [e.target.name]: e.target.value })
+                    }
+                    required
+                  />
+                  <TextField
+                    name="shortDescription"
+                    label="Short Description"
+                    value={dog.shortDescription}
+                    variant="standard"
+                    onChange={(e) =>
+                      setDog({ ...dog, [e.target.name]: e.target.value })
+                    }
+                    required
+                  />
+                  <TextField
+                    name="description"
+                    label="Description"
+                    value={dog.description}
+                    variant="standard"
+                    onChange={(e) =>
+                      setDog({ ...dog, [e.target.name]: e.target.value })
+                    }
+                  />
+                </Grid>
+              </div>
+              <div className="dogEditRight">
+                <FormControl>
+                  <FormLabel>Gender </FormLabel>
+                  <RadioGroup
+                    row
+                    name="gender"
+                    onChange={(e) =>
+                      setDog({ ...dog, [e.target.name]: e.target.value })
+                    }
+                    value={dog.gender}
+                  >
+                    <FormControlLabel
+                      value="male"
+                      control={<Radio></Radio>}
+                      label="Male"
+                    ></FormControlLabel>
+                    <FormControlLabel
+                      value="female"
+                      control={<Radio></Radio>}
+                      label="Female"
+                      defaultChecked
+                    ></FormControlLabel>
+                  </RadioGroup>
+                </FormControl>
+
+                <FormControl>
+                  <FormLabel>Size </FormLabel>
+                  <RadioGroup
+                    row
+                    name="size"
+                    onChange={(e) =>
+                      setDog({ ...dog, [e.target.name]: e.target.value })
+                    }
+                    value={dog.size}
+                  >
+                    <FormControlLabel
+                      value="small"
+                      control={<Radio></Radio>}
+                      label="Small"
+                      defaultChecked
+                    ></FormControlLabel>
+                    <FormControlLabel
+                      value="medium"
+                      control={<Radio></Radio>}
+                      label="Medium"
+                    ></FormControlLabel>
+                    <FormControlLabel
+                      value="large"
+                      control={<Radio></Radio>}
+                      label="Large"
+                    ></FormControlLabel>
+                  </RadioGroup>
+                </FormControl>
+                <FormControl>
+                  <FormLabel>Open To Strangers? </FormLabel>
+                  <RadioGroup
+                    row
+                    name="openToStrangers"
+                    onChange={(e) =>
+                      setDog({ ...dog, [e.target.name]: e.target.value })
+                    }
+                    value={dog.openToStrangers}
+                  >
+                    <FormControlLabel
+                      value={true}
+                      control={<Radio></Radio>}
+                      label="Yes"
+                    ></FormControlLabel>
+                    <FormControlLabel
+                      value={false}
+                      control={<Radio></Radio>}
+                      label="No"
+                      defaultChecked
+                    ></FormControlLabel>
+                  </RadioGroup>
+                </FormControl>
+                <FormControl>
+                  <FormLabel>Playful? </FormLabel>
+                  <RadioGroup
+                    row
                     name="playful"
-                    checked={dog.playful}
-                  />{" "}
-                  Yes
-                  <input
                     onChange={(e) =>
                       setDog({ ...dog, [e.target.name]: e.target.value })
                     }
-                    type="radio"
-                    value={false}
-                    name="playful"
-                  />{" "}
-                  No
-                </div>
-              </div>
-            </>
-          ) : (
-            <>
-              <div>
-                <label htmlFor="playful">Playful</label>
-                <div>
-                  <input
-                    onChange={(e) =>
-                      setDog({ ...dog, [e.target.name]: e.target.value })
-                    }
-                    type="radio"
-                    value={true}
-                    name="playful"
-                  />{" "}
-                  Yes
-                  <input
-                    onChange={(e) =>
-                      setDog({ ...dog, [e.target.name]: e.target.value })
-                    }
-                    type="radio"
-                    value={false}
-                    name="playful"
-                    checked={!dog.playful}
-                  />{" "}
-                  No
-                </div>
-              </div>
-            </>
-          )}
-          {dog.chippedAndVaccinated === true ? (
-            <>
-              <div>
-                <label htmlFor="chippedAndVaccinated">
-                  Chipped and Vaccinated
-                </label>
-                <div>
-                  <input
-                    onChange={(e) =>
-                      setDog({ ...dog, [e.target.name]: e.target.value })
-                    }
-                    type="radio"
-                    value={true}
+                    value={dog.playful}
+                  >
+                    <FormControlLabel
+                      value={true}
+                      control={<Radio></Radio>}
+                      label="Yes"
+                    ></FormControlLabel>
+                    <FormControlLabel
+                      value={false}
+                      control={<Radio></Radio>}
+                      label="No"
+                      defaultChecked
+                    ></FormControlLabel>
+                  </RadioGroup>
+                </FormControl>
+                <FormControl>
+                  <FormLabel>Open To Strangers? </FormLabel>
+                  <RadioGroup
+                    row
                     name="chippedAndVaccinated"
-                    checked={dog.chippedAndVaccinated}
-                  />
-                  Yes
-                  <input
                     onChange={(e) =>
                       setDog({ ...dog, [e.target.name]: e.target.value })
                     }
-                    type="radio"
-                    value={false}
-                    name="chippedAndVaccinated"
-                  />
-                  No
-                </div>
-              </div>
-            </>
-          ) : (
-            <>
-              <div>
-                <label htmlFor="chippedAndVaccinated">
-                  Chipped and Vaccinated
-                </label>
-                <div>
-                  <input
-                    onChange={(e) =>
-                      setDog({ ...dog, [e.target.name]: e.target.value })
-                    }
-                    type="radio"
-                    value={true}
-                    name="chippedAndVaccinated"
-                  />
-                  Yes
-                  <input
-                    onChange={(e) =>
-                      setDog({ ...dog, [e.target.name]: e.target.value })
-                    }
-                    type="radio"
-                    value={false}
-                    name="chippedAndVaccinated"
-                    checked={!dog.chippedAndVaccinated}
-                  />
-                  No
-                </div>
-              </div>
-            </>
-          )}
-          {/* {dog.childFriendly === true ? (
-            <>
-              <div>
-                <label htmlFor="childFriendly">Child Friendly</label>
-                <div>
-                  <input
-                    onChange={(e) =>
-                      setDog({ ...dog, [e.target.name]: e.target.value })
-                    }
-                    type="radio"
-                    value={true}
+                    value={dog.chippedAndVaccinated}
+                  >
+                    <FormControlLabel
+                      value={true}
+                      control={<Radio></Radio>}
+                      label="Yes"
+                    ></FormControlLabel>
+                    <FormControlLabel
+                      value={false}
+                      control={<Radio></Radio>}
+                      label="No"
+                      defaultChecked
+                    ></FormControlLabel>
+                  </RadioGroup>
+                </FormControl>
+                <FormControl>
+                  <FormLabel>Child Friendly? </FormLabel>
+                  <RadioGroup
+                    row
                     name="childFriendly"
-                    checked={dog.childFriendly}
-                  />
-                  Yes
-                  <input
                     onChange={(e) =>
                       setDog({ ...dog, [e.target.name]: e.target.value })
                     }
-                    type="radio"
-                    value={false}
-                    name="childFriendly"
-                  />
-                  No
-                </div>
-              </div>
-            </>
-          ) : (
-            <>
-              <div>
-                <label htmlFor="childFriendly">Child Friendly</label>
-                <div>
-                  <input
-                    onChange={(e) =>
-                      setDog({ ...dog, [e.target.name]: e.target.value })
-                    }
-                    type="radio"
-                    value={true}
-                    name="childFriendly"
-                  />
-                  Yes
-                  <input
-                    onChange={(e) =>
-                      setDog({ ...dog, [e.target.name]: e.target.value })
-                    }
-                    type="radio"
-                    value={false}
-                    name="childFriendly"
-                    checked={!dog.childFriendly}
-                  />
-                  No
-                </div>
-              </div>
-            </>
-          )}
-          {dog.requiresExperience === true ? (
-            <>
-              <div>
-                <label htmlFor="requiresExperience">Requires Experience</label>
-                <div>
-                  <input
-                    onChange={(e) =>
-                      setDog({ ...dog, [e.target.name]: e.target.value })
-                    }
-                    type="radio"
-                    value={true}
+                    value={dog.childFriendly}
+                  >
+                    <FormControlLabel
+                      value={true}
+                      control={<Radio></Radio>}
+                      label="Yes"
+                    ></FormControlLabel>
+                    <FormControlLabel
+                      value={false}
+                      control={<Radio></Radio>}
+                      label="No"
+                      defaultChecked
+                    ></FormControlLabel>
+                  </RadioGroup>
+                </FormControl>
+                <FormControl>
+                  <FormLabel>Requires Experience? </FormLabel>
+                  <RadioGroup
+                    row
                     name="requiresExperience"
-                    checked={dog.requiresExperience}
-                  />
-                  Yes
-                  <input
                     onChange={(e) =>
                       setDog({ ...dog, [e.target.name]: e.target.value })
                     }
-                    type="radio"
-                    value={false}
-                    name="requiresExperience"
-                  />
-                  No
-                </div>
-              </div>
-            </>
-          ) : (
-            <>
-              <div>
-                <label htmlFor="requiresExperience">Requires Experience</label>
-                <div>
-                  <input
-                    onChange={(e) =>
-                      setDog({ ...dog, [e.target.name]: e.target.value })
-                    }
-                    type="radio"
-                    value={true}
-                    name="requiresExperience"
-                  />
-                  Yes
-                  <input
-                    onChange={(e) =>
-                      setDog({ ...dog, [e.target.name]: e.target.value })
-                    }
-                    type="radio"
-                    value={false}
-                    name="requiresExperience"
-                    checked={!dog.requiresExperience}
-                  />
-                  No
-                </div>
-              </div>
-            </>
-          )}
-          {dog.goodWithOtherDogs === true ? (
-            <>
-              <div>
-                <label htmlFor="goodWithOtherDogs">Good With Other Dogs</label>
-                <div>
-                  <input
-                    onChange={(e) =>
-                      setDog({ ...dog, [e.target.name]: e.target.value })
-                    }
-                    type="radio"
-                    value={true}
+                    value={dog.requiresExperience}
+                  >
+                    <FormControlLabel
+                      value={true}
+                      control={<Radio></Radio>}
+                      label="Yes"
+                    ></FormControlLabel>
+                    <FormControlLabel
+                      value={false}
+                      control={<Radio></Radio>}
+                      label="No"
+                      defaultChecked
+                    ></FormControlLabel>
+                  </RadioGroup>
+                </FormControl>
+                <FormControl>
+                  <FormLabel>Good With Other Dogs? </FormLabel>
+                  <RadioGroup
+                    row
                     name="goodWithOtherDogs"
-                    checked={dog.goodWithOtherDogs}
-                  />
-                  Yes
-                  <input
                     onChange={(e) =>
                       setDog({ ...dog, [e.target.name]: e.target.value })
                     }
-                    type="radio"
-                    value={false}
-                    name="goodWithOtherDogs"
-                  />
-                  No
-                </div>
-              </div>
-            </>
-          ) : (
-            <>
-              <div>
-                <label htmlFor="goodWithOtherDogs">Good With Other Dogs</label>
-                <div>
-                  <input
-                    onChange={(e) =>
-                      setDog({ ...dog, [e.target.name]: e.target.value })
-                    }
-                    type="radio"
-                    value={true}
-                    name="goodWithOtherDogs"
-                  />
-                  Yes
-                  <input
-                    onChange={(e) =>
-                      setDog({ ...dog, [e.target.name]: e.target.value })
-                    }
-                    type="radio"
-                    value={false}
-                    name="goodWithOtherDogs"
-                    checked={!dog.goodWithOtherDogs}
-                  />
-                  No
-                </div>
-              </div>
-            </>
-          )}
-          {dog.alreadyAdopted === true ? (
-            <>
-              <div>
-                <label htmlFor="alreadyAdopted">Dog is already adopted</label>
-                <div>
-                  <input
-                    onChange={(e) =>
-                      setDog({ ...dog, [e.target.name]: e.target.value })
-                    }
-                    type="radio"
-                    value={true}
+                    value={dog.goodWithOtherDogs}
+                  >
+                    <FormControlLabel
+                      value={true}
+                      control={<Radio></Radio>}
+                      label="Yes"
+                    ></FormControlLabel>
+                    <FormControlLabel
+                      value={false}
+                      control={<Radio></Radio>}
+                      label="No"
+                      defaultChecked
+                    ></FormControlLabel>
+                  </RadioGroup>
+                </FormControl>
+                <FormControl>
+                  <FormLabel>Already Adopted? </FormLabel>
+                  <RadioGroup
+                    row
                     name="alreadyAdopted"
-                    checked
-                  />
-                  Yes
-                  <input
                     onChange={(e) =>
                       setDog({ ...dog, [e.target.name]: e.target.value })
                     }
-                    type="radio"
-                    value={false}
-                    name="alreadyAdopted"
-                  />
-                  No
-                </div>
+                    value={dog.alreadyAdopted}
+                  >
+                    <FormControlLabel
+                      value={true}
+                      control={<Radio></Radio>}
+                      label="Yes"
+                    ></FormControlLabel>
+                    <FormControlLabel
+                      value={false}
+                      control={<Radio></Radio>}
+                      label="No"
+                      defaultChecked
+                    ></FormControlLabel>
+                  </RadioGroup>
+                </FormControl>
               </div>
-            </>
-          ) : (
-            <>
-              <div>
-                <label htmlFor="alreadyAdopted">Dog is already adopted</label>
-                <div>
-                  <input
-                    onChange={(e) =>
-                      setDog({ ...dog, [e.target.name]: e.target.value })
-                    }
-                    type="radio"
-                    value={true}
-                    name="alreadyAdopted"
-                  />
-                  Yes
-                  <input
-                    onChange={(e) =>
-                      setDog({ ...dog, [e.target.name]: e.target.value })
-                    }
-                    type="radio"
-                    value={false}
-                    name="alreadyAdopted"
-                    checked
-                  />
-                  No
-                </div>
-              </div>
-            </>
-          )}
-          <div>
-            <label htmlFor="price">Price</label>
-            <input
-              onChange={(e) =>
-                setDog({ ...dog, [e.target.name]: e.target.value })
-              }
-              value={dog.price}
-              type="number"
-              id="price"
-              name="price"
-            />
-          </div>{" "} */}
-          <button>Confirm</button>
+            </div>
+          </Grid>
+
+          <Button type="submit" className="button center">
+            Confirm
+          </Button>
         </form>
-      </div>
+      </Box>
     </>
   );
 };

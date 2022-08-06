@@ -9,8 +9,8 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import Divider from "@mui/material/Divider";
 import LogoutIcon from "@mui/icons-material/Logout";
 import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
-import LoginIcon from '@mui/icons-material/Login';
-import VpnKeyIcon from '@mui/icons-material/VpnKey';
+import LoginIcon from "@mui/icons-material/Login";
+import VpnKeyIcon from "@mui/icons-material/VpnKey";
 import "./Navbar.css";
 import { useState } from "react";
 import { styled, alpha } from "@mui/material/styles";
@@ -59,11 +59,11 @@ const StyledMenu = styled((props) => (
 }));
 const Navbar = () => {
   const { isLoggedIn, currentUser, removeUser } = useAuth();
-  const {pathname} = useLocation();
+  const { pathname } = useLocation();
   let isHomePage = null;
-  if (pathname === "/"){
-     isHomePage = true;
-  } 
+  if (pathname === "/") {
+    isHomePage = true;
+  }
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -73,7 +73,7 @@ const Navbar = () => {
     setAnchorEl(null);
   };
   return (
-    <>
+    <div>
       <nav className="large-navbar">
         <div className="navlinks ">
           <img
@@ -83,7 +83,9 @@ const Navbar = () => {
           />
           <Link
             id="about"
-            className={isHomePage ? "animated-navlink-item navlink-item" : "navlink-item"}
+            className={
+              isHomePage ? "animated-navlink-item navlink-item" : "navlink-item"
+            }
             to="/about"
           >
             <InfoIcon /> About
@@ -92,8 +94,12 @@ const Navbar = () => {
           {isLoggedIn && (
             <>
               <Link
-              id="profile"
-              className={isHomePage ? "animated-navlink-item navlink-item" : "navlink-item"}
+                id="profile"
+                className={
+                  isHomePage
+                    ? "animated-navlink-item navlink-item"
+                    : "navlink-item"
+                }
                 to="/profile"
               >
                 <PersonIcon /> Profile
@@ -101,30 +107,42 @@ const Navbar = () => {
 
               {currentUser.hasChildren === undefined ? (
                 <Link
-                id="dogs"
-                className={isHomePage ? "animated-navlink-item navlink-item" : "navlink-item"}
+                  id="dogs"
+                  className={
+                    isHomePage
+                      ? "animated-navlink-item navlink-item"
+                      : "navlink-item"
+                  }
                   to="/own-list"
                 >
                   <PetsIcon /> Dogs
                 </Link>
               ) : (
-                <>
+                <div>
                   <Link
-                  id="matchlist"
-                  className={isHomePage ? "animated-navlink-item navlink-item" : "navlink-item"}
+                    id="matchlist"
+                    className={
+                      isHomePage
+                        ? "animated-navlink-item navlink-item"
+                        : "navlink-item"
+                    }
                     to="/match-list"
                   >
                     <FavoriteIcon /> Match List
                   </Link>
 
                   <Link
-                  id="browse"
-                    className={isHomePage ? "animated-navlink-item navlink-item" : "navlink-item"}
+                    id="browse"
+                    className={
+                      isHomePage
+                        ? "animated-navlink-item navlink-item"
+                        : "navlink-item"
+                    }
                     to="/browse"
                   >
                     <FavoriteBorderIcon /> Browse
                   </Link>
-                </>
+                </div>
               )}
             </>
           )}
@@ -139,9 +157,11 @@ const Navbar = () => {
             Sign Out
           </Button>
         )}
-        {!isLoggedIn && 
-          <Button component={Link}
-              to={`/signin`} className="button">Sign In </Button>}
+        {!isLoggedIn && (
+          <Button component={Link} to={`/signin`} className="button">
+            Sign In{" "}
+          </Button>
+        )}
       </nav>
 
       <nav className="small-navbar">
@@ -151,8 +171,11 @@ const Navbar = () => {
           src="https://res.cloudinary.com/dvru7nv6q/image/upload/v1657060337/T-Dogs/Logo_mgx5ax.png"
         />
         <div>
-          <IconButton className={isHomePage ? "animated-menu-button" : ""} onClick={handleClick}>
-            <MenuRoundedIcon fontSize="large"/>
+          <IconButton
+            className={isHomePage ? "animated-menu-button" : ""}
+            onClick={handleClick}
+          >
+            <MenuRoundedIcon fontSize="large" />
           </IconButton>
           <StyledMenu
             id="demo-customized-menu"
@@ -163,43 +186,58 @@ const Navbar = () => {
             open={open}
             onClose={handleClose}
           >
-            <MenuItem  disableRipple>
-                <InfoIcon />
-                <Link className="navlink-item" to="/about">About</Link>
+            <MenuItem disableRipple>
+              <InfoIcon />
+              <Link className="navlink-item" to="/about">
+                About
+              </Link>
             </MenuItem>
-            {!isLoggedIn && 
-            <>
+            {!isLoggedIn && (
+              <div>
                 <MenuItem disableRipple>
-                    <VpnKeyIcon />
-                    <Link  className="navlink-item" to="/signup">Sign Up</Link>
+                  <VpnKeyIcon />
+                  <Link className="navlink-item" to="/signup">
+                    Sign Up
+                  </Link>
                 </MenuItem>
                 <MenuItem disableRipple>
-                    <LoginIcon />
-                    <Link  className="navlink-item" to="/login">Log in</Link>
+                  <LoginIcon />
+                  <Link className="navlink-item" to="/login">
+                    Log in
+                  </Link>
                 </MenuItem>
-            </>}
+              </div>
+            )}
             {isLoggedIn && (
-              <>
+              <div>
                 <MenuItem disableRipple>
-                    <PersonIcon />
-                    <Link  className="navlink-item" to="/profile">Profile</Link>
+                  <PersonIcon />
+                  <Link className="navlink-item" to="/profile">
+                    Profile
+                  </Link>
                 </MenuItem>
                 {currentUser.hasChildren === undefined ? (
                   <>
                     <MenuItem disableRipple>
-                        <PetsIcon />
-                        <Link  className= "navlink-item" to="/own-list" >Dogs</Link>
+                      <PetsIcon />
+                      <Link className="navlink-item" to="/own-list">
+                        Dogs
+                      </Link>
                     </MenuItem>
                   </>
                 ) : (
                   <>
                     <MenuItem disableRipple>
-                        <FavoriteIcon />
-                        <Link  className="navlink-item" to="/match-list">Match List</Link>
-                      </MenuItem>
+                      <FavoriteIcon />
+                      <Link className="navlink-item" to="/match-list">
+                        Match List
+                      </Link>
+                    </MenuItem>
                     <MenuItem disableRipple>
-                        <FavoriteBorderIcon />
-                        <Link className="navlink-item" to="/browse">Browse</Link>
+                      <FavoriteBorderIcon />
+                      <Link className="navlink-item" to="/browse">
+                        Browse
+                      </Link>
                     </MenuItem>
                   </>
                 )}
@@ -208,12 +246,12 @@ const Navbar = () => {
                   <LogoutIcon />
                   Sign Out
                 </MenuItem>
-              </>
+              </div>
             )}
           </StyledMenu>
         </div>
       </nav>
-    </>
+    </div>
   );
 };
 

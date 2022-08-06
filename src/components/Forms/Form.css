@@ -1,8 +1,5 @@
 .dog-form {
   font-size: 1.5rem;
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
 }
 
 .dog-form label {
@@ -13,11 +10,15 @@
   padding: 0.7em;
 }
 
-.dog-form button {
-  width: 50%;
-  margin-top: 1em;
+.changeAccounts {
+  margin-bottom: 2em;
 }
 
-img {
-  width: 250px;
+.dogEditContainer {
+  display: flex;
+}
+
+.dogEditRight {
+  display: flex;
+  flex-direction: column;
 }

@@ -8,7 +8,7 @@ import "./Home.css";
 const Home = () => {
   const { isLoggedIn } = useAuth();
   return (
-    <>
+    <div>
       <div className="main-body">
         {!isLoggedIn && (
           <Button
@@ -20,7 +20,7 @@ const Home = () => {
           </Button>
         )}
       </div>
-    </>
+    </div>
   );
 };
 
