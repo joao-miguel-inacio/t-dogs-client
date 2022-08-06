@@ -158,7 +158,7 @@ const Browse = () => {
           </IconButton>
         </h1>
         <Collapse in={open}>
-          <Alert
+          <div
             className="alert"
             action={
               <IconButton
@@ -175,8 +175,8 @@ const Browse = () => {
             }
             sx={{ mb: 2 }}
           >
-            It is a Match!
-          </Alert>
+            It's a Match!
+          </div>
         </Collapse>
       </div>
     </>
