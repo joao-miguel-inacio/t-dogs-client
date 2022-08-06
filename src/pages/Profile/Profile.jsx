@@ -14,8 +14,6 @@ import MonetizationOnRoundedIcon from "@mui/icons-material/MonetizationOnRounded
 import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
 import "./Profile.css";
 import Navbar2 from "../../components/Navbar2/Navbar2";
-import Popover from "@mui/material/Popover";
-import Typography from '@mui/material/Typography';
 import PopOver from "../../components/PopOver";
 
 const Profile = () => {
@@ -33,6 +31,7 @@ const Profile = () => {
   };
 
   const open = Boolean(popover);
+
   useEffect(() => {
     document.getElementById("profile").classList.add("selected");
     const fetchProfileData = async () => {
@@ -98,7 +97,6 @@ const Profile = () => {
             <div className="icons-container center">
               {user.hasExperience === true ? (
                 <>
-                  {" "}
                   <SchoolIcon
                     className="color user-details"
                     aria-owns={open ? "mouse-over-popover" : undefined}
