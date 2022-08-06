@@ -64,6 +64,14 @@ const Navbar = () => {
   if (pathname === "/") {
     isHomePage = true;
   }
+  let isSignInPage = null;
+  if (pathname === "/signin") {
+    isSignInPage = true;
+  }
+  let isSignUpPage = null;
+  if (pathname === "/signup") {
+    isSignUpPage = true;
+  }
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -118,7 +126,7 @@ const Navbar = () => {
                   <PetsIcon /> Dogs
                 </Link>
               ) : (
-                <div>
+                <>
                   <Link
                     id="matchlist"
                     className={
@@ -130,7 +138,6 @@ const Navbar = () => {
                   >
                     <FavoriteIcon /> Match List
                   </Link>
-
                   <Link
                     id="browse"
                     className={
@@ -142,7 +149,7 @@ const Navbar = () => {
                   >
                     <FavoriteBorderIcon /> Browse
                   </Link>
-                </div>
+                </>
               )}
             </>
           )}
@@ -157,10 +164,19 @@ const Navbar = () => {
             Sign Out
           </Button>
         )}
-        {!isLoggedIn && (
+        {!isLoggedIn && isSignInPage ? (
+          <Button component={Link} to={`/signup`} className="button">
+            Sign Up{" "}
+          </Button>
+        ) : (
+          ""
+        )}
+        {!isLoggedIn && !isSignInPage ? (
           <Button component={Link} to={`/signin`} className="button">
             Sign In{" "}
           </Button>
+        ) : (
+          ""
         )}
       </nav>
 
@@ -188,31 +204,49 @@ const Navbar = () => {
           >
             <MenuItem disableRipple>
               <InfoIcon />
-              <Link className="navlink-item" to="/about">
+              <Link className="navlink-item" to="/about" onClick={handleClose}>
                 About
               </Link>
             </MenuItem>
-            {!isLoggedIn && (
+            {!isLoggedIn && !isSignUpPage ? (
+              <MenuItem disableRipple>
+                <VpnKeyIcon />
+                <Link
+                  className="navlink-item"
+                  to="/signup"
+                  onClick={handleClose}
+                >
+                  Sign Up
+                </Link>
+              </MenuItem>
+            ) : (
+              ""
+            )}
+            {!isLoggedIn && !isSignInPage ? (
               <div>
                 <MenuItem disableRipple>
-                  <VpnKeyIcon />
-                  <Link className="navlink-item" to="/signup">
-                    Sign Up
-                  </Link>
-                </MenuItem>
-                <MenuItem disableRipple>
                   <LoginIcon />
-                  <Link className="navlink-item" to="/login">
+                  <Link
+                    className="navlink-item"
+                    to="/login"
+                    onClick={handleClose}
+                  >
                     Log in
                   </Link>
                 </MenuItem>
               </div>
+            ) : (
+              ""
             )}
             {isLoggedIn && (
               <div>
                 <MenuItem disableRipple>
                   <PersonIcon />
-                  <Link className="navlink-item" to="/profile">
+                  <Link
+                    className="navlink-item"
+                    to="/profile"
+                    onClick={handleClose}
+                  >
                     Profile
                   </Link>
                 </MenuItem>
@@ -220,7 +254,11 @@ const Navbar = () => {
                   <>
                     <MenuItem disableRipple>
                       <PetsIcon />
-                      <Link className="navlink-item" to="/own-list">
+                      <Link
+                        className="navlink-item"
+                        to="/own-list"
+                        onClick={handleClose}
+                      >
                         Dogs
                       </Link>
                     </MenuItem>
@@ -229,20 +267,34 @@ const Navbar = () => {
                   <>
                     <MenuItem disableRipple>
                       <FavoriteIcon />
-                      <Link className="navlink-item" to="/match-list">
+                      <Link
+                        className="navlink-item"
+                        to="/match-list"
+                        onClick={handleClose}
+                      >
                         Match List
                       </Link>
                     </MenuItem>
                     <MenuItem disableRipple>
                       <FavoriteBorderIcon />
-                      <Link className="navlink-item" to="/browse">
+                      <Link
+                        className="navlink-item"
+                        to="/browse"
+                        onClick={handleClose}
+                      >
                         Browse
                       </Link>
                     </MenuItem>
                   </>
                 )}
                 <Divider sx={{ my: 0.5 }} />
-                <MenuItem onClick={removeUser} disableRipple>
+                <MenuItem
+                  onClick={() => {
+                    removeUser();
+                    handleClose();
+                  }}
+                  disableRipple
+                >
                   <LogoutIcon />
                   Sign Out
                 </MenuItem>
