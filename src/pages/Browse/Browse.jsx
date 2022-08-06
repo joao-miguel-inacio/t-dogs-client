@@ -6,12 +6,20 @@ import "./Browse.css";
 import { IconButton } from "@mui/material";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import CancelIcon from "@mui/icons-material/Cancel";
+import Alert from "@mui/material/Alert";
+import Collapse from "@mui/material/Collapse";
+import CloseIcon from "@mui/icons-material/Close";
 
 const Browse = () => {
   const [availableDogs, setAvailableDogs] = useState({});
   const [currentDog, setCurrentDog] = useState({});
   const [count, setCount] = useState(1);
   const [user, setUser] = useState({});
+  const [open, setOpen] = useState(false);
+  const [able, setAble] = useState(true);
+  const [touchStart, setTouchStart] = useState(0);
+  const [touchEnd, setTouchEnd] = useState(0);
+
   useEffect(() => {
     document.getElementById("browse").classList.add("selected");
     const fetchAvailableDogs = async () => {
@@ -56,7 +64,8 @@ const Browse = () => {
         (currentDog.price > 0 && user.willingToPay) ||
         currentDog.price === 0
       ) {
-        console.log("MATCH");
+        setAble(false);
+        setOpen(true);
         try {
           const storedToken = localStorage.getItem("authToken");
           await service.put(`/user/${currentDog._id}/match`, {
@@ -68,12 +77,76 @@ const Browse = () => {
       }
     }
   };
+  const handleTouchStart = (e) => {
+    if (able) {
+      setTouchStart(e.targetTouches[0].clientX);
+    } else {
+      console.log(able);
+    }
+  };
+
+  const handleTouchMove = (e) => {
+    if (able) {
+      setTouchStart(e.clientX);
+    } else {
+      console.log(able);
+    }
+  };
+
+  const handleTouchEnd = () => {
+    if (able) {
+      if (touchStart - touchEnd > 150) {
+        handleRightClick();
+      }
+      if (touchStart - touchEnd < -150) {
+        handleLeftClick();
+      }
+    } else {
+      console.log(able);
+    }
+  };
+  const handleMouseDown = (e) => {
+    if (able) {
+      setTouchStart(e.clientX);
+    } else {
+      console.log(able);
+    }
+  };
+
+  const handleMouseMove = (e) => {
+    if (able) {
+      setTouchEnd(e.clientX);
+    } else {
+      console.log(able);
+    }
+  };
+
+  const handleMouseUp = (e) => {
+    if (able) {
+      if (touchStart - touchEnd > 250) {
+        handleLeftClick();
+      }
+
+      if (touchStart - touchEnd < -250) {
+        handleRightClick();
+      }
+    } else {
+      console.log(able);
+    }
+  };
+
   return (
     <>
       <Navbar2 page="Browse" />
       <div
         className="browse-body"
         style={{ backgroundImage: `url(${currentDog.image})` }}
+        onTouchStart={(touchStartEvent) => handleTouchStart(touchStartEvent)}
+        onTouchMove={(touchMoveEvent) => handleTouchMove(touchMoveEvent)}
+        onTouchEnd={() => handleTouchEnd()}
+        onMouseDown={(mouseDownEvent) => handleMouseDown(mouseDownEvent)}
+        onMouseMove={(mouseMoveEvent) => handleMouseMove(mouseMoveEvent)}
+        onMouseUp={() => handleMouseUp()}
       >
         <h1>
           <IconButton className="left-button" onClick={handleLeftClick}>
@@ -84,6 +157,27 @@ const Browse = () => {
             <FavoriteIcon fontSize="large" />
           </IconButton>
         </h1>
+        <Collapse in={open}>
+          <div
+            className="alert"
+            action={
+              <IconButton
+                aria-label="close"
+                color="inherit"
+                fontSize="large"
+                onClick={() => {
+                  setAble(true);
+                  setOpen(false);
+                }}
+              >
+                <CloseIcon fontSize="large" />
+              </IconButton>
+            }
+            sx={{ mb: 2 }}
+          >
+            It's a Match!
+          </div>
+        </Collapse>
       </div>
     </>
   );
