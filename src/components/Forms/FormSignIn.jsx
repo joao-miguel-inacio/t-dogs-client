@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import FormStyles from "./Form.css";
+import "./Form.css";
 import service from "../../services/apiHandler";
 import useAuth from "../../context/auth/useAuth";
 import { useNavigate } from "react-router-dom";
@@ -40,17 +40,18 @@ const FormSignIn = () => {
   return (
     <>
       <Box
+        className="form-box"
         sx={{
           width: 300,
           margin: "8em auto",
-          "& .MuiTextField-root": { m: 1, width: "35ch" },
+          "& .MuiTextField-root": { m: 5, width: "35ch" },
         }}
         noValidate
         autoComplete="off"
       >
         {error && <h3 className="error">{error.message}</h3>}
-        <Typography variant="h4">Signin</Typography>
-        <form onSubmit={handleSubmit}>
+        <Typography className="form-identifier" variant="h4">Sign In</Typography>
+        <form onSubmit={handleSubmit} className="form-container">
           <Grid container>
             <Grid item>
               <TextField
@@ -64,7 +65,9 @@ const FormSignIn = () => {
                 value={user.email}
                 required
               />
-              <TextField
+            </Grid>
+            <Grid item>
+            <TextField
                 autoComplete="current-password"
                 type="password"
                 name="password"
@@ -76,12 +79,11 @@ const FormSignIn = () => {
                 value={user.password}
                 required
               />
-            </Grid>
-
-            <Button type="submit" className="button center">
-              Signin
-            </Button>
+              </Grid>
           </Grid>
+          <Button type="submit" className="button center">
+              Signin
+          </Button>
         </form>
       </Box>
     </>

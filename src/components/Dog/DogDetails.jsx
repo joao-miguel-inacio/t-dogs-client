@@ -116,11 +116,15 @@ const DogDetails = () => {
               {dogDetails.openToStrangers === true ? (
                 <>
                   <ConnectWithoutContactIcon
+                    fontSize="large"
                     className="color icon"
                     aria-owns={open ? "mouse-over-popover" : undefined}
                     aria-haspopup="true"
                     onMouseEnter={(e) =>
-                      handlePopoverOpen(e, `${dogDetails.name} reacts well to strangers`)
+                      handlePopoverOpen(
+                        e,
+                        `${dogDetails.name} reacts well to strangers`
+                      )
                     }
                     onMouseLeave={handlePopoverClose}
                   />
@@ -134,11 +138,15 @@ const DogDetails = () => {
               ) : (
                 <>
                   <ConnectWithoutContactIcon
+                    fontSize="large"
                     className="grey icon"
                     aria-owns={open ? "mouse-over-popover" : undefined}
                     aria-haspopup="true"
                     onMouseEnter={(e) =>
-                      handlePopoverOpen(e, `${dogDetails.name} doesn't like meeting new people`)
+                      handlePopoverOpen(
+                        e,
+                        `${dogDetails.name} doesn't like meeting new people`
+                      )
                     }
                     onMouseLeave={handlePopoverClose}
                   />
@@ -153,11 +161,15 @@ const DogDetails = () => {
               {dogDetails.childFriendly === true ? (
                 <>
                   <ChildFriendlyIcon
+                    fontSize="large"
                     className="color icon"
                     aria-owns={open ? "mouse-over-popover" : undefined}
                     aria-haspopup="true"
                     onMouseEnter={(e) =>
-                      handlePopoverOpen(e, `${dogDetails.name} can live with children`)
+                      handlePopoverOpen(
+                        e,
+                        `${dogDetails.name} can live with children`
+                      )
                     }
                     onMouseLeave={handlePopoverClose}
                   />
@@ -171,11 +183,15 @@ const DogDetails = () => {
               ) : (
                 <>
                   <ChildFriendlyIcon
+                    fontSize="large"
                     className="grey icon"
                     aria-owns={open ? "mouse-over-popover" : undefined}
                     aria-haspopup="true"
                     onMouseEnter={(e) =>
-                      handlePopoverOpen(e, `${dogDetails.name} can not live with children`)
+                      handlePopoverOpen(
+                        e,
+                        `${dogDetails.name} can not live with children`
+                      )
                     }
                     onMouseLeave={handlePopoverClose}
                   />
@@ -190,11 +206,15 @@ const DogDetails = () => {
               {dogDetails.goodWithOtherDogs === true ? (
                 <>
                   <PetsIcon
+                    fontSize="large"
                     className="color icon"
                     aria-owns={open ? "mouse-over-popover" : undefined}
                     aria-haspopup="true"
                     onMouseEnter={(e) =>
-                      handlePopoverOpen(e, `${dogDetails.name} is good with other dogs`)
+                      handlePopoverOpen(
+                        e,
+                        `${dogDetails.name} is good with other dogs`
+                      )
                     }
                     onMouseLeave={handlePopoverClose}
                   />
@@ -208,11 +228,15 @@ const DogDetails = () => {
               ) : (
                 <>
                   <PetsIcon
+                    fontSize="large"
                     className="grey icon"
                     aria-owns={open ? "mouse-over-popover" : undefined}
                     aria-haspopup="true"
                     onMouseEnter={(e) =>
-                      handlePopoverOpen(e, `${dogDetails.name} is not good with other dogs`)
+                      handlePopoverOpen(
+                        e,
+                        `${dogDetails.name} is not good with other dogs`
+                      )
                     }
                     onMouseLeave={handlePopoverClose}
                   />
@@ -229,11 +253,15 @@ const DogDetails = () => {
               {dogDetails.chippedAndVaccinated === true ? (
                 <>
                   <VaccinesIcon
+                    fontSize="large"
                     className="color icon"
                     aria-owns={open ? "mouse-over-popover" : undefined}
                     aria-haspopup="true"
                     onMouseEnter={(e) =>
-                      handlePopoverOpen(e, `${dogDetails.name} is chipped and vaccinated`)
+                      handlePopoverOpen(
+                        e,
+                        `${dogDetails.name} is chipped and vaccinated`
+                      )
                     }
                     onMouseLeave={handlePopoverClose}
                   />
@@ -247,11 +275,15 @@ const DogDetails = () => {
               ) : (
                 <>
                   <VaccinesIcon
+                    fontSize="large"
                     className="grey icon"
                     aria-owns={open ? "mouse-over-popover" : undefined}
                     aria-haspopup="true"
                     onMouseEnter={(e) =>
-                      handlePopoverOpen(e, `${dogDetails.name} is not chipped and vaccinated`)
+                      handlePopoverOpen(
+                        e,
+                        `${dogDetails.name} is not chipped and vaccinated`
+                      )
                     }
                     onMouseLeave={handlePopoverClose}
                   />
@@ -266,6 +298,7 @@ const DogDetails = () => {
               {dogDetails.playful === true ? (
                 <>
                   <CelebrationIcon
+                    fontSize="large"
                     className="color icon"
                     aria-owns={open ? "mouse-over-popover" : undefined}
                     aria-haspopup="true"
@@ -284,11 +317,15 @@ const DogDetails = () => {
               ) : (
                 <>
                   <CelebrationIcon
+                    fontSize="large"
                     className="grey icon"
                     aria-owns={open ? "mouse-over-popover" : undefined}
                     aria-haspopup="true"
                     onMouseEnter={(e) =>
-                      handlePopoverOpen(e, `${dogDetails.name} likes quiet and peacefulness`)
+                      handlePopoverOpen(
+                        e,
+                        `${dogDetails.name} likes quiet and peacefulness`
+                      )
                     }
                     onMouseLeave={handlePopoverClose}
                   />
@@ -303,11 +340,15 @@ const DogDetails = () => {
               {dogDetails.requiresExperience === true ? (
                 <>
                   <PsychologyIcon
+                    fontSize="large"
                     className="color icon"
                     aria-owns={open ? "mouse-over-popover" : undefined}
                     aria-haspopup="true"
                     onMouseEnter={(e) =>
-                      handlePopoverOpen(e, `${dogDetails.name} requires an experienced owner`)
+                      handlePopoverOpen(
+                        e,
+                        `${dogDetails.name} requires an experienced owner`
+                      )
                     }
                     onMouseLeave={handlePopoverClose}
                   />
@@ -321,11 +362,15 @@ const DogDetails = () => {
               ) : (
                 <>
                   <PsychologyIcon
+                    fontSize="large"
                     className="grey icon"
                     aria-owns={open ? "mouse-over-popover" : undefined}
                     aria-haspopup="true"
                     onMouseEnter={(e) =>
-                      handlePopoverOpen(e, `${dogDetails.name} does not require an experienced owner`)
+                      handlePopoverOpen(
+                        e,
+                        `${dogDetails.name} does not require an experienced owner`
+                      )
                     }
                     onMouseLeave={handlePopoverClose}
                   />

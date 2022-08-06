@@ -22,3 +22,18 @@
   display: flex;
   flex-direction: column;
 }
+.form-identifier{
+  display: none;
+}
+.form-container {
+  display: flex;
+  flex-direction: column;
+  gap: 5vw;
+}
+.form-box{
+}
+@media screen and (min-width: 769px) {
+  .form-identifier{
+    display: block;
+  }
+  }
