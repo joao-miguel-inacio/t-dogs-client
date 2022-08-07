@@ -1,6 +1,9 @@
 .page-body {
     margin-top: 60px;
 }
+* {
+    font-family: 'Quicksand', sans-serif !important;
+}
 
 @media screen and (min-width: 769px) {
     .page-body{
