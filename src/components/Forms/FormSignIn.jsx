@@ -43,7 +43,7 @@ const FormSignIn = () => {
         className="form-box"
         sx={{
           width: 300,
-          margin: "8em auto",
+          margin: "auto",
           "& .MuiTextField-root": { m: 5, width: "35ch" },
         }}
         noValidate
