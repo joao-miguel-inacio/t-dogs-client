@@ -10,14 +10,24 @@
   padding: 0.7em;
 }
 
-.changeAccounts {
+/* joao, used in sign in and sign up*/
+.user-type-button {
   margin-bottom: 2em;
+  color: black !important;
+  border: 1px solid #FD297B !important;
 }
-
+.clicked {
+  color: white !important;
+  background-image: linear-gradient(to right, #FD297B, #FF5864, #FF655B) !important;
+}
+.user-type-button-group{
+  display: flex;
+  flex-direction: column;
+  gap: 2vw;
+}
 .dogEditContainer {
   display: flex;
 }
-
 .dogEditRight {
   display: flex;
   flex-direction: column;
@@ -25,15 +35,36 @@
 .form-identifier{
   display: none;
 }
-.form-container {
+.form-content {
   display: flex;
   flex-direction: column;
+  margin-top: 2vw;
   gap: 5vw;
 }
-.form-box{
+.submit-button{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 5vw;
+}
+.question-text {
+  margin-bottom : 5vw !important;
 }
 @media screen and (min-width: 769px) {
   .form-identifier{
     display: block;
   }
+  .user-type-button-group{
+    flex-direction: row;
   }
+  .form-content{
+    flex-direction: row;
+  }
+  .submit-button {
+    justify-content: start;
+    margin-top: 2vw;
+  }
+  .question-text {
+    margin-bottom : 0vw !important;
+  }
+}
+  
