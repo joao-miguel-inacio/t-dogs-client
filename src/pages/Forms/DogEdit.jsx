@@ -11,10 +11,10 @@ const DogEdit = () => {
 		  };
    }, []);
    return (
-		<>	
+		<div className="page-body">
 			<Navbar2 page = "Dog Edit" />
 			<FormDogEdit />
-		</>
+		</div>
 	)
 };
 

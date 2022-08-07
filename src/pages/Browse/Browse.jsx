@@ -6,7 +6,6 @@ import "./Browse.css";
 import { IconButton } from "@mui/material";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import CancelIcon from "@mui/icons-material/Cancel";
-import Alert from "@mui/material/Alert";
 import Collapse from "@mui/material/Collapse";
 import CloseIcon from "@mui/icons-material/Close";
 
@@ -136,7 +135,7 @@ const Browse = () => {
   };
 
   return (
-    <>
+    <div className="page-body">
       <Navbar2 page="Browse" />
       <div
         className="browse-body"
@@ -179,7 +178,7 @@ const Browse = () => {
           </div>
         </Collapse>
       </div>
-    </>
+    </div>
   );
 };
 

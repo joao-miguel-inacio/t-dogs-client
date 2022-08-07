@@ -27,7 +27,7 @@ const OwnList = () => {
   }, []);
 
   return (
-    <div>
+    <div className="page-body">
       <Navbar2 page = "Own Dogs" />
       <DogList dogs = {ownDogs} owner = {true} />
     </div>

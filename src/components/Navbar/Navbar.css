@@ -11,6 +11,9 @@
 	justify-content: space-between;
 	align-items: center;
 	height: 60px;
+	top: 0;
+	z-index: 1;
+	background: white;
 }
 .menu-items{
 	display:flex;
@@ -28,10 +31,12 @@
 		display: none;
 	}
 	.logo{
-		width: 15vw;
+		width:max-content;
+		max-height: 8vw;
 	}
     .large-navbar {
-		padding: 2vw 2vw 0vw 2vw;
+		padding: 0vw 2vw 0vw 2vw;
+		top:0;
 		box-sizing: border-box;
     	position: fixed;
 		height: 8vw;
@@ -39,6 +44,8 @@
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
+		z-index: 1;
+		background: white;
     }
 	.selected {
 		color:#FD297B;
@@ -48,7 +55,7 @@
 	display: flex;
 	gap: 4vw;
 	align-items: center;
-	justify-content: space-around;
+	justify-content: space-around;    
 	}
 	.button {
 		background-image: linear-gradient(to right, #FD297B, #FF5864, #FF655B);

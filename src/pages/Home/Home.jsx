@@ -8,7 +8,7 @@ import "./Home.css";
 const Home = () => {
   const { isLoggedIn } = useAuth();
   return (
-    <div>
+    <div className="page-body">
       <div className="main-body">
         {!isLoggedIn && (
           <Button

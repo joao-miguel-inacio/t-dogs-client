@@ -82,7 +82,9 @@ const Navbar = () => {
   };
   return (
     <div>
-      <nav className="large-navbar">
+      <nav className={
+              isHomePage ? "large-navbar transparent" : "large-navbar"
+            }>
         <div className="navlinks ">
           <img
             className={isHomePage ? "animated-logo logo" : "logo"}
@@ -180,7 +182,9 @@ const Navbar = () => {
         )}
       </nav>
 
-      <nav className="small-navbar">
+      <nav className={
+              isHomePage ? "small-navbar transparent" : "small-navbar"
+            }>
         <img
           className={isHomePage ? "animated-logo logo" : "logo"}
           alt="T-DOGS"

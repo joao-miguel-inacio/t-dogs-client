@@ -10,10 +10,10 @@ const DogCreate = () => {
 		  };
 		 }, []);
 		 return (
-			<>	
+			<div className="page-body">
 				<Navbar2 page = "Dog Create" />
 				<FormDogCreate />
-			</>
+			</div>
 		)
 };
 

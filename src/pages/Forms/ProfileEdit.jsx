@@ -10,10 +10,10 @@ const ProfileEdit = () => {
 		  };
 	  }, []);
 	  return (
-		<>	
+		<div className="page-body">	
 			<Navbar2 page = "Profile Edit" />
 			<FormProfileEdit />
-		</>
+		</div>
 	)
 };
 

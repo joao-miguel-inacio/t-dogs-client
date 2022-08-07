@@ -31,7 +31,7 @@ const MatchList = () => {
     getMatchedDogs();
   }, []);
   return (
-    <div>
+    <div className="page-body">
       <Navbar2 page = "Matched Dogs" />
       <DogList dogs = {matchedDogs} owner = {null} />
     </div>

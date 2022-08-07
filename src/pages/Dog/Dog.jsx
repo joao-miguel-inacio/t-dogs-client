@@ -19,10 +19,10 @@ const Dog = () => {
    }
   }, []);
   return (
-		<>	
+    <div className="page-body">
 			<Navbar2 page = "Dog Details" />
 			<DogDetails />
-		</>
+		</div>
 	)
 };
 

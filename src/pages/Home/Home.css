@@ -1,6 +1,9 @@
 * {
     margin: 0;
 }
+.transparent {
+    background: none !important;
+}
 .main-body{
     margin-top: -60px;
     animation: changeBg 60s infinite;
@@ -49,7 +52,7 @@
   
   @media screen and (min-width: 769px) {
     .main-body{
-        margin-top: -10vw;
+        margin-top: -8vw;
     }
     @keyframes changeBg {
         0%, 5%  {background-image: url("https://res.cloudinary.com/dvru7nv6q/image/upload/v1658676230/T-Dogs/dogs%20:%20landscape/pauline-loroy-U3aF7hgUSrk-unsplash_f6bpht.jpg"),  url("https://res.cloudinary.com/dvru7nv6q/image/upload/v1658676217/T-Dogs/dogs%20:%20landscape/anna-dudkova-urs_y9NwFcc-unsplash_ttxqj6.jpg");}

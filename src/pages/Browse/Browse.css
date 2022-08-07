@@ -2,7 +2,7 @@
     position: absolute;
 }
 .browse-body{
-    height: calc(100vh - 10vw);
+    height: calc(100vh - 8vw);
     width: 100vw;
     display: flex;
     justify-content: space-between;

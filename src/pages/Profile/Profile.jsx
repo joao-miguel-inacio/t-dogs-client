@@ -218,7 +218,7 @@ const Profile = () => {
     );
   };
   return (
-    <div>
+    <div className="page-body">
       <Navbar2 page="Profile" />
       {user ? displayUserData() : <p>Loading your personal data ...</p>}
     </div>

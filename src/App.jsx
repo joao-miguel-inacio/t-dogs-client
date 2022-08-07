@@ -20,8 +20,7 @@ function App() {
   return (
     <div className="App">
       <Navbar />
-      <div className="body">
-        <Routes>
+      <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/signin" element={<Signin />} />
@@ -39,7 +38,6 @@ function App() {
         <Route path="*" element={<NotFound />} />
       </Routes>
     </div>
-      </div>
   );
 }
 
