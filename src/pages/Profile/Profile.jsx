@@ -22,7 +22,7 @@ const Profile = () => {
   const [popOverMessage, setpopOverMessage] = useState(null);
 
   const handlePopoverOpen = (event, message) => {
-    setpopOverMessage(message)
+    setpopOverMessage(message);
     setPopOver(event.currentTarget);
   };
 
@@ -84,7 +84,7 @@ const Profile = () => {
                   <Icon className="icon">
                     <InfoIcon />
                   </Icon>
-                  <p>About</p>
+                  <p>About me</p>
                 </div>
                 <p className="user-info">{user.description}</p>
               </div>
@@ -101,10 +101,17 @@ const Profile = () => {
                     className="color user-details"
                     aria-owns={open ? "mouse-over-popover" : undefined}
                     aria-haspopup="true"
-                    onMouseEnter={(e) => handlePopoverOpen(e, "You are an experienced owner")}
+                    onMouseEnter={(e) =>
+                      handlePopoverOpen(e, "You are an experienced owner")
+                    }
                     onMouseLeave={handlePopoverClose}
                   />
-                  <PopOver open = {open} popover = {popover} handlePopoverClose = {handlePopoverClose} popOverMessage = {popOverMessage}/>
+                  <PopOver
+                    open={open}
+                    popover={popover}
+                    handlePopoverClose={handlePopoverClose}
+                    popOverMessage={popOverMessage}
+                  />
                 </>
               ) : (
                 <>
@@ -112,10 +119,17 @@ const Profile = () => {
                     className="grey user-details"
                     aria-owns={open ? "mouse-over-popover" : undefined}
                     aria-haspopup="true"
-                    onMouseEnter={(e) => handlePopoverOpen(e, "You are not an experienced owner")}
+                    onMouseEnter={(e) =>
+                      handlePopoverOpen(e, "You are not an experienced owner")
+                    }
                     onMouseLeave={handlePopoverClose}
                   />
-                  <PopOver open = {open} popover = {popover} handlePopoverClose = {handlePopoverClose} popOverMessage = {popOverMessage}/>
+                  <PopOver
+                    open={open}
+                    popover={popover}
+                    handlePopoverClose={handlePopoverClose}
+                    popOverMessage={popOverMessage}
+                  />
                 </>
               )}
               {user.hasExperience ? (
@@ -124,10 +138,17 @@ const Profile = () => {
                     className="color user-details"
                     aria-owns={open ? "mouse-over-popover" : undefined}
                     aria-haspopup="true"
-                    onMouseEnter={(e) => handlePopoverOpen(e, "You have children")}
+                    onMouseEnter={(e) =>
+                      handlePopoverOpen(e, "You have children")
+                    }
                     onMouseLeave={handlePopoverClose}
                   />
-                  <PopOver open = {open} popover = {popover} handlePopoverClose = {handlePopoverClose} popOverMessage = {popOverMessage}/>
+                  <PopOver
+                    open={open}
+                    popover={popover}
+                    handlePopoverClose={handlePopoverClose}
+                    popOverMessage={popOverMessage}
+                  />
                 </>
               ) : (
                 <>
@@ -135,10 +156,17 @@ const Profile = () => {
                     className="grey user-details"
                     aria-owns={open ? "mouse-over-popover" : undefined}
                     aria-haspopup="true"
-                    onMouseEnter={(e) => handlePopoverOpen(e, "You do not have children")}
+                    onMouseEnter={(e) =>
+                      handlePopoverOpen(e, "You do not have children")
+                    }
                     onMouseLeave={handlePopoverClose}
                   />
-                  <PopOver open = {open} popover = {popover} handlePopoverClose = {handlePopoverClose} popOverMessage = {popOverMessage}/>
+                  <PopOver
+                    open={open}
+                    popover={popover}
+                    handlePopoverClose={handlePopoverClose}
+                    popOverMessage={popOverMessage}
+                  />
                 </>
               )}
               {user.hasPets ? (
@@ -147,10 +175,17 @@ const Profile = () => {
                     className="color user-details"
                     aria-owns={open ? "mouse-over-popover" : undefined}
                     aria-haspopup="true"
-                    onMouseEnter={(e) => handlePopoverOpen(e, "You have other pets")}
+                    onMouseEnter={(e) =>
+                      handlePopoverOpen(e, "You have other pets")
+                    }
                     onMouseLeave={handlePopoverClose}
                   />
-                  <PopOver open = {open} popover = {popover} handlePopoverClose = {handlePopoverClose} popOverMessage = {popOverMessage}/>
+                  <PopOver
+                    open={open}
+                    popover={popover}
+                    handlePopoverClose={handlePopoverClose}
+                    popOverMessage={popOverMessage}
+                  />
                 </>
               ) : (
                 <>
@@ -158,10 +193,17 @@ const Profile = () => {
                     className="grey user-details"
                     aria-owns={open ? "mouse-over-popover" : undefined}
                     aria-haspopup="true"
-                    onMouseEnter={(e) => handlePopoverOpen(e, "You do not have other pets")}
+                    onMouseEnter={(e) =>
+                      handlePopoverOpen(e, "You do not have other pets")
+                    }
                     onMouseLeave={handlePopoverClose}
                   />
-                  <PopOver open = {open} popover = {popover} handlePopoverClose = {handlePopoverClose} popOverMessage = {popOverMessage}/>
+                  <PopOver
+                    open={open}
+                    popover={popover}
+                    handlePopoverClose={handlePopoverClose}
+                    popOverMessage={popOverMessage}
+                  />
                 </>
               )}
               {user.willingToPay ? (
@@ -170,10 +212,17 @@ const Profile = () => {
                     className="color user-details"
                     aria-owns={open ? "mouse-over-popover" : undefined}
                     aria-haspopup="true"
-                    onMouseEnter={(e) => handlePopoverOpen(e, "You would pay for a dog")}
+                    onMouseEnter={(e) =>
+                      handlePopoverOpen(e, "You would pay for a dog")
+                    }
                     onMouseLeave={handlePopoverClose}
                   />
-                  <PopOver open = {open} popover = {popover} handlePopoverClose = {handlePopoverClose} popOverMessage = {popOverMessage}/>
+                  <PopOver
+                    open={open}
+                    popover={popover}
+                    handlePopoverClose={handlePopoverClose}
+                    popOverMessage={popOverMessage}
+                  />
                 </>
               ) : (
                 <>
@@ -181,10 +230,17 @@ const Profile = () => {
                     className="grey user-details"
                     aria-owns={open ? "mouse-over-popover" : undefined}
                     aria-haspopup="true"
-                    onMouseEnter={(e) => handlePopoverOpen(e, "You wouldn't buy a dog")}
+                    onMouseEnter={(e) =>
+                      handlePopoverOpen(e, "You wouldn't buy a dog")
+                    }
                     onMouseLeave={handlePopoverClose}
                   />
-                  <PopOver open = {open} popover = {popover} handlePopoverClose = {handlePopoverClose} popOverMessage = {popOverMessage}/>
+                  <PopOver
+                    open={open}
+                    popover={popover}
+                    handlePopoverClose={handlePopoverClose}
+                    popOverMessage={popOverMessage}
+                  />
                 </>
               )}
             </div>

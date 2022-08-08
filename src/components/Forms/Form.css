@@ -14,25 +14,28 @@
 .user-type-button {
   margin-bottom: 2em;
   color: black !important;
-  border: 1px solid #FD297B !important;
+  border: 1px solid #fd297b !important;
 }
 .clicked {
   color: white !important;
-  background-image: linear-gradient(to right, #FD297B, #FF5864, #FF655B) !important;
+  background-image: linear-gradient(
+    to right,
+    #fd297b,
+    #ff5864,
+    #ff655b
+  ) !important;
 }
-.user-type-button-group{
+.user-type-button-group {
   display: flex;
   flex-direction: column;
   gap: 2vw;
 }
-.dogEditContainer {
-  display: flex;
-}
-.dogEditRight {
+
+/* .dogEditRight {
   display: flex;
   flex-direction: column;
-}
-.form-identifier{
+} */
+.form-identifier {
   display: none;
 }
 .form-content {
@@ -41,22 +44,22 @@
   margin-top: 2vw;
   gap: 5vw;
 }
-.submit-button{
+.submit-button {
   display: flex;
   justify-content: center;
   margin-bottom: 5vw;
 }
 .question-text {
-  margin-bottom : 5vw !important;
+  margin-bottom: 5vw !important;
 }
 @media screen and (min-width: 769px) {
-  .form-identifier{
+  .form-identifier {
     display: block;
   }
-  .user-type-button-group{
+  .user-type-button-group {
     flex-direction: row;
   }
-  .form-content{
+  .form-content {
     flex-direction: row;
   }
   .submit-button {
@@ -64,7 +67,57 @@
     margin-top: 2vw;
   }
   .question-text {
-    margin-bottom : 0vw !important;
+    margin-bottom: 0vw !important;
   }
 }
-  
+
+/* DOG EDIT AND PROFILE*/
+
+.EditContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.EditTop {
+  margin-top: 1.5em;
+}
+
+.EditInfo {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2em;
+}
+
+.EditLeft {
+  width: 600px;
+}
+
+.EditRight {
+  display: flex;
+  flex-direction: column;
+}
+
+.InfoRadio {
+  display: flex;
+  flex-direction: column;
+}
+
+.iconsAndInfo {
+  display: flex;
+  align-items: center;
+}
+
+.icon {
+  color: grey;
+}
+
+/* DOG-LIST */
+.navLink-align {
+  list-style: none;
+  text-decoration: none;
+  color: black;
+}
+
+.page-body {
+  margin: 3em 2em;
+}

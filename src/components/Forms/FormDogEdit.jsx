@@ -11,6 +11,12 @@ import FormLabel from "@mui/material/FormLabel";
 import { Avatar, Button } from "@mui/material";
 import { Typography } from "@mui/material";
 import Grid from "@mui/material/Grid";
+import Icon from "@mui/material/Icon";
+import PersonIcon from "@mui/icons-material/Person";
+import PetsIcon from "@mui/icons-material/Pets";
+import LocalFloristIcon from "@mui/icons-material/LocalFlorist";
+import ShortTextIcon from "@mui/icons-material/ShortText";
+import DescriptionIcon from "@mui/icons-material/Description";
 
 const FormDogEdit = () => {
   const { id } = useParams();
@@ -69,142 +75,190 @@ const FormDogEdit = () => {
   };
 
   return (
-    <>
-      <Box
-        sx={{
-          width: 600,
-          height: 200,
-          margin: "5em auto",
-          "& .MuiTextField-root": { m: 1, width: "35ch" },
-        }}
-        noValidate
-      >
-        {/* <img src={dog.image} alt="" /> */}
-
+    <div className="EditContainer">
+      <Box sx={{}} noValidate>
         {error && <h3 className="error">{error.message}</h3>}
+        <Typography variant="h4" className="form-identifier">
+          Edit your Dog
+        </Typography>
         <form className="dog-form" onSubmit={handleSubmit}>
-          <Grid container>
-            <div className="dogEditContainer">
-              <div className="dogEditLeft">
-                <Avatar
-                  src={dog.image}
-                  alt="D"
-                  sx={{ width: 156, height: 156 }}
+          <div className="Edit">
+            <div className="EditTop">
+              <Avatar
+                src={dog.image}
+                alt="dog-image"
+                sx={{ width: 156, height: 156 }}
+              />
+              <div>
+                <Typography variant="h5" className="form-identifier">
+                  Upload a Profile Picture
+                </Typography>
+                <input
+                  type="file"
+                  id="image"
+                  name="image"
+                  multiple
+                  onChange={(e) => setImage(e.target.files[0])}
                 />
-                <div>
-                  <input
-                    type="file"
-                    id="image"
-                    name="image"
-                    multiple
-                    onChange={(e) => setImage(e.target.files[0])}
-                  />
-                </div>
-                <Grid item>
-                  <TextField
-                    name="name"
-                    label="Name"
-                    value={dog.name}
-                    variant="standard"
-                    onChange={(e) =>
-                      setDog({ ...dog, [e.target.name]: e.target.value })
-                    }
-                    required
-                  />
-                  <TextField
-                    name="breed"
-                    label="Breed"
-                    value={dog.breed}
-                    variant="standard"
-                    onChange={(e) =>
-                      setDog({ ...dog, [e.target.name]: e.target.value })
-                    }
-                    required
-                  />
-                  <TextField
-                    name="age"
-                    label="Age"
-                    value={dog.age}
-                    variant="standard"
-                    onChange={(e) =>
-                      setDog({ ...dog, [e.target.name]: e.target.value })
-                    }
-                    required
-                  />
-                  <TextField
-                    name="shortDescription"
-                    label="Short Description"
-                    value={dog.shortDescription}
-                    variant="standard"
-                    onChange={(e) =>
-                      setDog({ ...dog, [e.target.name]: e.target.value })
-                    }
-                    required
-                  />
-                  <TextField
-                    name="description"
-                    label="Description"
-                    value={dog.description}
-                    variant="standard"
-                    onChange={(e) =>
-                      setDog({ ...dog, [e.target.name]: e.target.value })
-                    }
-                  />
-                </Grid>
               </div>
-              <div className="dogEditRight">
-                <FormControl>
-                  <FormLabel>Gender </FormLabel>
-                  <RadioGroup
-                    row
-                    name="gender"
-                    onChange={(e) =>
-                      setDog({ ...dog, [e.target.name]: e.target.value })
-                    }
-                    value={dog.gender}
-                  >
-                    <FormControlLabel
-                      value="male"
-                      control={<Radio></Radio>}
-                      label="Male"
-                    ></FormControlLabel>
-                    <FormControlLabel
-                      value="female"
-                      control={<Radio></Radio>}
-                      label="Female"
-                      defaultChecked
-                    ></FormControlLabel>
-                  </RadioGroup>
-                </FormControl>
+            </div>
+            <div className="EditInfo">
+              <div className="EditLeft">
+                <Typography variant="h5" className="form-identifier">
+                  Personal Information
+                </Typography>
 
-                <FormControl>
-                  <FormLabel>Size </FormLabel>
-                  <RadioGroup
-                    row
-                    name="size"
-                    onChange={(e) =>
-                      setDog({ ...dog, [e.target.name]: e.target.value })
-                    }
-                    value={dog.size}
-                  >
-                    <FormControlLabel
-                      value="small"
-                      control={<Radio></Radio>}
-                      label="Small"
-                      defaultChecked
-                    ></FormControlLabel>
-                    <FormControlLabel
-                      value="medium"
-                      control={<Radio></Radio>}
-                      label="Medium"
-                    ></FormControlLabel>
-                    <FormControlLabel
-                      value="large"
-                      control={<Radio></Radio>}
-                      label="Large"
-                    ></FormControlLabel>
-                  </RadioGroup>
-                </FormControl>
+                <div className="iconsAndInfo">
+                  <Icon className="icon">
+                    <PersonIcon></PersonIcon>
+                  </Icon>
+                  <Grid item>
+                    <TextField
+                      style={{ width: 500 }}
+                      name="name"
+                      label="Name"
+                      value={dog.name}
+                      variant="standard"
+                      onChange={(e) =>
+                        setDog({ ...dog, [e.target.name]: e.target.value })
+                      }
+                      required
+                    />
+                  </Grid>
+                </div>
+                <div className="iconsAndInfo">
+                  <Icon className="icon">
+                    <PetsIcon></PetsIcon>
+                  </Icon>
+                  <Grid item>
+                    <TextField
+                      style={{ width: 500 }}
+                      name="breed"
+                      label="Breed"
+                      value={dog.breed}
+                      variant="standard"
+                      onChange={(e) =>
+                        setDog({ ...dog, [e.target.name]: e.target.value })
+                      }
+                      required
+                    />
+                  </Grid>
+                </div>
+                <div className="iconsAndInfo">
+                  <Icon className="icon">
+                    <LocalFloristIcon></LocalFloristIcon>
+                  </Icon>
+                  <Grid item>
+                    <TextField
+                      style={{ width: 500 }}
+                      name="age"
+                      label="Age"
+                      value={dog.age}
+                      variant="standard"
+                      onChange={(e) =>
+                        setDog({ ...dog, [e.target.name]: e.target.value })
+                      }
+                      required
+                    />
+                  </Grid>
+                </div>
+                <div className="iconsAndInfo">
+                  <Icon className="icon">
+                    <ShortTextIcon></ShortTextIcon>
+                  </Icon>
+                  <Grid item>
+                    <TextField
+                      style={{ width: 500 }}
+                      name="shortDescription"
+                      label="Short Description"
+                      value={dog.shortDescription}
+                      variant="standard"
+                      onChange={(e) =>
+                        setDog({ ...dog, [e.target.name]: e.target.value })
+                      }
+                      required
+                    />
+                  </Grid>
+                </div>
+                <div className="iconsAndInfo">
+                  <Icon className="icon">
+                    <DescriptionIcon></DescriptionIcon>
+                  </Icon>
+                  <Grid item>
+                    <TextField
+                      style={{ width: 500 }}
+                      multiline
+                      rows={5}
+                      rowsmax={10}
+                      name="description"
+                      label="Description"
+                      value={dog.description}
+                      variant="standard"
+                      onChange={(e) =>
+                        setDog({ ...dog, [e.target.name]: e.target.value })
+                      }
+                    />
+                  </Grid>
+                </div>
+                <div className="InfoRadio">
+                  <FormControl>
+                    <FormLabel>Gender </FormLabel>
+                    <RadioGroup
+                      row
+                      name="gender"
+                      onChange={(e) =>
+                        setDog({ ...dog, [e.target.name]: e.target.value })
+                      }
+                      value={dog.gender}
+                    >
+                      <FormControlLabel
+                        value="male"
+                        control={<Radio></Radio>}
+                        label="Male"
+                      ></FormControlLabel>
+                      <FormControlLabel
+                        value="female"
+                        control={<Radio></Radio>}
+                        label="Female"
+                        defaultChecked
+                      ></FormControlLabel>
+                    </RadioGroup>
+                  </FormControl>
+
+                  <FormControl>
+                    <FormLabel>Size </FormLabel>
+                    <RadioGroup
+                      row
+                      name="size"
+                      onChange={(e) =>
+                        setDog({ ...dog, [e.target.name]: e.target.value })
+                      }
+                      value={dog.size}
+                    >
+                      <FormControlLabel
+                        value="small"
+                        control={<Radio></Radio>}
+                        label="Small"
+                        defaultChecked
+                      ></FormControlLabel>
+                      <FormControlLabel
+                        value="medium"
+                        control={<Radio></Radio>}
+                        label="Medium"
+                      ></FormControlLabel>
+                      <FormControlLabel
+                        value="large"
+                        control={<Radio></Radio>}
+                        label="Large"
+                      ></FormControlLabel>
+                    </RadioGroup>
+                  </FormControl>
+                </div>
+              </div>
+              <div className="EditRight">
+                <Typography variant="h5" className="form-identifier">
+                  Tell us if your dog is...
+                </Typography>
                 <FormControl>
                   <FormLabel>Open To Strangers? </FormLabel>
                   <RadioGroup
@@ -251,8 +305,9 @@ const FormDogEdit = () => {
                     ></FormControlLabel>
                   </RadioGroup>
                 </FormControl>
+
                 <FormControl>
-                  <FormLabel>Open To Strangers? </FormLabel>
+                  <FormLabel>Chipped And Vaccinated? </FormLabel>
                   <RadioGroup
                     row
                     name="chippedAndVaccinated"
@@ -274,6 +329,7 @@ const FormDogEdit = () => {
                     ></FormControlLabel>
                   </RadioGroup>
                 </FormControl>
+
                 <FormControl>
                   <FormLabel>Child Friendly? </FormLabel>
                   <RadioGroup
@@ -368,14 +424,18 @@ const FormDogEdit = () => {
                 </FormControl>
               </div>
             </div>
-          </Grid>
+          </div>
 
-          <Button type="submit" className="button center">
+          <Button
+            style={{ marginTop: "3em" }}
+            type="submit"
+            className="button center clicked"
+          >
             Confirm
           </Button>
         </form>
       </Box>
-    </>
+    </div>
   );
 };
 

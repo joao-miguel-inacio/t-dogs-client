@@ -1,65 +1,64 @@
 .card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 2vw;
-    padding: 5vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2vw;
+  padding: 5vw;
+  margin: 0 2em;
+}
+.dog-info {
+  display: flex;
+  align-items: center;
+  gap: 2vw;
+}
+.center {
+  text-align: center;
+}
+.button-group {
+  display: flex;
+  gap: 1vw;
+}
+.button {
+  background-image: linear-gradient(to right, #fd297b, #ff5864, #ff655b);
+}
+.button:hover {
+  background-image: linear-gradient(to right, #f42b78, #f2535d, #f2655b);
+}
+.no-styles {
+  text-decoration: none;
+  color: inherit;
+}
+.hidden {
+  display: none;
+}
+
+@media screen and (min-width: 481px) {
+  .card {
+    flex-direction: row;
+    gap: 5vw;
+    padding: 0;
   }
   .dog-info {
-    display: flex;
-    align-items: center;
-    gap: 2vw;
+    gap: 5vw;
   }
-  .center {
-    text-align: center;
-  }
-  .button-group {
-    display: flex;
-    gap: 1vw;
-  }
-  .button {
-    background-image: linear-gradient(to right, #FD297B, #FF5864, #FF655B);
-  }
-  .button:hover{
-    background-image: linear-gradient(to right, #f42b78, #f2535d, #f2655b)
-  }
-  .no-styles {
-    text-decoration: none;
-    color: inherit;
-  }
+}
+
+@media screen and (min-width: 769px) {
   .hidden {
-    display: none;
+    display: block;
   }
-  
-  @media screen and (min-width: 481px) {
-    .card {
-        flex-direction: row;
-        gap: 5vw;
-        padding: 0;
-    }
-    .dog-info {
-        gap: 5vw;
-    }   
+  .small-column {
+    width: 20vw;
   }
-  
-  @media screen and (min-width: 769px) {
-    .hidden {
-        display: block;
-    }
-    .small-column {
-        width: 20vw;
-    }
-    .large-column {
-        width: 25vw;
-        padding: 5vw;
-    }
-    .card{
-        gap:0vw;
-    }
-    .dog-info{
-        gap: 0vw;
-    }
+  .large-column {
+    width: 25vw;
+    padding: 5vw;
   }
-  
-  
+  .card {
+    gap: 0vw;
+  }
+  .dog-info {
+    gap: 0vw;
+  }
+}

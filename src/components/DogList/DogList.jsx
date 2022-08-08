@@ -6,12 +6,12 @@ import { Link } from "react-router-dom";
 import "./DogList.css";
 
 const DogList = ({ dogs, owner }) => {
-  console.log(owner)
+  console.log(owner);
   const displayDogs = () => {
     return dogs.map((dog) => (
       <div className="card" key={dog._id}>
         <div className="dog-info">
-          <Avatar src={dog.image} alt="D" sx={{ width: 56, height: 56 }} />
+          <Avatar src={dog.image} alt="D" sx={{ width: 126, height: 126 }} />
           <div className="small-column center">
             <h2>{dog.name}</h2>
             <h3>{dog.age} years</h3>
@@ -23,7 +23,7 @@ const DogList = ({ dogs, owner }) => {
         <div className="hidden large-column center">
           <p>{dog.shortDescription}</p>
         </div>
-        {owner ? 
+        {owner ? (
           <div className="button-group">
             <Button
               component={Link}
@@ -44,17 +44,17 @@ const DogList = ({ dogs, owner }) => {
               More{" "}
             </Button>
           </div>
-          :
-            <Button
-              component={Link}
-              to={`/${dog._id}`}
-              className="button"
-              variant="contained"
-              endIcon={<InfoIcon />}
-            >
-              More{" "}
-            </Button>
-         }
+        ) : (
+          <Button
+            component={Link}
+            to={`/${dog._id}`}
+            className="button"
+            variant="contained"
+            endIcon={<InfoIcon />}
+          >
+            More{" "}
+          </Button>
+        )}
       </div>
     ));
   };

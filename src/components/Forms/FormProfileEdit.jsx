@@ -2,18 +2,32 @@ import { display } from "@mui/system";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import service from "../../services/apiHandler";
-import FormGroup from "@mui/material/FormGroup";
+
+import FormLabel from "@mui/material/FormLabel";
+import FormControl from "@mui/material/FormControl";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Switch from "@mui/material/Switch";
+import Radio from "@mui/material/Radio";
+import RadioGroup from "@mui/material/RadioGroup";
+import Box from "@mui/material/Box";
+import { Avatar, Button } from "@mui/material";
+import Grid from "@mui/material/Grid";
+import TextField from "@mui/material/TextField";
+import { Typography } from "@mui/material";
+import Icon from "@mui/material/Icon";
+import PersonIcon from "@mui/icons-material/Person";
+import LocationOnIcon from "@mui/icons-material/LocationOn";
+import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
+import InfoIcon from "@mui/icons-material/Info";
 
 const FormProfileEdit = () => {
   const [userData, setUserData] = useState({
     name: "",
     address: "",
-    hasChildren: "",
-    hasExperience: "",
-    hasPets: "",
-    willingToPay: "",
+    hasChildren: false,
+    hasExperience: false,
+    hasPets: false,
+    willingToPay: false,
     description: "",
     phoneNumber: "",
     profilePicture: "",
@@ -37,370 +51,17 @@ const FormProfileEdit = () => {
   // const [willingToPay, setWillingToPay] = useState(userData.willingToPay)
   // const [hasPets, setHasPets] = useState(userData.hasPets)
   // useEffect(()=> {}, [hasChildren, hasExperience, willingToPay, hasPets]);
+
   const handleChange = (e) => {
     console.log(e.target.name, "should be about to turn", e.target.value);
-    setUserData({...userData,[e.target.name]: e.target.value });
-    console.log(e.target.name, "is", userData.hasChildren)
+    setUserData({ ...userData, [e.target.name]: e.target.value });
+
     // setHasChildren(userData.hasChildren);
     // setHasExperience(userData.hasExperience);
     // setWillingToPay(userData.willingToPay);
     // setHasPets(userData.hasPets);
   };
-  useEffect(()=> {}, [userData])
-  const displayRadio = () => {
-    return (
-      
-      //<h1>choose an option</h1>
-
-          //OPTION1
-          //BASIC HTML5 USING userData 1
-          //Works to transform false into true but not the other way around
-          //Works to change the data in the database
-          //     <>
-          //   <div>
-          //     <label htmlFor="hasChildren">Children?</label>
-          //     <input
-          //       onChange={handleChange}
-          //       value={true}
-          //       type="radio"
-          //       name="hasChildren"
-          //       //checked={hasChildren === true}
-          //       //checked={userData.hasChildren === true}
-          //       checked={userData.hasChildren}
-          //     />
-          //     Yes
-          //     <input
-          //       onChange={handleChange}
-          //       value={false}
-          //       type="radio"
-          //       name="hasChildren"
-          //       //checked={hasChildren === false}
-          //       //checked={userData.hasChildren === false}
-          //       checked={!userData.hasChildren}
-          //     />
-          //     No
-          //   </div>
-          //   <div>
-          //     <label htmlFor="hasExperience">Experience?</label>
-          //     <input
-          //       onChange={handleChange}
-          //       value={true}
-          //       type="radio"
-          //       name="hasExperience"
-          //       //checked={hasExperience === true}
-          //       //checked={userData.hasExperience === true}
-          //       checked={userData.hasExperience}
-          //     />
-          //     Yes
-          //     <input
-          //       onChange={handleChange}
-          //       value={false}
-          //       type="radio"
-          //       name="hasExperience"
-          //       //checked={hasExperience === false}
-          //       //checked={userData.hasExperience === false}
-          //       checked={!userData.hasExperience}
-          //     />
-          //     No
-          //   </div>
-          //   <div>
-          //     <label htmlFor="hasPets">Pets?</label>
-          //     <input
-          //       onChange={handleChange}
-          //       value={true}
-          //       type="radio"
-          //       name="hasPets"
-          //       //checked={hasPets === true}
-          //       //checked={userData.hasPets === true}
-          //       checked={userData.hasPets}
-          //     />
-          //     <label htmlFor="hasPets">Yes</label>
-          //     <input
-          //       onChange={handleChange}
-          //       value={false}
-          //       type="radio"
-          //       name="hasPets"
-          //       //checked={hasPets === false}
-          //       //checked={userData.hasPets === false}
-          //       checked={!userData.hasPets}
-          //     />
-          //     <label htmlFor="!hasPets">No</label>
-          //   </div>
-          //   <div>
-          //     <label htmlFor="willingToPay">Looking to Buy?</label>
-          //     <input
-          //       onChange={handleChange}
-          //       value={true}
-          //       type="radio"
-          //       name="willingToPay"
-          //       //checked={willingToPay === true}
-          //       //checked={userData.willingToPay === true}
-          //       checked={userData.willingToPay}
-          //     />
-          //     Yes
-          //     <input
-          //       onChange={handleChange}
-          //       value={false}
-          //       type="radio"
-          //       name="willingToPay"
-          //       //checked={willingToPay === false}
-          //       //checked={userData.willingToPay === false}
-          //       checked={!userData.willingToPay}
-          //     />
-          //     No
-          //   </div>
-          // </>
-
-          // OPTION 2
-          // BASIC HTML5 USING userData 2
-          // Does not work to transform false into true nor the other way around
-          // Works to change the data in the database
-              <>
-            <div>
-              <label htmlFor="hasChildren">Children?</label>
-              <input
-                onChange={handleChange}
-                value={true}
-                type="radio"
-                name="hasChildren"
-                //checked={hasChildren === true}
-                checked={userData.hasChildren === true}
-                //checked={userData.hasChildren}
-              />
-              Yes
-              <input
-                onChange={handleChange}
-                value={false}
-                type="radio"
-                name="hasChildren"
-                //checked={hasChildren === false}
-                checked={userData.hasChildren === false}
-                //checked={!userData.hasChildren}
-              />
-              No
-            </div>
-            <div>
-              <label htmlFor="hasExperience">Experience?</label>
-              <input
-                onChange={handleChange}
-                value={true}
-                type="radio"
-                name="hasExperience"
-                //checked={hasExperience === true}
-                checked={userData.hasExperience === true}
-                //checked={userData.hasExperience}
-              />
-              Yes
-              <input
-                onChange={handleChange}
-                value={false}
-                type="radio"
-                name="hasExperience"
-                //checked={hasExperience === false}
-                checked={userData.hasExperience === false}
-                //checked={!userData.hasExperience}
-              />
-              No
-            </div>
-            <div>
-              <label htmlFor="hasPets">Pets?</label>
-              <input
-                onChange={handleChange}
-                value={true}
-                type="radio"
-                name="hasPets"
-                //checked={hasPets === true}
-                checked={userData.hasPets === true}
-                //checked={userData.hasPets}
-              />
-              <label htmlFor="hasPets">Yes</label>
-              <input
-                onChange={handleChange}
-                value={false}
-                type="radio"
-                name="hasPets"
-                //checked={hasPets === false}
-                checked={userData.hasPets === false}
-                //checked={!userData.hasPets}
-              />
-              <label htmlFor="!hasPets">No</label>
-            </div>
-            <div>
-              <label htmlFor="willingToPay">Looking to Buy?</label>
-              <input
-                onChange={handleChange}
-                value={true}
-                type="radio"
-                name="willingToPay"
-                //checked={willingToPay === true}
-                checked={userData.willingToPay === true}
-                //checked={userData.willingToPay}
-              />
-              Yes
-              <input
-                onChange={handleChange}
-                value={false}
-                type="radio"
-                name="willingToPay"
-                //checked={willingToPay === false}
-                checked={userData.willingToPay === false}
-                //checked={!userData.willingToPay}
-              />
-              No
-            </div>
-          </>
-
-        //  OPTION 3
-        //  USING HTML5 AND USESTATE
-        //  Remember to uncoment line 35 and 49
-        //   <>
-        //   <div>
-        //     <label htmlFor="hasChildren">Children?</label>
-        //     <input
-        //       onChange={handleChange}
-        //       value={true}
-        //       type="radio"
-        //       name="hasChildren"
-        //       checked={hasChildren === true}
-        //       //checked={userData.hasChildren === true}
-        //       //checked={userData.hasChildren}
-        //     />
-        //     Yes
-        //     <input
-        //       onChange={handleChange}
-        //       value={false}
-        //       type="radio"
-        //       name="hasChildren"
-        //       checked={hasChildren === false}
-        //       //checked={userData.hasChildren === false}
-        //       //checked={!userData.hasChildren}
-        //     />
-        //     No
-        //   </div>
-        //   <div>
-        //     <label htmlFor="hasExperience">Experience?</label>
-        //     <input
-        //       onChange={handleChange}
-        //       value={true}
-        //       type="radio"
-        //       name="hasExperience"
-        //       checked={hasExperience === true}
-        //       //checked={userData.hasExperience === true}
-        //       //checked={userData.hasExperience}
-        //     />
-        //     Yes
-        //     <input
-        //       onChange={handleChange}
-        //       value={false}
-        //       type="radio"
-        //       name="hasExperience"
-        //       checked={hasExperience === false}
-        //       //checked={userData.hasExperience === false}
-        //       //checked={!userData.hasExperience}
-        //     />
-        //     No
-        //   </div>
-        //   <div>
-        //     <label htmlFor="hasPets">Pets?</label>
-        //     <input
-        //       onChange={handleChange}
-        //       value={true}
-        //       type="radio"
-        //       name="hasPets"
-        //       checked={hasPets === true}
-        //       //checked={userData.hasPets === true}
-        //       //checked={userData.hasPets}
-        //     />
-        //     <label htmlFor="hasPets">Yes</label>
-        //     <input
-        //       onChange={handleChange}
-        //       value={false}
-        //       type="radio"
-        //       name="hasPets"
-        //       checked={hasPets === false}
-        //       //checked={userData.hasPets === false}
-        //       //checked={!userData.hasPets}
-        //     />
-        //     <label htmlFor="!hasPets">No</label>
-        //   </div>
-        //   <div>
-        //     <label htmlFor="willingToPay">Looking to Buy?</label>
-        //     <input
-        //       onChange={handleChange}
-        //       value={true}
-        //       type="radio"
-        //       name="willingToPay"
-        //       checked={willingToPay === true}
-        //       //checked={userData.willingToPay === true}
-        //       //checked={userData.willingToPay}
-        //     />
-        //     Yes
-        //     <input
-        //       onChange={handleChange}
-        //       value={false}
-        //       type="radio"
-        //       name="willingToPay"
-        //       checked={willingToPay === false}
-        //       //checked={userData.willingToPay === false}
-        //       //checked={!userData.willingToPay}
-        //     />
-        //     No
-        //   </div>
-        // </>
-
-          // OPTION 4
-          // SWITCH USING MATERIAL UI
-          // working to change from false to true but not the other way around
-          // <>
-          //   <FormGroup>
-          //     <FormControlLabel
-          //       control={
-          //         <Switch
-          //           value={true}
-          //           checked={userData.hasChildren}
-          //           onChange={handleChange}
-          //           name="hasChildren"
-          //         />
-          //       }
-          //       label="hasChildren"
-          //     />
-          //     <FormControlLabel
-          //       control={
-          //         <Switch
-          //           value={true}
-          //           checked={userData.hasExperience}
-          //           onChange={handleChange}
-          //           name="hasExperience"
-          //         />
-          //       }
-          //       label="hasExperience"
-          //     />
-          //     <FormControlLabel
-          //       control={
-          //         <Switch
-          //           value={true}
-          //           checked={userData.willingToPay}
-          //           onChange={handleChange}
-          //           name="willingToPay"
-          //         />
-          //       }
-          //       label="willingToPay"
-          //     />
-          //     <FormControlLabel
-          //       control={
-          //         <Switch
-          //           value={true}
-          //           checked={userData.hasPets}
-          //           onChange={handleChange}
-          //           name="hasPets"
-          //         />
-          //       }
-          //       label="hasPets"
-          //     />
-          //   </FormGroup>
-          // </>
-    );
-  };
+  useEffect(() => {}, [userData]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -418,66 +79,207 @@ const FormProfileEdit = () => {
   };
 
   return (
-    <>
-      <h2>Edit Profile</h2>
-      <img src={`${userData.profilePicture}`} alt="alternative user image" />
+    <div className="EditContainer">
+      <Box noValidate>
+        {error && <h3 className="error">{error.message}</h3>}
+        <Typography variant="h4" className="form-identifier">
+          Edit your Profile
+        </Typography>
+        <form className="form" onSubmit={handleSubmit}>
+          <div className="Edit">
+            <div className="EditTop">
+              <Avatar
+                src={userData.profilePicture}
+                alt="profilePicture"
+                sx={{ width: 156, height: 156 }}
+              />
+              <div>
+                <Typography variant="h5" className="form-identifier">
+                  Upload a Profile Picture
+                </Typography>
+                <input
+                  type="file"
+                  id="image"
+                  name="image"
+                  multiple
+                  onChange={(e) => setImage(e.target.files[0])}
+                />
+              </div>
+            </div>
+            <div className="EditInfo">
+              <div className="EditLeft">
+                <Typography variant="h5" className="form-identifier">
+                  Personal Information
+                </Typography>
 
-      {error && <h3 className="error">{error.message}</h3>}
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="profilePicture">ProfilePicture</label>
-          <input
-            type="file"
-            name="profilePicture"
-            onChange={(e) => setImage(e.target.files[0])}
-          />
-        </div>
-        <div>
-          <label htmlFor="name">Name</label>
-          <input
-            onChange={handleChange}
-            value={userData.name}
-            type="text"
-            name="name"
-          />
-        </div>
-        <div>
-          <label htmlFor="address">Address</label>
-          <input
-            onChange={handleChange}
-            value={userData.address}
-            type="text"
-            name="address"
-          />
-        </div>
-        <div>
-          <label htmlFor="Description">Description</label>
-          <textarea
-            onChange={handleChange}
-            value={userData.description}
-            type="text"
-            name="description"
-            cols="40"
-            rows="5"
-          ></textarea>
-        </div>
-        {userData.hasChildren !== undefined ? 
-          displayRadio()
-         : (
-          <>
-            <label htmlFor="Phone Number">Phone Number</label>
-            <input
-              onChange={handleChange}
-              value={userData.phoneNumber}
-              type="text"
-              name="phoneNumber"
-            />
-          </>
-        )}
+                <div className="iconsAndInfo">
+                  <Icon className="icon">
+                    <PersonIcon></PersonIcon>
+                  </Icon>
+                  <Grid item>
+                    <TextField
+                      style={{ width: 500 }}
+                      name="name"
+                      label="Name"
+                      value={userData.name}
+                      variant="standard"
+                      onChange={handleChange}
+                      required
+                    />
+                  </Grid>
+                </div>
+                <div className="iconsAndInfo">
+                  <Icon className="icon">
+                    <LocationOnIcon></LocationOnIcon>
+                  </Icon>
+                  <Grid item>
+                    <TextField
+                      style={{ width: 500 }}
+                      name="address"
+                      label="Address"
+                      value={userData.address}
+                      variant="standard"
+                      onChange={handleChange}
+                      required
+                    />
+                  </Grid>
+                </div>
+                <div className="iconsAndInfo">
+                  <Icon className="icon">
+                    <InfoIcon></InfoIcon>
+                  </Icon>
+                  <Grid item>
+                    <TextField
+                      style={{ width: 500 }}
+                      name="description"
+                      label="About me"
+                      value={userData.description}
+                      variant="standard"
+                      onChange={handleChange}
+                    />
+                  </Grid>
+                </div>
+                <div className="iconsAndInfo">
+                  <Icon className="icon">
+                    <LocalPhoneIcon></LocalPhoneIcon>
+                  </Icon>
+                  <Grid item>
+                    <TextField
+                      style={{ width: 500 }}
+                      name="phoneNumber"
+                      label="Phone"
+                      value={userData.phoneNumber}
+                      variant="standard"
+                      onChange={handleChange}
+                    />
+                  </Grid>
+                </div>
+              </div>
+              <div className="EditRight">
+                <Typography variant="h5" className="form-identifier">
+                  Choose an option:
+                </Typography>
+                <FormControl>
+                  <FormLabel>Do you have Children? </FormLabel>
+                  <RadioGroup
+                    row
+                    name="hasChildren"
+                    onChange={handleChange}
+                    value={userData.hasChildren}
+                  >
+                    <FormControlLabel
+                      value={true}
+                      control={<Radio></Radio>}
+                      label="Yes"
+                    ></FormControlLabel>
+                    <FormControlLabel
+                      value={false}
+                      control={<Radio></Radio>}
+                      label="No"
+                      defaultChecked
+                    ></FormControlLabel>
+                  </RadioGroup>
+                </FormControl>
+                <FormControl>
+                  <FormLabel>
+                    Do you already have Experience handling dogs?
+                  </FormLabel>
+                  <RadioGroup
+                    row
+                    name="hasExperience"
+                    onChange={handleChange}
+                    value={userData.hasExperience}
+                  >
+                    <FormControlLabel
+                      value={true}
+                      control={<Radio></Radio>}
+                      label="Yes"
+                    ></FormControlLabel>
+                    <FormControlLabel
+                      value={false}
+                      control={<Radio></Radio>}
+                      label="No"
+                      defaultChecked
+                    ></FormControlLabel>
+                  </RadioGroup>
+                </FormControl>
 
-        <button>Submit</button>
-      </form>
-    </>
+                <FormControl>
+                  <FormLabel>Do have have Pets? </FormLabel>
+                  <RadioGroup
+                    row
+                    name="hasPets"
+                    onChange={handleChange}
+                    value={userData.hasPets}
+                  >
+                    <FormControlLabel
+                      value={true}
+                      control={<Radio></Radio>}
+                      label="Yes"
+                    ></FormControlLabel>
+                    <FormControlLabel
+                      value={false}
+                      control={<Radio></Radio>}
+                      label="No"
+                    ></FormControlLabel>
+                  </RadioGroup>
+                </FormControl>
+
+                <FormControl>
+                  <FormLabel>Are you willing to pay for a Dog? </FormLabel>
+                  <RadioGroup
+                    row
+                    name="willingToPay"
+                    onChange={handleChange}
+                    value={userData.willingToPay}
+                  >
+                    <FormControlLabel
+                      value={true}
+                      control={<Radio></Radio>}
+                      label="Yes"
+                    ></FormControlLabel>
+                    <FormControlLabel
+                      value={false}
+                      control={<Radio></Radio>}
+                      label="No"
+                      defaultChecked
+                    ></FormControlLabel>
+                  </RadioGroup>
+                </FormControl>
+              </div>
+            </div>
+          </div>
+
+          <Button
+            style={{ marginTop: "3em" }}
+            type="submit"
+            className="button center clicked"
+          >
+            Confirm
+          </Button>
+        </form>
+      </Box>
+    </div>
   );
 };
 
