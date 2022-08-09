@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import service from "../../services/apiHandler";
 import Navbar2 from "../../components/Navbar2/Navbar2";
 import DogList from "../../components/DogList/DogList";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Button } from "@mui/material";
 
 const OwnList = () => {
@@ -30,12 +30,15 @@ const OwnList = () => {
 
   return (
     <div className="page-body">
-      <Button className="user-type-button align">
-        <NavLink className="navLink-align" to="/dog-create">
-          Create A Dog
-        </NavLink>
-      </Button>
       <Navbar2 page="Own Dogs" />
+      <Button
+              component={Link}
+              to={`/dog-create`}
+              className="button create-button"
+              variant="contained"
+            >
+              Create A Dog
+      </Button>
       <DogList dogs={ownDogs} owner={true} />
     </div>
   );
