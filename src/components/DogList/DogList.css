@@ -32,7 +32,9 @@
 .hidden {
   display: none;
 }
-
+.create-button{
+  margin: 2vw auto !important;
+}
 @media screen and (min-width: 481px) {
   .card {
     flex-direction: row;

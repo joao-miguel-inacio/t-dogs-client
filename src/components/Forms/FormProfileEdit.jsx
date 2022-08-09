@@ -189,12 +189,12 @@ const FormProfileEdit = () => {
                   >
                     <FormControlLabel
                       value={true}
-                      control={<Radio></Radio>}
+                      control={<Radio />}
                       label="Yes"
                     ></FormControlLabel>
                     <FormControlLabel
                       value={false}
-                      control={<Radio></Radio>}
+                      control={<Radio />}
                       label="No"
                       defaultChecked
                     ></FormControlLabel>
@@ -212,12 +212,12 @@ const FormProfileEdit = () => {
                   >
                     <FormControlLabel
                       value={true}
-                      control={<Radio></Radio>}
+                      control={<Radio />}
                       label="Yes"
                     ></FormControlLabel>
                     <FormControlLabel
                       value={false}
-                      control={<Radio></Radio>}
+                      control={<Radio />}
                       label="No"
                       defaultChecked
                     ></FormControlLabel>
@@ -234,12 +234,12 @@ const FormProfileEdit = () => {
                   >
                     <FormControlLabel
                       value={true}
-                      control={<Radio></Radio>}
+                      control={<Radio />}
                       label="Yes"
                     ></FormControlLabel>
                     <FormControlLabel
                       value={false}
-                      control={<Radio></Radio>}
+                      control={<Radio />}
                       label="No"
                     ></FormControlLabel>
                   </RadioGroup>
@@ -255,12 +255,12 @@ const FormProfileEdit = () => {
                   >
                     <FormControlLabel
                       value={true}
-                      control={<Radio></Radio>}
+                      control={<Radio />}
                       label="Yes"
                     ></FormControlLabel>
                     <FormControlLabel
                       value={false}
-                      control={<Radio></Radio>}
+                      control={<Radio />}
                       label="No"
                       defaultChecked
                     ></FormControlLabel>
