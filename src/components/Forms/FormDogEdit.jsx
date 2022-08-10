@@ -16,6 +16,7 @@ import PetsIcon from "@mui/icons-material/Pets";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import ShortTextIcon from "@mui/icons-material/ShortText";
 import DescriptionIcon from "@mui/icons-material/Description";
+import SellIcon from "@mui/icons-material/Sell";
 
 const FormDogEdit = () => {
   const { id } = useParams();
@@ -88,33 +89,29 @@ const FormDogEdit = () => {
         </Typography>
 
         {error && <h3 className="error">{error.message}</h3>}
-        
 
-        <form onSubmit={handleSubmit}><Typography variant="h5" className="question-text">
-                  Upload a New Profile Picture
-                </Typography>
-        <div className="avatar-container">
+        <form onSubmit={handleSubmit}>
+          <Typography variant="h5" className="question-text">
+            Upload a New Profile Picture
+          </Typography>
+          <div className="avatar-container">
+            <Avatar
+              src={dog.image}
+              alt={dog.name}
+              sx={{ width: 156, height: 156 }}
+            />
 
-<Avatar
-  src={dog.image}
-  alt={`${dog.name}`}
-  sx={{ width: 156, height: 156 }}
-/>
-
-<input
-  type="file"
-  id="image"
-  name="image"
-  multiple
-  onChange={(e) => setImage(e.target.files[0])}
-/>
-</div>
-<hr className="theme-break"></hr>
+            <input
+              type="file"
+              id="image"
+              name="image"
+              multiple
+              onChange={(e) => setImage(e.target.files[0])}
+            />
+          </div>
+          <hr className="theme-break"></hr>
           <div className="form-content">
-
             <div className="form-container">
-                
-                
               <Typography variant="h5" className="question-text">
                 Personal Information
               </Typography>
@@ -158,6 +155,22 @@ const FormDogEdit = () => {
                   name="age"
                   label="Age"
                   value={dog.age}
+                  variant="standard"
+                  onChange={(e) =>
+                    setDog({ ...dog, [e.target.name]: e.target.value })
+                  }
+                  required
+                />
+              </div>
+
+              <div className="input-container">
+                <Icon className="grey">
+                  <SellIcon />
+                </Icon>
+                <TextField
+                  name="price"
+                  label="Price"
+                  value={dog.price}
                   variant="standard"
                   onChange={(e) =>
                     setDog({ ...dog, [e.target.name]: e.target.value })
@@ -250,7 +263,7 @@ const FormDogEdit = () => {
                 </RadioGroup>
               </FormControl>
             </div>
-            
+
             <div className="form-container">
               <Typography variant="h5" className="question-text">
                 Please tell us if {dog.name}..
@@ -416,7 +429,6 @@ const FormDogEdit = () => {
                   ></FormControlLabel>
                 </RadioGroup>
               </FormControl>
-              
             </div>
           </div>
           <div className="submit-button">

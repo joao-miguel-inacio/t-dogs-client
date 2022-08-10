@@ -45,13 +45,25 @@ service.isLoggedIn = async () => {
   }
 };
 
-service.dogCreate = async (data) => {
+/* service.dogCreate = async (data) => {
   try {
     const storedToken = localStorage.getItem("authToken");
     const { newDog } = await service.post("/owner", data, {
       headers: { Authorization: `Bearer ${storedToken}` },
     });
+  
     return newDog;
+  } catch (error) {
+    errorHandler(error);
+  }
+}; */
+
+service.dogCreate = async (dog) => {
+  try {
+    const storedToken = localStorage.getItem("authToken");
+    const { dogCreate } = await service.post("/owner", dog);
+    console.log(dogCreate);
+    return dogCreate;
   } catch (error) {
     errorHandler(error);
   }

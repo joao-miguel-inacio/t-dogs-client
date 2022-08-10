@@ -79,207 +79,208 @@ const FormProfileEdit = () => {
   };
 
   return (
-    <div className="EditContainer">
-      <Box noValidate>
-        {error && <h3 className="error">{error.message}</h3>}
+    <>
+      <Box
+        sx={{
+          width: "80%",
+          margin: "auto",
+          "& .MuiTextField-root": { m: 1, width: "35ch" },
+        }}
+        noValidate
+      >
         <Typography variant="h4" className="form-identifier">
           Edit your Profile
         </Typography>
-        <form className="form" onSubmit={handleSubmit}>
-          <div className="Edit">
-            <div className="EditTop">
-              <Avatar
-                src={userData.profilePicture}
-                alt="profilePicture"
-                sx={{ width: 156, height: 156 }}
-              />
-              <div>
-                <Typography variant="h5" className="form-identifier">
-                  Upload a Profile Picture
-                </Typography>
-                <input
-                  type="file"
-                  id="image"
-                  name="image"
-                  multiple
-                  onChange={(e) => setImage(e.target.files[0])}
+        {error && <h3 className="error">{error.message}</h3>}
+        <form onSubmit={handleSubmit}>
+          <Typography variant="h5" className="question-text">
+            Upload a New Profile Picture
+          </Typography>
+          <div className="avatar-container">
+            <Avatar
+              src={userData.profilePicture}
+              alt="profilePicture"
+              sx={{ width: 156, height: 156 }}
+            />
+
+            <input
+              type="file"
+              id="image"
+              name="image"
+              multiple
+              onChange={(e) => setImage(e.target.files[0])}
+            />
+          </div>
+          <hr className="theme-break"></hr>
+          <div className="form-content">
+            <div className="form-container">
+              <Typography variant="h5" className="question-text">
+                Personal Information
+              </Typography>
+
+              <div className="input-container">
+                <Icon className="grey">
+                  <PersonIcon></PersonIcon>
+                </Icon>
+
+                <TextField
+                  style={{ width: 500 }}
+                  name="name"
+                  label="Name"
+                  value={userData.name}
+                  variant="standard"
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+              <div className="input-container">
+                <Icon className="grey">
+                  <LocationOnIcon></LocationOnIcon>
+                </Icon>
+
+                <TextField
+                  style={{ width: 500 }}
+                  name="address"
+                  label="Address"
+                  value={userData.address}
+                  variant="standard"
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+              <div className="input-container">
+                <Icon className="grey">
+                  <InfoIcon></InfoIcon>
+                </Icon>
+
+                <TextField
+                  style={{ width: 500 }}
+                  name="description"
+                  label="About me"
+                  value={userData.description}
+                  variant="standard"
+                  onChange={handleChange}
+                />
+              </div>
+              <div className="input-container">
+                <Icon className="grey">
+                  <LocalPhoneIcon></LocalPhoneIcon>
+                </Icon>
+
+                <TextField
+                  style={{ width: 500 }}
+                  name="phoneNumber"
+                  label="Phone"
+                  value={userData.phoneNumber}
+                  variant="standard"
+                  onChange={handleChange}
                 />
               </div>
             </div>
-            <div className="EditInfo">
-              <div className="EditLeft">
-                <Typography variant="h5" className="form-identifier">
-                  Personal Information
-                </Typography>
 
-                <div className="iconsAndInfo">
-                  <Icon className="icon">
-                    <PersonIcon></PersonIcon>
-                  </Icon>
-                  <Grid item>
-                    <TextField
-                      style={{ width: 500 }}
-                      name="name"
-                      label="Name"
-                      value={userData.name}
-                      variant="standard"
-                      onChange={handleChange}
-                      required
-                    />
-                  </Grid>
-                </div>
-                <div className="iconsAndInfo">
-                  <Icon className="icon">
-                    <LocationOnIcon></LocationOnIcon>
-                  </Icon>
-                  <Grid item>
-                    <TextField
-                      style={{ width: 500 }}
-                      name="address"
-                      label="Address"
-                      value={userData.address}
-                      variant="standard"
-                      onChange={handleChange}
-                      required
-                    />
-                  </Grid>
-                </div>
-                <div className="iconsAndInfo">
-                  <Icon className="icon">
-                    <InfoIcon></InfoIcon>
-                  </Icon>
-                  <Grid item>
-                    <TextField
-                      style={{ width: 500 }}
-                      name="description"
-                      label="About me"
-                      value={userData.description}
-                      variant="standard"
-                      onChange={handleChange}
-                    />
-                  </Grid>
-                </div>
-                <div className="iconsAndInfo">
-                  <Icon className="icon">
-                    <LocalPhoneIcon></LocalPhoneIcon>
-                  </Icon>
-                  <Grid item>
-                    <TextField
-                      style={{ width: 500 }}
-                      name="phoneNumber"
-                      label="Phone"
-                      value={userData.phoneNumber}
-                      variant="standard"
-                      onChange={handleChange}
-                    />
-                  </Grid>
-                </div>
-              </div>
-              <div className="EditRight">
-                <Typography variant="h5" className="form-identifier">
-                  Choose an option:
-                </Typography>
-                <FormControl>
-                  <FormLabel>Do you have Children? </FormLabel>
-                  <RadioGroup
-                    row
-                    name="hasChildren"
-                    onChange={handleChange}
-                    value={userData.hasChildren}
-                  >
-                    <FormControlLabel
-                      value={true}
-                      control={<Radio />}
-                      label="Yes"
-                    ></FormControlLabel>
-                    <FormControlLabel
-                      value={false}
-                      control={<Radio />}
-                      label="No"
-                      defaultChecked
-                    ></FormControlLabel>
-                  </RadioGroup>
-                </FormControl>
-                <FormControl>
-                  <FormLabel>
-                    Do you already have Experience handling dogs?
-                  </FormLabel>
-                  <RadioGroup
-                    row
-                    name="hasExperience"
-                    onChange={handleChange}
-                    value={userData.hasExperience}
-                  >
-                    <FormControlLabel
-                      value={true}
-                      control={<Radio />}
-                      label="Yes"
-                    ></FormControlLabel>
-                    <FormControlLabel
-                      value={false}
-                      control={<Radio />}
-                      label="No"
-                      defaultChecked
-                    ></FormControlLabel>
-                  </RadioGroup>
-                </FormControl>
+            <div className="form-container">
+              <Typography variant="h5" className="question-text">
+                Choose an option:
+              </Typography>
+              <FormControl>
+                <FormLabel>Do you have Children? </FormLabel>
+                <RadioGroup
+                  row
+                  name="hasChildren"
+                  onChange={handleChange}
+                  value={userData.hasChildren}
+                >
+                  <FormControlLabel
+                    value={true}
+                    control={<Radio />}
+                    label="Yes"
+                  ></FormControlLabel>
+                  <FormControlLabel
+                    value={false}
+                    control={<Radio />}
+                    label="No"
+                    defaultChecked
+                  ></FormControlLabel>
+                </RadioGroup>
+              </FormControl>
 
-                <FormControl>
-                  <FormLabel>Do have have Pets? </FormLabel>
-                  <RadioGroup
-                    row
-                    name="hasPets"
-                    onChange={handleChange}
-                    value={userData.hasPets}
-                  >
-                    <FormControlLabel
-                      value={true}
-                      control={<Radio />}
-                      label="Yes"
-                    ></FormControlLabel>
-                    <FormControlLabel
-                      value={false}
-                      control={<Radio />}
-                      label="No"
-                    ></FormControlLabel>
-                  </RadioGroup>
-                </FormControl>
+              <FormControl>
+                <FormLabel>
+                  Do you already have Experience handling dogs?
+                </FormLabel>
+                <RadioGroup
+                  row
+                  name="hasExperience"
+                  onChange={handleChange}
+                  value={userData.hasExperience}
+                >
+                  <FormControlLabel
+                    value={true}
+                    control={<Radio />}
+                    label="Yes"
+                  ></FormControlLabel>
+                  <FormControlLabel
+                    value={false}
+                    control={<Radio />}
+                    label="No"
+                    defaultChecked
+                  ></FormControlLabel>
+                </RadioGroup>
+              </FormControl>
 
-                <FormControl>
-                  <FormLabel>Are you willing to pay for a Dog? </FormLabel>
-                  <RadioGroup
-                    row
-                    name="willingToPay"
-                    onChange={handleChange}
-                    value={userData.willingToPay}
-                  >
-                    <FormControlLabel
-                      value={true}
-                      control={<Radio />}
-                      label="Yes"
-                    ></FormControlLabel>
-                    <FormControlLabel
-                      value={false}
-                      control={<Radio />}
-                      label="No"
-                      defaultChecked
-                    ></FormControlLabel>
-                  </RadioGroup>
-                </FormControl>
-              </div>
+              <FormControl>
+                <FormLabel>Do have have Pets? </FormLabel>
+                <RadioGroup
+                  row
+                  name="hasPets"
+                  onChange={handleChange}
+                  value={userData.hasPets}
+                >
+                  <FormControlLabel
+                    value={true}
+                    control={<Radio />}
+                    label="Yes"
+                  ></FormControlLabel>
+                  <FormControlLabel
+                    value={false}
+                    control={<Radio />}
+                    label="No"
+                  ></FormControlLabel>
+                </RadioGroup>
+              </FormControl>
+
+              <FormControl>
+                <FormLabel>Are you willing to pay for a Dog? </FormLabel>
+                <RadioGroup
+                  row
+                  name="willingToPay"
+                  onChange={handleChange}
+                  value={userData.willingToPay}
+                >
+                  <FormControlLabel
+                    value={true}
+                    control={<Radio />}
+                    label="Yes"
+                  ></FormControlLabel>
+                  <FormControlLabel
+                    value={false}
+                    control={<Radio />}
+                    label="No"
+                    defaultChecked
+                  ></FormControlLabel>
+                </RadioGroup>
+              </FormControl>
             </div>
           </div>
 
-          <Button
-            style={{ marginTop: "3em" }}
-            type="submit"
-            className="button center clicked"
-          >
-            Confirm
-          </Button>
+          <div className="submit-button">
+            <Button type="submit" className="button center">
+              Confirm
+            </Button>
+          </div>
         </form>
       </Box>
-    </div>
+    </>
   );
 };
 
