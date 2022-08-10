@@ -14,7 +14,7 @@ import { Typography } from "@mui/material";
 import Grid from "@mui/material/Grid";
 
 const FormSignUp = () => {
-  const [userType, setUserType] = useState(null);
+  const [userType, setUserType] = useState("isBuyer");
 
   const [user, setUser] = useState({
     userType: userType,
@@ -54,7 +54,9 @@ const FormSignUp = () => {
           Sign Up
         </Typography>
 
-        <Typography className="question-text" variant="h6">What brings you to T-Dogs?</Typography>
+        <Typography className="question-text" variant="h6">
+          What brings you to T-Dogs?
+        </Typography>
 
         {!userType && (
           <div className="user-type-button-group">
@@ -89,7 +91,10 @@ const FormSignUp = () => {
                     ? "user-type-button clicked"
                     : "user-type-button"
                 }
-                onClick={() => setUserType("isOwner")}
+                onClick={() => {
+                  setUserType("isOwner");
+                  setUser({ ...user, userType: "isOwner" });
+                }}
               >
                 I am looking to rehome a dog
               </Button>
@@ -100,7 +105,10 @@ const FormSignUp = () => {
                     ? "user-type-button clicked"
                     : "user-type-button"
                 }
-                onClick={() => setUserType("isBuyer")}
+                onClick={() => {
+                  setUserType("isBuyer");
+                  setUser({ ...user, userType: "isBuyer" });
+                }}
               >
                 I am looking to adopt a dog
               </Button>
@@ -176,7 +184,9 @@ const FormSignUp = () => {
                     flexDirection="column"
                     alignContent="center"
                   >
-                  <Typography className="question-text" variant="h6">To find your perfect match, please tell us..</Typography>
+                    <Typography className="question-text" variant="h6">
+                      To find your perfect match, please tell us..
+                    </Typography>
                     <Grid item>
                       <FormControl>
                         <FormLabel>Do you have any children?</FormLabel>
