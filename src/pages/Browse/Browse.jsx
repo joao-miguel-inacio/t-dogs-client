@@ -52,26 +52,33 @@ const Browse = () => {
     setCurrentDog(availableDogs[count]);
   };
   const handleRightClick = async () => {
-    setCount(count + 1);
-    setCurrentDog(availableDogs[count]);
     if (
-      currentDog.childFriendly === user.hasChildren &&
-      currentDog.requiresExperience === user.hasExperience &&
-      currentDog.goodWithOtherDogs === user.hasPets
+      (currentDog.childFriendly && user.hasChildren) ||
+      user.hasChildren === false
     ) {
       if (
-        (currentDog.price > 0 && user.willingToPay) ||
-        currentDog.price === 0
+        (currentDog.requiresExperience && user.hasExperience) ||
+        currentDog.requiresExperience === false
       ) {
-        setAble(false);
-        setOpen(true);
-        try {
-          const storedToken = localStorage.getItem("authToken");
-          await service.put(`/user/${currentDog._id}/match`, {
-            headers: { Authorization: `Bearer ${storedToken}` },
-          });
-        } catch (error) {
-          console.log(error);
+        if (
+          (user.hasPets && currentDog.goodWithOtherDogs) ||
+          user.hasPets === false
+        ) {
+          if (
+            (currentDog.price > 0 && user.willingToPay) ||
+            currentDog.price === 0
+          ) {
+            setAble(false);
+            setOpen(true);
+            try {
+              const storedToken = localStorage.getItem("authToken");
+              await service.put(`/user/${currentDog._id}/match`, {
+                headers: { Authorization: `Bearer ${storedToken}` },
+              });
+            } catch (error) {
+              console.log(error);
+            }
+          }
         }
       }
     }
@@ -83,7 +90,6 @@ const Browse = () => {
       console.log(able);
     }
   };
-
   const handleTouchMove = (e) => {
     if (able) {
       setTouchStart(e.clientX);
@@ -91,7 +97,6 @@ const Browse = () => {
       console.log(able);
     }
   };
-
   const handleTouchEnd = () => {
     if (able) {
       if (touchStart - touchEnd > 150) {
@@ -111,7 +116,6 @@ const Browse = () => {
       console.log(able);
     }
   };
-
   const handleMouseMove = (e) => {
     if (able) {
       setTouchEnd(e.clientX);
@@ -119,19 +123,23 @@ const Browse = () => {
       console.log(able);
     }
   };
-
   const handleMouseUp = (e) => {
     if (able) {
       if (touchStart - touchEnd > 250) {
         handleLeftClick();
       }
-
       if (touchStart - touchEnd < -250) {
         handleRightClick();
       }
     } else {
       console.log(able);
     }
+  };
+  const handleClose = () => {
+    setAble(true);
+    setOpen(false);
+    setCount(count + 1);
+    setCurrentDog(availableDogs[count]);
   };
 
   return (
@@ -159,22 +167,16 @@ const Browse = () => {
         <Collapse in={open}>
           <div
             className="alert"
-            action={
-              <IconButton
+          >
+            It's a Match!
+            <IconButton
                 aria-label="close"
                 color="inherit"
                 fontSize="large"
-                onClick={() => {
-                  setAble(true);
-                  setOpen(false);
-                }}
+                onClick={handleClose}
               >
                 <CloseIcon fontSize="large" />
               </IconButton>
-            }
-            sx={{ mb: 2 }}
-          >
-            It's a Match!
           </div>
         </Collapse>
       </div>
