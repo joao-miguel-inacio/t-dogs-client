@@ -14,7 +14,7 @@ import { Typography } from "@mui/material";
 import Grid from "@mui/material/Grid";
 
 const FormSignUp = () => {
-  const [userType, setUserType] = useState("isBuyer");
+  const [userType, setUserType] = useState(undefined);
 
   const [user, setUser] = useState({
     userType: userType,
@@ -30,6 +30,13 @@ const FormSignUp = () => {
 
   const [error, setError] = useState(false);
   const navigate = useNavigate();
+
+  const handleChange = (e) => {
+    setUser({
+      ...user,
+      [e.target.name]: e.target.value,
+    });
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -64,6 +71,7 @@ const FormSignUp = () => {
               className="user-type-button"
               onClick={() => {
                 setUserType("isOwner");
+                setUser({ ...user, userType: "isOwner" });
               }}
             >
               I am looking to rehome a dog
@@ -73,6 +81,7 @@ const FormSignUp = () => {
               className="user-type-button"
               onClick={() => {
                 setUserType("isBuyer");
+                setUser({ ...user, userType: "isBuyer" });
               }}
             >
               I am looking to adopt a dog
@@ -120,6 +129,7 @@ const FormSignUp = () => {
                   container
                   justifyContent="space-around"
                   flexDirection="column"
+                  alignContent="center"
                 >
                   <Grid item>
                     <TextField
@@ -128,22 +138,19 @@ const FormSignUp = () => {
                       label="Name"
                       value={user.name}
                       variant="standard"
-                      onChange={(e) =>
-                        setUser({ ...user, [e.target.name]: e.target.value })
-                      }
+                      onChange={handleChange}
                       required
                     />
                   </Grid>
                   <Grid item>
                     <TextField
+                      type="email"
                       className="textField"
                       name="email"
                       label="Email"
                       variant="standard"
                       autoComplete="on"
-                      onChange={(e) =>
-                        setUser({ ...user, [e.target.name]: e.target.value })
-                      }
+                      onChange={handleChange}
                       value={user.email}
                       required
                     />
@@ -156,9 +163,7 @@ const FormSignUp = () => {
                       name="password"
                       label="Password"
                       variant="standard"
-                      onChange={(e) =>
-                        setUser({ ...user, [e.target.name]: e.target.value })
-                      }
+                      onChange={handleChange}
                       value={user.password}
                       required
                     />
@@ -169,15 +174,14 @@ const FormSignUp = () => {
                       name="address"
                       label="Address"
                       variant="standard"
-                      onChange={(e) =>
-                        setUser({ ...user, [e.target.name]: e.target.value })
-                      }
+                      onChange={handleChange}
                       value={user.address}
+                      required
                     />
                   </Grid>
                 </Grid>
 
-                {userType === "isBuyer" && (
+                {userType === "isBuyer" ? (
                   <Grid
                     container
                     justifyContent="space-around"
@@ -189,16 +193,11 @@ const FormSignUp = () => {
                     </Typography>
                     <Grid item>
                       <FormControl>
-                        <FormLabel>Do you have any children?</FormLabel>
+                        <FormLabel>Do you have young children?</FormLabel>
                         <RadioGroup
                           row
                           name="hasChildren"
-                          onChange={(e) =>
-                            setUser({
-                              ...user,
-                              [e.target.name]: e.target.value,
-                            })
-                          }
+                          onChange={handleChange}
                           value={user.hasChildren}
                         >
                           <FormControlLabel
@@ -220,12 +219,7 @@ const FormSignUp = () => {
                         <RadioGroup
                           row
                           name="hasExperience"
-                          onChange={(e) =>
-                            setUser({
-                              ...user,
-                              [e.target.name]: e.target.value,
-                            })
-                          }
+                          onChange={handleChange}
                           value={user.hasExperience}
                         >
                           <FormControlLabel
@@ -247,12 +241,7 @@ const FormSignUp = () => {
                         <RadioGroup
                           row
                           name="hasPets"
-                          onChange={(e) =>
-                            setUser({
-                              ...user,
-                              [e.target.name]: e.target.value,
-                            })
-                          }
+                          onChange={handleChange}
                           value={user.hasPets}
                         >
                           <FormControlLabel
@@ -274,12 +263,7 @@ const FormSignUp = () => {
                         <RadioGroup
                           row
                           name="lookingToBuy"
-                          onChange={(e) =>
-                            setUser({
-                              ...user,
-                              [e.target.name]: e.target.value,
-                            })
-                          }
+                          onChange={handleChange}
                           value={user.lookingToBuy}
                         >
                           <FormControlLabel
@@ -290,19 +274,29 @@ const FormSignUp = () => {
                           <FormControlLabel
                             value={false}
                             control={<Radio></Radio>}
-                            label="No, just hoping to adopt"
+                            label="No, just looking to adopt"
                           ></FormControlLabel>
                         </RadioGroup>
                       </FormControl>
                     </Grid>
                   </Grid>
+                ) : (
+                  <div className="submit-button half">
+                    <Button type="submit" className="button">
+                      Submit
+                    </Button>
+                  </div>
                 )}
               </div>
-              <div className="submit-button">
-                <Button type="submit" className="button center">
-                  Submit
-                </Button>
-              </div>
+              {userType === "isBuyer" ? (
+                <div className="submit-button">
+                  <Button type="submit" className="button center">
+                    Submit
+                  </Button>
+                </div>
+              ) : (
+                ""
+              )}
             </form>
           </>
         )}

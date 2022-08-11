@@ -6,12 +6,10 @@ import service from "../../services/apiHandler";
 import FormLabel from "@mui/material/FormLabel";
 import FormControl from "@mui/material/FormControl";
 import FormControlLabel from "@mui/material/FormControlLabel";
-import Switch from "@mui/material/Switch";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import Box from "@mui/material/Box";
 import { Avatar, Button } from "@mui/material";
-import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
 import { Typography } from "@mui/material";
 import Icon from "@mui/material/Icon";
@@ -46,22 +44,10 @@ const FormProfileEdit = () => {
     };
     fetchData();
   }, []);
-  // const [hasChildren, setHasChildren] = useState(userData.hasChildren)
-  // const [hasExperience, setHasExperience] = useState(userData.hasExperience)
-  // const [willingToPay, setWillingToPay] = useState(userData.willingToPay)
-  // const [hasPets, setHasPets] = useState(userData.hasPets)
-  // useEffect(()=> {}, [hasChildren, hasExperience, willingToPay, hasPets]);
 
   const handleChange = (e) => {
-    console.log(e.target.name, "should be about to turn", e.target.value);
     setUserData({ ...userData, [e.target.name]: e.target.value });
-
-    // setHasChildren(userData.hasChildren);
-    // setHasExperience(userData.hasExperience);
-    // setWillingToPay(userData.willingToPay);
-    // setHasPets(userData.hasPets);
   };
-  useEffect(() => {}, [userData]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -120,11 +106,9 @@ const FormProfileEdit = () => {
 
               <div className="input-container">
                 <Icon className="grey">
-                  <PersonIcon></PersonIcon>
+                  <PersonIcon />
                 </Icon>
-
                 <TextField
-                  style={{ width: 500 }}
                   name="name"
                   label="Name"
                   value={userData.name}
@@ -133,13 +117,12 @@ const FormProfileEdit = () => {
                   required
                 />
               </div>
+
               <div className="input-container">
                 <Icon className="grey">
-                  <LocationOnIcon></LocationOnIcon>
+                  <LocationOnIcon />
                 </Icon>
-
                 <TextField
-                  style={{ width: 500 }}
                   name="address"
                   label="Address"
                   value={userData.address}
@@ -148,13 +131,13 @@ const FormProfileEdit = () => {
                   required
                 />
               </div>
+
               <div className="input-container">
                 <Icon className="grey">
-                  <InfoIcon></InfoIcon>
+                  <InfoIcon />
                 </Icon>
 
                 <TextField
-                  style={{ width: 500 }}
                   name="description"
                   label="About me"
                   value={userData.description}
@@ -162,122 +145,138 @@ const FormProfileEdit = () => {
                   onChange={handleChange}
                 />
               </div>
-              <div className="input-container">
-                <Icon className="grey">
-                  <LocalPhoneIcon></LocalPhoneIcon>
-                </Icon>
 
-                <TextField
-                  style={{ width: 500 }}
-                  name="phoneNumber"
-                  label="Phone"
-                  value={userData.phoneNumber}
-                  variant="standard"
-                  onChange={handleChange}
-                />
+              {userData.hasChildren === true ||
+              userData.hasChildren === false ? (
+                ""
+              ) : (
+                <div className="input-container">
+                  <Icon className="grey">
+                    <LocalPhoneIcon />
+                  </Icon>
+                  <TextField
+                    name="phoneNumber"
+                    label="Phone"
+                    value={userData.phoneNumber}
+                    variant="standard"
+                    onChange={handleChange}
+                  />
+                </div>
+              )}
+            </div>
+
+            {userData.hasChildren === true || userData.hasChildren === false ? (
+              <>
+                <div className="form-container">
+                  <Typography variant="h5" className="question-text">
+                    Choose an option:
+                  </Typography>
+
+                  <FormControl>
+                    <FormLabel>Do you have young children? </FormLabel>
+                    <RadioGroup
+                      row
+                      name="hasChildren"
+                      onChange={handleChange}
+                      value={userData.hasChildren}
+                    >
+                      <FormControlLabel
+                        value={true}
+                        control={<Radio />}
+                        label="Yes"
+                      ></FormControlLabel>
+                      <FormControlLabel
+                        value={false}
+                        control={<Radio />}
+                        label="No"
+                        defaultChecked
+                      ></FormControlLabel>
+                    </RadioGroup>
+                  </FormControl>
+
+                  <FormControl>
+                    <FormLabel>Are you an experienced dog owner?</FormLabel>
+                    <RadioGroup
+                      row
+                      name="hasExperience"
+                      onChange={handleChange}
+                      value={userData.hasExperience}
+                    >
+                      <FormControlLabel
+                        value={true}
+                        control={<Radio />}
+                        label="Yes"
+                      ></FormControlLabel>
+                      <FormControlLabel
+                        value={false}
+                        control={<Radio />}
+                        label="No"
+                        defaultChecked
+                      ></FormControlLabel>
+                    </RadioGroup>
+                  </FormControl>
+
+                  <FormControl>
+                    <FormLabel>Do have have other pets? </FormLabel>
+                    <RadioGroup
+                      row
+                      name="hasPets"
+                      onChange={handleChange}
+                      value={userData.hasPets}
+                    >
+                      <FormControlLabel
+                        value={true}
+                        control={<Radio />}
+                        label="Yes"
+                      ></FormControlLabel>
+                      <FormControlLabel
+                        value={false}
+                        control={<Radio />}
+                        label="No"
+                      ></FormControlLabel>
+                    </RadioGroup>
+                  </FormControl>
+
+                  <FormControl>
+                    <FormLabel>Would you consider buying a dog?</FormLabel>
+                    <RadioGroup
+                      row
+                      name="willingToPay"
+                      onChange={handleChange}
+                      value={userData.willingToPay}
+                    >
+                      <FormControlLabel
+                        value={true}
+                        control={<Radio />}
+                        label="Yes"
+                      ></FormControlLabel>
+                      <FormControlLabel
+                        value={false}
+                        control={<Radio />}
+                        label="No, just looking to adopt"
+                        defaultChecked
+                      ></FormControlLabel>
+                    </RadioGroup>
+                  </FormControl>
+                </div>
+              </>
+            ) : (
+              <div className="submit-button half">
+                <Button type="submit" className="button">
+                  Confirm
+                </Button>
               </div>
-            </div>
-
-            <div className="form-container">
-              <Typography variant="h5" className="question-text">
-                Choose an option:
-              </Typography>
-              <FormControl>
-                <FormLabel>Do you have Children? </FormLabel>
-                <RadioGroup
-                  row
-                  name="hasChildren"
-                  onChange={handleChange}
-                  value={userData.hasChildren}
-                >
-                  <FormControlLabel
-                    value={true}
-                    control={<Radio />}
-                    label="Yes"
-                  ></FormControlLabel>
-                  <FormControlLabel
-                    value={false}
-                    control={<Radio />}
-                    label="No"
-                    defaultChecked
-                  ></FormControlLabel>
-                </RadioGroup>
-              </FormControl>
-
-              <FormControl>
-                <FormLabel>
-                  Do you already have Experience handling dogs?
-                </FormLabel>
-                <RadioGroup
-                  row
-                  name="hasExperience"
-                  onChange={handleChange}
-                  value={userData.hasExperience}
-                >
-                  <FormControlLabel
-                    value={true}
-                    control={<Radio />}
-                    label="Yes"
-                  ></FormControlLabel>
-                  <FormControlLabel
-                    value={false}
-                    control={<Radio />}
-                    label="No"
-                    defaultChecked
-                  ></FormControlLabel>
-                </RadioGroup>
-              </FormControl>
-
-              <FormControl>
-                <FormLabel>Do have have Pets? </FormLabel>
-                <RadioGroup
-                  row
-                  name="hasPets"
-                  onChange={handleChange}
-                  value={userData.hasPets}
-                >
-                  <FormControlLabel
-                    value={true}
-                    control={<Radio />}
-                    label="Yes"
-                  ></FormControlLabel>
-                  <FormControlLabel
-                    value={false}
-                    control={<Radio />}
-                    label="No"
-                  ></FormControlLabel>
-                </RadioGroup>
-              </FormControl>
-
-              <FormControl>
-                <FormLabel>Are you willing to pay for a Dog? </FormLabel>
-                <RadioGroup
-                  row
-                  name="willingToPay"
-                  onChange={handleChange}
-                  value={userData.willingToPay}
-                >
-                  <FormControlLabel
-                    value={true}
-                    control={<Radio />}
-                    label="Yes"
-                  ></FormControlLabel>
-                  <FormControlLabel
-                    value={false}
-                    control={<Radio />}
-                    label="No"
-                    defaultChecked
-                  ></FormControlLabel>
-                </RadioGroup>
-              </FormControl>
-            </div>
+            )}
           </div>
-
-          <div className="submit-button">
-            <Button type="submit" className="button center">
-              Confirm
-            </Button>
-          </div>
+          {userData.hasChildren === true || userData.hasChildren === false ? (
+            <div className="submit-button">
+              <Button type="submit" className="button">
+                Confirm
+              </Button>
+            </div>
+          ) : (
+            <hr className="theme-break end"></hr>
+          )}
         </form>
       </Box>
     </>

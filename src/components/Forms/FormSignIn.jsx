@@ -5,11 +5,6 @@ import useAuth from "../../context/auth/useAuth";
 import { useNavigate } from "react-router-dom";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
-import Radio from "@mui/material/Radio";
-import RadioGroup from "@mui/material/RadioGroup";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import FormControl from "@mui/material/FormControl";
-import FormLabel from "@mui/material/FormLabel";
 import { Button } from "@mui/material";
 import { Typography } from "@mui/material";
 import Grid from "@mui/material/Grid";
@@ -22,6 +17,10 @@ const FormSignIn = () => {
   const [error, setError] = useState(null);
   const navigate = useNavigate();
   const { storeToken, authenticateUser } = useAuth();
+
+  const handleChange = (e) => {
+    setUser({ ...user, [e.target.name]: e.target.value });
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -42,7 +41,7 @@ const FormSignIn = () => {
       <Box
         className="form-box"
         sx={{
-          width: 300,
+          width: "80%",
           margin: "auto",
           "& .MuiTextField-root": { m: 5, width: "35ch" },
         }}
@@ -59,9 +58,7 @@ const FormSignIn = () => {
                 autoComplete="on"
                 label="Email"
                 variant="standard"
-                onChange={(e) =>
-                  setUser({ ...user, [e.target.name]: e.target.value })
-                }
+                onChange={handleChange}
                 value={user.email}
                 required
               />
@@ -73,9 +70,7 @@ const FormSignIn = () => {
                 name="password"
                 label="Password"
                 variant="standard"
-                onChange={(e) =>
-                  setUser({ ...user, [e.target.name]: e.target.value })
-                }
+                onChange={handleChange}
                 value={user.password}
                 required
               />

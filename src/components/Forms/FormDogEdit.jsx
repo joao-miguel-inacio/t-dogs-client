@@ -56,6 +56,10 @@ const FormDogEdit = () => {
     fetchData();
   }, []);
 
+  const handleChange = (e) => {
+    setDog({ ...dog, [e.target.name]: e.target.value });
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -125,9 +129,7 @@ const FormDogEdit = () => {
                   label="Name"
                   value={dog.name}
                   variant="standard"
-                  onChange={(e) =>
-                    setDog({ ...dog, [e.target.name]: e.target.value })
-                  }
+                  onChange={handleChange}
                 />
               </div>
 
@@ -140,9 +142,7 @@ const FormDogEdit = () => {
                   label="Breed"
                   value={dog.breed}
                   variant="standard"
-                  onChange={(e) =>
-                    setDog({ ...dog, [e.target.name]: e.target.value })
-                  }
+                  onChange={handleChange}
                   required
                 />
               </div>
@@ -152,13 +152,12 @@ const FormDogEdit = () => {
                   <CalendarMonthIcon />
                 </Icon>
                 <TextField
+                  type="number"
                   name="age"
                   label="Age"
                   value={dog.age}
                   variant="standard"
-                  onChange={(e) =>
-                    setDog({ ...dog, [e.target.name]: e.target.value })
-                  }
+                  onChange={handleChange}
                   required
                 />
               </div>
@@ -168,13 +167,12 @@ const FormDogEdit = () => {
                   <SellIcon />
                 </Icon>
                 <TextField
+                  type="number"
                   name="price"
                   label="Price"
                   value={dog.price}
                   variant="standard"
-                  onChange={(e) =>
-                    setDog({ ...dog, [e.target.name]: e.target.value })
-                  }
+                  onChange={handleChange}
                   required
                 />
               </div>
@@ -188,9 +186,7 @@ const FormDogEdit = () => {
                   label="Short Description"
                   value={dog.shortDescription}
                   variant="standard"
-                  onChange={(e) =>
-                    setDog({ ...dog, [e.target.name]: e.target.value })
-                  }
+                  onChange={handleChange}
                 />
               </div>
 
@@ -206,9 +202,7 @@ const FormDogEdit = () => {
                   label="Description"
                   value={dog.description}
                   variant="standard"
-                  onChange={(e) =>
-                    setDog({ ...dog, [e.target.name]: e.target.value })
-                  }
+                  onChange={handleChange}
                 />
               </div>
 
@@ -217,9 +211,7 @@ const FormDogEdit = () => {
                 <RadioGroup
                   row
                   name="gender"
-                  onChange={(e) =>
-                    setDog({ ...dog, [e.target.name]: e.target.value })
-                  }
+                  onChange={handleChange}
                   value={dog.gender}
                 >
                   <FormControlLabel
@@ -240,9 +232,7 @@ const FormDogEdit = () => {
                 <RadioGroup
                   row
                   name="size"
-                  onChange={(e) =>
-                    setDog({ ...dog, [e.target.name]: e.target.value })
-                  }
+                  onChange={handleChange}
                   value={dog.size}
                 >
                   <FormControlLabel
@@ -274,9 +264,7 @@ const FormDogEdit = () => {
                 <RadioGroup
                   row
                   name="openToStrangers"
-                  onChange={(e) =>
-                    setDog({ ...dog, [e.target.name]: e.target.value })
-                  }
+                  onChange={handleChange}
                   value={dog.openToStrangers}
                 >
                   <FormControlLabel
@@ -297,9 +285,7 @@ const FormDogEdit = () => {
                 <RadioGroup
                   row
                   name="childFriendly"
-                  onChange={(e) =>
-                    setDog({ ...dog, [e.target.name]: e.target.value })
-                  }
+                  onChange={handleChange}
                   value={dog.childFriendly}
                 >
                   <FormControlLabel
@@ -320,9 +306,7 @@ const FormDogEdit = () => {
                 <RadioGroup
                   row
                   name="goodWithOtherDogs"
-                  onChange={(e) =>
-                    setDog({ ...dog, [e.target.name]: e.target.value })
-                  }
+                  onChange={handleChange}
                   value={dog.goodWithOtherDogs}
                 >
                   <FormControlLabel
@@ -343,9 +327,7 @@ const FormDogEdit = () => {
                 <RadioGroup
                   row
                   name="chippedAndVaccinated"
-                  onChange={(e) =>
-                    setDog({ ...dog, [e.target.name]: e.target.value })
-                  }
+                  onChange={handleChange}
                   value={dog.chippedAndVaccinated}
                 >
                   <FormControlLabel
@@ -366,9 +348,7 @@ const FormDogEdit = () => {
                 <RadioGroup
                   row
                   name="playful"
-                  onChange={(e) =>
-                    setDog({ ...dog, [e.target.name]: e.target.value })
-                  }
+                  onChange={handleChange}
                   value={dog.playful}
                 >
                   <FormControlLabel
@@ -389,9 +369,7 @@ const FormDogEdit = () => {
                 <RadioGroup
                   row
                   name="requiresExperience"
-                  onChange={(e) =>
-                    setDog({ ...dog, [e.target.name]: e.target.value })
-                  }
+                  onChange={handleChange}
                   value={dog.requiresExperience}
                 >
                   <FormControlLabel
@@ -412,9 +390,7 @@ const FormDogEdit = () => {
                 <RadioGroup
                   row
                   name="alreadyAdopted"
-                  onChange={(e) =>
-                    setDog({ ...dog, [e.target.name]: e.target.value })
-                  }
+                  onChange={handleChange}
                   value={dog.alreadyAdopted}
                 >
                   <FormControlLabel

@@ -38,7 +38,12 @@ const FormDogCreate = () => {
   });
   const [image, setImage] = useState(null);
   const [error, setError] = useState(null);
+  const [description, setDescription] = useState(false);
   const navigate = useNavigate();
+
+  const handleChange = (e) => {
+    setDog({ ...dog, [e.target.name]: e.target.value });
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -105,6 +110,7 @@ const FormDogCreate = () => {
               name="image"
               multiple
               onChange={(e) => setImage(e.target.files[0])}
+              required
             />
           </div>
           <hr className="theme-break"></hr>
@@ -123,9 +129,8 @@ const FormDogCreate = () => {
                   label="Name"
                   value={dog.name}
                   variant="standard"
-                  onChange={(e) =>
-                    setDog({ ...dog, [e.target.name]: e.target.value })
-                  }
+                  onChange={handleChange}
+                  required
                 />
               </div>
 
@@ -138,9 +143,7 @@ const FormDogCreate = () => {
                   label="Breed"
                   value={dog.breed}
                   variant="standard"
-                  onChange={(e) =>
-                    setDog({ ...dog, [e.target.name]: e.target.value })
-                  }
+                  onChange={handleChange}
                   required
                 />
               </div>
@@ -150,13 +153,12 @@ const FormDogCreate = () => {
                   <CalendarMonthIcon />
                 </Icon>
                 <TextField
+                  type="number"
                   name="age"
                   label="Age"
                   value={dog.age}
                   variant="standard"
-                  onChange={(e) =>
-                    setDog({ ...dog, [e.target.name]: e.target.value })
-                  }
+                  onChange={handleChange}
                   required
                 />
               </div>
@@ -165,58 +167,80 @@ const FormDogCreate = () => {
                   <SellIcon />
                 </Icon>
                 <TextField
+                  type="number"
                   name="price"
                   label="Price"
                   value={dog.price}
                   variant="standard"
-                  onChange={(e) =>
-                    setDog({ ...dog, [e.target.name]: e.target.value })
-                  }
+                  onChange={handleChange}
                   required
                 />
               </div>
 
-              <div className="input-container">
-                <Icon className="grey">
-                  <ShortTextIcon></ShortTextIcon>
-                </Icon>
-                <TextField
-                  name="shortDescription"
-                  label="Short Description"
-                  value={dog.shortDescription}
-                  variant="standard"
-                  onChange={(e) =>
-                    setDog({ ...dog, [e.target.name]: e.target.value })
-                  }
-                />
-              </div>
+              {description === false ? (
+                <>
+                  <Typography variant="h6" className="question-text">
+                    Descriptions attract more potential owners.
+                  </Typography>
+                  <Button
+                    onClick={() => {
+                      setDescription(!description);
+                    }}
+                    variant="outlined"
+                    className="description-button"
+                  >
+                    Add Description Now
+                  </Button>
+                </>
+              ) : (
+                <>
+                  <Button
+                    onClick={() => {
+                      setDescription(!description);
+                    }}
+                    variant="outlined"
+                    className="description-button"
+                  >
+                    Add Description Later
+                  </Button>
 
-              <div className="input-container">
-                <Icon className="grey">
-                  <DescriptionIcon></DescriptionIcon>
-                </Icon>
-                <TextField
-                  multiline
-                  rows={3}
-                  rowsmax={10}
-                  name="description"
-                  label="Description"
-                  value={dog.description}
-                  variant="standard"
-                  onChange={(e) =>
-                    setDog({ ...dog, [e.target.name]: e.target.value })
-                  }
-                />
-              </div>
+                  <div className="input-container">
+                    <Icon className="grey">
+                      <ShortTextIcon />
+                    </Icon>
+                    <TextField
+                      name="shortDescription"
+                      label="Short Description"
+                      value={dog.shortDescription}
+                      variant="standard"
+                      onChange={handleChange}
+                    />
+                  </div>
+
+                  <div className="input-container">
+                    <Icon className="grey">
+                      <DescriptionIcon />
+                    </Icon>
+                    <TextField
+                      multiline
+                      rows={3}
+                      rowsmax={10}
+                      name="description"
+                      label="Description"
+                      value={dog.description}
+                      variant="standard"
+                      onChange={handleChange}
+                    />
+                  </div>
+                </>
+              )}
 
               <FormControl>
                 <FormLabel>Gender </FormLabel>
                 <RadioGroup
                   row
                   name="gender"
-                  onChange={(e) =>
-                    setDog({ ...dog, [e.target.name]: e.target.value })
-                  }
+                  onChange={handleChange}
                   value={dog.gender}
                 >
                   <FormControlLabel
@@ -237,9 +261,7 @@ const FormDogCreate = () => {
                 <RadioGroup
                   row
                   name="size"
-                  onChange={(e) =>
-                    setDog({ ...dog, [e.target.name]: e.target.value })
-                  }
+                  onChange={handleChange}
                   value={dog.size}
                 >
                   <FormControlLabel
@@ -271,9 +293,7 @@ const FormDogCreate = () => {
                 <RadioGroup
                   row
                   name="openToStrangers"
-                  onChange={(e) =>
-                    setDog({ ...dog, [e.target.name]: e.target.value })
-                  }
+                  onChange={handleChange}
                   value={dog.openToStrangers}
                 >
                   <FormControlLabel
@@ -294,9 +314,7 @@ const FormDogCreate = () => {
                 <RadioGroup
                   row
                   name="childFriendly"
-                  onChange={(e) =>
-                    setDog({ ...dog, [e.target.name]: e.target.value })
-                  }
+                  onChange={handleChange}
                   value={dog.childFriendly}
                 >
                   <FormControlLabel
@@ -317,9 +335,7 @@ const FormDogCreate = () => {
                 <RadioGroup
                   row
                   name="goodWithOtherDogs"
-                  onChange={(e) =>
-                    setDog({ ...dog, [e.target.name]: e.target.value })
-                  }
+                  onChange={handleChange}
                   value={dog.goodWithOtherDogs}
                 >
                   <FormControlLabel
@@ -340,9 +356,7 @@ const FormDogCreate = () => {
                 <RadioGroup
                   row
                   name="chippedAndVaccinated"
-                  onChange={(e) =>
-                    setDog({ ...dog, [e.target.name]: e.target.value })
-                  }
+                  onChange={handleChange}
                   value={dog.chippedAndVaccinated}
                 >
                   <FormControlLabel
@@ -363,9 +377,7 @@ const FormDogCreate = () => {
                 <RadioGroup
                   row
                   name="playful"
-                  onChange={(e) =>
-                    setDog({ ...dog, [e.target.name]: e.target.value })
-                  }
+                  onChange={handleChange}
                   value={dog.playful}
                 >
                   <FormControlLabel
@@ -386,9 +398,7 @@ const FormDogCreate = () => {
                 <RadioGroup
                   row
                   name="requiresExperience"
-                  onChange={(e) =>
-                    setDog({ ...dog, [e.target.name]: e.target.value })
-                  }
+                  onChange={handleChange}
                   value={dog.requiresExperience}
                 >
                   <FormControlLabel
@@ -409,9 +419,7 @@ const FormDogCreate = () => {
                 <RadioGroup
                   row
                   name="alreadyAdopted"
-                  onChange={(e) =>
-                    setDog({ ...dog, [e.target.name]: e.target.value })
-                  }
+                  onChange={handleChange}
                   value={dog.alreadyAdopted}
                 >
                   <FormControlLabel
@@ -426,13 +434,24 @@ const FormDogCreate = () => {
                   ></FormControlLabel>
                 </RadioGroup>
               </FormControl>
-            </div>
-          </div>
+
+              {description === true ? (
           <div className="submit-button">
-            <Button type="submit" className="button center">
+            <Button type="submit" className="button">
               Create
             </Button>
           </div>
+          ) : "" }
+
+            </div>
+          </div>
+          {description === false ? (
+          <div className="submit-button">
+            <Button type="submit" className="button">
+              Create
+            </Button>
+          </div>
+          ) : "" }
         </form>
       </Box>
     </>
