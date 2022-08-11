@@ -51,7 +51,7 @@ const FormSignIn = () => {
         {error && <h3 className="error">{error.message}</h3>}
         <Typography className="form-identifier" variant="h4">Sign In</Typography>
         <form onSubmit={handleSubmit}>
-          <Grid container>
+          <Grid container direction="column">
             <Grid item>
               <TextField
                 type="email"

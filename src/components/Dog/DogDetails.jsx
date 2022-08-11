@@ -16,6 +16,7 @@ import EmailIcon from "@mui/icons-material/Email";
 import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import PopOver from "../../components/PopOver";
+import { Avatar } from "@mui/material";
 
 const DogDetails = () => {
   const { id } = useParams();
@@ -54,7 +55,7 @@ const DogDetails = () => {
         <img src={dogDetails.image} alt="dog" className="dog-image-small" />
         <div className="main-container">
           <div className="large-screen-container">
-            <img src={dogDetails.image} alt="dog" className="dog-image-large" />
+            <Avatar sx={{ width: "40vw", height: "40vw" }} src={dogDetails.image} alt="dog" className="dog-image-large" />
             <div className="basic-id-container">
               {dogDetails.gender === "male" ? (
                 <MaleIcon fontSize="large" />
@@ -77,6 +78,10 @@ const DogDetails = () => {
                   className="dog-size-image"
                   src="https://res.cloudinary.com/dvru7nv6q/image/upload/v1659517103/T-Dogs/dog-size-large_dfvdky.png"
                   alt="large"
+                  onMouseEnter={(e) =>
+                      handlePopoverOpen(e, `${dogDetails.name} is a large size dog`)
+                    }
+                  onMouseLeave={handlePopoverClose}
                 />
               ) : (
                 ""
@@ -86,6 +91,10 @@ const DogDetails = () => {
                   className="dog-size-image"
                   src="https://res.cloudinary.com/dvru7nv6q/image/upload/v1659517103/T-Dogs/dog-size-medium_qja8il.png"
                   alt="medium"
+                  onMouseEnter={(e) =>
+                      handlePopoverOpen(e, `${dogDetails.name} is a medium size dog`)
+                    }
+                  onMouseLeave={handlePopoverClose}
                 />
               ) : (
                 ""
@@ -95,6 +104,10 @@ const DogDetails = () => {
                   className="dog-size-image"
                   src="https://res.cloudinary.com/dvru7nv6q/image/upload/v1659517103/T-Dogs/dog-size-small_orpey4.png"
                   alt="small"
+                  onMouseEnter={(e) =>
+                      handlePopoverOpen(e, `${dogDetails.name} is a small size dog`)
+                    }
+                  onMouseLeave={handlePopoverClose}
                 />
               ) : (
                 ""

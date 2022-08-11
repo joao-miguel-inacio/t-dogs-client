@@ -19,6 +19,13 @@
   display: flex;
   gap: 1vw;
 }
+.create-button-div{
+  display: flex;
+  justify-content: center;
+}
+.create-button {
+  min-width: 150px !important;
+}
 .button {
   background-image: linear-gradient(to right, #fd297b, #ff5864, #ff655b);
 }

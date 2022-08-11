@@ -10,7 +10,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import ChildFriendlyIcon from "@mui/icons-material/ChildFriendly";
 import SchoolIcon from "@mui/icons-material/School";
 import PetsIcon from "@mui/icons-material/Pets";
-import MonetizationOnRoundedIcon from "@mui/icons-material/MonetizationOnRounded";
+import EuroIcon from '@mui/icons-material/Euro';
 import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
 import "./Profile.css";
 import Navbar2 from "../../components/Navbar2/Navbar2";
@@ -208,7 +208,7 @@ const Profile = () => {
               )}
               {user.willingToPay ? (
                 <>
-                  <MonetizationOnRoundedIcon
+                  <EuroIcon
                     className="color user-details"
                     aria-owns={open ? "mouse-over-popover" : undefined}
                     aria-haspopup="true"
@@ -226,7 +226,7 @@ const Profile = () => {
                 </>
               ) : (
                 <>
-                  <MonetizationOnRoundedIcon
+                  <EuroIcon
                     className="grey user-details"
                     aria-owns={open ? "mouse-over-popover" : undefined}
                     aria-haspopup="true"

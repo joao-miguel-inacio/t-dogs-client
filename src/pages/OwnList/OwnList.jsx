@@ -31,14 +31,16 @@ const OwnList = () => {
   return (
     <div className="page-body">
       <Navbar2 page="Own Dogs" />
-      <Button
-              component={Link}
-              to={`/dog-create`}
-              className="button create-button"
-              variant="contained"
-            >
-              Create A Dog
-      </Button>
+      <div className="create-button-div">
+        <Button
+          component={Link}
+          to={`/dog-create`}
+          className="button create-button"
+          variant="contained"
+        >
+          Create A Dog
+        </Button>
+      </div>
       <DogList dogs={ownDogs} owner={true} />
     </div>
   );

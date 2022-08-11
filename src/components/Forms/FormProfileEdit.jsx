@@ -1,8 +1,6 @@
-import { display } from "@mui/system";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import service from "../../services/apiHandler";
-
 import FormLabel from "@mui/material/FormLabel";
 import FormControl from "@mui/material/FormControl";
 import FormControlLabel from "@mui/material/FormControlLabel";
@@ -174,12 +172,12 @@ const FormProfileEdit = () => {
                   </Typography>
 
                   <FormControl>
-                    <FormLabel>Do you have young children? </FormLabel>
+                    <FormLabel>Are you an experienced dog owner?</FormLabel>
                     <RadioGroup
                       row
-                      name="hasChildren"
+                      name="hasExperience"
                       onChange={handleChange}
-                      value={userData.hasChildren}
+                      value={userData.hasExperience}
                     >
                       <FormControlLabel
                         value={true}
@@ -196,12 +194,12 @@ const FormProfileEdit = () => {
                   </FormControl>
 
                   <FormControl>
-                    <FormLabel>Are you an experienced dog owner?</FormLabel>
+                    <FormLabel>Do you have young children? </FormLabel>
                     <RadioGroup
                       row
-                      name="hasExperience"
+                      name="hasChildren"
                       onChange={handleChange}
-                      value={userData.hasExperience}
+                      value={userData.hasChildren}
                     >
                       <FormControlLabel
                         value={true}

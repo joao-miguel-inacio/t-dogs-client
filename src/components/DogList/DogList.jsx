@@ -18,7 +18,8 @@ const DogList = ({ dogs, owner }) => {
           </div>
         </div>
         <div className="hidden small-column center">
-          <h3>{dog.breed}</h3>
+          <h3>{dog.breed}</h3>          
+          <p>{dog.price} €</p>
         </div>
         <div className="hidden large-column center">
           <p>{dog.shortDescription}</p>

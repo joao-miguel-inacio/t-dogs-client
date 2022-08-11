@@ -82,15 +82,15 @@ const Navbar = () => {
   };
   return (
     <div>
-      <nav className={
-              isHomePage ? "large-navbar transparent" : "large-navbar"
-            }>
+      <nav className={isHomePage ? "large-navbar transparent" : "large-navbar"}>
         <div className="navlinks ">
-          <img
-            className={isHomePage ? "animated-logo logo" : "logo"}
-            alt="T-DOGS"
-            src="https://res.cloudinary.com/dvru7nv6q/image/upload/v1657060337/T-Dogs/Logo_mgx5ax.png"
-          />
+          <Link to="/">
+            <img
+              className={isHomePage ? "animated-logo logo" : "logo"}
+              alt="T-DOGS"
+              src="https://res.cloudinary.com/dvru7nv6q/image/upload/v1657060337/T-Dogs/Logo_mgx5ax.png"
+            />
+          </Link>
           <Link
             id="about"
             className={
@@ -182,14 +182,14 @@ const Navbar = () => {
         )}
       </nav>
 
-      <nav className={
-              isHomePage ? "small-navbar transparent" : "small-navbar"
-            }>
-        <img
-          className={isHomePage ? "animated-logo logo" : "logo"}
-          alt="T-DOGS"
-          src="https://res.cloudinary.com/dvru7nv6q/image/upload/v1657060337/T-Dogs/Logo_mgx5ax.png"
-        />
+      <nav className={isHomePage ? "small-navbar transparent" : "small-navbar"}>
+        <Link to="/">
+          <img
+            className={isHomePage ? "animated-logo logo" : "logo"}
+            alt="T-DOGS"
+            src="https://res.cloudinary.com/dvru7nv6q/image/upload/v1657060337/T-Dogs/Logo_mgx5ax.png"
+          />
+        </Link>
         <div>
           <IconButton
             className={isHomePage ? "animated-menu-button" : ""}

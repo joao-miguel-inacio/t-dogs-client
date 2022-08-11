@@ -11,7 +11,7 @@
     width: 100vw;
 }
 .dog-image-large {
-    display: none;
+    display: none !important;
 }
 .basic-id-container {
     display: flex;
@@ -19,8 +19,11 @@
     justify-content: center;
     gap: 10vw;
 }
+.owner-details{
+    margin: 0vw 0 2vw 0;
+}
 .dog-size-image {
-    width: 40vw;
+    width: 25vw;
 }
 .short-description{
     text-align: center;
@@ -37,6 +40,9 @@
     gap: 10vw;
     align-self: center;
     justify-content: center;
+}
+.icons {
+    margin: 0 0 5vw 0;
 }
 .break{
     margin-bottom: 5vw;
@@ -60,7 +66,7 @@
         display: none;
     }
     .dog-image-large {
-        display: block;
+        display: block !important;
         width: 40vw;
     }
     .large-screen-container{

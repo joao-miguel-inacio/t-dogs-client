@@ -1,7 +1,9 @@
 .container {
     display: flex;
     flex-direction: column;
-    gap: 2vh;
+    gap: 3vh;
+    padding: 0 10vw 0 10vw;
+    margin: 10vw 0 10vw 0;
 }
 .small-container{
     display: flex;
