@@ -85,7 +85,7 @@ const FormProfileEdit = () => {
           <div className="avatar-container">
             <Avatar
               src={userData.profilePicture}
-              alt="profilePicture"
+              alt={userData.name}
               sx={{ width: 156, height: 156 }}
             />
 
@@ -155,6 +155,7 @@ const FormProfileEdit = () => {
                     <LocalPhoneIcon />
                   </Icon>
                   <TextField
+                    type="tel"
                     name="phoneNumber"
                     label="Phone"
                     value={userData.phoneNumber}
