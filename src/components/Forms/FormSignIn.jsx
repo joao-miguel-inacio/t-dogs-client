@@ -54,6 +54,7 @@ const FormSignIn = () => {
           <Grid container>
             <Grid item>
               <TextField
+                type="email"
                 name="email"
                 autoComplete="on"
                 label="Email"
