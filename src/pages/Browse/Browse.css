@@ -47,3 +47,25 @@ h1{
     align-items: center;
     justify-content: center;
 }
+.avatar{
+    display: none;
+}
+@media screen and (min-width: 769px) {
+    .browse-body{
+        background-image: none !important;
+    }
+    .avatar {
+        display: block;
+        top:50%;
+        left: 50%;
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+
+    }
+    .right-button{
+        margin-right: 20vw !important;
+    }
+    .left-button{
+        margin-left: 20vw !important;
+    }
+}

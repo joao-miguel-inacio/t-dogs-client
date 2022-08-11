@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import service from "../../services/apiHandler";
 import Navbar2 from "../../components/Navbar2/Navbar2";
 import "./Browse.css";
-import { IconButton } from "@mui/material";
+import { Avatar, IconButton } from "@mui/material";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import CancelIcon from "@mui/icons-material/Cancel";
 import Collapse from "@mui/material/Collapse";
@@ -155,6 +155,7 @@ const Browse = () => {
         onMouseMove={(mouseMoveEvent) => handleMouseMove(mouseMoveEvent)}
         onMouseUp={() => handleMouseUp()}
       >
+      <Avatar className="avatar" src={currentDog.image} alt={currentDog.name} sx={{ width: "80vh", height: "80vh" }} />
         <h1>
           <IconButton className="left-button" onClick={handleLeftClick}>
             <CancelIcon fontSize="large" />
