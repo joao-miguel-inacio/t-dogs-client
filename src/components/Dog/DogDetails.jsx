@@ -16,14 +16,18 @@ import EmailIcon from "@mui/icons-material/Email";
 import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import PopOver from "../../components/PopOver";
-import { Avatar } from "@mui/material";
+import { Avatar, Button } from "@mui/material";
+import EditIcon from "@mui/icons-material/Edit";
+import { Link } from "react-router-dom";
 
 const DogDetails = () => {
   const { id } = useParams();
   const [dogDetails, setDogDetails] = useState();
   const [popover, setPopOver] = useState(null);
   const [popOverMessage, setpopOverMessage] = useState(null);
-
+  const [userEmail, setUserEmail] = useState({
+    email: "",
+  });
   const handlePopoverOpen = (event, message) => {
     setpopOverMessage(message);
     setPopOver(event.currentTarget);
@@ -49,6 +53,19 @@ const DogDetails = () => {
     };
     fetchDogDetails();
   }, [id]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await service.getUserInfo();
+        setUserEmail(response.email);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchData();
+  }, []);
+
   const displayDogs = () => {
     return (
       <>
@@ -407,6 +424,19 @@ const DogDetails = () => {
             ""
           )}
           <div className="basic-id-container owner-details">
+            { dogDetails.owner.email === userEmail ?
+            <>
+            <Button
+              component={Link}
+              to={`/${dogDetails._id}/dog-edit`}
+              className="button"
+              variant="contained"
+              endIcon={<EditIcon />}
+            >
+              Edit{" "}
+            </Button>
+            </>
+            : <>
             <div className="center">
               <BadgeIcon />
               <p>{dogDetails.owner.name}</p>
@@ -430,7 +460,9 @@ const DogDetails = () => {
                 <EmailIcon fontSize="small" />
                 <p>{dogDetails.owner.email}</p>
               </div>
-            </div>
+            </div> 
+            </>
+            }
           </div>
         </div>
       </>
