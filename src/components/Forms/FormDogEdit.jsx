@@ -100,7 +100,7 @@ const FormDogEdit = () => {
           </Typography>
           <div className="avatar-container">
             <Avatar
-              src={dog.image}
+              src={image ? window.URL.createObjectURL(image) : dog.image}   
               alt={dog.name}
               sx={{ width: 156, height: 156 }}
             />

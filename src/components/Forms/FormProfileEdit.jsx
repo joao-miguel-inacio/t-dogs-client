@@ -82,7 +82,7 @@ const FormProfileEdit = () => {
           </Typography>
           <div className="avatar-container">
             <Avatar
-              src={userData.profilePicture}
+              src={image ? window.URL.createObjectURL(image) : userData.profilePicture}              
               alt={userData.name}
               sx={{ width: 156, height: 156 }}
             />
