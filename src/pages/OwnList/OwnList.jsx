@@ -47,8 +47,8 @@ const OwnList = () => {
   return (
     <div className="page-body">
       <Navbar2 page="Own Dogs" />
-      <div className="create-button-div">
-        <Button
+      <div className="adopted-button-group">
+      <Button
           component={Link}
           to={`/dog-create`}
           className="button create-button"
@@ -56,8 +56,6 @@ const OwnList = () => {
         >
           Create A Dog
         </Button>
-      </div>
-      <div className="adopted-button-group">
         <ButtonGroup variant="outlined">
           <Button name="adopted" onClick={handleClick} className={filter==="adopted" ? "outlined-button clicked" : "outlined-button"}>Adopted</Button>
           <Button name="available" onClick={handleClick} className={filter==="available" ? "outlined-button clicked" : "outlined-button"}>Available</Button>
