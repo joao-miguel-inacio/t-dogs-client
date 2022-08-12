@@ -6,12 +6,11 @@ import { Link } from "react-router-dom";
 import "./DogList.css";
 
 const DogList = ({ dogs, owner }) => {
-  console.log(owner);
   const displayDogs = () => {
     return dogs.map((dog) => (
       <div className="card" key={dog._id}>
         <div className="dog-info">
-          <Avatar src={dog.image} alt="D" sx={{ width: 126, height: 126 }} />
+          <Avatar src={dog.image} alt={dog.name} sx={{ width: 126, height: 126 }} />
           <div className="small-column center">
             <h2>{dog.name}</h2>
             <h3>{dog.age} years</h3>
