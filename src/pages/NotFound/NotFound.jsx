@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
+import "./NotFound.css";
 
 const NotFound = () => {
   return (
-    <div className="page-body">
-      <h1>Not Found, that's a 404</h1>
-      <Link to="/">Go back to the Homepage</Link>
+    <div className="lost-body">
+      <h1 className="lost-text">Lost?<Link className="safety-net" to="/">Take me back Home</Link>  &#128062;</h1>
     </div>
   );
 };
