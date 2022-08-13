@@ -97,10 +97,11 @@ const FormDogCreate = () => {
           <Typography variant="h5" className="question-text">
             Upload a New Picture
           </Typography>
+          <hr className="theme-break"></hr>
           <div className="avatar-container">
             <Avatar
               id="avatar"
-              src={window.URL.createObjectURL(image)}
+              src={image ? window.URL.createObjectURL(image) : ""}
               alt={dog.name}
               sx={{ width: 156, height: 156 }}
             />
@@ -114,13 +115,13 @@ const FormDogCreate = () => {
               required
             />
           </div>
-          <hr className="theme-break"></hr>
+          
           <div className="form-content">
             <div className="form-container">
               <Typography variant="h5" className="question-text">
                 Personal Information
               </Typography>
-
+              <hr className="theme-break"></hr>
               <div className="input-container">
                 <Icon className="grey">
                   <PersonIcon />
@@ -288,7 +289,7 @@ const FormDogCreate = () => {
               <Typography variant="h5" className="question-text">
                 Please tell us if your dog ..
               </Typography>
-
+              <hr className="theme-break"></hr>
               <FormControl>
                 <FormLabel>.. reacts well to strangers? </FormLabel>
                 <RadioGroup

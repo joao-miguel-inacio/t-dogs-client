@@ -55,7 +55,7 @@ h1{
         background-image: none !important;
     }
     .avatar {
-        display: block;
+        display: block !important;
         top:50%;
         left: 50%;
         -ms-transform: translate(-50%, -50%);
