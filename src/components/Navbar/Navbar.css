@@ -69,12 +69,3 @@
 /* .MuiTextField-root > label {
   color: #fff;
 } */
-
-.dark {
-  background-color: pink;
-  color: white;
-}
-
-.light {
-  background-color: white;
-}

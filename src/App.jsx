@@ -15,29 +15,65 @@ import NotFound from "./pages/NotFound/NotFound";
 import PrivateRoute from "./components/ProtectedRoute/PrivateRoute";
 import ProfileEdit from "./pages/Forms/ProfileEdit";
 import "./App.css";
+import { ThemeProvider, useTheme, createTheme } from "@mui/material/styles";
+import CssBaseline from "@mui/material/CssBaseline";
+import { useState } from "react";
 
 function App() {
+  const [themeMode, setThemeMode] = useState(false);
+  const light = createTheme({
+    palette: {
+      mode: "light",
+      primary: {
+        main: "#f42b78",
+      },
+    },
+  });
+
+  const dark = createTheme({
+    palette: {
+      mode: "dark",
+      primary: {
+        main: "#f42b78",
+      },
+      text: {
+        main: "#fff",
+        primary: "#fff",
+        secondary: "#fff",
+        contrastText: "#fff",
+      },
+      action: {
+        active: "#fff",
+      },
+      background: {
+        default: "#242423",
+      },
+    },
+  });
   return (
-    <div className="App">
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/signin" element={<Signin />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route element={<PrivateRoute />}>
-          <Route path="/:id" element={<Dog />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/profile-edit" element={<ProfileEdit />} />
-          <Route path="/own-list" element={<OwnList />} />
-          <Route path="/dog-create" element={<DogCreate />} />
-          <Route path="/:id/dog-edit" element={<DogEdit />} />
-          <Route path="/browse" element={<Browse />} />
-          <Route path="/match-list" element={<MatchList />} />
-        </Route>
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </div>
+    <ThemeProvider theme={themeMode ? createTheme(dark) : createTheme(light)}>
+      <CssBaseline />
+      <div className="App">
+        <Navbar themeMode={themeMode} setThemeMode={setThemeMode} />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/signin" element={<Signin />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route element={<PrivateRoute />}>
+            <Route path="/:id" element={<Dog />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/profile-edit" element={<ProfileEdit />} />
+            <Route path="/own-list" element={<OwnList />} />
+            <Route path="/dog-create" element={<DogCreate />} />
+            <Route path="/:id/dog-edit" element={<DogEdit />} />
+            <Route path="/browse" element={<Browse />} />
+            <Route path="/match-list" element={<MatchList />} />
+          </Route>
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </div>
+    </ThemeProvider>
   );
 }
 
