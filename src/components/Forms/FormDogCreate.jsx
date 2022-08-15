@@ -100,7 +100,7 @@ const FormDogCreate = () => {
           <div className="avatar-container">
             <Avatar
               id="avatar"
-              src={window.URL.createObjectURL(image)}
+              src={dog.image}
               alt={dog.name}
               sx={{ width: 156, height: 156 }}
             />
@@ -110,7 +110,7 @@ const FormDogCreate = () => {
               id="image"
               name="image"
               multiple
-              onChange={(e)=> setImage(e.target.files[0])}
+              onChange={(e) => setImage(e.target.files[0])}
               required
             />
           </div>
@@ -437,22 +437,25 @@ const FormDogCreate = () => {
               </FormControl>
 
               {description === true ? (
-          <div className="submit-button">
-            <Button type="submit" className="button">
-              Create
-            </Button>
-          </div>
-          ) : "" }
-
+                <div className="submit-button">
+                  <Button type="submit" className="button">
+                    Create
+                  </Button>
+                </div>
+              ) : (
+                ""
+              )}
             </div>
           </div>
           {description === false ? (
-          <div className="submit-button">
-            <Button type="submit" className="button">
-              Create
-            </Button>
-          </div>
-          ) : "" }
+            <div className="submit-button">
+              <Button type="submit" className="button">
+                Create
+              </Button>
+            </div>
+          ) : (
+            ""
+          )}
         </form>
       </Box>
     </>

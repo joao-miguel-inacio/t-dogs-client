@@ -1,70 +1,80 @@
 .logo {
-	width: 100px;
+  width: 100px;
 }
 .large-navbar {
-	display: none;
+  display: none;
 }
 .small-navbar {
-	position: fixed;
-	width: 100%;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	height: 60px;
-	top: 0;
-	z-index: 1;
-	background: white;
+  position: fixed;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 60px;
+  top: 0;
+  z-index: 1;
 }
-.menu-items{
-	display:flex;
+.menu-items {
+  display: flex;
 }
 .navlink-item {
-	text-decoration: none;
-	color: black;
-	font-size: x-large;
-	display: flex;
-	align-items: center;
-	gap: 1vw;
+  text-decoration: none;
+  color: black;
+  font-size: x-large;
+  display: flex;
+  align-items: center;
+  gap: 1vw;
 }
 @media screen and (min-width: 769px) {
-	.small-navbar {
-		display: none;
-	}
-	.logo{
-		width:max-content;
-		max-height: 8vw;
-	}
-    .large-navbar {
-		padding: 0vw 2vw 0vw 2vw;
-		top:0;
-		box-sizing: border-box;
-    	position: fixed;
-		height: 8vw;
-		width: 100%;
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		z-index: 1;
-		background: white;
-    }
-	.selected {
-		color:#FD297B;
-		text-decoration: underline;
-	}  
-	.navlinks {
-	display: flex;
-	gap: 4vw;
-	align-items: center;
-	justify-content: space-around;    
-	}
-	.button {
-		background-image: linear-gradient(to right, #FD297B, #FF5864, #FF655B);
-		height: 50px;
-		max-width: 15vw;
-        min-width: 130px !important; 
-	}
-	.button:hover{
-		background-image: linear-gradient(to right, #f42b78, #f2535d, #f2655b)
-	}
+  .small-navbar {
+    display: none;
   }
-  
+  .logo {
+    width: max-content;
+    max-height: 8vw;
+  }
+  .large-navbar {
+    padding: 0vw 2vw 0vw 2vw;
+    top: 0;
+    box-sizing: border-box;
+    position: fixed;
+    height: 8vw;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1;
+  }
+  .selected {
+    color: #fd297b;
+    text-decoration: underline;
+  }
+  .navlinks {
+    display: flex;
+    gap: 4vw;
+    align-items: center;
+    justify-content: space-around;
+  }
+  .button {
+    background-image: linear-gradient(to right, #fd297b, #ff5864, #ff655b);
+    height: 50px;
+    max-width: 15vw;
+    min-width: 130px !important;
+  }
+  .button:hover {
+    background-image: linear-gradient(to right, #f42b78, #f2535d, #f2655b);
+  }
+}
+
+/* .MuiTextField-root > label {
+  color: #fff;
+} */
+
+.dark {
+  background-color: pink;
+  color: white;
+}
+
+.light {
+  background-color: white;
+}

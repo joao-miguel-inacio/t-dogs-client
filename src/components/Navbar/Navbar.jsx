@@ -12,8 +12,26 @@ import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
 import LoginIcon from "@mui/icons-material/Login";
 import VpnKeyIcon from "@mui/icons-material/VpnKey";
 import "./Navbar.css";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { styled, alpha } from "@mui/material/styles";
+import { ThemeProvider, useTheme, createTheme } from "@mui/material/styles";
+import Switch from "@mui/material/Switch";
+import Container from "@mui/material/Container";
+import CssBaseline from "@mui/material/CssBaseline";
+import Brightness4Icon from "@mui/icons-material/Brightness4";
+import Brightness7Icon from "@mui/icons-material/Brightness7";
+
+const light = createTheme({
+  palette: {
+    mode: "light",
+  },
+});
+
+const dark = {
+  palette: {
+    mode: "dark",
+  },
+};
 
 const StyledMenu = styled((props) => (
   <Menu
@@ -58,6 +76,8 @@ const StyledMenu = styled((props) => (
   },
 }));
 const Navbar = () => {
+  const [themeMode, setThemeMode] = useState(false);
+
   const { isLoggedIn, currentUser, removeUser } = useAuth();
   const { pathname } = useLocation();
   let isHomePage = null;
@@ -80,234 +100,264 @@ const Navbar = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  const changeTheme = () => {
+    setThemeMode(!themeMode);
+    console.log(themeMode);
+  };
   return (
-    <div>
-      <nav className={isHomePage ? "large-navbar transparent" : "large-navbar"}>
-        <div className="navlinks ">
-          <Link to="/">
+    <ThemeProvider theme={themeMode ? createTheme(dark) : createTheme(light)}>
+      <CssBaseline />
+      <div className={themeMode}>
+        <nav
+          className={isHomePage ? "large-navbar transparent" : "large-navbar"}
+        >
+          <div className="navlinks ">
             <img
               className={isHomePage ? "animated-logo logo" : "logo"}
               alt="T-DOGS"
               src="https://res.cloudinary.com/dvru7nv6q/image/upload/v1657060337/T-Dogs/Logo_mgx5ax.png"
             />
-          </Link>
-          <Link
-            id="about"
-            className={
-              isHomePage ? "animated-navlink-item navlink-item" : "navlink-item"
-            }
-            to="/about"
-          >
-            <InfoIcon /> About
-          </Link>
+            <Link
+              id="about"
+              className={
+                isHomePage
+                  ? "animated-navlink-item navlink-item"
+                  : "navlink-item"
+              }
+              to="/about"
+            >
+              <InfoIcon /> About
+            </Link>
 
-          {isLoggedIn && (
-            <>
-              <Link
-                id="profile"
-                className={
-                  isHomePage
-                    ? "animated-navlink-item navlink-item"
-                    : "navlink-item"
-                }
-                to="/profile"
-              >
-                <PersonIcon /> Profile
-              </Link>
-
-              {currentUser.hasChildren === undefined ? (
+            {isLoggedIn && (
+              <>
                 <Link
-                  id="dogs"
+                  id="profile"
                   className={
                     isHomePage
                       ? "animated-navlink-item navlink-item"
                       : "navlink-item"
                   }
-                  to="/own-list"
+                  to="/profile"
                 >
-                  <PetsIcon /> Dogs
+                  <PersonIcon /> Profile
                 </Link>
-              ) : (
-                <>
-                  <Link
-                    id="matchlist"
-                    className={
-                      isHomePage
-                        ? "animated-navlink-item navlink-item"
-                        : "navlink-item"
-                    }
-                    to="/match-list"
-                  >
-                    <FavoriteIcon /> Match List
-                  </Link>
-                  <Link
-                    id="browse"
-                    className={
-                      isHomePage
-                        ? "animated-navlink-item navlink-item"
-                        : "navlink-item"
-                    }
-                    to="/browse"
-                  >
-                    <FavoriteBorderIcon /> Browse
-                  </Link>
-                </>
-              )}
-            </>
-          )}
-        </div>
-        {isLoggedIn && (
-          <Button
-            className="button"
-            variant="contained"
-            endIcon={<LogoutIcon />}
-            onClick={removeUser}
-          >
-            Sign Out
-          </Button>
-        )}
-        {!isLoggedIn && isSignInPage ? (
-          <Button component={Link} to={`/signup`} className="button">
-            Sign Up{" "}
-          </Button>
-        ) : (
-          ""
-        )}
-        {!isLoggedIn && !isSignInPage ? (
-          <Button component={Link} to={`/signin`} className="button">
-            Sign In{" "}
-          </Button>
-        ) : (
-          ""
-        )}
-      </nav>
 
-      <nav className={isHomePage ? "small-navbar transparent" : "small-navbar"}>
-        <Link to="/">
+                {currentUser.hasChildren === undefined ? (
+                  <Link
+                    id="dogs"
+                    className={
+                      isHomePage
+                        ? "animated-navlink-item navlink-item"
+                        : "navlink-item"
+                    }
+                    to="/own-list"
+                  >
+                    <PetsIcon /> Dogs
+                  </Link>
+                ) : (
+                  <>
+                    <Link
+                      id="matchlist"
+                      className={
+                        isHomePage
+                          ? "animated-navlink-item navlink-item"
+                          : "navlink-item"
+                      }
+                      to="/match-list"
+                    >
+                      <FavoriteIcon /> Match List
+                    </Link>
+                    <Link
+                      id="browse"
+                      className={
+                        isHomePage
+                          ? "animated-navlink-item navlink-item"
+                          : "navlink-item"
+                      }
+                      to="/browse"
+                    >
+                      <FavoriteBorderIcon /> Browse
+                    </Link>
+                  </>
+                )}
+              </>
+            )}
+          </div>
+
+          <IconButton
+            onClick={() => changeTheme()}
+            sx={{ ml: 1 }}
+            color="inherit"
+          >
+            {themeMode ? <Brightness4Icon /> : <Brightness7Icon />}
+          </IconButton>
+
+          {isLoggedIn && (
+            <Button
+              className="button"
+              variant="contained"
+              endIcon={<LogoutIcon />}
+              onClick={removeUser}
+            >
+              Sign Out
+            </Button>
+          )}
+          {!isLoggedIn && isSignInPage ? (
+            <Button component={Link} to={`/signup`} className="button">
+              Sign Up{" "}
+            </Button>
+          ) : (
+            ""
+          )}
+          {!isLoggedIn && !isSignInPage ? (
+            <Button component={Link} to={`/signin`} className="button">
+              Sign In{" "}
+            </Button>
+          ) : (
+            ""
+          )}
+        </nav>
+
+        <nav
+          className={isHomePage ? "small-navbar transparent" : "small-navbar"}
+        >
           <img
             className={isHomePage ? "animated-logo logo" : "logo"}
             alt="T-DOGS"
             src="https://res.cloudinary.com/dvru7nv6q/image/upload/v1657060337/T-Dogs/Logo_mgx5ax.png"
           />
-        </Link>
-        <div>
           <IconButton
-            className={isHomePage ? "animated-menu-button" : ""}
-            onClick={handleClick}
+            onClick={() => changeTheme()}
+            sx={{ ml: 1 }}
+            color="inherit"
           >
-            <MenuRoundedIcon fontSize="large" />
+            {themeMode ? <Brightness4Icon /> : <Brightness7Icon />}
           </IconButton>
-          <StyledMenu
-            id="demo-customized-menu"
-            MenuListProps={{
-              "aria-labelledby": "demo-customized-button",
-            }}
-            anchorEl={anchorEl}
-            open={open}
-            onClose={handleClose}
-          >
-            <MenuItem disableRipple>
-              <InfoIcon />
-              <Link className="navlink-item" to="/about" onClick={handleClose}>
-                About
-              </Link>
-            </MenuItem>
-            {!isLoggedIn && !isSignUpPage ? (
+          <div>
+            <IconButton
+              className={isHomePage ? "animated-menu-button" : ""}
+              onClick={handleClick}
+            >
+              <MenuRoundedIcon fontSize="large" />
+            </IconButton>
+            <StyledMenu
+              id="demo-customized-menu"
+              MenuListProps={{
+                "aria-labelledby": "demo-customized-button",
+              }}
+              anchorEl={anchorEl}
+              open={open}
+              onClose={handleClose}
+            >
               <MenuItem disableRipple>
-                <VpnKeyIcon />
+                <InfoIcon />
                 <Link
                   className="navlink-item"
-                  to="/signup"
+                  to="/about"
                   onClick={handleClose}
                 >
-                  Sign Up
+                  About
                 </Link>
               </MenuItem>
-            ) : (
-              ""
-            )}
-            {!isLoggedIn && !isSignInPage ? (
-              <div>
+              {!isLoggedIn && !isSignUpPage ? (
                 <MenuItem disableRipple>
-                  <LoginIcon />
+                  <VpnKeyIcon />
                   <Link
                     className="navlink-item"
-                    to="/login"
+                    to="/signup"
                     onClick={handleClose}
                   >
-                    Log in
+                    Sign Up
                   </Link>
                 </MenuItem>
-              </div>
-            ) : (
-              ""
-            )}
-            {isLoggedIn && (
-              <div>
-                <MenuItem disableRipple>
-                  <PersonIcon />
-                  <Link
-                    className="navlink-item"
-                    to="/profile"
-                    onClick={handleClose}
+              ) : (
+                ""
+              )}
+              {!isLoggedIn && !isSignInPage ? (
+                <div>
+                  <MenuItem disableRipple>
+                    <LoginIcon />
+                    <Link
+                      className="navlink-item"
+                      to="/login"
+                      onClick={handleClose}
+                    >
+                      Log in
+                    </Link>
+                  </MenuItem>
+                </div>
+              ) : (
+                ""
+              )}
+              {isLoggedIn && (
+                <div>
+                  <MenuItem disableRipple>
+                    <PersonIcon />
+                    <Link
+                      className="navlink-item"
+                      to="/profile"
+                      onClick={handleClose}
+                    >
+                      Profile
+                    </Link>
+                  </MenuItem>
+                  {currentUser.hasChildren === undefined ? (
+                    <>
+                      <MenuItem disableRipple>
+                        <PetsIcon />
+                        <Link
+                          className="navlink-item"
+                          to="/own-list"
+                          onClick={handleClose}
+                        >
+                          Dogs
+                        </Link>
+                      </MenuItem>
+                    </>
+                  ) : (
+                    <>
+                      <MenuItem disableRipple>
+                        <FavoriteIcon />
+                        <Link
+                          className="navlink-item"
+                          to="/match-list"
+                          onClick={handleClose}
+                        >
+                          Match List
+                        </Link>
+                      </MenuItem>
+                      <MenuItem disableRipple>
+                        <FavoriteBorderIcon />
+                        <Link
+                          className="navlink-item"
+                          to="/browse"
+                          onClick={handleClose}
+                        >
+                          Browse
+                        </Link>
+                      </MenuItem>
+                    </>
+                  )}
+                  <Divider sx={{ my: 0.5 }} />
+                  <MenuItem
+                    onClick={() => {
+                      removeUser();
+                      handleClose();
+                    }}
+                    disableRipple
                   >
-                    Profile
-                  </Link>
-                </MenuItem>
-                {currentUser.hasChildren === undefined ? (
-                  <>
-                    <MenuItem disableRipple>
-                      <PetsIcon />
-                      <Link
-                        className="navlink-item"
-                        to="/own-list"
-                        onClick={handleClose}
-                      >
-                        Dogs
-                      </Link>
-                    </MenuItem>
-                  </>
-                ) : (
-                  <>
-                    <MenuItem disableRipple>
-                      <FavoriteIcon />
-                      <Link
-                        className="navlink-item"
-                        to="/match-list"
-                        onClick={handleClose}
-                      >
-                        Match List
-                      </Link>
-                    </MenuItem>
-                    <MenuItem disableRipple>
-                      <FavoriteBorderIcon />
-                      <Link
-                        className="navlink-item"
-                        to="/browse"
-                        onClick={handleClose}
-                      >
-                        Browse
-                      </Link>
-                    </MenuItem>
-                  </>
-                )}
-                <Divider sx={{ my: 0.5 }} />
-                <MenuItem
-                  onClick={() => {
-                    removeUser();
-                    handleClose();
-                  }}
-                  disableRipple
-                >
-                  <LogoutIcon />
-                  Sign Out
-                </MenuItem>
-              </div>
-            )}
-          </StyledMenu>
-        </div>
-      </nav>
-    </div>
+                    <LogoutIcon />
+                    Sign Out
+                  </MenuItem>
+                </div>
+              )}
+            </StyledMenu>
+          </div>
+        </nav>
+      </div>
+    </ThemeProvider>
   );
 };
 
