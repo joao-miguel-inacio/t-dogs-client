@@ -41,9 +41,9 @@ const FormSignIn = () => {
       <Box
         className="form-box"
         sx={{
-          width: "80%",
+          width: "80vw",
           margin: "auto",
-          "& .MuiTextField-root": { m: 5, width: "35ch" },
+          "& .MuiTextField-root": { m: 5, width: "50vw"},
         }}
         noValidate
         autoComplete="off"

@@ -49,7 +49,7 @@
   align-items: center;
 }
 .question-text {
-  margin-bottom: 5vw !important;
+  margin-top: 5vw !important;
 }
 .grey {
   color: grey;
@@ -63,10 +63,10 @@
   flex-direction: column;
 }
 .theme-break {
+  margin-bottom: 5vw;
   height: 2px;
   background-image: linear-gradient(to right, #FD297B, #FF5864, #FF655B);
   border: 0;
-  border-radius: 5px;
 }
 .end {
   margin: 2vw 0;

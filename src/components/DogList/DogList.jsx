@@ -13,7 +13,11 @@ const DogList = ({ dogs, owner }) => {
           <Avatar src={dog.image} alt={dog.name} sx={{ width: 126, height: 126 }} />
           <div className="small-column center">
             <h2>{dog.name}</h2>
-            <h3>{dog.age} years</h3>
+            {dog.age === 1 ? (
+                    <h3>{dog.age} year</h3>
+                  ) : (
+                    <h3>{dog.age} years</h3>
+                  )}
           </div>
         </div>
         <div className="hidden small-column center">
