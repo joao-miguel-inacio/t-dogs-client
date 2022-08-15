@@ -108,7 +108,7 @@ const Navbar = () => {
   return (
     <ThemeProvider theme={themeMode ? createTheme(dark) : createTheme(light)}>
       <CssBaseline />
-      <div className={themeMode}>
+      <div>
         <nav
           className={isHomePage ? "large-navbar transparent" : "large-navbar"}
         >
