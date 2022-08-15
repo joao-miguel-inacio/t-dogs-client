@@ -1,4 +1,4 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import useAuth from "../../context/auth/useAuth";
 import { Menu, MenuItem, Button, IconButton } from "@mui/material";
 import InfoIcon from "@mui/icons-material/Info";
@@ -213,11 +213,13 @@ const Navbar = ({ themeMode, setThemeMode }) => {
       </nav>
 
       <nav className={isHomePage ? "small-navbar transparent" : "small-navbar"}>
-        <img
-          className={isHomePage ? "animated-logo logo" : "logo"}
-          alt="T-DOGS"
-          src="https://res.cloudinary.com/dvru7nv6q/image/upload/v1657060337/T-Dogs/Logo_mgx5ax.png"
-        />
+        <NavLink to="./">
+          <img
+            className={isHomePage ? "animated-logo logo" : "logo"}
+            alt="T-DOGS"
+            src="https://res.cloudinary.com/dvru7nv6q/image/upload/v1657060337/T-Dogs/Logo_mgx5ax.png"
+          />
+        </NavLink>
         <IconButton
           onClick={() => changeTheme()}
           sx={{ ml: 1 }}
@@ -243,7 +245,11 @@ const Navbar = ({ themeMode, setThemeMode }) => {
           >
             <MenuItem disableRipple>
               <InfoIcon />
-              <Link className="navlink-item" to="/about" onClick={handleClose}>
+              <Link
+                className={themeMode ? "navlink-item-white" : "navlink-item"}
+                to="/about"
+                onClick={handleClose}
+              >
                 About
               </Link>
             </MenuItem>
@@ -251,7 +257,7 @@ const Navbar = ({ themeMode, setThemeMode }) => {
               <MenuItem disableRipple>
                 <VpnKeyIcon />
                 <Link
-                  className="navlink-item"
+                  className={themeMode ? "navlink-item-white" : "navlink-item"}
                   to="/signup"
                   onClick={handleClose}
                 >
@@ -266,7 +272,9 @@ const Navbar = ({ themeMode, setThemeMode }) => {
                 <MenuItem disableRipple>
                   <LoginIcon />
                   <Link
-                    className="navlink-item"
+                    className={
+                      themeMode ? "navlink-item-white" : "navlink-item"
+                    }
                     to="/login"
                     onClick={handleClose}
                   >
@@ -282,7 +290,9 @@ const Navbar = ({ themeMode, setThemeMode }) => {
                 <MenuItem disableRipple>
                   <PersonIcon />
                   <Link
-                    className="navlink-item"
+                    className={
+                      themeMode ? "navlink-item-white" : "navlink-item"
+                    }
                     to="/profile"
                     onClick={handleClose}
                   >
@@ -294,7 +304,9 @@ const Navbar = ({ themeMode, setThemeMode }) => {
                     <MenuItem disableRipple>
                       <PetsIcon />
                       <Link
-                        className="navlink-item"
+                        className={
+                          themeMode ? "navlink-item-white" : "navlink-item"
+                        }
                         to="/own-list"
                         onClick={handleClose}
                       >
@@ -307,7 +319,9 @@ const Navbar = ({ themeMode, setThemeMode }) => {
                     <MenuItem disableRipple>
                       <FavoriteIcon />
                       <Link
-                        className="navlink-item"
+                        className={
+                          themeMode ? "navlink-item-white" : "navlink-item"
+                        }
                         to="/match-list"
                         onClick={handleClose}
                       >
@@ -317,7 +331,9 @@ const Navbar = ({ themeMode, setThemeMode }) => {
                     <MenuItem disableRipple>
                       <FavoriteBorderIcon />
                       <Link
-                        className="navlink-item"
+                        className={
+                          themeMode ? "navlink-item-white" : "navlink-item"
+                        }
                         to="/browse"
                         onClick={handleClose}
                       >

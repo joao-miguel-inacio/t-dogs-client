@@ -25,6 +25,16 @@
   align-items: center;
   gap: 1vw;
 }
+
+.navlink-item-white {
+  text-decoration: none;
+  color: white;
+  font-size: x-large;
+  display: flex;
+  align-items: center;
+  gap: 1vw;
+}
+
 @media screen and (min-width: 769px) {
   .small-navbar {
     display: none;

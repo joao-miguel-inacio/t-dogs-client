@@ -21,6 +21,7 @@ import { useState } from "react";
 
 function App() {
   const [themeMode, setThemeMode] = useState(false);
+
   const light = createTheme({
     palette: {
       mode: "light",
