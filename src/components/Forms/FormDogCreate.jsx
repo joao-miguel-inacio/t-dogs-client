@@ -101,7 +101,7 @@ const FormDogCreate = () => {
           <div className="avatar-container">
             <Avatar
               id="avatar"
-              src={dog.image}
+              src={image ? window.URL.createObjectURL(image) : ""}
               alt={dog.name}
               sx={{ width: 156, height: 156 }}
             />
