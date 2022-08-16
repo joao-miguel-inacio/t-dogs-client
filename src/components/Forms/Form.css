@@ -45,7 +45,7 @@
 .submit-button {
   display: flex;
   justify-content: center !important;
-  margin-bottom: 2vw !important;
+  margin: 2vw 0 !important;
   align-items: center;
 }
 .question-text {
@@ -83,7 +83,6 @@
   }
   .submit-button {
     justify-content: start;
-    margin-top: 2vw;
   }
   .question-text {
     margin-bottom: 0vw !important;

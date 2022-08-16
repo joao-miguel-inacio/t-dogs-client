@@ -75,8 +75,8 @@ const FormSignIn = () => {
               </Grid>
           </Grid>
           {error && <h3 className="error">{error}</h3>}
-          <Button type="submit" className="button center">
-              Signin
+          <Button type="submit" className="button">
+              Sign In
           </Button>
         </form>
       </Box>

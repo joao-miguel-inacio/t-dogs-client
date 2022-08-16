@@ -41,7 +41,7 @@ const FormSignUp = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await service.signup(user);
+      await service.signup(user);
       navigate("/signin");
     } catch (error) {
       setError(error.response.data.message);
@@ -291,7 +291,7 @@ const FormSignUp = () => {
               {error && <h3 className="error center">{error}</h3>}
               {userType === "isBuyer" ? (
                 <div className="submit-button">
-                  <Button type="submit" className="button center">
+                  <Button type="submit" className="button">
                     Submit
                   </Button>
                 </div>

@@ -14,8 +14,8 @@ const Dog = () => {
     } else {
       document.getElementById('matchlist').classList.add('selected');
       return () => {
-        document.getElementById('matchlist').classList.remove('selected')
-      }
+        document.getElementById('matchlist').classList.remove('selected');
+      };
    }
   }, []);
   return (

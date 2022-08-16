@@ -38,7 +38,7 @@ const Profile = () => {
     };
   });
   useEffect(() => {
-    // document.getElementById("profile").classList.add("selected");
+    document.getElementById("profile").classList.add("selected");
     const fetchProfileData = async () => {
       try {
         const response = await service.get(`/common`);
@@ -49,7 +49,7 @@ const Profile = () => {
     };
     fetchProfileData();
     return () => {
-      // document.getElementById("profile").classList.remove("selected");
+      document.getElementById("profile").classList.remove("selected");
     };
   }, []);
 
@@ -98,7 +98,7 @@ const Profile = () => {
             ""
           )}
 
-          {user.hasChildren === true || user.hasChildren === false ? (
+          { user.userType === "isBuyer"  ? (
             <div className="icons-container center">
               {user.hasExperience === true ? (
                 <>

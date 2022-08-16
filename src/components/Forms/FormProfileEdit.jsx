@@ -144,8 +144,7 @@ const FormProfileEdit = () => {
                 />
               </div>
 
-              {userData.hasChildren === true ||
-              userData.hasChildren === false ? (
+              { userData.userType === "isBuyer" ? (
                 ""
               ) : (
                 <div className="input-container">
@@ -164,7 +163,7 @@ const FormProfileEdit = () => {
               )}
             </div>
 
-            {userData.hasChildren === true || userData.hasChildren === false ? (
+            { userData.userType === "isBuyer"  ? (
               <>
                 <div className="form-container">
                   <Typography variant="h5" className="question-text">
@@ -267,7 +266,7 @@ const FormProfileEdit = () => {
               </div>
             )}
           </div>
-          {userData.hasChildren === true || userData.hasChildren === false ? (
+          {userData.userType === "isBuyer" ? (
             <div className="submit-button">
               <Button type="submit" className="button">
                 Confirm

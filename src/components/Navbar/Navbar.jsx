@@ -1,4 +1,4 @@
-import { Link, NavLink, useLocation } from "react-router-dom";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../../context/auth/useAuth";
 import { Menu, MenuItem, Button, IconButton } from "@mui/material";
 import InfoIcon from "@mui/icons-material/Info";
@@ -12,26 +12,10 @@ import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
 import LoginIcon from "@mui/icons-material/Login";
 import VpnKeyIcon from "@mui/icons-material/VpnKey";
 import "./Navbar.css";
-import { useState, useMemo } from "react";
+import { useState } from "react";
 import { styled, alpha } from "@mui/material/styles";
-import { ThemeProvider, useTheme, createTheme } from "@mui/material/styles";
-import Switch from "@mui/material/Switch";
-import Container from "@mui/material/Container";
-import CssBaseline from "@mui/material/CssBaseline";
 import Brightness4Icon from "@mui/icons-material/Brightness4";
 import Brightness7Icon from "@mui/icons-material/Brightness7";
-
-const light = createTheme({
-  palette: {
-    mode: "light",
-  },
-});
-
-const dark = createTheme({
-  palette: {
-    mode: "dark",
-  },
-});
 
 const StyledMenu = styled((props) => (
   <Menu
@@ -81,6 +65,7 @@ const StyledMenu = styled((props) => (
 const Navbar = ({ themeMode, setThemeMode }) => {
   const { isLoggedIn, currentUser, removeUser } = useAuth();
   const { pathname } = useLocation();
+  const navigate = useNavigate();
   let isHomePage = null;
   if (pathname === "/") {
     isHomePage = true;
@@ -140,7 +125,7 @@ const Navbar = ({ themeMode, setThemeMode }) => {
                 <PersonIcon /> Profile
               </Link>
 
-              {currentUser.hasChildren === undefined ? (
+              {currentUser.userType === "isOwner" ? (
                 <Link
                   id="dogs"
                   className={
@@ -181,43 +166,47 @@ const Navbar = ({ themeMode, setThemeMode }) => {
             </>
           )}
         </div>
-
-        <IconButton
-          onClick={() => changeTheme()}
-          sx={{ ml: 1 }}
-          color="inherit"
-        >
-          {themeMode ? (
-            <Brightness4Icon style={{ color: "#000" }} />
-          ) : (
-            <Brightness7Icon />
-          )}
-        </IconButton>
-
-        {isLoggedIn && (
-          <Button
-            className="button"
-            variant="contained"
-            endIcon={<LogoutIcon />}
-            onClick={removeUser}
+        <div className="right-navbar-container">
+          {!isHomePage ? 
+          <IconButton
+            onClick={() => changeTheme()}
+            sx={{ ml: 1 }}
+            color="inherit"
           >
-            Sign Out
-          </Button>
-        )}
-        {!isLoggedIn && isSignInPage ? (
-          <Button component={Link} to={`/signup`} className="button">
-            Sign Up{" "}
-          </Button>
-        ) : (
+            {themeMode ? (
+              <Brightness4Icon  style={{ color: "#000" }} />
+            ) : (
+              <Brightness7Icon />
+            )}
+          </IconButton>
+          :
           ""
-        )}
-        {!isLoggedIn && !isSignInPage ? (
-          <Button component={Link} to={`/signin`} className="button">
-            Sign In{" "}
-          </Button>
-        ) : (
-          ""
-        )}
+          }
+
+          {isLoggedIn && (
+            <Button
+              className="button"
+              variant="contained"
+              endIcon={<LogoutIcon />}
+              onClick={removeUser}
+            >     Sign Out
+            </Button>
+          )}
+          {!isLoggedIn && isSignInPage ? (
+            <Button component={Link} to={`/signup`} className="button">
+              Sign Up{" "}
+            </Button>
+          ) : (
+            ""
+          )}
+          {!isLoggedIn && !isSignInPage ? (
+            <Button component={Link} to={`/signin`} className="button">
+              Sign In{" "}
+            </Button>
+          ) : (
+            ""
+          )}
+        </div>
       </nav>
 
       <nav className={isHomePage ? "small-navbar transparent" : "small-navbar"}>
@@ -228,146 +217,150 @@ const Navbar = ({ themeMode, setThemeMode }) => {
             src="https://res.cloudinary.com/dvru7nv6q/image/upload/v1657060337/T-Dogs/Logo_mgx5ax.png"
           />
         </NavLink>
-        <IconButton
-          onClick={() => changeTheme()}
-          sx={{ ml: 1 }}
-          color="inherit"
-        >
-          {themeMode ? (
-            <Brightness4Icon style={{ color: "#000" }} />
-          ) : (
-            <Brightness7Icon />
-          )}
-        </IconButton>
-        <div>
+        <div className="right-navbar-container">
           <IconButton
-            className={isHomePage ? "animated-menu-button" : ""}
-            onClick={handleClick}
+            onClick={() => changeTheme()}
+            sx={{ ml: 1 }}
+            color="inherit"
           >
-            <MenuRoundedIcon fontSize="large" style={{ color: "black" }} />
+            {themeMode ? (
+              <Brightness4Icon style={{ color: "#000" }} />
+            ) : (
+              <Brightness7Icon />
+            )}
           </IconButton>
-          <StyledMenu
-            id="demo-customized-menu"
-            MenuListProps={{
-              "aria-labelledby": "demo-customized-button",
-            }}
-            anchorEl={anchorEl}
-            open={open}
-            onClose={handleClose}
-          >
-            <MenuItem disableRipple>
-              <InfoIcon />
-              <Link
-                className={themeMode ? "navlink-item-white" : "navlink-item"}
-                to="/about"
-                onClick={handleClose}
-              >
-                About
-              </Link>
-            </MenuItem>
-            {!isLoggedIn && !isSignUpPage ? (
+          <div>
+            <IconButton
+              className={isHomePage ? "animated-menu-button" : ""}
+              onClick={handleClick}
+            >
+              <MenuRoundedIcon fontSize="large" style={{ color: "black" }} />
+            </IconButton>
+            <StyledMenu
+              id="demo-customized-menu"
+              MenuListProps={{
+                "aria-labelledby": "demo-customized-button",
+              }}
+              anchorEl={anchorEl}
+              open={open}
+              onClose={handleClose}
+            >
               <MenuItem disableRipple>
-                <VpnKeyIcon />
+                <InfoIcon />
                 <Link
                   className={themeMode ? "navlink-item-white" : "navlink-item"}
-                  to="/signup"
+                  to="/about"
                   onClick={handleClose}
                 >
-                  Sign Up
+                  About
                 </Link>
               </MenuItem>
-            ) : (
-              ""
-            )}
-            {!isLoggedIn && !isSignInPage ? (
-              <div>
+              {!isLoggedIn && !isSignUpPage ? (
                 <MenuItem disableRipple>
-                  <LoginIcon />
+                  <VpnKeyIcon />
                   <Link
                     className={
                       themeMode ? "navlink-item-white" : "navlink-item"
                     }
-                    to="/signin"
+                    to="/signup"
                     onClick={handleClose}
                   >
-                    Log in
+                    Sign Up
                   </Link>
                 </MenuItem>
-              </div>
-            ) : (
-              ""
-            )}
-            {isLoggedIn && (
-              <div>
-                <MenuItem disableRipple>
-                  <PersonIcon />
-                  <Link
-                    className={
-                      themeMode ? "navlink-item-white" : "navlink-item"
-                    }
-                    to="/profile"
-                    onClick={handleClose}
+              ) : (
+                ""
+              )}
+              {!isLoggedIn && !isSignInPage ? (
+                <div>
+                  <MenuItem disableRipple>
+                    <LoginIcon />
+                    <Link
+                      className={
+                        themeMode ? "navlink-item-white" : "navlink-item"
+                      }
+                      to="/signin"
+                      onClick={handleClose}
+                    >
+                      Log in
+                    </Link>
+                  </MenuItem>
+                </div>
+              ) : (
+                ""
+              )}
+              {isLoggedIn && (
+                <div>
+                  <MenuItem disableRipple>
+                    <PersonIcon />
+                    <Link
+                      className={
+                        themeMode ? "navlink-item-white" : "navlink-item"
+                      }
+                      to="/profile"
+                      onClick={handleClose}
+                    >
+                      Profile
+                    </Link>
+                  </MenuItem>
+                  {currentUser.userType === "isOwner" ? (
+                    <>
+                      <MenuItem disableRipple>
+                        <PetsIcon />
+                        <Link
+                          className={
+                            themeMode ? "navlink-item-white" : "navlink-item"
+                          }
+                          to="/own-list"
+                          onClick={handleClose}
+                        >
+                          Dogs
+                        </Link>
+                      </MenuItem>
+                    </>
+                  ) : (
+                    <>
+                      <MenuItem disableRipple>
+                        <FavoriteIcon />
+                        <Link
+                          className={
+                            themeMode ? "navlink-item-white" : "navlink-item"
+                          }
+                          to="/match-list"
+                          onClick={handleClose}
+                        >
+                          Match List
+                        </Link>
+                      </MenuItem>
+                      <MenuItem disableRipple>
+                        <FavoriteBorderIcon />
+                        <Link
+                          className={
+                            themeMode ? "navlink-item-white" : "navlink-item"
+                          }
+                          to="/browse"
+                          onClick={handleClose}
+                        >
+                          Browse
+                        </Link>
+                      </MenuItem>
+                    </>
+                  )}
+                  <Divider sx={{ my: 0.5 }} />
+                  <MenuItem
+                    onClick={() => {
+		                  handleClose();
+                      removeUser();
+                    }}
+                    disableRipple
                   >
-                    Profile
-                  </Link>
-                </MenuItem>
-                {currentUser.hasChildren === undefined ? (
-                  <>
-                    <MenuItem disableRipple>
-                      <PetsIcon />
-                      <Link
-                        className={
-                          themeMode ? "navlink-item-white" : "navlink-item"
-                        }
-                        to="/own-list"
-                        onClick={handleClose}
-                      >
-                        Dogs
-                      </Link>
-                    </MenuItem>
-                  </>
-                ) : (
-                  <>
-                    <MenuItem disableRipple>
-                      <FavoriteIcon />
-                      <Link
-                        className={
-                          themeMode ? "navlink-item-white" : "navlink-item"
-                        }
-                        to="/match-list"
-                        onClick={handleClose}
-                      >
-                        Match List
-                      </Link>
-                    </MenuItem>
-                    <MenuItem disableRipple>
-                      <FavoriteBorderIcon />
-                      <Link
-                        className={
-                          themeMode ? "navlink-item-white" : "navlink-item"
-                        }
-                        to="/browse"
-                        onClick={handleClose}
-                      >
-                        Browse
-                      </Link>
-                    </MenuItem>
-                  </>
-                )}
-                <Divider sx={{ my: 0.5 }} />
-                <MenuItem
-                  onClick={() => {
-                    removeUser();
-                    handleClose();
-                  }}
-                  disableRipple
-                >
-                  <LogoutIcon />
-                  Sign Out
-                </MenuItem>
-              </div>
-            )}
-          </StyledMenu>
+                    <LogoutIcon />
+                    Sign Out
+                  </MenuItem>
+                </div>
+              )}
+            </StyledMenu>
+          </div>
         </div>
       </nav>
     </div>

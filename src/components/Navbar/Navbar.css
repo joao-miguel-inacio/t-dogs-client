@@ -26,7 +26,6 @@
   align-items: center;
   gap: 1vw;
 }
-
 .navlink-item-white {
   text-decoration: none;
   color: white;
@@ -35,21 +34,21 @@
   align-items: center;
   gap: 1vw;
 }
-
 .text-item-white {
   text-decoration: none;
   color: white;
   align-items: center;
   gap: 1vw;
 }
-
 .text-item {
   text-decoration: none;
   color: black;
   align-items: center;
   gap: 1vw;
 }
-
+.right-navbar-container{
+  display: flex;
+}
 @media screen and (min-width: 769px) {
   .small-navbar {
     display: none;
@@ -91,7 +90,3 @@
     background-image: linear-gradient(to right, #f42b78, #f2535d, #f2655b);
   }
 }
-
-/* .MuiTextField-root > label {
-  color: #fff;
-} */
