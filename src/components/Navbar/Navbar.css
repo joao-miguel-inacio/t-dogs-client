@@ -13,6 +13,7 @@
   height: 60px;
   top: 0;
   z-index: 1;
+  background-color: white;
 }
 .menu-items {
   display: flex;
@@ -31,6 +32,15 @@
   color: white;
   font-size: x-large;
   display: flex;
+  align-items: center;
+  gap: 1vw;
+}
+
+text-item-white {
+  text-decoration: none;
+  color: white;
+  font-size: x-large;
+
   align-items: center;
   gap: 1vw;
 }

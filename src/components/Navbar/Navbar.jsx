@@ -47,6 +47,9 @@ const StyledMenu = styled((props) => (
     {...props}
   />
 ))(({ theme }) => ({
+  "& .css-1drgtl0-MuiButtonBase-root-MuiIconButton-root": {
+    fill: "#c4c4c4",
+  },
   "& .MuiPaper-root": {
     borderRadius: 6,
     marginTop: theme.spacing(1),
@@ -230,7 +233,11 @@ const Navbar = ({ themeMode, setThemeMode }) => {
           sx={{ ml: 1 }}
           color="inherit"
         >
-          {themeMode ? <Brightness4Icon /> : <Brightness7Icon />}
+          {themeMode ? (
+            <Brightness4Icon style={{ color: "#000" }} />
+          ) : (
+            <Brightness7Icon />
+          )}
         </IconButton>
         <div>
           <IconButton
