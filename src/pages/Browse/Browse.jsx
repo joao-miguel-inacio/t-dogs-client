@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import service from "../../services/apiHandler";
 import Navbar2 from "../../components/Navbar2/Navbar2";
 import "./Browse.css";
-import { Avatar, IconButton } from "@mui/material";
+import { Avatar, Fade, IconButton } from "@mui/material";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import CancelIcon from "@mui/icons-material/Cancel";
 import Collapse from "@mui/material/Collapse";
@@ -14,6 +14,7 @@ const Browse = () => {
   const [currentDog, setCurrentDog] = useState({});
   const [count, setCount] = useState(1);
   const [user, setUser] = useState({});
+  const [showing, setShowing] = useState(true);
   const [open, setOpen] = useState(false);
   const [able, setAble] = useState(true);
   const [touchStart, setTouchStart] = useState(0);
@@ -47,9 +48,16 @@ const Browse = () => {
       document.getElementById("browse").classList.remove("selected");
     };
   }, []);
-  const handleLeftClick = async () => {
+  const moveToNextDog = () => {
     setCount(count + 1);
     setCurrentDog(availableDogs[count]);
+    setAble(true);
+    setOpen(false);
+    setShowing(true);
+  };
+  const handleLeftClick = () => {
+    setShowing(false);
+    setTimeout(moveToNextDog, 1500);
   };
   const handleRightClick = async () => {
     if (
@@ -81,7 +89,11 @@ const Browse = () => {
           }
         }
       }
+    } else {
+      setShowing(false);
+      setTimeout(moveToNextDog, 1500);
     }
+    
   };
   const handleTouchStart = (e) => {
     if (able) {
@@ -136,15 +148,14 @@ const Browse = () => {
     }
   };
   const handleClose = () => {
-    setAble(true);
-    setOpen(false);
-    setCount(count + 1);
-    setCurrentDog(availableDogs[count]);
+    setShowing(false);
+    setTimeout(moveToNextDog, 1500);
   };
 
   return (
     <div className="page-body">
       <Navbar2 page="Browse" />
+        <Fade in={showing} timeout={2000}>
       <div
         className="browse-body"
         style={{ backgroundImage: `url(${currentDog.image})` }}
@@ -155,32 +166,37 @@ const Browse = () => {
         onMouseMove={(mouseMoveEvent) => handleMouseMove(mouseMoveEvent)}
         onMouseUp={() => handleMouseUp()}
       >
-      <Avatar className="avatar" src={currentDog.image} alt={currentDog.name} sx={{ width: "80vh", height: "80vh" }} />
-        <h1>
-          <IconButton className="left-button" onClick={handleLeftClick}>
-            <CancelIcon fontSize="large" />
-          </IconButton>
-          {currentDog.name}
-          <IconButton className="right-button" onClick={handleRightClick}>
-            <FavoriteIcon fontSize="large" />
-          </IconButton>
-        </h1>
-        <Collapse in={open}>
-          <div
-            className="alert"
-          >
-            It's a Match!
-            <IconButton
-                aria-label="close"
-                color="inherit"
-                fontSize="large"
-                onClick={handleClose}
-              >
-                <CloseIcon fontSize="large" />
-              </IconButton>
-          </div>
-        </Collapse>
+      
+        <Avatar className="avatar" src={currentDog.image} alt={currentDog.name} sx={{ width: "80vh", height: "80vh" }} />
+                <h1>
+                  <IconButton className="left-button" onClick={handleLeftClick}>
+                    <CancelIcon fontSize="large" />
+                  </IconButton>
+                  {currentDog.name}
+                  <IconButton className="right-button" onClick={handleRightClick}>
+                    <FavoriteIcon fontSize="large" />
+                  </IconButton>
+                </h1>
+                <Collapse in={open}>
+                  <div
+                    className="alert"
+                  >
+                    It's a Match!
+                    <IconButton
+                        aria-label="close"
+                        color="inherit"
+                        fontSize="large"
+                        onClick={handleClose}
+                      >
+                        <CloseIcon fontSize="large" />
+                      </IconButton>
+                  </div>
+                </Collapse>
+      
+      
       </div>
+      </Fade>
+      
     </div>
   );
 };
