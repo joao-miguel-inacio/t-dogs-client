@@ -61,14 +61,14 @@ function App() {
           <Route
             path="/about"
             element={
-              <About themeMode={themeMode} setThemeMode={setThemeMode} />
+              <About themeMode={themeMode} />
             }
           />
           <Route path="/signin" element={<Signin />} />
           <Route path="/signup" element={<Signup />} />
           <Route element={<PrivateRoute />}>
-            <Route path="/:id" element={<Dog />} />
-            <Route path="/profile" element={<Profile />} />
+            <Route path="/:id" element={<Dog themeMode={themeMode}/>} />
+            <Route path="/profile" element={<Profile themeMode={themeMode} />} />
             <Route path="/profile-edit" element={<ProfileEdit />} />
             <Route path="/own-list" element={<OwnList />} />
             <Route path="/dog-create" element={<DogCreate />} />

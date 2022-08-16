@@ -20,7 +20,7 @@ import { Avatar, Button } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import { Link } from "react-router-dom";
 
-const DogDetails = () => {
+const DogDetails = ({ themeMode }) => {
   const { id } = useParams();
   const [dogDetails, setDogDetails] = useState();
   const [popover, setPopOver] = useState(null);
@@ -66,13 +66,115 @@ const DogDetails = () => {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    if (themeMode) {
+      const collection = document.getElementsByClassName("responsive-icons");
+      for (let i = 0; i < collection.length; i++) {
+        collection.item(i).style.color ="white";
+      }
+    }
+    return () => {
+      const collection = document.getElementsByClassName("responsive-icons");
+      for (let i = 0; i < collection.length; i++) {
+        collection.item(i).style.color ="grey";
+      }
+    };
+  }, [themeMode]);
+
+  const displayDogSize = (size) => {
+    if (themeMode) {
+      switch (size) {
+        case "small":
+          return (
+            <img
+              className="dog-size-image"
+              src="https://res.cloudinary.com/dvru7nv6q/image/upload/v1660689211/T-Dogs/dog-size-small-white_qdmnkw.png"
+              alt="small"
+              onMouseEnter={(e) =>
+                handlePopoverOpen(e, `${dogDetails.name} is a small size dog`)
+              }
+              onMouseLeave={handlePopoverClose}
+            />
+          );
+        case "medium":
+          return (
+            <img
+              className="dog-size-image"
+              src="https://res.cloudinary.com/dvru7nv6q/image/upload/v1660689211/T-Dogs/dog-size-medium-white_j6nrdu.png"
+              alt="medium"
+              onMouseEnter={(e) =>
+                handlePopoverOpen(e, `${dogDetails.name} is a medium size dog`)
+              }
+              onMouseLeave={handlePopoverClose}
+            />
+          );
+        case "large":
+          return (
+            <img
+              className="dog-size-image"
+              src="https://res.cloudinary.com/dvru7nv6q/image/upload/v1660689211/T-Dogs/dog-size-large-white_mmaget.png"
+              alt="large"
+              onMouseEnter={(e) =>
+                handlePopoverOpen(e, `${dogDetails.name} is a large size dog`)
+              }
+              onMouseLeave={handlePopoverClose}
+            />
+          );
+      }
+    } else {
+      switch (size) {
+        case "small":
+          return (
+            <img
+              className="dog-size-image"
+              src="https://res.cloudinary.com/dvru7nv6q/image/upload/v1659517103/T-Dogs/dog-size-small_orpey4.png"
+              alt="small"
+              onMouseEnter={(e) =>
+                handlePopoverOpen(e, `${dogDetails.name} is a small size dog`)
+              }
+              onMouseLeave={handlePopoverClose}
+            />
+          );
+        case "medium":
+          return (
+            <img
+              className="dog-size-image"
+              src="https://res.cloudinary.com/dvru7nv6q/image/upload/v1659517103/T-Dogs/dog-size-medium_qja8il.png"
+              alt="medium"
+              onMouseEnter={(e) =>
+                handlePopoverOpen(e, `${dogDetails.name} is a medium size dog`)
+              }
+              onMouseLeave={handlePopoverClose}
+            />
+          );
+        case "large":
+          return (
+            <img
+              className="dog-size-image"
+              src="https://res.cloudinary.com/dvru7nv6q/image/upload/v1659517103/T-Dogs/dog-size-large_dfvdky.png"
+              alt="large"
+              onMouseEnter={(e) =>
+                handlePopoverOpen(e, `${dogDetails.name} is a large size dog`)
+              }
+              onMouseLeave={handlePopoverClose}
+            />
+          );
+      }
+    }
+  };
+
   const displayDogs = () => {
     return (
       <>
         <img src={dogDetails.image} alt="dog" className="dog-image-small" />
         <div className="main-container">
           <div className="large-screen-container">
-            <Avatar sx={{ width: "40vw", height: "40vw" }} src={dogDetails.image} alt="dog" className="dog-image-large" />
+            <Avatar
+              sx={{ width: "40vw", height: "40vw" }}
+              src={dogDetails.image}
+              alt="dog"
+              className="dog-image-large"
+            />
             <div className="basic-id-container">
               {dogDetails.gender === "male" ? (
                 <MaleIcon fontSize="large" />
@@ -90,45 +192,7 @@ const DogDetails = () => {
                   )}{" "}
                 </h4>
               </div>
-              {dogDetails.size === "large" ? (
-                <img
-                  className="dog-size-image"
-                  src="https://res.cloudinary.com/dvru7nv6q/image/upload/v1659517103/T-Dogs/dog-size-large_dfvdky.png"
-                  alt="large"
-                  onMouseEnter={(e) =>
-                      handlePopoverOpen(e, `${dogDetails.name} is a large size dog`)
-                    }
-                  onMouseLeave={handlePopoverClose}
-                />
-              ) : (
-                ""
-              )}
-              {dogDetails.size === "medium" ? (
-                <img
-                  className="dog-size-image"
-                  src="https://res.cloudinary.com/dvru7nv6q/image/upload/v1659517103/T-Dogs/dog-size-medium_qja8il.png"
-                  alt="medium"
-                  onMouseEnter={(e) =>
-                      handlePopoverOpen(e, `${dogDetails.name} is a medium size dog`)
-                    }
-                  onMouseLeave={handlePopoverClose}
-                />
-              ) : (
-                ""
-              )}
-              {dogDetails.size === "small" ? (
-                <img
-                  className="dog-size-image"
-                  src="https://res.cloudinary.com/dvru7nv6q/image/upload/v1659517103/T-Dogs/dog-size-small_orpey4.png"
-                  alt="small"
-                  onMouseEnter={(e) =>
-                      handlePopoverOpen(e, `${dogDetails.name} is a small size dog`)
-                    }
-                  onMouseLeave={handlePopoverClose}
-                />
-              ) : (
-                ""
-              )}
+              {displayDogSize(dogDetails.size)}
             </div>
           </div>
 
@@ -169,7 +233,7 @@ const DogDetails = () => {
                 <>
                   <ConnectWithoutContactIcon
                     fontSize="large"
-                    className="grey icon"
+                    className="grey icon responsive-icons"
                     aria-owns={open ? "mouse-over-popover" : undefined}
                     aria-haspopup="true"
                     onMouseEnter={(e) =>
@@ -214,7 +278,7 @@ const DogDetails = () => {
                 <>
                   <ChildFriendlyIcon
                     fontSize="large"
-                    className="grey icon"
+                    className="grey icon responsive-icons"
                     aria-owns={open ? "mouse-over-popover" : undefined}
                     aria-haspopup="true"
                     onMouseEnter={(e) =>
@@ -259,7 +323,7 @@ const DogDetails = () => {
                 <>
                   <PetsIcon
                     fontSize="large"
-                    className="grey icon"
+                    className="grey icon responsive-icons"
                     aria-owns={open ? "mouse-over-popover" : undefined}
                     aria-haspopup="true"
                     onMouseEnter={(e) =>
@@ -306,7 +370,7 @@ const DogDetails = () => {
                 <>
                   <VaccinesIcon
                     fontSize="large"
-                    className="grey icon"
+                    className="grey icon responsive-icons"
                     aria-owns={open ? "mouse-over-popover" : undefined}
                     aria-haspopup="true"
                     onMouseEnter={(e) =>
@@ -348,7 +412,7 @@ const DogDetails = () => {
                 <>
                   <CelebrationIcon
                     fontSize="large"
-                    className="grey icon"
+                    className="grey icon responsive-icons"
                     aria-owns={open ? "mouse-over-popover" : undefined}
                     aria-haspopup="true"
                     onMouseEnter={(e) =>
@@ -393,7 +457,7 @@ const DogDetails = () => {
                 <>
                   <PsychologyIcon
                     fontSize="large"
-                    className="grey icon"
+                    className="grey icon responsive-icons"
                     aria-owns={open ? "mouse-over-popover" : undefined}
                     aria-haspopup="true"
                     onMouseEnter={(e) =>
@@ -424,45 +488,46 @@ const DogDetails = () => {
             ""
           )}
           <div className="basic-id-container owner-details">
-            { dogDetails.owner.email === userEmail ?
-            <>
-            <Button
-              component={Link}
-              to={`/${dogDetails._id}/dog-edit`}
-              className="button"
-              variant="contained"
-              endIcon={<EditIcon />}
-            >
-              Edit{" "}
-            </Button>
-            </>
-            : <>
-            <div className="center">
-              <BadgeIcon />
-              <p>{dogDetails.owner.name}</p>
-            </div>
-            <div>
-              <div className="id-item">
-                <LocationOnIcon fontSize="small" />{" "}
-                <p>{dogDetails.owner.address}</p>
-              </div>
-              <div className="id-item">
-                {dogDetails.owner.phoneNumber ? (
-                  <>
-                    <LocalPhoneIcon fontSize="small" />
-                    <p>{dogDetails.owner.phoneNumber}</p>
-                  </>
-                ) : (
-                  ""
-                )}
-              </div>
-              <div className="id-item">
-                <EmailIcon fontSize="small" />
-                <p>{dogDetails.owner.email}</p>
-              </div>
-            </div> 
-            </>
-            }
+            {dogDetails.owner.email === userEmail ? (
+              <>
+                <Button
+                  component={Link}
+                  to={`/${dogDetails._id}/dog-edit`}
+                  className="button"
+                  variant="contained"
+                  endIcon={<EditIcon />}
+                >
+                  Edit{" "}
+                </Button>
+              </>
+            ) : (
+              <>
+                <div className="center">
+                  <BadgeIcon />
+                  <p>{dogDetails.owner.name}</p>
+                </div>
+                <div>
+                  <div className="id-item">
+                    <LocationOnIcon fontSize="small" />{" "}
+                    <p>{dogDetails.owner.address}</p>
+                  </div>
+                  <div className="id-item">
+                    {dogDetails.owner.phoneNumber ? (
+                      <>
+                        <LocalPhoneIcon fontSize="small" />
+                        <p>{dogDetails.owner.phoneNumber}</p>
+                      </>
+                    ) : (
+                      ""
+                    )}
+                  </div>
+                  <div className="id-item">
+                    <EmailIcon fontSize="small" />
+                    <p>{dogDetails.owner.email}</p>
+                  </div>
+                </div>
+              </>
+            )}
           </div>
         </div>
       </>

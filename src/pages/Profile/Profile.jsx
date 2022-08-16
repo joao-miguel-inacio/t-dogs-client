@@ -16,7 +16,7 @@ import "./Profile.css";
 import Navbar2 from "../../components/Navbar2/Navbar2";
 import PopOver from "../../components/PopOver";
 
-const Profile = () => {
+const Profile = ({themeMode}) => {
   const [user, setUser] = useState({});
   const [popover, setPopOver] = useState(null);
   const [popOverMessage, setpopOverMessage] = useState(null);
@@ -37,6 +37,7 @@ const Profile = () => {
       document.getElementById("profile").classList.remove("selected");
     };
   });
+  
   useEffect(() => {
     document.getElementById("profile").classList.add("selected");
     const fetchProfileData = async () => {
@@ -53,6 +54,21 @@ const Profile = () => {
     };
   }, []);
 
+  useEffect(() => {
+    if (themeMode) {
+      const collection = document.getElementsByClassName("responsive-icons");
+      for (let i = 0; i < collection.length; i++) {
+        collection.item(i).style.color ="white";
+      }
+    }
+    return () => {
+      const collection = document.getElementsByClassName("responsive-icons");
+      for (let i = 0; i < collection.length; i++) {
+        collection.item(i).style.color ="grey";
+      }
+    };
+  }, [themeMode]);
+
   const displayUserData = () => {
     return (
       <>
@@ -64,7 +80,7 @@ const Profile = () => {
             sx={{ width: 224, height: 224 }}
           />
           <div className="small-container">
-            <div className="smaller-container grey">
+            <div className="smaller-container grey responsive-icons">
               <Icon className="icon">
                 <PersonIcon />
               </Icon>
@@ -73,7 +89,7 @@ const Profile = () => {
             <p className="user-info">{user.name}</p>
           </div>
           <div className="small-container">
-            <div className="smaller-container grey">
+            <div className="smaller-container grey responsive-icons">
               <Icon className="icon">
                 <LocationOnIcon />
               </Icon>
@@ -85,7 +101,7 @@ const Profile = () => {
           {user.description ? (
             <>
               <div className="small-container">
-                <div className="smaller-container grey">
+                <div className="smaller-container grey responsive-icons">
                   <Icon className="icon">
                     <InfoIcon />
                   </Icon>
@@ -121,7 +137,7 @@ const Profile = () => {
               ) : (
                 <>
                   <SchoolIcon
-                    className="grey user-details"
+                    className="grey user-details responsive-icons"
                     aria-owns={open ? "mouse-over-popover" : undefined}
                     aria-haspopup="true"
                     onMouseEnter={(e) =>
@@ -158,7 +174,8 @@ const Profile = () => {
               ) : (
                 <>
                   <ChildFriendlyIcon
-                    className="grey user-details"
+                    id="icon" 
+                    className="grey user-details responsive-icons"
                     aria-owns={open ? "mouse-over-popover" : undefined}
                     aria-haspopup="true"
                     onMouseEnter={(e) =>
@@ -195,7 +212,8 @@ const Profile = () => {
               ) : (
                 <>
                   <PetsIcon
-                    className="grey user-details"
+                    id="icon" 
+                    className="grey user-details responsive-icons"
                     aria-owns={open ? "mouse-over-popover" : undefined}
                     aria-haspopup="true"
                     onMouseEnter={(e) =>
@@ -232,7 +250,8 @@ const Profile = () => {
               ) : (
                 <>
                   <EuroIcon
-                    className="grey user-details"
+                    id="icon" 
+                    className="grey user-details responsive-icons"
                     aria-owns={open ? "mouse-over-popover" : undefined}
                     aria-haspopup="true"
                     onMouseEnter={(e) =>
@@ -253,7 +272,7 @@ const Profile = () => {
             <>
               {user.phoneNumber ? (
                 <div className="small-container">
-                  <div className="smaller-container grey">
+                  <div className="smaller-container grey responsive-icons">
                     <Icon className="icon">
                       <LocalPhoneIcon />
                     </Icon>

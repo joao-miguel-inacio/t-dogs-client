@@ -1,4 +1,4 @@
-import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import useAuth from "../../context/auth/useAuth";
 import { Menu, MenuItem, Button, IconButton } from "@mui/material";
 import InfoIcon from "@mui/icons-material/Info";
@@ -65,7 +65,6 @@ const StyledMenu = styled((props) => (
 const Navbar = ({ themeMode, setThemeMode }) => {
   const { isLoggedIn, currentUser, removeUser } = useAuth();
   const { pathname } = useLocation();
-  const navigate = useNavigate();
   let isHomePage = null;
   if (pathname === "/") {
     isHomePage = true;

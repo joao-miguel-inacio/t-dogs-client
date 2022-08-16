@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import "./Dog.css";
 
 import React from "react";
-const Dog = () => {
+const Dog = ({ themeMode }) => {
   useEffect (() => {
     if (document.getElementById('dogs')) {
       document.getElementById('dogs').classList.add('selected');
@@ -21,7 +21,7 @@ const Dog = () => {
   return (
     <div className="page-body">
 			<Navbar2 page = "Dog Details" />
-			<DogDetails />
+			<DogDetails themeMode={themeMode} />
 		</div>
 	)
 };
