@@ -132,7 +132,7 @@ const Profile = () => {
                   />
                 </>
               )}
-              {user.hasExperience ? (
+              {user.hasChildren ? (
                 <>
                   <ChildFriendlyIcon
                     className="color user-details"
