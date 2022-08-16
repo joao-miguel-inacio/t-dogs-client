@@ -36,10 +36,12 @@ const MatchList = () => {
   const handleClick = (e) => {
     if (e.target.name === "adopted") {
       setFilter("adopted");
-      setSelectedDogs(matchedDogs.filter(dog => dog.alreadyAdopted === true));
+      setSelectedDogs(matchedDogs.filter((dog) => dog.alreadyAdopted === true));
     } else if (e.target.name === "available") {
       setFilter("available");
-      setSelectedDogs(matchedDogs.filter(dog => dog.alreadyAdopted === false));
+      setSelectedDogs(
+        matchedDogs.filter((dog) => dog.alreadyAdopted === false)
+      );
     } else {
       setFilter("both");
       setSelectedDogs(matchedDogs);
@@ -51,9 +53,37 @@ const MatchList = () => {
       <Navbar2 page="Matched Dogs" />
       <div className="adopted-button-group">
         <ButtonGroup variant="outlined">
-        <Button name="adopted" onClick={handleClick} className={filter==="adopted" ? "outlined-button clicked" : "outlined-button"}>Adopted</Button>
-          <Button name="available" onClick={handleClick} className={filter==="available" ? "outlined-button clicked" : "outlined-button"}>Available</Button>
-          <Button name="both" onClick={handleClick} className={filter==="both" ? "outlined-button clicked" : "outlined-button"}>Both</Button>
+          <Button
+            name="adopted"
+            onClick={handleClick}
+            className={
+              filter === "adopted"
+                ? "outlined-button clicked"
+                : "outlined-button"
+            }
+          >
+            Adopted
+          </Button>
+          <Button
+            name="available"
+            onClick={handleClick}
+            className={
+              filter === "available"
+                ? "outlined-button clicked"
+                : "outlined-button"
+            }
+          >
+            Available
+          </Button>
+          <Button
+            name="both"
+            onClick={handleClick}
+            className={
+              filter === "both" ? "outlined-button clicked" : "outlined-button"
+            }
+          >
+            Both
+          </Button>
         </ButtonGroup>
       </div>
       <DogList dogs={selectedDogs} owner={null} />

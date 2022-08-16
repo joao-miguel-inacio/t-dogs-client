@@ -10,7 +10,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import ChildFriendlyIcon from "@mui/icons-material/ChildFriendly";
 import SchoolIcon from "@mui/icons-material/School";
 import PetsIcon from "@mui/icons-material/Pets";
-import EuroIcon from '@mui/icons-material/Euro';
+import EuroIcon from "@mui/icons-material/Euro";
 import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
 import "./Profile.css";
 import Navbar2 from "../../components/Navbar2/Navbar2";
@@ -31,9 +31,14 @@ const Profile = () => {
   };
 
   const open = Boolean(popover);
-
   useEffect(() => {
     document.getElementById("profile").classList.add("selected");
+    return () => {
+      document.getElementById("profile").classList.remove("selected");
+    };
+  });
+  useEffect(() => {
+    // document.getElementById("profile").classList.add("selected");
     const fetchProfileData = async () => {
       try {
         const response = await service.get(`/common`);
@@ -44,7 +49,7 @@ const Profile = () => {
     };
     fetchProfileData();
     return () => {
-      document.getElementById("profile").classList.remove("selected");
+      // document.getElementById("profile").classList.remove("selected");
     };
   }, []);
 

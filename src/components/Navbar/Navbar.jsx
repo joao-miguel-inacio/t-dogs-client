@@ -184,7 +184,11 @@ const Navbar = ({ themeMode, setThemeMode }) => {
           sx={{ ml: 1 }}
           color="inherit"
         >
-          {themeMode ? <Brightness4Icon /> : <Brightness7Icon />}
+          {themeMode ? (
+            <Brightness4Icon style={{ color: "#000" }} />
+          ) : (
+            <Brightness7Icon />
+          )}
         </IconButton>
 
         {isLoggedIn && (
