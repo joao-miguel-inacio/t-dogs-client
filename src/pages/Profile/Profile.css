@@ -44,8 +44,8 @@ p{
 .icons-container {
     display: flex;
     gap: 10vw;
-    padding-top: 2vh;
-    padding-bottom: 2vh;
+    padding-top: 5vw;
+    padding-bottom: 5vw;
 }
 @media screen and (min-width: 480px) {
     .container {
