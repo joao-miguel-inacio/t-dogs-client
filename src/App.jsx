@@ -58,7 +58,12 @@ function App() {
         <Navbar themeMode={themeMode} setThemeMode={setThemeMode} />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
+          <Route
+            path="/about"
+            element={
+              <About themeMode={themeMode} setThemeMode={setThemeMode} />
+            }
+          />
           <Route path="/signin" element={<Signin />} />
           <Route path="/signup" element={<Signup />} />
           <Route element={<PrivateRoute />}>

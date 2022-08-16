@@ -36,11 +36,16 @@
   gap: 1vw;
 }
 
-text-item-white {
+.text-item-white {
   text-decoration: none;
   color: white;
-  font-size: x-large;
+  align-items: center;
+  gap: 1vw;
+}
 
+.text-item {
+  text-decoration: none;
+  color: black;
   align-items: center;
   gap: 1vw;
 }

@@ -244,7 +244,7 @@ const Navbar = ({ themeMode, setThemeMode }) => {
             className={isHomePage ? "animated-menu-button" : ""}
             onClick={handleClick}
           >
-            <MenuRoundedIcon fontSize="large" />
+            <MenuRoundedIcon fontSize="large" style={{ color: "black" }} />
           </IconButton>
           <StyledMenu
             id="demo-customized-menu"
@@ -287,7 +287,7 @@ const Navbar = ({ themeMode, setThemeMode }) => {
                     className={
                       themeMode ? "navlink-item-white" : "navlink-item"
                     }
-                    to="/login"
+                    to="/signin"
                     onClick={handleClose}
                   >
                     Log in

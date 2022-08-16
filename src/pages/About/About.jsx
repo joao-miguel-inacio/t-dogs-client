@@ -6,46 +6,48 @@ import { Fade } from "@mui/material";
 const ImageOne = ({ oneClicked, handleClick }) => {
   return (
     <>
-      {oneClicked && <Fade in={true} timeout={2000}>
-        <img
-          className="about-image"
-          src="https://res.cloudinary.com/dvru7nv6q/image/upload/v1660426577/T-Dogs/max_a2rdss.png"
-          onClick={() => handleClick(1)}
-        />
-      </Fade>
-      }
-      {
-        !oneClicked && <Fade in={true} timeout={2000}>
+      {oneClicked && (
+        <Fade in={true} timeout={2000}>
+          <img
+            className="about-image"
+            src="https://res.cloudinary.com/dvru7nv6q/image/upload/v1660426577/T-Dogs/max_a2rdss.png"
+            onClick={() => handleClick(1)}
+          />
+        </Fade>
+      )}
+      {!oneClicked && (
+        <Fade in={true} timeout={2000}>
           <img
             className="about-image"
             src="https://res.cloudinary.com/dvru7nv6q/image/upload/v1660426585/T-Dogs/oscar_atmqdo.png"
             onClick={() => handleClick(1)}
           />
         </Fade>
-      }
+      )}
     </>
   );
 };
 const ImageTwo = ({ twoClicked, handleClick }) => {
   return (
     <>
-      {twoClicked && <Fade in={true} timeout={2000}>
-        <img
-          className="about-image"
-          src="https://res.cloudinary.com/dvru7nv6q/image/upload/v1660426591/T-Dogs/profile_ucu9sz.png"
-          onClick={() => handleClick(2)}
-        />
-      </Fade>
-      }
-      {
-        !twoClicked && <Fade in={true} timeout={2000}>
+      {twoClicked && (
+        <Fade in={true} timeout={2000}>
+          <img
+            className="about-image"
+            src="https://res.cloudinary.com/dvru7nv6q/image/upload/v1660426591/T-Dogs/profile_ucu9sz.png"
+            onClick={() => handleClick(2)}
+          />
+        </Fade>
+      )}
+      {!twoClicked && (
+        <Fade in={true} timeout={2000}>
           <img
             className="about-image"
             src="https://res.cloudinary.com/dvru7nv6q/image/upload/v1660426726/T-Dogs/match_fgrtul_zfhpxj.png"
             onClick={() => handleClick(2)}
           />
         </Fade>
-      }
+      )}
     </>
   );
 };
@@ -53,28 +55,29 @@ const ImageTwo = ({ twoClicked, handleClick }) => {
 const ImageThree = ({ threeClicked, handleClick }) => {
   return (
     <>
-      {threeClicked && <Fade in={true} timeout={2000}>
-        <img
-          className="about-image"
-          src="https://res.cloudinary.com/dvru7nv6q/image/upload/v1660426577/T-Dogs/dog-create_anxcfh.png"
-          onClick={() => handleClick(3)}
-        />
-      </Fade>
-      }
-      {
-        !threeClicked && <Fade in={true} timeout={2000}>
+      {threeClicked && (
+        <Fade in={true} timeout={2000}>
+          <img
+            className="about-image"
+            src="https://res.cloudinary.com/dvru7nv6q/image/upload/v1660426577/T-Dogs/dog-create_anxcfh.png"
+            onClick={() => handleClick(3)}
+          />
+        </Fade>
+      )}
+      {!threeClicked && (
+        <Fade in={true} timeout={2000}>
           <img
             className="about-image"
             src="https://res.cloudinary.com/dvru7nv6q/image/upload/v1660426584/T-Dogs/owned-dogs_tqqae8.png"
             onClick={() => handleClick(3)}
           />
         </Fade>
-      }
+      )}
     </>
   );
 };
 
-const About = () => {
+const About = ({ themeMode, setThemeMode }) => {
   useEffect(() => {
     document.getElementById("about").classList.add("selected");
     return () => {
@@ -162,11 +165,16 @@ const About = () => {
           <a
             href="https://www.linkedin.com/in/jo%C3%A3o-in%C3%A1cio-126174219/"
             target="_blank"
+            className={themeMode ? "text-item-white" : "text-item"}
           >
             João Inácio
           </a>{" "}
           &{" "}
-          <a href="https://www.linkedin.com/in/lukasbaur89/" target="_blank">
+          <a
+            href="https://www.linkedin.com/in/lukasbaur89/"
+            target="_blank"
+            className={themeMode ? "text-item-white" : "text-item"}
+          >
             Lukas Baur
           </a>
         </p>
@@ -175,6 +183,7 @@ const About = () => {
           <a
             href="https://github.com/joaoMiguelInacio/t-dogs-client"
             target="_blank"
+            className={themeMode ? "text-item-white" : "text-item"}
           >
             Client
           </a>{" "}
@@ -182,6 +191,7 @@ const About = () => {
           <a
             href="https://github.com/joaoMiguelInacio/t-dogs-server"
             target="_blank"
+            className={themeMode ? "text-item-white" : "text-item"}
           >
             Server
           </a>
