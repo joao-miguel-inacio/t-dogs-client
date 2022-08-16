@@ -100,7 +100,6 @@ const Navbar = ({ themeMode, setThemeMode }) => {
   };
   const changeTheme = () => {
     setThemeMode(!themeMode);
-    console.log(themeMode);
   };
 
   return (

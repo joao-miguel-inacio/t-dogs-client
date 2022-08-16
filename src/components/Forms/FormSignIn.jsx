@@ -26,13 +26,11 @@ const FormSignIn = () => {
     e.preventDefault();
     try {
       const res = await service.signin(user);
-      console.log(res);
       storeToken(res.authToken);
       await authenticateUser();
       navigate("/");
     } catch (error) {
-      console.log(error);
-      setError(error);
+      setError(error.response.data.message);
     }
   };
 
@@ -48,7 +46,6 @@ const FormSignIn = () => {
         noValidate
         autoComplete="off"
       >
-        {error && <h3 className="error">{error.message}</h3>}
         <Typography className="form-identifier" variant="h4">Sign In</Typography>
         <form onSubmit={handleSubmit}>
           <Grid container direction="column">
@@ -77,6 +74,7 @@ const FormSignIn = () => {
               />
               </Grid>
           </Grid>
+          {error && <h3 className="error">{error}</h3>}
           <Button type="submit" className="button center">
               Signin
           </Button>

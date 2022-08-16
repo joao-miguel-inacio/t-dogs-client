@@ -44,7 +44,7 @@ const FormSignUp = () => {
       const res = await service.signup(user);
       navigate("/signin");
     } catch (error) {
-      setError(error.message);
+      setError(error.response.data.message);
     }
   };
   return (
@@ -60,7 +60,7 @@ const FormSignUp = () => {
         <Typography variant="h4" className="form-identifier">
           Sign Up
         </Typography>
-
+        
         <Typography className="question-text" variant="h6">
           What brings you to T-Dogs?
         </Typography>
@@ -89,7 +89,7 @@ const FormSignUp = () => {
           </div>
         )}
 
-        {error && <h3 className="error">{error.message}</h3>}
+        
 
         {userType && (
           <>
@@ -288,6 +288,7 @@ const FormSignUp = () => {
                   </div>
                 )}
               </div>
+              {error && <h3 className="error center">{error}</h3>}
               {userType === "isBuyer" ? (
                 <div className="submit-button">
                   <Button type="submit" className="button center">
