@@ -106,13 +106,11 @@ const Navbar = ({ themeMode, setThemeMode }) => {
     <div>
       <nav className={isHomePage ? "large-navbar transparent" : "large-navbar"}>
         <div className="navlinks ">
-          <NavLink to="./">
-            <img
-              className={isHomePage ? "animated-logo logo" : "logo"}
-              alt="T-DOGS"
-              src="https://res.cloudinary.com/dvru7nv6q/image/upload/v1657060337/T-Dogs/Logo_mgx5ax.png"
-            />
-          </NavLink>
+          <img
+            className={isHomePage ? "animated-logo logo" : "logo"}
+            alt="T-DOGS"
+            src="https://res.cloudinary.com/dvru7nv6q/image/upload/v1657060337/T-Dogs/Logo_mgx5ax.png"
+          />
           <Link
             id="about"
             className={
@@ -184,7 +182,11 @@ const Navbar = ({ themeMode, setThemeMode }) => {
           sx={{ ml: 1 }}
           color="inherit"
         >
-          {themeMode ? <Brightness4Icon /> : <Brightness7Icon />}
+          {themeMode ? (
+            <Brightness4Icon style={{ color: "#000" }} />
+          ) : (
+            <Brightness7Icon />
+          )}
         </IconButton>
 
         {isLoggedIn && (

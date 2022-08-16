@@ -13,6 +13,13 @@ const OwnList = () => {
 
   useEffect(() => {
     document.getElementById("dogs").classList.add("selected");
+    return () => {
+      document.getElementById("dogs").classList.remove("selected");
+    };
+  });
+
+  useEffect(() => {
+    document.getElementById("dogs").classList.add("selected");
     const getOwnDogs = async () => {
       try {
         const storedToken = localStorage.getItem("authToken");
@@ -34,10 +41,10 @@ const OwnList = () => {
   const handleClick = (e) => {
     if (e.target.name === "adopted") {
       setFilter("adopted");
-      setSelectedDogs(ownDogs.filter(dog => dog.alreadyAdopted === true));
+      setSelectedDogs(ownDogs.filter((dog) => dog.alreadyAdopted === true));
     } else if (e.target.name === "available") {
       setFilter("available");
-      setSelectedDogs(ownDogs.filter(dog => dog.alreadyAdopted === false));
+      setSelectedDogs(ownDogs.filter((dog) => dog.alreadyAdopted === false));
     } else {
       setFilter("both");
       setSelectedDogs(ownDogs);
@@ -48,7 +55,7 @@ const OwnList = () => {
     <div className="page-body">
       <Navbar2 page="Own Dogs" />
       <div className="adopted-button-group">
-      <Button
+        <Button
           component={Link}
           to={`/dog-create`}
           className="button create-button"
@@ -57,9 +64,37 @@ const OwnList = () => {
           Create A Dog
         </Button>
         <ButtonGroup variant="outlined">
-          <Button name="adopted" onClick={handleClick} className={filter==="adopted" ? "outlined-button clicked" : "outlined-button"}>Adopted</Button>
-          <Button name="available" onClick={handleClick} className={filter==="available" ? "outlined-button clicked" : "outlined-button"}>Available</Button>
-          <Button name="both" onClick={handleClick} className={filter==="both" ? "outlined-button clicked" : "outlined-button"}>Both</Button>
+          <Button
+            name="adopted"
+            onClick={handleClick}
+            className={
+              filter === "adopted"
+                ? "outlined-button clicked"
+                : "outlined-button"
+            }
+          >
+            Adopted
+          </Button>
+          <Button
+            name="available"
+            onClick={handleClick}
+            className={
+              filter === "available"
+                ? "outlined-button clicked"
+                : "outlined-button"
+            }
+          >
+            Available
+          </Button>
+          <Button
+            name="both"
+            onClick={handleClick}
+            className={
+              filter === "both" ? "outlined-button clicked" : "outlined-button"
+            }
+          >
+            Both
+          </Button>
         </ButtonGroup>
       </div>
       <DogList dogs={selectedDogs} owner={true} />
