@@ -45,11 +45,11 @@
 .submit-button {
   display: flex;
   justify-content: center !important;
-  margin: 2vw 0 !important;
+  margin: 5vw 0 !important;
   align-items: center;
 }
 .question-text {
-  margin-top: 5vw !important;
+  margin: 2vw !important;
 }
 .grey {
   color: grey;
@@ -63,15 +63,21 @@
   flex-direction: column;
 }
 .theme-break {
-  margin-bottom: 5vw;
+  margin: 5vw 0;
   height: 2px;
   background-image: linear-gradient(to right, #fd297b, #ff5864, #ff655b);
   border: 0;
 }
 .end {
-  margin: 2vw 0;
+  margin: 5vw 0;
 }
 @media screen and (min-width: 900px) {
+  .theme-break {
+    margin: 5vh 0;
+  }
+  .end {
+    margin: 5vh 0;
+  }
   .form-identifier {
     display: block;
   }
@@ -85,7 +91,7 @@
     justify-content: start;
   }
   .question-text {
-    margin-bottom: 0vw !important;
+    margin: 0vw !important;
   }
   .avatar-container {
     align-items: flex-start;
