@@ -106,11 +106,13 @@ const Navbar = ({ themeMode, setThemeMode }) => {
     <div>
       <nav className={isHomePage ? "large-navbar transparent" : "large-navbar"}>
         <div className="navlinks ">
-          <img
-            className={isHomePage ? "animated-logo logo" : "logo"}
-            alt="T-DOGS"
-            src="https://res.cloudinary.com/dvru7nv6q/image/upload/v1657060337/T-Dogs/Logo_mgx5ax.png"
-          />
+          <NavLink to="./">
+            <img
+              className={isHomePage ? "animated-logo logo" : "logo"}
+              alt="T-DOGS"
+              src="https://res.cloudinary.com/dvru7nv6q/image/upload/v1657060337/T-Dogs/Logo_mgx5ax.png"
+            />
+          </NavLink>
           <Link
             id="about"
             className={
