@@ -60,35 +60,29 @@ const Browse = () => {
     setTimeout(moveToNextDog, 1500);
   };
   const handleRightClick = async () => {
+    console.log("clicked")
     if (
-      (currentDog.childFriendly && user.hasChildren) ||
-      user.hasChildren === false
-    ) {
-      if (
+      ((currentDog.childFriendly && user.hasChildren) ||
+      user.hasChildren === false) && (
         (currentDog.requiresExperience && user.hasExperience) ||
         currentDog.requiresExperience === false
-      ) {
-        if (
+      ) && (
           (user.hasPets && currentDog.goodWithOtherDogs) ||
           user.hasPets === false
-        ) {
-          if (
+        ) && (
             (currentDog.price > 0 && user.willingToPay) ||
             currentDog.price === 0
-          ) {
+          )) {
             setAble(false);
             setOpen(true);
-            try {
               const storedToken = localStorage.getItem("authToken");
               await service.put(`/user/${currentDog._id}/match`, {
                 headers: { Authorization: `Bearer ${storedToken}` },
               });
-            } catch (error) {
-              console.log(error);
-            }
-          }
-        }
-      }
+            
+          
+        
+      
     } else {
       setShowing(false);
       setTimeout(moveToNextDog, 1500);
