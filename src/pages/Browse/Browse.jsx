@@ -60,34 +60,26 @@ const Browse = () => {
     setTimeout(moveToNextDog, 1500);
   };
   const handleRightClick = async () => {
-    console.log("clicked")
+    console.log("clicked");
     if (
       ((currentDog.childFriendly && user.hasChildren) ||
-      user.hasChildren === false) && (
-        (currentDog.requiresExperience && user.hasExperience) ||
-        currentDog.requiresExperience === false
-      ) && (
-          (user.hasPets && currentDog.goodWithOtherDogs) ||
-          user.hasPets === false
-        ) && (
-            (currentDog.price > 0 && user.willingToPay) ||
-            currentDog.price === 0
-          )) {
-            setAble(false);
-            setOpen(true);
-              const storedToken = localStorage.getItem("authToken");
-              await service.put(`/user/${currentDog._id}/match`, {
-                headers: { Authorization: `Bearer ${storedToken}` },
-              });
-            
-          
-        
-      
+        user.hasChildren === false) &&
+      ((currentDog.requiresExperience && user.hasExperience) ||
+        currentDog.requiresExperience === false) &&
+      ((user.hasPets && currentDog.goodWithOtherDogs) ||
+        user.hasPets === false) &&
+      ((currentDog.price > 0 && user.willingToPay) || currentDog.price === 0)
+    ) {
+      setAble(false);
+      setOpen(true);
+      const storedToken = localStorage.getItem("authToken");
+      await service.put(`/user/${currentDog._id}/match`, {
+        headers: { Authorization: `Bearer ${storedToken}` },
+      });
     } else {
       setShowing(false);
       setTimeout(moveToNextDog, 1500);
     }
-    
   };
   const handleTouchStart = (e) => {
     if (able) {
@@ -149,48 +141,47 @@ const Browse = () => {
   return (
     <div className="page-body">
       <Navbar2 page="Browse" />
-        <Fade in={showing} timeout={2000}>
-      <div
-        className="browse-body"
-        style={{ backgroundImage: `url(${currentDog.image})` }}
-        onTouchStart={(touchStartEvent) => handleTouchStart(touchStartEvent)}
-        onTouchMove={(touchMoveEvent) => handleTouchMove(touchMoveEvent)}
-        onTouchEnd={() => handleTouchEnd()}
-        onMouseDown={(mouseDownEvent) => handleMouseDown(mouseDownEvent)}
-        onMouseMove={(mouseMoveEvent) => handleMouseMove(mouseMoveEvent)}
-        onMouseUp={() => handleMouseUp()}
-      >
-      
-        <Avatar className="avatar" src={currentDog.image} alt={currentDog.name} sx={{ width: "80vh", height: "80vh" }} />
-                <h1>
-                  <IconButton className="left-button" onClick={handleLeftClick}>
-                    <CancelIcon fontSize="large" />
-                  </IconButton>
-                  {currentDog.name}
-                  <IconButton className="right-button" onClick={handleRightClick}>
-                    <FavoriteIcon fontSize="large" />
-                  </IconButton>
-                </h1>
-                <Collapse in={open}>
-                  <div
-                    className="alert"
-                  >
-                    It's a Match!
-                    <IconButton
-                        aria-label="close"
-                        color="inherit"
-                        fontSize="large"
-                        onClick={handleClose}
-                      >
-                        <CloseIcon fontSize="large" />
-                      </IconButton>
-                  </div>
-                </Collapse>
-      
-      
-      </div>
+      <Fade in={showing} timeout={2000}>
+        <div
+          className="browse-body"
+          style={{ backgroundImage: `url(${currentDog.image})` }}
+          onTouchStart={(touchStartEvent) => handleTouchStart(touchStartEvent)}
+          onTouchMove={(touchMoveEvent) => handleTouchMove(touchMoveEvent)}
+          onTouchEnd={() => handleTouchEnd()}
+          onMouseDown={(mouseDownEvent) => handleMouseDown(mouseDownEvent)}
+          onMouseMove={(mouseMoveEvent) => handleMouseMove(mouseMoveEvent)}
+          onMouseUp={() => handleMouseUp()}
+        >
+          <Avatar
+            className="avatar"
+            src={currentDog.image}
+            alt={currentDog.name}
+            sx={{ width: "80vh", height: "80vh" }}
+          />
+          <h1>
+            <IconButton className="left-button" onClick={handleLeftClick}>
+              <CancelIcon fontSize="large" />
+            </IconButton>
+            {currentDog.name}
+            <IconButton className="right-button" onClick={handleRightClick}>
+              <FavoriteIcon fontSize="large" />
+            </IconButton>
+          </h1>
+          <Collapse in={open}>
+            <div className="alert">
+              It's a Match!
+              <IconButton
+                aria-label="close"
+                color="inherit"
+                fontSize="large"
+                onClick={handleClose}
+              >
+                <CloseIcon fontSize="large" />
+              </IconButton>
+            </div>
+          </Collapse>
+        </div>
       </Fade>
-      
     </div>
   );
 };
