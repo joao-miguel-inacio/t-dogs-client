@@ -78,7 +78,6 @@ const ImageThree = ({ threeClicked, handleClick }) => {
 };
 
 const About = ({ themeMode }) => {
-  console.log(themeMode)
   useEffect(() => {
     document.getElementById("about").classList.add("selected");
     return () => {

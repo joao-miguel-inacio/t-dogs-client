@@ -1,7 +1,10 @@
 .user-type-button {
   margin-bottom: 2vw;
-  color: black;
+  color: #fd297b;
   border: 1px solid #fd297b !important;
+}
+.white{
+  color: white !important;
 }
 .clicked {
   color: white !important;
@@ -31,6 +34,7 @@
 .form-content {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   margin-top: 2vw;
 }
 .form-container {
@@ -71,7 +75,11 @@
 .end {
   margin: 5vw 0;
 }
+
 @media screen and (min-width: 900px) {
+  .form-box{
+    margin-top: 12vw !important;
+    }
   .theme-break {
     margin: 5vh 0;
   }
@@ -86,9 +94,10 @@
   }
   .form-content {
     flex-direction: row;
+    justify-content: flex-start;
   }
   .submit-button {
-    justify-content: start;
+    align-items: flex-start;
   }
   .question-text {
     margin: 0vw !important;

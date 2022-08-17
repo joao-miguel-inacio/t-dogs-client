@@ -1,11 +1,11 @@
 import FormSignUp from "../../components/Forms/FormSignUp";
 import Navbar2 from "../../components/Navbar2/Navbar2";
 
-const Signup = () => {
+const Signup = ({themeMode}) => {
 	return (
 		<div className="page-body">	
 			<Navbar2 page = "SignUp" />
-			<FormSignUp />
+			<FormSignUp themeMode={themeMode}/>
 		</div>
 	)
 };

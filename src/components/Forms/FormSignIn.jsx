@@ -39,16 +39,16 @@ const FormSignIn = () => {
       <Box
         className="form-box"
         sx={{
-          width: "80vw",
+          width: "80%",
           margin: "auto",
-          "& .MuiTextField-root": { m: 5, width: "50vw"},
+          "& .MuiTextField-root": { m: 1, width: "35ch"},
         }}
         noValidate
         autoComplete="off"
       >
         <Typography className="form-identifier" variant="h4">Sign In</Typography>
         <form onSubmit={handleSubmit}>
-          <Grid container direction="column">
+          <Grid container className="form-content">
             <Grid item>
               <TextField
                 type="email"
@@ -73,11 +73,15 @@ const FormSignIn = () => {
                 required
               />
               </Grid>
+              
+              {error && <h3 className="error">{error}</h3>}
+              
           </Grid>
-          {error && <h3 className="error">{error}</h3>}
-          <Button type="submit" className="button">
+          <div className="submit-button">
+              <Button type="submit" className="button">
               Sign In
-          </Button>
+              </Button>
+              </div>
         </form>
       </Box>
     </>

@@ -65,7 +65,7 @@ function App() {
             }
           />
           <Route path="/signin" element={<Signin />} />
-          <Route path="/signup" element={<Signup />} />
+          <Route path="/signup" element={<Signup themeMode={themeMode} />} />
           <Route element={<PrivateRoute />}>
             <Route path="/:id" element={<Dog themeMode={themeMode}/>} />
             <Route path="/profile" element={<Profile themeMode={themeMode} />} />

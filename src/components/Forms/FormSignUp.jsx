@@ -13,7 +13,7 @@ import { Button } from "@mui/material";
 import { Typography } from "@mui/material";
 import Grid from "@mui/material/Grid";
 
-const FormSignUp = () => {
+const FormSignUp = ({themeMode}) => {
   const [userType, setUserType] = useState(undefined);
 
   const [user, setUser] = useState({
@@ -50,6 +50,7 @@ const FormSignUp = () => {
   return (
     <>
       <Box
+        className="form-box"
         sx={{
           width: "80%",
           margin: "auto",
@@ -67,7 +68,31 @@ const FormSignUp = () => {
 
         {!userType && (
           <div className="user-type-button-group">
+          {themeMode ?
+          <>
+          <Button
+              className="user-type-button white"
+              onClick={() => {
+                setUserType("isOwner");
+                setUser({ ...user, userType: "isOwner" });
+              }}
+            >
+              I am looking to rehome a dog
+            </Button>
+
             <Button
+              className="user-type-button white"
+              onClick={() => {
+                setUserType("isBuyer");
+                setUser({ ...user, userType: "isBuyer" });
+              }}
+            >
+              I am looking to adopt a dog
+            </Button>
+          </>
+          :
+          <>
+          <Button
               className="user-type-button"
               onClick={() => {
                 setUserType("isOwner");
@@ -86,6 +111,8 @@ const FormSignUp = () => {
             >
               I am looking to adopt a dog
             </Button>
+          </>
+          }          
           </div>
         )}
 
