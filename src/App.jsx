@@ -15,7 +15,7 @@ import NotFound from "./pages/NotFound/NotFound";
 import PrivateRoute from "./components/ProtectedRoute/PrivateRoute";
 import ProfileEdit from "./pages/Forms/ProfileEdit";
 import "./App.css";
-import { ThemeProvider, useTheme, createTheme } from "@mui/material/styles";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import { useState } from "react";
 

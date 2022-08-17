@@ -9,6 +9,7 @@ const ImageOne = ({ oneClicked, handleClick }) => {
       {oneClicked && (
         <Fade in={true} timeout={2000}>
           <img
+            alt=""
             className="about-image"
             src="https://res.cloudinary.com/dvru7nv6q/image/upload/v1660426577/T-Dogs/max_a2rdss.png"
             onClick={() => handleClick(1)}
@@ -18,6 +19,7 @@ const ImageOne = ({ oneClicked, handleClick }) => {
       {!oneClicked && (
         <Fade in={true} timeout={2000}>
           <img
+            alt=""
             className="about-image"
             src="https://res.cloudinary.com/dvru7nv6q/image/upload/v1660426585/T-Dogs/oscar_atmqdo.png"
             onClick={() => handleClick(1)}
@@ -33,6 +35,7 @@ const ImageTwo = ({ twoClicked, handleClick }) => {
       {twoClicked && (
         <Fade in={true} timeout={2000}>
           <img
+            alt=""
             className="about-image"
             src="https://res.cloudinary.com/dvru7nv6q/image/upload/v1660426591/T-Dogs/profile_ucu9sz.png"
             onClick={() => handleClick(2)}
@@ -42,6 +45,7 @@ const ImageTwo = ({ twoClicked, handleClick }) => {
       {!twoClicked && (
         <Fade in={true} timeout={2000}>
           <img
+            alt=""
             className="about-image"
             src="https://res.cloudinary.com/dvru7nv6q/image/upload/v1660426726/T-Dogs/match_fgrtul_zfhpxj.png"
             onClick={() => handleClick(2)}
@@ -58,6 +62,7 @@ const ImageThree = ({ threeClicked, handleClick }) => {
       {threeClicked && (
         <Fade in={true} timeout={2000}>
           <img
+            alt=""
             className="about-image"
             src="https://res.cloudinary.com/dvru7nv6q/image/upload/v1660426577/T-Dogs/dog-create_anxcfh.png"
             onClick={() => handleClick(3)}
@@ -67,6 +72,7 @@ const ImageThree = ({ threeClicked, handleClick }) => {
       {!threeClicked && (
         <Fade in={true} timeout={2000}>
           <img
+            alt=""
             className="about-image"
             src="https://res.cloudinary.com/dvru7nv6q/image/upload/v1660426584/T-Dogs/owned-dogs_tqqae8.png"
             onClick={() => handleClick(3)}
@@ -165,6 +171,7 @@ const About = ({ themeMode }) => {
           <a
             href="https://www.linkedin.com/in/jo%C3%A3o-in%C3%A1cio-126174219/"
             target="_blank"
+            rel="noreferrer"
             className={themeMode ? "text-item-white" : "text-item"}
           >
             João Inácio
@@ -173,6 +180,7 @@ const About = ({ themeMode }) => {
           <a
             href="https://www.linkedin.com/in/lukasbaur89/"
             target="_blank"
+            rel="noreferrer"
             className={themeMode ? "text-item-white" : "text-item"}
           >
             Lukas Baur
@@ -183,6 +191,7 @@ const About = ({ themeMode }) => {
           <a
             href="https://github.com/joaoMiguelInacio/t-dogs-client"
             target="_blank"
+            rel="noreferrer"
             className={themeMode ? "text-item-white" : "text-item"}
           >
             Client
@@ -191,6 +200,7 @@ const About = ({ themeMode }) => {
           <a
             href="https://github.com/joaoMiguelInacio/t-dogs-server"
             target="_blank"
+            rel="noreferrer"
             className={themeMode ? "text-item-white" : "text-item"}
           >
             Server
