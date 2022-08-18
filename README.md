@@ -20,7 +20,19 @@ An application for dog owners looking to sell or give a dog for adoption or for 
 
 Dog onwers can create as many dogs as they want and then manage each dog individually.
 
-<div style="display: flex; justify-content:space-around; width=100%">
+<div style="display: flex; justify-content:space-between; width=100%">
 <img src="https://res.cloudinary.com/dvru7nv6q/image/upload/v1660426577/T-Dogs/dog-create_anxcfh.png" alt="homepage" width="45%"/>
 <img src="https://res.cloudinary.com/dvru7nv6q/image/upload/v1660426584/T-Dogs/owned-dogs_tqqae8.png" alt="homepage" width="45%"/>
+</div>
+
+
+### Potential Owners
+
+Buyers or users looking to adopt can browse through all the dogs available and can expect to be matched with the dogs we think would be perfect for them!
+
+This will be based on what the buyers and the dog's needs are.
+
+<div style="display: flex; justify-content:space-between; width=100%">
+<img src="https://res.cloudinary.com/dvru7nv6q/image/upload/v1660426591/T-Dogs/profile_ucu9sz.png" alt="homepage" width="45%"/>
+<img src="https://res.cloudinary.com/dvru7nv6q/image/upload/v1660426726/T-Dogs/match_fgrtul_zfhpxj.png" alt="homepage" width="45%"/>
 </div>
