@@ -25,7 +25,6 @@ Dog onwers can create as many dogs as they want and then manage each dog individ
 <img src="https://res.cloudinary.com/dvru7nv6q/image/upload/v1660426584/T-Dogs/owned-dogs_tqqae8.png" alt="homepage" width="45%"/>
 </div>
 
-
 ### Potential Owners
 
 Buyers or users looking to adopt can browse through all the dogs available and can expect to be matched with the dogs we think would be perfect for them!
@@ -36,3 +35,138 @@ This will be based on what the buyers and the dog's needs are.
 <img src="https://res.cloudinary.com/dvru7nv6q/image/upload/v1660426591/T-Dogs/profile_ucu9sz.png" alt="homepage" width="45%"/>
 <img src="https://res.cloudinary.com/dvru7nv6q/image/upload/v1660426726/T-Dogs/match_fgrtul_zfhpxj.png" alt="homepage" width="45%"/>
 </div>
+
+## User Stories
+
+- 404: As an anon/user, I can see a 404 page if I try to reacg a page that doesn't exist so that I know it is my fault;
+
+- SignUp as Owner: As an anon, I can sign up in the platform as an owner so that I can start creating and managing my dogs;
+- SignUp as Buyer: As an anon, I can sign up in the platform as a buyer so that I can find the perfect dog to buy or adopt;
+
+- Login: As an anon, I can login as a buyer or as an owner;
+- Logout: As a user, I can logout from the platform;
+
+- Read profile: Both as an owner and buyer, I can see my own profile;
+- Update profile as Owner: As an owner, I can edit my details and choose how the buyers can contact me;
+- Update profile as Buyer: As a buyer, I can edit my details as my circunstances change to find a dog that suits my family's needs;
+
+- Create Dogs as Owner: As an Owner, I can create new dogs;
+- Read Dogs as Owner: As an Owner, I can see a list with all my dogs;
+- Update dogs as Owner: As an Onwer, I can edit my dogs and mark them as adopted;
+ 
+- Read Dogs: Both as owner and buyer, I can see a single dog's details;
+ 
+- Read Dogs as Buyer: As a buyer, I can see all available dogs and choose to like them or not;
+- Read Dogs as Buyer: As a buyer, I can see a list of all the dogs I matched with;
+
+## Backlog
+
+- Delete Dogs: As a buyer, I can delete dogs from my matchList adding them to a rejectedList;
+- Read Dogs: Both as buyer and as owner, I can see a list with the 10 most right swipped dogs and see their individual details;
+- Read Dogs: As a buyer, I can see a map with the location of all dogs available and change what dogs appear to me as available depending on their location;
+
+# Client
+
+## Routes
+
+## Components
+
+## Services
+
+# Server
+
+## Models
+
+### Buyer
+
+```
+userType - String // required // enum: ["isBuyer"]
+name - String // required
+email - String // required & unique
+password - String // required
+profilePicture - String
+description - String 
+address - String
+hasChildren - Boolean
+hasExperience - Boolean
+hasPets - Boolean
+willingToPay - Boolean
+matches - Schema.Types.ObjectId // ref: "Dog"
+```
+
+### Dog
+```
+image - String // required
+name - String // required
+breed - String // required
+age - Number // required
+gender - String // required // enum: ["male", "female"]
+size - String // required // enum: ["small", "medium", "large"]
+shortDescription - String
+description - String
+alreadyAdopted - Boolean
+openToStrangers - Boolean
+playful - Boolean
+chippedAndVaccinated - Boolean
+childFriendly - Boolean
+requiresExperience - Boolean
+goodWithOtherDogs - Boolean
+price - Boolean
+owner - Schema.Types.ObjectId // ref: "Owner"
+```
+
+### Owner
+
+```
+userType - String // required // enum: ["isOwner"]
+name - String // required
+email - String // required & unique
+password - String // required
+profilePicture - String
+description - String 
+address - String // required
+phoneNumber - Number
+dog - Schema.Types.ObjectId // ref: "Dog"
+```
+
+## API Endpoints/Backend Routes
+
+| Route           | HTTP Verb | Description                          | View                                               |
+| --------------- | :-------: | ------------------------------------ | -------------------------------------------------- |
+| index.routes    |           |                                      |                                                    |
+| /               |    GET    | shows Homepage                       | HomePage                                           |
+|                 |           |                                      |                                                    |
+| auth.routes     |           |                                      |                                                    |
+| signup          |   POST    | creates user                         | redirect to signin                                 |
+| signin          |   POST    | signs in                             | redirect to ownList if owner or to browse if buyer |
+|                 |           |                                      |                                                    |
+| common.routes   |           |                                      |                                                    |
+| /:id            |    GET    | show dog details and option to edit  | DogDetails                                         |
+| /               |    GET    | show buyer/owner profile             | OwnProfile                                         |
+| /               |    PUT    | edits profile                        | redirect to OwnProfile                             |
+|                 |           |                                      |                                                    |
+| owner.routes    |           |                                      |                                                    |
+| /               |    GET    | show owns dogs list                  | OwnDog List                                        |
+| /               |   POST    | creates dog                          | redirect to OwnDogList                             |
+| /:id            |    PUT    | edits dog                            | redirect to DogDetails                             |
+|                 |           |                                      |                                                    |
+| buyer.routes    |           |                                      |                                                    |
+| /               |    GET    | show available dog                   | BuyerDogView                                       |
+| /:id/match      |    PUT    | adds dogs to buyers matches list     | BuyerDogView + notification                        |
+| /matchList      |    GET    | show matched dogs                    | MatchedList                                        |
+
+
+## Links
+
+### Trello
+
+[Trello](https://trello.com/b/VrglkNq4/t-dogs))
+
+### Git
+
+[Client repository Link](https://github.com/joaoMiguelInacio/t-dogs-client)
+[Server repository Link](https://github.com/joaoMiguelInacio/t-dogs-server)
+
+### Prezi
+
+[Presentation](https://prezi.com/view/N8jrYmsjNqUHke415YG0/)
