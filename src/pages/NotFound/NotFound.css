@@ -1,6 +1,7 @@
 .lost-body{
-        width: 100vw;
+        width: 175vw;
         height: 100vh;
+        margin-left: -75vw;
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
@@ -13,3 +14,9 @@
 .safety-net{
     color: black !important;
 }
+@media screen and (min-width: 769px) {
+    .lost-body{
+        width: 100vw;
+        margin-left: 0;
+    }
+  }
