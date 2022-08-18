@@ -79,8 +79,12 @@ function App() {
               path="/match-list"
               element={<MatchList themeMode={themeMode} />}
             />
+            <Route
+              path="/no-more-dogs"
+              element={<NotFound />}
+            />
           </Route>
-          <Route path="*" element={<NotFound />} />
+          <Route path="*" element={<NotFound notFound={true}/>} />
         </Routes>
       </div>
     </ThemeProvider>

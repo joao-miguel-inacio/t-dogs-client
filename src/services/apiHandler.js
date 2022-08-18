@@ -60,9 +60,7 @@ service.isLoggedIn = async () => {
 
 service.dogCreate = async (dog) => {
   try {
-    const storedToken = localStorage.getItem("authToken");
     const { dogCreate } = await service.post("/owner", dog);
-    console.log(dogCreate);
     return dogCreate;
   } catch (error) {
     errorHandler(error);

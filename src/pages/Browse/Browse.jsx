@@ -8,6 +8,7 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import CancelIcon from "@mui/icons-material/Cancel";
 import Collapse from "@mui/material/Collapse";
 import CloseIcon from "@mui/icons-material/Close";
+import { useNavigate } from "react-router-dom";
 
 const Browse = () => {
   const [availableDogs, setAvailableDogs] = useState({});
@@ -18,6 +19,7 @@ const Browse = () => {
   const [open, setOpen] = useState(false);
   const [able, setAble] = useState(true);
   const [touchStart, setTouchStart] = useState(0);
+  const navigate = useNavigate();
   const animationDelay = 1000;
   useEffect(() => {
       document.getElementById("browse")?.classList.add("selected");
@@ -49,19 +51,24 @@ const Browse = () => {
   }, []);
   const moveToNextDog = () => {
     setCount(count + 1);
+    if (count === availableDogs.length){
+      navigate("/no-more-dogs");
+    } else {
     setCurrentDog(availableDogs[count]);
     setAble(true);
     setOpen(false);
     setShowing(true);
+    }
+    
   };
   const handleLeftClick = () => {
     setShowing(false);
     setTimeout(moveToNextDog, animationDelay);
   };
-  const childCompatible = currentDog.childFriendly && user.hasChildren ||  user.hasChildren === false;
-  const experienceCompatible = currentDog.requiresExperience && user.hasExperience || currentDog.requiresExperience === false;
-  const petsCompatible = user.hasPets && currentDog.goodWithOtherDogs || user.hasPets === false;
-  const priceCompatible = currentDog.price > 0 && user.willingToPay || currentDog.price === 0;
+  const childCompatible = (currentDog.childFriendly && user.hasChildren) ||  user.hasChildren === false;
+  const experienceCompatible = (currentDog.requiresExperience && user.hasExperience) || currentDog.requiresExperience === false;
+  const petsCompatible = (user.hasPets && currentDog.goodWithOtherDogs) || user.hasPets === false;
+  const priceCompatible = (currentDog.price > 0 && user.willingToPay) || currentDog.price === 0;
   const handleRightClick = async () => {
     if ( childCompatible ) {
       if ( experienceCompatible ) {
@@ -84,14 +91,12 @@ const Browse = () => {
   const handleTouchStart = (e) => {
     if (able) {
       setTouchStart(e.changedTouches[0].clientX);
-      console.log("touch start", e.changedTouches[0].clientX);
     } else {
       console.log(able);
     }
   };
   const handleTouchEnd = (e) => {
     const touchEnd = e.changedTouches[0].clientX;
-    console.log("touch end", touchEnd);
     if (able) {
       if (touchStart - touchEnd < -150) {
         handleRightClick();
@@ -104,7 +109,6 @@ const Browse = () => {
     }
   };
   const handleMouseDown = (e) => {
-    console.log("mouseDOWN", e.clientX);
     if (able) {
       setTouchStart(e.clientX);
     } else {
@@ -112,7 +116,6 @@ const Browse = () => {
     }
   };
   const handleMouseUp = (e) => {
-    console.log("mouseUP", e.clientX);
     const touchEnd = e.clientX;
     if (able) {
       if (touchStart - touchEnd > 250) {
