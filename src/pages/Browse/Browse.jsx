@@ -79,41 +79,20 @@ const Browse = () => {
   const priceCompatible =
     (currentDog.price > 0 && user.willingToPay) || currentDog.price === 0;
 
-  const notMatch = () => {
-    setShowing(false);
-    setTimeout(moveToNextDog, animationDelay);
-  };
-
   const handleRightClick = async () => {
-    console.log("right-clicked");
-    console.log("child Compatible", childCompatible);
-    if (childCompatible) {
-      console.log("experience Compatible", experienceCompatible);
-      if (experienceCompatible) {
-        console.log("pets Compatible", petsCompatible);
-        if (petsCompatible) {
-          console.log("price Compatible", priceCompatible);
-          if (priceCompatible) {
-            setAble(false);
-            setOpen(true);
-            const storedToken = localStorage.getItem("authToken");
-            await service.put(`/user/${currentDog._id}/match`, {
-              headers: { Authorization: `Bearer ${storedToken}` },
-            });
-          } else {
-            notMatch();
-          }
-        } else {
-          notMatch();
-        }
-      } else {
-        notMatch();
-      }
+    if (childCompatible && experienceCompatible && petsCompatible && priceCompatible ) {
+      setAble(false);
+      setOpen(true);
+      const storedToken = localStorage.getItem("authToken");
+      await service.put(`/user/${currentDog._id}/match`, {
+        headers: { Authorization: `Bearer ${storedToken}` },
+      });
     } else {
-      notMatch();
+      setShowing(false);
+      setTimeout(moveToNextDog, animationDelay);
     }
   };
-  
+
   const handleTouchStart = (e) => {
     if (able) {
       setTouchStart(e.changedTouches[0].clientX);
