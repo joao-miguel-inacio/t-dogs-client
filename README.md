@@ -1,70 +1,172 @@
-# Getting Started with Create React App
+# T-DOGS
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+IronHack Project 3 - [Find your perfect dog!](https://t-dogs.netlify.app/)
 
-## Available Scripts
+<img src="https://res.cloudinary.com/dvru7nv6q/image/upload/v1660846590/T-Dogs/homepage_slezt4.png" alt="homepage" width="100%"/>
 
-In the project directory, you can run:
+## Introduction :dog:
 
-### `yarn start`
+Nearing the end of the Ironhack's Web Development Bootcamp the ask was that we built a simple website using at least, 3 models, all CRUD operations, full authentication and authorization processes.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+The Back End was to be developed with Node and Express.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+The Front End was to be developed with React.
 
-### `yarn test`
+## The Idea :bulb:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+An application for dog owners looking to sell or give a dog for adoption or for potential dog owners looking to adopt or to buy a dog.
 
-### `yarn build`
+### Dog Owners
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Dog onwers can create as many dogs as they want and then manage each dog individually.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+<div style="display: flex; justify-content:space-between; width=100%">
+<img src="https://res.cloudinary.com/dvru7nv6q/image/upload/v1660426577/T-Dogs/dog-create_anxcfh.png" alt="homepage" width="45%"/>
+<img src="https://res.cloudinary.com/dvru7nv6q/image/upload/v1660426584/T-Dogs/owned-dogs_tqqae8.png" alt="homepage" width="45%"/>
+</div>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Potential Owners
 
-### `yarn eject`
+Buyers or users looking to adopt can browse through all the dogs available and can expect to be matched with the dogs we think would be perfect for them!
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+This will be based on what the buyers and the dog's needs are.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+<div style="display: flex; justify-content:space-between; width=100%">
+<img src="https://res.cloudinary.com/dvru7nv6q/image/upload/v1660426591/T-Dogs/profile_ucu9sz.png" alt="homepage" width="45%"/>
+<img src="https://res.cloudinary.com/dvru7nv6q/image/upload/v1660426726/T-Dogs/match_fgrtul_zfhpxj.png" alt="homepage" width="45%"/>
+</div>
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## User Stories
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- 404: As an anon/user, I can see a 404 page if I try to reacg a page that doesn't exist so that I know it is my fault;
 
-## Learn More
+- SignUp as Owner: As an anon, I can sign up in the platform as an owner so that I can start creating and managing my dogs;
+- SignUp as Buyer: As an anon, I can sign up in the platform as a buyer so that I can find the perfect dog to buy or adopt;
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- Login: As an anon, I can login as a buyer or as an owner;
+- Logout: As a user, I can logout from the platform;
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- Read profile: Both as an owner and buyer, I can see my own profile;
+- Update profile as Owner: As an owner, I can edit my details and choose how the buyers can contact me;
+- Update profile as Buyer: As a buyer, I can edit my details as my circunstances change to find a dog that suits my family's needs;
 
-### Code Splitting
+- Create Dogs as Owner: As an Owner, I can create new dogs;
+- Read Dogs as Owner: As an Owner, I can see a list with all my dogs;
+- Update dogs as Owner: As an Onwer, I can edit my dogs and mark them as adopted;
+ 
+- Read Dogs: Both as owner and buyer, I can see a single dog's details;
+ 
+- Read Dogs as Buyer: As a buyer, I can see all available dogs and choose to like them or not;
+- Read Dogs as Buyer: As a buyer, I can see a list of all the dogs I matched with;
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Backlog
 
-### Analyzing the Bundle Size
+- Delete Dogs: As a buyer, I can delete dogs from my matchList adding them to a rejectedList;
+- Read Dogs: Both as buyer and as owner, I can see a list with the 10 most right swipped dogs and see their individual details;
+- Read Dogs: As a buyer, I can see a map with the location of all dogs available and change what dogs appear to me as available depending on their location;
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+# Client
 
-### Making a Progressive Web App
+## Routes
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## Components
 
-### Advanced Configuration
+## Services
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+# Server
 
-### Deployment
+## Models
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+### Buyer
 
-### `yarn build` fails to minify
+```
+userType - String // required // enum: ["isBuyer"]
+name - String // required
+email - String // required & unique
+password - String // required
+profilePicture - String
+description - String 
+address - String
+hasChildren - Boolean
+hasExperience - Boolean
+hasPets - Boolean
+willingToPay - Boolean
+matches - Schema.Types.ObjectId // ref: "Dog"
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### Dog
+```
+image - String // required
+name - String // required
+breed - String // required
+age - Number // required
+gender - String // required // enum: ["male", "female"]
+size - String // required // enum: ["small", "medium", "large"]
+shortDescription - String
+description - String
+alreadyAdopted - Boolean
+openToStrangers - Boolean
+playful - Boolean
+chippedAndVaccinated - Boolean
+childFriendly - Boolean
+requiresExperience - Boolean
+goodWithOtherDogs - Boolean
+price - Boolean
+owner - Schema.Types.ObjectId // ref: "Owner"
+```
+
+### Owner
+
+```
+userType - String // required // enum: ["isOwner"]
+name - String // required
+email - String // required & unique
+password - String // required
+profilePicture - String
+description - String 
+address - String // required
+phoneNumber - Number
+dog - Schema.Types.ObjectId // ref: "Dog"
+```
+
+## API Endpoints/Backend Routes
+
+| Route           | HTTP Verb | Description                          | View                                               |
+| --------------- | :-------: | ------------------------------------ | -------------------------------------------------- |
+| index.routes    |           |                                      |                                                    |
+| /               |    GET    | shows Homepage                       | HomePage                                           |
+|                 |           |                                      |                                                    |
+| auth.routes     |           |                                      |                                                    |
+| signup          |   POST    | creates user                         | redirect to signin                                 |
+| signin          |   POST    | signs in                             | redirect to ownList if owner or to browse if buyer |
+|                 |           |                                      |                                                    |
+| common.routes   |           |                                      |                                                    |
+| /:id            |    GET    | show dog details and option to edit  | DogDetails                                         |
+| /               |    GET    | show buyer/owner profile             | OwnProfile                                         |
+| /               |    PUT    | edits profile                        | redirect to OwnProfile                             |
+|                 |           |                                      |                                                    |
+| owner.routes    |           |                                      |                                                    |
+| /               |    GET    | show owns dogs list                  | OwnDog List                                        |
+| /               |   POST    | creates dog                          | redirect to OwnDogList                             |
+| /:id            |    PUT    | edits dog                            | redirect to DogDetails                             |
+|                 |           |                                      |                                                    |
+| buyer.routes    |           |                                      |                                                    |
+| /               |    GET    | show available dog                   | BuyerDogView                                       |
+| /:id/match      |    PUT    | adds dogs to buyers matches list     | BuyerDogView + notification                        |
+| /matchList      |    GET    | show matched dogs                    | MatchedList                                        |
+
+
+## Links
+
+### Trello
+
+[Trello](https://trello.com/b/VrglkNq4/t-dogs))
+
+### Git
+
+[Client repository Link](https://github.com/joaoMiguelInacio/t-dogs-client)
+[Server repository Link](https://github.com/joaoMiguelInacio/t-dogs-server)
+
+### Prezi
+
+[Presentation](https://prezi.com/view/N8jrYmsjNqUHke415YG0/)
