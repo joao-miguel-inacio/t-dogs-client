@@ -3,7 +3,7 @@
   color: #fd297b;
   border: 1px solid #fd297b !important;
 }
-.white{
+.white {
   color: white !important;
 }
 .clicked {
@@ -58,6 +58,11 @@
 .grey {
   color: grey;
 }
+
+.white {
+  color: white;
+}
+
 .avatar-container {
   width: 100%;
   display: flex;
@@ -77,9 +82,9 @@
 }
 
 @media screen and (min-width: 900px) {
-  .form-box{
+  .form-box {
     margin-top: 12vw !important;
-    }
+  }
   .theme-break {
     margin: 5vh 0;
   }

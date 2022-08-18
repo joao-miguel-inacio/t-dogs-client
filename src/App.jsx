@@ -58,23 +58,27 @@ function App() {
         <Navbar themeMode={themeMode} setThemeMode={setThemeMode} />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route
-            path="/about"
-            element={
-              <About themeMode={themeMode} />
-            }
-          />
+          <Route path="/about" element={<About themeMode={themeMode} />} />
           <Route path="/signin" element={<Signin />} />
           <Route path="/signup" element={<Signup themeMode={themeMode} />} />
           <Route element={<PrivateRoute />}>
-            <Route path="/:id" element={<Dog themeMode={themeMode}/>} />
-            <Route path="/profile" element={<Profile themeMode={themeMode} />} />
+            <Route path="/:id" element={<Dog themeMode={themeMode} />} />
+            <Route
+              path="/profile"
+              element={<Profile themeMode={themeMode} />}
+            />
             <Route path="/profile-edit" element={<ProfileEdit />} />
-            <Route path="/own-list" element={<OwnList themeMode={themeMode}/>} />
+            <Route
+              path="/own-list"
+              element={<OwnList themeMode={themeMode} />}
+            />
             <Route path="/dog-create" element={<DogCreate />} />
             <Route path="/:id/dog-edit" element={<DogEdit />} />
             <Route path="/browse" element={<Browse />} />
-            <Route path="/match-list" element={<MatchList themeMode={themeMode}/>} />
+            <Route
+              path="/match-list"
+              element={<MatchList themeMode={themeMode} />}
+            />
           </Route>
           <Route path="*" element={<NotFound />} />
         </Routes>

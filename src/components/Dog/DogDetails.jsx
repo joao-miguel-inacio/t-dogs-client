@@ -265,7 +265,11 @@ const DogDetails = ({ themeMode }) => {
                 <>
                   <ConnectWithoutContactIcon
                     fontSize="large"
-                    className="grey icon responsive-icons"
+                    className={
+                      themeMode
+                        ? "white icon responsive-icons"
+                        : "grey icon responsive-icons"
+                    }
                     aria-owns={open ? "mouse-over-popover" : undefined}
                     aria-haspopup="true"
                     onTouchStart={(e) =>
@@ -326,7 +330,11 @@ const DogDetails = ({ themeMode }) => {
                 <>
                   <ChildFriendlyIcon
                     fontSize="large"
-                    className="grey icon responsive-icons"
+                    className={
+                      themeMode
+                        ? "white icon responsive-icons"
+                        : "grey icon responsive-icons"
+                    }
                     aria-owns={open ? "mouse-over-popover" : undefined}
                     aria-haspopup="true"
                     onTouchStart={(e) =>
@@ -387,7 +395,11 @@ const DogDetails = ({ themeMode }) => {
                 <>
                   <PetsIcon
                     fontSize="large"
-                    className="grey icon responsive-icons"
+                    className={
+                      themeMode
+                        ? "white icon responsive-icons"
+                        : "grey icon responsive-icons"
+                    }
                     aria-owns={open ? "mouse-over-popover" : undefined}
                     aria-haspopup="true"
                     onTouchStart={(e) =>
@@ -450,7 +462,11 @@ const DogDetails = ({ themeMode }) => {
                 <>
                   <VaccinesIcon
                     fontSize="large"
-                    className="grey icon responsive-icons"
+                    className={
+                      themeMode
+                        ? "white icon responsive-icons"
+                        : "grey icon responsive-icons"
+                    }
                     aria-owns={open ? "mouse-over-popover" : undefined}
                     aria-haspopup="true"
                     onTouchStart={(e) =>
@@ -505,7 +521,11 @@ const DogDetails = ({ themeMode }) => {
                 <>
                   <CelebrationIcon
                     fontSize="large"
-                    className="grey icon responsive-icons"
+                    className={
+                      themeMode
+                        ? "white icon responsive-icons"
+                        : "grey icon responsive-icons"
+                    }
                     aria-owns={open ? "mouse-over-popover" : undefined}
                     aria-haspopup="true"
                     onTouchStart={(e) =>
@@ -566,7 +586,11 @@ const DogDetails = ({ themeMode }) => {
                 <>
                   <PsychologyIcon
                     fontSize="large"
-                    className="grey icon responsive-icons"
+                    className={
+                      themeMode
+                        ? "white icon responsive-icons"
+                        : "grey icon responsive-icons"
+                    }
                     aria-owns={open ? "mouse-over-popover" : undefined}
                     aria-haspopup="true"
                     onTouchStart={(e) =>
