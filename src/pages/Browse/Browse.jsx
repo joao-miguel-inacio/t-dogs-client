@@ -21,8 +21,9 @@ const Browse = () => {
   const [touchStart, setTouchStart] = useState(0);
   const navigate = useNavigate();
   const animationDelay = 1000;
+
   useEffect(() => {
-      document.getElementById("browse")?.classList.add("selected");
+    document.getElementById("browse")?.classList.add("selected");
     const fetchAvailableDogs = async () => {
       try {
         const storedToken = localStorage.getItem("authToken");
@@ -46,48 +47,73 @@ const Browse = () => {
     };
     fetchProfileData();
     return () => {
-        document.getElementById("browse")?.classList.remove("selected");
+      document.getElementById("browse")?.classList.remove("selected");
     };
   }, []);
+
   const moveToNextDog = () => {
     setCount(count + 1);
-    if (count === availableDogs.length){
+    if (count === availableDogs.length) {
       navigate("/no-more-dogs");
     } else {
-    setCurrentDog(availableDogs[count]);
-    setAble(true);
-    setOpen(false);
-    setShowing(true);
+      setCurrentDog(availableDogs[count]);
+      setAble(true);
+      setOpen(false);
+      setShowing(true);
     }
-    
   };
+
   const handleLeftClick = () => {
     setShowing(false);
     setTimeout(moveToNextDog, animationDelay);
   };
-  const childCompatible = (currentDog.childFriendly && user.hasChildren) ||  user.hasChildren === false;
-  const experienceCompatible = (currentDog.requiresExperience && user.hasExperience) || currentDog.requiresExperience === false;
-  const petsCompatible = (user.hasPets && currentDog.goodWithOtherDogs) || user.hasPets === false;
-  const priceCompatible = (currentDog.price > 0 && user.willingToPay) || currentDog.price === 0;
+
+  const childCompatible =
+    (currentDog.childFriendly && user.hasChildren) ||
+    user.hasChildren === false;
+  const experienceCompatible =
+    (currentDog.requiresExperience && user.hasExperience) ||
+    currentDog.requiresExperience === false;
+  const petsCompatible =
+    (user.hasPets && currentDog.goodWithOtherDogs) || user.hasPets === false;
+  const priceCompatible =
+    (currentDog.price > 0 && user.willingToPay) || currentDog.price === 0;
+
+  const notMatch = () => {
+    setShowing(false);
+    setTimeout(moveToNextDog, animationDelay);
+  };
+
   const handleRightClick = async () => {
-    if ( childCompatible ) {
-      if ( experienceCompatible ) {
-        if ( petsCompatible ) {
-          if ( priceCompatible ) {
+    console.log("right-clicked");
+    console.log("child Compatible", childCompatible);
+    if (childCompatible) {
+      console.log("experience Compatible", experienceCompatible);
+      if (experienceCompatible) {
+        console.log("pets Compatible", petsCompatible);
+        if (petsCompatible) {
+          console.log("price Compatible", priceCompatible);
+          if (priceCompatible) {
             setAble(false);
             setOpen(true);
             const storedToken = localStorage.getItem("authToken");
             await service.put(`/user/${currentDog._id}/match`, {
               headers: { Authorization: `Bearer ${storedToken}` },
             });
+          } else {
+            notMatch();
           }
+        } else {
+          notMatch();
         }
+      } else {
+        notMatch();
       }
     } else {
-      setShowing(false);
-      setTimeout(moveToNextDog, animationDelay);
+      notMatch();
     }
   };
+  
   const handleTouchStart = (e) => {
     if (able) {
       setTouchStart(e.changedTouches[0].clientX);
