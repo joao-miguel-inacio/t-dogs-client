@@ -12,11 +12,15 @@ const OwnList = () => {
   const [filter, setFilter] = useState("both");
 
   useEffect(() => {
-    document.getElementById("dogs").classList.add("selected");
+    if (document.getElementById("dogs")) {
+      document.getElementById("dogs").classList.add("selected");
+    }
     return () => {
-      document.getElementById("dogs").classList.remove("selected");
+      if (document.getElementById("dogs")) {
+        document.getElementById("dogs").classList.remove("selected");
+      }
     };
-  });
+  }, []);
 
   useEffect(() => {
     document.getElementById("dogs").classList.add("selected");

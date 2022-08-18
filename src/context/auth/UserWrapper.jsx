@@ -1,8 +1,11 @@
 import { useState, useEffect, useCallback } from "react";
 import UserContext from "./UserContext";
 import service from "../../services/apiHandler";
+import { useNavigate } from "react-router-dom";
 
 const UserWrapper = ({ children }) => {
+	const navigate = useNavigate();
+
 	const [auth, setAuth] = useState({
 		currentUser: null,
 		isLoading: true,
@@ -35,9 +38,10 @@ const UserWrapper = ({ children }) => {
 
 	// the useCallback hook allow us to save (memoize) those functions so that they don't need to be created everytime we rerender
 	const removeUser = useCallback(() => {
+		navigate("/");
 		removeToken();
 		authenticateUser();
-	})
+	});
 
 	const removeToken = useCallback(() => {
 		localStorage.removeItem("authToken");

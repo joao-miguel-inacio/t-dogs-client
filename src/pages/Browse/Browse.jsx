@@ -21,7 +21,9 @@ const Browse = () => {
   const [touchEnd, setTouchEnd] = useState(0);
 
   useEffect(() => {
-    document.getElementById("browse").classList.add("selected");
+    if(document.getElementById("browse")){
+      document.getElementById("browse").classList.add("selected");
+    }
     const fetchAvailableDogs = async () => {
       try {
         const storedToken = localStorage.getItem("authToken");
@@ -60,22 +62,40 @@ const Browse = () => {
     setTimeout(moveToNextDog, 1500);
   };
   const handleRightClick = async () => {
-    console.log("clicked");
+    console.log("currentDog.childFriendly", currentDog.childFriendly)
+    console.log("user.hasChildren", user.hasChildren)
     if (
-      ((currentDog.childFriendly && user.hasChildren) ||
-        user.hasChildren === false) &&
-      ((currentDog.requiresExperience && user.hasExperience) ||
-        currentDog.requiresExperience === false) &&
-      ((user.hasPets && currentDog.goodWithOtherDogs) ||
-        user.hasPets === false) &&
-      ((currentDog.price > 0 && user.willingToPay) || currentDog.price === 0)
+      (currentDog.childFriendly && user.hasChildren) ||
+      user.hasChildren === false
     ) {
-      setAble(false);
-      setOpen(true);
-      const storedToken = localStorage.getItem("authToken");
-      await service.put(`/user/${currentDog._id}/match`, {
-        headers: { Authorization: `Bearer ${storedToken}` },
-      });
+      console.log("currentDog.requiresExperience", currentDog.requiresExperience)
+      console.log("user.hasExperience", user.hasExperience)
+      if (
+        (currentDog.requiresExperience && user.hasExperience) ||
+        currentDog.requiresExperience === false
+      ) {
+        console.log("currentDog.goodWithOtherDogs", currentDog.goodWithOtherDogs)
+        console.log("user.hasPets", user.hasPets)
+        if (
+          (user.hasPets && currentDog.goodWithOtherDogs) ||
+          user.hasPets === false
+        ) {
+          console.log("currentDog.price", currentDog.price)
+            console.log("user.willingToPay", user.willingToPay)
+          if (
+            (currentDog.price > 0 && user.willingToPay) ||
+            currentDog.price === 0
+          ) {
+            console.log("MATCH")
+            // setAble(false);
+            // setOpen(true);
+            // const storedToken = localStorage.getItem("authToken");
+            // await service.put(`/user/${currentDog._id}/match`, {
+            //   headers: { Authorization: `Bearer ${storedToken}` },
+            // });
+          }
+        }
+      }
     } else {
       setShowing(false);
       setTimeout(moveToNextDog, 1500);

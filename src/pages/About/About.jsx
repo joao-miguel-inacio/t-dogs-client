@@ -85,10 +85,12 @@ const ImageThree = ({ threeClicked, handleClick }) => {
 
 const About = ({ themeMode }) => {
   useEffect(() => {
-    document.getElementById("about").classList.add("selected");
-    return () => {
-      document.getElementById("about").classList.remove("selected");
-    };
+    if (document.getElementById("about")) {
+      document.getElementById("about").classList.add("selected");
+      return () => {
+        document.getElementById("about").classList.remove("selected");
+      };
+    }
   });
   const [oneClicked, setOneClicked] = useState(true);
   const [twoClicked, setTwoClicked] = useState(true);

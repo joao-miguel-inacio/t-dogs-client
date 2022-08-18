@@ -11,9 +11,13 @@ const MatchList = () => {
   const [filter, setFilter] = useState("both");
 
   useEffect(() => {
-    document.getElementById("matchlist").classList.add("selected");
+    if (document.getElementById("matchlist")) {
+      document.getElementById("matchlist").classList.add("selected");
+    }
     return () => {
-      document.getElementById("matchlist").classList.remove("selected");
+      if (document.getElementById("matchlist")) {
+        document.getElementById("matchlist").classList.remove("selected");
+      }
     };
   }, []);
 

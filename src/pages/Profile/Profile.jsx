@@ -16,7 +16,7 @@ import "./Profile.css";
 import Navbar2 from "../../components/Navbar2/Navbar2";
 import PopOver from "../../components/PopOver";
 
-const Profile = ({themeMode}) => {
+const Profile = ({ themeMode }) => {
   const [user, setUser] = useState({});
   const [popover, setPopOver] = useState(null);
   const [popOverMessage, setpopOverMessage] = useState(null);
@@ -31,15 +31,11 @@ const Profile = ({themeMode}) => {
   };
 
   const open = Boolean(popover);
+
   useEffect(() => {
-    document.getElementById("profile").classList.add("selected");
-    return () => {
-      document.getElementById("profile").classList.remove("selected");
-    };
-  });
-  
-  useEffect(() => {
-    document.getElementById("profile").classList.add("selected");
+    if (document.getElementById("profile")) {
+      document.getElementById("profile").classList.add("selected");
+    }
     const fetchProfileData = async () => {
       try {
         const response = await service.get(`/common`);
@@ -50,7 +46,9 @@ const Profile = ({themeMode}) => {
     };
     fetchProfileData();
     return () => {
-      document.getElementById("profile").classList.remove("selected");
+      if (document.getElementById("profile")) {
+        document.getElementById("profile").classList.remove("selected");
+      }
     };
   }, []);
 
@@ -58,13 +56,13 @@ const Profile = ({themeMode}) => {
     if (themeMode) {
       const collection = document.getElementsByClassName("responsive-icons");
       for (let i = 0; i < collection.length; i++) {
-        collection.item(i).style.color ="white";
+        collection.item(i).style.color = "white";
       }
     }
     return () => {
       const collection = document.getElementsByClassName("responsive-icons");
       for (let i = 0; i < collection.length; i++) {
-        collection.item(i).style.color ="grey";
+        collection.item(i).style.color = "grey";
       }
     };
   }, [themeMode]);
@@ -114,7 +112,7 @@ const Profile = ({themeMode}) => {
             ""
           )}
 
-          { user.userType === "isBuyer"  ? (
+          {user.userType === "isBuyer" ? (
             <div className="icons-container center">
               {user.hasExperience === true ? (
                 <>
@@ -174,7 +172,7 @@ const Profile = ({themeMode}) => {
               ) : (
                 <>
                   <ChildFriendlyIcon
-                    id="icon" 
+                    id="icon"
                     className="grey user-details responsive-icons"
                     aria-owns={open ? "mouse-over-popover" : undefined}
                     aria-haspopup="true"
@@ -212,7 +210,7 @@ const Profile = ({themeMode}) => {
               ) : (
                 <>
                   <PetsIcon
-                    id="icon" 
+                    id="icon"
                     className="grey user-details responsive-icons"
                     aria-owns={open ? "mouse-over-popover" : undefined}
                     aria-haspopup="true"
@@ -250,7 +248,7 @@ const Profile = ({themeMode}) => {
               ) : (
                 <>
                   <EuroIcon
-                    id="icon" 
+                    id="icon"
                     className="grey user-details responsive-icons"
                     aria-owns={open ? "mouse-over-popover" : undefined}
                     aria-haspopup="true"
