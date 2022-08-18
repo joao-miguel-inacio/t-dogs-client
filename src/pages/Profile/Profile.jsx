@@ -33,7 +33,7 @@ const Profile = ({ themeMode }) => {
   const open = Boolean(popover);
 
   useEffect(() => {
-      document.getElementById("profile")?.classList.add("selected");
+    document.getElementById("profile")?.classList.add("selected");
     const fetchProfileData = async () => {
       try {
         const response = await service.get(`/common`);
@@ -44,7 +44,7 @@ const Profile = ({ themeMode }) => {
     };
     fetchProfileData();
     return () => {
-        document.getElementById("profile")?.classList.remove("selected");
+      document.getElementById("profile")?.classList.remove("selected");
     };
   }, []);
 
@@ -117,10 +117,7 @@ const Profile = ({ themeMode }) => {
                     aria-owns={open ? "mouse-over-popover" : undefined}
                     aria-haspopup="true"
                     onTouchStart={(e) =>
-                      handlePopoverOpen(
-                        e,
-                        "You are an experienced owner"
-                      )
+                      handlePopoverOpen(e, "You are an experienced owner")
                     }
                     onMouseEnter={(e) =>
                       handlePopoverOpen(e, "You are an experienced owner")
@@ -137,14 +134,15 @@ const Profile = ({ themeMode }) => {
               ) : (
                 <>
                   <SchoolIcon
-                    className="grey user-details responsive-icons"
+                    className={
+                      themeMode
+                        ? "white user-details responsive-icons"
+                        : "grey user-details responsive-icons"
+                    }
                     aria-owns={open ? "mouse-over-popover" : undefined}
                     aria-haspopup="true"
                     onTouchStart={(e) =>
-                      handlePopoverOpen(
-                        e,
-                        "You are not an experienced owner"
-                      )
+                      handlePopoverOpen(e, "You are not an experienced owner")
                     }
                     onMouseEnter={(e) =>
                       handlePopoverOpen(e, "You are not an experienced owner")
@@ -166,10 +164,7 @@ const Profile = ({ themeMode }) => {
                     aria-owns={open ? "mouse-over-popover" : undefined}
                     aria-haspopup="true"
                     onTouchStart={(e) =>
-                      handlePopoverOpen(
-                        e,
-                        "You have children"
-                      )
+                      handlePopoverOpen(e, "You have children")
                     }
                     onMouseEnter={(e) =>
                       handlePopoverOpen(e, "You have children")
@@ -187,14 +182,15 @@ const Profile = ({ themeMode }) => {
                 <>
                   <ChildFriendlyIcon
                     id="icon"
-                    className="grey user-details responsive-icons"
+                    className={
+                      themeMode
+                        ? "white user-details responsive-icons"
+                        : "grey user-details responsive-icons"
+                    }
                     aria-owns={open ? "mouse-over-popover" : undefined}
                     aria-haspopup="true"
                     onTouchStart={(e) =>
-                      handlePopoverOpen(
-                        e,
-                        "You do not have children"
-                      )
+                      handlePopoverOpen(e, "You do not have children")
                     }
                     onMouseEnter={(e) =>
                       handlePopoverOpen(e, "You do not have children")
@@ -216,10 +212,7 @@ const Profile = ({ themeMode }) => {
                     aria-owns={open ? "mouse-over-popover" : undefined}
                     aria-haspopup="true"
                     onTouchStart={(e) =>
-                      handlePopoverOpen(
-                        e,
-                        "You have other pets"
-                      )
+                      handlePopoverOpen(e, "You have other pets")
                     }
                     onMouseEnter={(e) =>
                       handlePopoverOpen(e, "You have other pets")
@@ -237,14 +230,15 @@ const Profile = ({ themeMode }) => {
                 <>
                   <PetsIcon
                     id="icon"
-                    className="grey user-details responsive-icons"
+                    className={
+                      themeMode
+                        ? "white user-details responsive-icons"
+                        : "grey user-details responsive-icons"
+                    }
                     aria-owns={open ? "mouse-over-popover" : undefined}
                     aria-haspopup="true"
                     onTouchStart={(e) =>
-                      handlePopoverOpen(
-                        e,
-                        "You do not have other pets"
-                      )
+                      handlePopoverOpen(e, "You do not have other pets")
                     }
                     onMouseEnter={(e) =>
                       handlePopoverOpen(e, "You do not have other pets")
@@ -266,10 +260,7 @@ const Profile = ({ themeMode }) => {
                     aria-owns={open ? "mouse-over-popover" : undefined}
                     aria-haspopup="true"
                     onTouchStart={(e) =>
-                      handlePopoverOpen(
-                        e,
-                        "You would pay for a dog"
-                      )
+                      handlePopoverOpen(e, "You would pay for a dog")
                     }
                     onMouseEnter={(e) =>
                       handlePopoverOpen(e, "You would pay for a dog")
@@ -287,14 +278,15 @@ const Profile = ({ themeMode }) => {
                 <>
                   <EuroIcon
                     id="icon"
-                    className="grey user-details responsive-icons"
+                    className={
+                      themeMode
+                        ? "white user-details responsive-icons"
+                        : "grey user-details responsive-icons"
+                    }
                     aria-owns={open ? "mouse-over-popover" : undefined}
                     aria-haspopup="true"
                     onTouchStart={(e) =>
-                      handlePopoverOpen(
-                        e,
-                        "You wouldn't buy a dog"
-                      )
+                      handlePopoverOpen(e, "You wouldn't buy a dog")
                     }
                     onMouseEnter={(e) =>
                       handlePopoverOpen(e, "You wouldn't buy a dog")
