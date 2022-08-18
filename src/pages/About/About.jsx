@@ -87,7 +87,9 @@ const About = ({ themeMode }) => {
   useEffect(() => {
     if (document.getElementById("about")) {
       document.getElementById("about").classList.add("selected");
+    }
       return () => {
+        if (document.getElementById("about")) {
         document.getElementById("about").classList.remove("selected");
       };
     }

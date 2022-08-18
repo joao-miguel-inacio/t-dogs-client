@@ -5,25 +5,31 @@ import "./Dog.css";
 
 import React from "react";
 const Dog = ({ themeMode }) => {
-  useEffect (() => {
-    if (document.getElementById('dogs')) {
-      document.getElementById('dogs').classList.add('selected');
+  useEffect(() => {
+    if (document.getElementById("dogs")) {
+      document.getElementById("dogs").classList.add("selected");
       return () => {
-			document.getElementById('dogs').classList.remove('selected');
-		  };
-    } else {
-      document.getElementById('matchlist').classList.add('selected');
-      return () => {
-        document.getElementById('matchlist').classList.remove('selected');
+        if (document.getElementById("dogs")) {
+          document.getElementById("dogs").classList.remove("selected");
+        }
       };
-   }
+    } else {
+      if (document.getElementById("matchlist")) {
+        document.getElementById("matchlist").classList.add("selected");
+      }
+      return () => {
+        if (document.getElementById("matchlist")) {
+          document.getElementById("matchlist").classList.remove("selected");
+        }
+      };
+    }
   }, []);
   return (
     <div className="page-body">
-			<Navbar2 page = "Dog Details" />
-			<DogDetails themeMode={themeMode} />
-		</div>
-	)
+      <Navbar2 page="Dog Details" />
+      <DogDetails themeMode={themeMode} />
+    </div>
+  );
 };
 
 export default Dog;

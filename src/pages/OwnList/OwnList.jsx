@@ -15,15 +15,6 @@ const OwnList = () => {
     if (document.getElementById("dogs")) {
       document.getElementById("dogs").classList.add("selected");
     }
-    return () => {
-      if (document.getElementById("dogs")) {
-        document.getElementById("dogs").classList.remove("selected");
-      }
-    };
-  }, []);
-
-  useEffect(() => {
-    document.getElementById("dogs").classList.add("selected");
     const getOwnDogs = async () => {
       try {
         const storedToken = localStorage.getItem("authToken");
@@ -38,7 +29,9 @@ const OwnList = () => {
     };
     getOwnDogs();
     return () => {
-      document.getElementById("dogs").classList.remove("selected");
+      if (document.getElementById("dogs")) {
+        document.getElementById("dogs").classList.remove("selected");
+      }
     };
   }, []);
 
