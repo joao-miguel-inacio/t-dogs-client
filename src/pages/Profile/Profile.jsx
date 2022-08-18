@@ -33,9 +33,7 @@ const Profile = ({ themeMode }) => {
   const open = Boolean(popover);
 
   useEffect(() => {
-    if (document.getElementById("profile")) {
-      document.getElementById("profile").classList.add("selected");
-    }
+      document.getElementById("profile")?.classList.add("selected");
     const fetchProfileData = async () => {
       try {
         const response = await service.get(`/common`);
@@ -46,9 +44,7 @@ const Profile = ({ themeMode }) => {
     };
     fetchProfileData();
     return () => {
-      if (document.getElementById("profile")) {
-        document.getElementById("profile").classList.remove("selected");
-      }
+        document.getElementById("profile")?.classList.remove("selected");
     };
   }, []);
 
@@ -120,6 +116,12 @@ const Profile = ({ themeMode }) => {
                     className="color user-details"
                     aria-owns={open ? "mouse-over-popover" : undefined}
                     aria-haspopup="true"
+                    onTouchStart={(e) =>
+                      handlePopoverOpen(
+                        e,
+                        "You are an experienced owner"
+                      )
+                    }
                     onMouseEnter={(e) =>
                       handlePopoverOpen(e, "You are an experienced owner")
                     }
@@ -138,6 +140,12 @@ const Profile = ({ themeMode }) => {
                     className="grey user-details responsive-icons"
                     aria-owns={open ? "mouse-over-popover" : undefined}
                     aria-haspopup="true"
+                    onTouchStart={(e) =>
+                      handlePopoverOpen(
+                        e,
+                        "You are not an experienced owner"
+                      )
+                    }
                     onMouseEnter={(e) =>
                       handlePopoverOpen(e, "You are not an experienced owner")
                     }
@@ -157,6 +165,12 @@ const Profile = ({ themeMode }) => {
                     className="color user-details"
                     aria-owns={open ? "mouse-over-popover" : undefined}
                     aria-haspopup="true"
+                    onTouchStart={(e) =>
+                      handlePopoverOpen(
+                        e,
+                        "You have children"
+                      )
+                    }
                     onMouseEnter={(e) =>
                       handlePopoverOpen(e, "You have children")
                     }
@@ -176,6 +190,12 @@ const Profile = ({ themeMode }) => {
                     className="grey user-details responsive-icons"
                     aria-owns={open ? "mouse-over-popover" : undefined}
                     aria-haspopup="true"
+                    onTouchStart={(e) =>
+                      handlePopoverOpen(
+                        e,
+                        "You do not have children"
+                      )
+                    }
                     onMouseEnter={(e) =>
                       handlePopoverOpen(e, "You do not have children")
                     }
@@ -195,6 +215,12 @@ const Profile = ({ themeMode }) => {
                     className="color user-details"
                     aria-owns={open ? "mouse-over-popover" : undefined}
                     aria-haspopup="true"
+                    onTouchStart={(e) =>
+                      handlePopoverOpen(
+                        e,
+                        "You have other pets"
+                      )
+                    }
                     onMouseEnter={(e) =>
                       handlePopoverOpen(e, "You have other pets")
                     }
@@ -214,6 +240,12 @@ const Profile = ({ themeMode }) => {
                     className="grey user-details responsive-icons"
                     aria-owns={open ? "mouse-over-popover" : undefined}
                     aria-haspopup="true"
+                    onTouchStart={(e) =>
+                      handlePopoverOpen(
+                        e,
+                        "You do not have other pets"
+                      )
+                    }
                     onMouseEnter={(e) =>
                       handlePopoverOpen(e, "You do not have other pets")
                     }
@@ -233,6 +265,12 @@ const Profile = ({ themeMode }) => {
                     className="color user-details"
                     aria-owns={open ? "mouse-over-popover" : undefined}
                     aria-haspopup="true"
+                    onTouchStart={(e) =>
+                      handlePopoverOpen(
+                        e,
+                        "You would pay for a dog"
+                      )
+                    }
                     onMouseEnter={(e) =>
                       handlePopoverOpen(e, "You would pay for a dog")
                     }
@@ -252,6 +290,12 @@ const Profile = ({ themeMode }) => {
                     className="grey user-details responsive-icons"
                     aria-owns={open ? "mouse-over-popover" : undefined}
                     aria-haspopup="true"
+                    onTouchStart={(e) =>
+                      handlePopoverOpen(
+                        e,
+                        "You wouldn't buy a dog"
+                      )
+                    }
                     onMouseEnter={(e) =>
                       handlePopoverOpen(e, "You wouldn't buy a dog")
                     }

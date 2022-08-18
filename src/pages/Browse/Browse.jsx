@@ -18,12 +18,9 @@ const Browse = () => {
   const [open, setOpen] = useState(false);
   const [able, setAble] = useState(true);
   const [touchStart, setTouchStart] = useState(0);
-  const [touchEnd, setTouchEnd] = useState(0);
-
+  const animationDelay = 1000;
   useEffect(() => {
-    if (document.getElementById("browse")) {
-      document.getElementById("browse").classList.add("selected");
-    }
+      document.getElementById("browse")?.classList.add("selected");
     const fetchAvailableDogs = async () => {
       try {
         const storedToken = localStorage.getItem("authToken");
@@ -47,9 +44,7 @@ const Browse = () => {
     };
     fetchProfileData();
     return () => {
-      if (document.getElementById("browse")) {
-        document.getElementById("browse").classList.remove("selected");
-      }
+        document.getElementById("browse")?.classList.remove("selected");
     };
   }, []);
   const moveToNextDog = () => {
@@ -61,74 +56,47 @@ const Browse = () => {
   };
   const handleLeftClick = () => {
     setShowing(false);
-    setTimeout(moveToNextDog, 1500);
+    setTimeout(moveToNextDog, animationDelay);
   };
+  const childCompatible = currentDog.childFriendly && user.hasChildren ||  user.hasChildren === false;
+  const experienceCompatible = currentDog.requiresExperience && user.hasExperience || currentDog.requiresExperience === false;
+  const petsCompatible = user.hasPets && currentDog.goodWithOtherDogs || user.hasPets === false;
+  const priceCompatible = currentDog.price > 0 && user.willingToPay || currentDog.price === 0;
   const handleRightClick = async () => {
-    console.log("currentDog.childFriendly", currentDog.childFriendly);
-    console.log("user.hasChildren", user.hasChildren);
-    if (
-      (currentDog.childFriendly && user.hasChildren) ||
-      user.hasChildren === false
-    ) {
-      console.log(
-        "currentDog.requiresExperience",
-        currentDog.requiresExperience
-      );
-      console.log("user.hasExperience", user.hasExperience);
-      if (
-        (currentDog.requiresExperience && user.hasExperience) ||
-        currentDog.requiresExperience === false
-      ) {
-        console.log(
-          "currentDog.goodWithOtherDogs",
-          currentDog.goodWithOtherDogs
-        );
-        console.log("user.hasPets", user.hasPets);
-        if (
-          (user.hasPets && currentDog.goodWithOtherDogs) ||
-          user.hasPets === false
-        ) {
-          console.log("currentDog.price", currentDog.price);
-          console.log("user.willingToPay", user.willingToPay);
-          if (
-            (currentDog.price > 0 && user.willingToPay) ||
-            currentDog.price === 0
-          ) {
-            console.log("MATCH");
-            // setAble(false);
-            // setOpen(true);
-            // const storedToken = localStorage.getItem("authToken");
-            // await service.put(`/user/${currentDog._id}/match`, {
-            //   headers: { Authorization: `Bearer ${storedToken}` },
-            // });
+    if ( childCompatible ) {
+      if ( experienceCompatible ) {
+        if ( petsCompatible ) {
+          if ( priceCompatible ) {
+            setAble(false);
+            setOpen(true);
+            const storedToken = localStorage.getItem("authToken");
+            await service.put(`/user/${currentDog._id}/match`, {
+              headers: { Authorization: `Bearer ${storedToken}` },
+            });
           }
         }
       }
     } else {
       setShowing(false);
-      setTimeout(moveToNextDog, 1500);
+      setTimeout(moveToNextDog, animationDelay);
     }
   };
   const handleTouchStart = (e) => {
     if (able) {
-      setTouchStart(e.targetTouches[0].clientX);
+      setTouchStart(e.changedTouches[0].clientX);
+      console.log("touch start", e.changedTouches[0].clientX);
     } else {
       console.log(able);
     }
   };
-  const handleTouchMove = (e) => {
+  const handleTouchEnd = (e) => {
+    const touchEnd = e.changedTouches[0].clientX;
+    console.log("touch end", touchEnd);
     if (able) {
-      setTouchStart(e.clientX);
-    } else {
-      console.log(able);
-    }
-  };
-  const handleTouchEnd = () => {
-    if (able) {
-      if (touchStart - touchEnd > 150) {
+      if (touchStart - touchEnd < -150) {
         handleRightClick();
       }
-      if (touchStart - touchEnd < -150) {
+      if (touchStart - touchEnd > 150) {
         handleLeftClick();
       }
     } else {
@@ -136,20 +104,16 @@ const Browse = () => {
     }
   };
   const handleMouseDown = (e) => {
+    console.log("mouseDOWN", e.clientX);
     if (able) {
       setTouchStart(e.clientX);
     } else {
       console.log(able);
     }
   };
-  const handleMouseMove = (e) => {
-    if (able) {
-      setTouchEnd(e.clientX);
-    } else {
-      console.log(able);
-    }
-  };
   const handleMouseUp = (e) => {
+    console.log("mouseUP", e.clientX);
+    const touchEnd = e.clientX;
     if (able) {
       if (touchStart - touchEnd > 250) {
         handleLeftClick();
@@ -163,22 +127,20 @@ const Browse = () => {
   };
   const handleClose = () => {
     setShowing(false);
-    setTimeout(moveToNextDog, 1500);
+    setTimeout(moveToNextDog, animationDelay);
   };
 
   return (
     <div className="page-body">
       <Navbar2 page="Browse" />
-      <Fade in={showing} timeout={2000}>
+      <Fade in={showing} timeout={animationDelay}>
         <div
           className="browse-body"
           style={{ backgroundImage: `url(${currentDog.image})` }}
-          onTouchStart={(touchStartEvent) => handleTouchStart(touchStartEvent)}
-          onTouchMove={(touchMoveEvent) => handleTouchMove(touchMoveEvent)}
-          onTouchEnd={() => handleTouchEnd()}
-          onMouseDown={(mouseDownEvent) => handleMouseDown(mouseDownEvent)}
-          onMouseMove={(mouseMoveEvent) => handleMouseMove(mouseMoveEvent)}
-          onMouseUp={() => handleMouseUp()}
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
+          onMouseDown={handleMouseDown}
+          onMouseUp={handleMouseUp}
         >
           <Avatar
             className="avatar"

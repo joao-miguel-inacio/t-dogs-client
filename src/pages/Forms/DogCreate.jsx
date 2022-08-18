@@ -4,13 +4,9 @@ import { useEffect } from "react";
 
 const DogCreate = () => {
   useEffect(() => {
-    if (document.getElementById("dogs")) {
-      document.getElementById("dogs").classList.add("selected");
-    }
+      document.getElementById("dogs")?.classList.add("selected");
       return () => {
-        if (document.getElementById("dogs")) {
-        document.getElementById("dogs").classList.remove("selected");
-      };
+        document.getElementById("dogs")?.classList.remove("selected");
     };
   }, []);
   return (

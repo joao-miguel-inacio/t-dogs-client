@@ -26,6 +26,9 @@
     padding-left: 3px;
     padding-right: 3px;
 }
+.popOver{
+    font-size: small;
+}
 .user-info{
     padding-left: 30px;
 }

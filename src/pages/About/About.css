@@ -4,6 +4,9 @@
     margin: 5vw auto;
     min-height: 50vh;
 }
+.about-image:hover{
+    cursor: pointer;
+}
 .about-image-div{
     display: flex;
 }

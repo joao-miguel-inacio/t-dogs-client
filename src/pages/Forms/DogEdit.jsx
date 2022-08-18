@@ -5,13 +5,9 @@ import Navbar2 from "../../components/Navbar2/Navbar2";
 
 const DogEdit = () => {
   useEffect(() => {
-    if (document.getElementById("dogs")) {
-      document.getElementById("dogs").classList.add("selected");
-    }
-      return () => {
-        if (document.getElementById("dogs")) {
-        document.getElementById("dogs").classList.remove("selected");
-      };
+    document.getElementById("dogs")?.classList.add("selected");
+    return () => {
+      document.getElementById("dogs")?.classList.remove("selected");
     };
   }, []);
   return (

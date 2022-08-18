@@ -7,7 +7,7 @@ const ImageOne = ({ oneClicked, handleClick }) => {
   return (
     <>
       {oneClicked && (
-        <Fade in={true} timeout={2000}>
+        <Fade in={true} timeout={3000}>
           <img
             alt=""
             className="about-image"
@@ -17,7 +17,7 @@ const ImageOne = ({ oneClicked, handleClick }) => {
         </Fade>
       )}
       {!oneClicked && (
-        <Fade in={true} timeout={2000}>
+        <Fade in={true} timeout={3000}>
           <img
             alt=""
             className="about-image"
@@ -33,7 +33,7 @@ const ImageTwo = ({ twoClicked, handleClick }) => {
   return (
     <>
       {twoClicked && (
-        <Fade in={true} timeout={2000}>
+        <Fade in={true} timeout={3000}>
           <img
             alt=""
             className="about-image"
@@ -43,7 +43,7 @@ const ImageTwo = ({ twoClicked, handleClick }) => {
         </Fade>
       )}
       {!twoClicked && (
-        <Fade in={true} timeout={2000}>
+        <Fade in={true} timeout={3000}>
           <img
             alt=""
             className="about-image"
@@ -60,7 +60,7 @@ const ImageThree = ({ threeClicked, handleClick }) => {
   return (
     <>
       {threeClicked && (
-        <Fade in={true} timeout={2000}>
+        <Fade in={true} timeout={3000}>
           <img
             alt=""
             className="about-image"
@@ -70,7 +70,7 @@ const ImageThree = ({ threeClicked, handleClick }) => {
         </Fade>
       )}
       {!threeClicked && (
-        <Fade in={true} timeout={2000}>
+        <Fade in={true} timeout={3000}>
           <img
             alt=""
             className="about-image"
@@ -85,13 +85,9 @@ const ImageThree = ({ threeClicked, handleClick }) => {
 
 const About = ({ themeMode }) => {
   useEffect(() => {
-    if (document.getElementById("about")) {
-      document.getElementById("about").classList.add("selected");
-    }
+      document.getElementById("about")?.classList.add("selected");
       return () => {
-        if (document.getElementById("about")) {
-        document.getElementById("about").classList.remove("selected");
-      };
+        document.getElementById("about")?.classList.remove("selected");
     }
   });
   const [oneClicked, setOneClicked] = useState(true);

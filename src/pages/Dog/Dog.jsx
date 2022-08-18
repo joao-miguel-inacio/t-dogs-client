@@ -9,18 +9,12 @@ const Dog = ({ themeMode }) => {
     if (document.getElementById("dogs")) {
       document.getElementById("dogs").classList.add("selected");
       return () => {
-        if (document.getElementById("dogs")) {
-          document.getElementById("dogs").classList.remove("selected");
-        }
+        document.getElementById("dogs")?.classList.remove("selected");
       };
     } else {
-      if (document.getElementById("matchlist")) {
-        document.getElementById("matchlist").classList.add("selected");
-      }
+      document.getElementById("matchlist")?.classList.add("selected");
       return () => {
-        if (document.getElementById("matchlist")) {
-          document.getElementById("matchlist").classList.remove("selected");
-        }
+        document.getElementById("matchlist")?.classList.remove("selected");
       };
     }
   }, []);

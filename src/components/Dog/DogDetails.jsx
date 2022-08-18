@@ -70,13 +70,13 @@ const DogDetails = ({ themeMode }) => {
     if (themeMode) {
       const collection = document.getElementsByClassName("responsive-icons");
       for (let i = 0; i < collection.length; i++) {
-        collection.item(i).style.color ="white";
+        collection.item(i).style.color = "white";
       }
     }
     return () => {
       const collection = document.getElementsByClassName("responsive-icons");
       for (let i = 0; i < collection.length; i++) {
-        collection.item(i).style.color ="grey";
+        collection.item(i).style.color = "grey";
       }
     };
   }, [themeMode]);
@@ -90,9 +90,13 @@ const DogDetails = ({ themeMode }) => {
               className="dog-size-image"
               src="https://res.cloudinary.com/dvru7nv6q/image/upload/v1660689211/T-Dogs/dog-size-small-white_qdmnkw.png"
               alt="small"
+              onTouchStart={(e) =>
+                handlePopoverOpen(e, `${dogDetails.name} is a small size dog`)
+              }
               onMouseEnter={(e) =>
                 handlePopoverOpen(e, `${dogDetails.name} is a small size dog`)
               }
+              onTouchEnd={handlePopoverClose}
               onMouseLeave={handlePopoverClose}
             />
           );
@@ -102,9 +106,13 @@ const DogDetails = ({ themeMode }) => {
               className="dog-size-image"
               src="https://res.cloudinary.com/dvru7nv6q/image/upload/v1660689211/T-Dogs/dog-size-medium-white_j6nrdu.png"
               alt="medium"
+              onTouchStart={(e) =>
+                handlePopoverOpen(e, `${dogDetails.name} is a medium size dog`)
+              }
               onMouseEnter={(e) =>
                 handlePopoverOpen(e, `${dogDetails.name} is a medium size dog`)
               }
+              onTouchEnd={handlePopoverClose}
               onMouseLeave={handlePopoverClose}
             />
           );
@@ -114,9 +122,13 @@ const DogDetails = ({ themeMode }) => {
               className="dog-size-image"
               src="https://res.cloudinary.com/dvru7nv6q/image/upload/v1660689211/T-Dogs/dog-size-large-white_mmaget.png"
               alt="large"
+              onTouchStart={(e) =>
+                handlePopoverOpen(e, `${dogDetails.name} is a large size dog`)
+              }
               onMouseEnter={(e) =>
                 handlePopoverOpen(e, `${dogDetails.name} is a large size dog`)
               }
+              onTouchEnd={handlePopoverClose}
               onMouseLeave={handlePopoverClose}
             />
           );
@@ -129,9 +141,13 @@ const DogDetails = ({ themeMode }) => {
               className="dog-size-image"
               src="https://res.cloudinary.com/dvru7nv6q/image/upload/v1659517103/T-Dogs/dog-size-small_orpey4.png"
               alt="small"
+              onTouchStart={(e) =>
+                handlePopoverOpen(e, `${dogDetails.name} is a small size dog`)
+              }
               onMouseEnter={(e) =>
                 handlePopoverOpen(e, `${dogDetails.name} is a small size dog`)
               }
+              onTouchEnd={handlePopoverClose}
               onMouseLeave={handlePopoverClose}
             />
           );
@@ -141,9 +157,13 @@ const DogDetails = ({ themeMode }) => {
               className="dog-size-image"
               src="https://res.cloudinary.com/dvru7nv6q/image/upload/v1659517103/T-Dogs/dog-size-medium_qja8il.png"
               alt="medium"
+              onTouchStart={(e) =>
+                handlePopoverOpen(e, `${dogDetails.name} is a medium size dog`)
+              }
               onMouseEnter={(e) =>
                 handlePopoverOpen(e, `${dogDetails.name} is a medium size dog`)
               }
+              onTouchEnd={handlePopoverClose}
               onMouseLeave={handlePopoverClose}
             />
           );
@@ -153,9 +173,13 @@ const DogDetails = ({ themeMode }) => {
               className="dog-size-image"
               src="https://res.cloudinary.com/dvru7nv6q/image/upload/v1659517103/T-Dogs/dog-size-large_dfvdky.png"
               alt="large"
+              onTouchStart={(e) =>
+                handlePopoverOpen(e, `${dogDetails.name} is a large size dog`)
+              }
               onMouseEnter={(e) =>
                 handlePopoverOpen(e, `${dogDetails.name} is a large size dog`)
               }
+              onTouchEnd={handlePopoverClose}
               onMouseLeave={handlePopoverClose}
             />
           );
@@ -214,15 +238,23 @@ const DogDetails = ({ themeMode }) => {
                     className="color icon"
                     aria-owns={open ? "mouse-over-popover" : undefined}
                     aria-haspopup="true"
+                    onTouchStart={(e) =>
+                      handlePopoverOpen(
+                        e,
+                        `${dogDetails.name} reacts well to strangers`
+                      )
+                    }
                     onMouseEnter={(e) =>
                       handlePopoverOpen(
                         e,
                         `${dogDetails.name} reacts well to strangers`
                       )
                     }
+                    onTouchEnd={handlePopoverClose}
                     onMouseLeave={handlePopoverClose}
                   />
                   <PopOver
+                    className="popOver"
                     open={open}
                     popover={popover}
                     handlePopoverClose={handlePopoverClose}
@@ -236,15 +268,23 @@ const DogDetails = ({ themeMode }) => {
                     className="grey icon responsive-icons"
                     aria-owns={open ? "mouse-over-popover" : undefined}
                     aria-haspopup="true"
+                    onTouchStart={(e) =>
+                      handlePopoverOpen(
+                        e,
+                        `${dogDetails.name} doesn't like meeting new people`
+                      )
+                    }
                     onMouseEnter={(e) =>
                       handlePopoverOpen(
                         e,
                         `${dogDetails.name} doesn't like meeting new people`
                       )
                     }
+                    onTouchEnd={handlePopoverClose}
                     onMouseLeave={handlePopoverClose}
                   />
                   <PopOver
+                    className="popOver"
                     open={open}
                     popover={popover}
                     handlePopoverClose={handlePopoverClose}
@@ -259,15 +299,23 @@ const DogDetails = ({ themeMode }) => {
                     className="color icon"
                     aria-owns={open ? "mouse-over-popover" : undefined}
                     aria-haspopup="true"
+                    onTouchStart={(e) =>
+                      handlePopoverOpen(
+                        e,
+                        `${dogDetails.name} can live with children`
+                      )
+                    }
                     onMouseEnter={(e) =>
                       handlePopoverOpen(
                         e,
                         `${dogDetails.name} can live with children`
                       )
                     }
+                    onTouchEnd={handlePopoverClose}
                     onMouseLeave={handlePopoverClose}
                   />
                   <PopOver
+                    className="popOver"
                     open={open}
                     popover={popover}
                     handlePopoverClose={handlePopoverClose}
@@ -281,15 +329,23 @@ const DogDetails = ({ themeMode }) => {
                     className="grey icon responsive-icons"
                     aria-owns={open ? "mouse-over-popover" : undefined}
                     aria-haspopup="true"
+                    onTouchStart={(e) =>
+                      handlePopoverOpen(
+                        e,
+                        `${dogDetails.name} can not live with children`
+                      )
+                    }
                     onMouseEnter={(e) =>
                       handlePopoverOpen(
                         e,
                         `${dogDetails.name} can not live with children`
                       )
                     }
+                    onTouchEnd={handlePopoverClose}
                     onMouseLeave={handlePopoverClose}
                   />
                   <PopOver
+                    className="popOver"
                     open={open}
                     popover={popover}
                     handlePopoverClose={handlePopoverClose}
@@ -304,15 +360,23 @@ const DogDetails = ({ themeMode }) => {
                     className="color icon"
                     aria-owns={open ? "mouse-over-popover" : undefined}
                     aria-haspopup="true"
+                    onTouchStart={(e) =>
+                      handlePopoverOpen(
+                        e,
+                        `${dogDetails.name} is good with other dogs`
+                      )
+                    }
                     onMouseEnter={(e) =>
                       handlePopoverOpen(
                         e,
                         `${dogDetails.name} is good with other dogs`
                       )
                     }
+                    onTouchEnd={handlePopoverClose}
                     onMouseLeave={handlePopoverClose}
                   />
                   <PopOver
+                    className="popOver"
                     open={open}
                     popover={popover}
                     handlePopoverClose={handlePopoverClose}
@@ -326,15 +390,23 @@ const DogDetails = ({ themeMode }) => {
                     className="grey icon responsive-icons"
                     aria-owns={open ? "mouse-over-popover" : undefined}
                     aria-haspopup="true"
+                    onTouchStart={(e) =>
+                      handlePopoverOpen(
+                        e,
+                        `${dogDetails.name} is not good with other dogs`
+                      )
+                    }
                     onMouseEnter={(e) =>
                       handlePopoverOpen(
                         e,
                         `${dogDetails.name} is not good with other dogs`
                       )
                     }
+                    onTouchEnd={handlePopoverClose}
                     onMouseLeave={handlePopoverClose}
                   />
                   <PopOver
+                    className="popOver"
                     open={open}
                     popover={popover}
                     handlePopoverClose={handlePopoverClose}
@@ -351,15 +423,23 @@ const DogDetails = ({ themeMode }) => {
                     className="color icon"
                     aria-owns={open ? "mouse-over-popover" : undefined}
                     aria-haspopup="true"
+                    onTouchStart={(e) =>
+                      handlePopoverOpen(
+                        e,
+                        `${dogDetails.name} is chipped and vaccinated`
+                      )
+                    }
                     onMouseEnter={(e) =>
                       handlePopoverOpen(
                         e,
                         `${dogDetails.name} is chipped and vaccinated`
                       )
                     }
+                    onTouchEnd={handlePopoverClose}
                     onMouseLeave={handlePopoverClose}
                   />
                   <PopOver
+                    className="popOver"
                     open={open}
                     popover={popover}
                     handlePopoverClose={handlePopoverClose}
@@ -373,15 +453,23 @@ const DogDetails = ({ themeMode }) => {
                     className="grey icon responsive-icons"
                     aria-owns={open ? "mouse-over-popover" : undefined}
                     aria-haspopup="true"
+                    onTouchStart={(e) =>
+                      handlePopoverOpen(
+                        e,
+                        `${dogDetails.name} is not chipped and vaccinated`
+                      )
+                    }
                     onMouseEnter={(e) =>
                       handlePopoverOpen(
                         e,
                         `${dogDetails.name} is not chipped and vaccinated`
                       )
                     }
+                    onTouchEnd={handlePopoverClose}
                     onMouseLeave={handlePopoverClose}
                   />
                   <PopOver
+                    className="popOver"
                     open={open}
                     popover={popover}
                     handlePopoverClose={handlePopoverClose}
@@ -396,12 +484,17 @@ const DogDetails = ({ themeMode }) => {
                     className="color icon"
                     aria-owns={open ? "mouse-over-popover" : undefined}
                     aria-haspopup="true"
+                    onTouchStart={(e) =>
+                      handlePopoverOpen(e, `${dogDetails.name} loves to play`)
+                    }
                     onMouseEnter={(e) =>
                       handlePopoverOpen(e, `${dogDetails.name} loves to play`)
                     }
+                    onTouchEnd={handlePopoverClose}
                     onMouseLeave={handlePopoverClose}
                   />
                   <PopOver
+                    className="popOver"
                     open={open}
                     popover={popover}
                     handlePopoverClose={handlePopoverClose}
@@ -415,15 +508,23 @@ const DogDetails = ({ themeMode }) => {
                     className="grey icon responsive-icons"
                     aria-owns={open ? "mouse-over-popover" : undefined}
                     aria-haspopup="true"
+                    onTouchStart={(e) =>
+                      handlePopoverOpen(
+                        e,
+                        `${dogDetails.name} likes quiet and peacefulness`
+                      )
+                    }
                     onMouseEnter={(e) =>
                       handlePopoverOpen(
                         e,
                         `${dogDetails.name} likes quiet and peacefulness`
                       )
                     }
+                    onTouchEnd={handlePopoverClose}
                     onMouseLeave={handlePopoverClose}
                   />
                   <PopOver
+                    className="popOver"
                     open={open}
                     popover={popover}
                     handlePopoverClose={handlePopoverClose}
@@ -438,15 +539,23 @@ const DogDetails = ({ themeMode }) => {
                     className="color icon"
                     aria-owns={open ? "mouse-over-popover" : undefined}
                     aria-haspopup="true"
+                    onTouchStart={(e) =>
+                      handlePopoverOpen(
+                        e,
+                        `${dogDetails.name} requires an experienced owner`
+                      )
+                    }
                     onMouseEnter={(e) =>
                       handlePopoverOpen(
                         e,
                         `${dogDetails.name} requires an experienced owner`
                       )
                     }
+                    onTouchEnd={handlePopoverClose}
                     onMouseLeave={handlePopoverClose}
                   />
                   <PopOver
+                    className="popOver"
                     open={open}
                     popover={popover}
                     handlePopoverClose={handlePopoverClose}
@@ -460,15 +569,23 @@ const DogDetails = ({ themeMode }) => {
                     className="grey icon responsive-icons"
                     aria-owns={open ? "mouse-over-popover" : undefined}
                     aria-haspopup="true"
+                    onTouchStart={(e) =>
+                      handlePopoverOpen(
+                        e,
+                        `${dogDetails.name} does not require an experienced owner`
+                      )
+                    }
                     onMouseEnter={(e) =>
                       handlePopoverOpen(
                         e,
                         `${dogDetails.name} does not require an experienced owner`
                       )
                     }
+                    onTouchEnd={handlePopoverClose}
                     onMouseLeave={handlePopoverClose}
                   />
                   <PopOver
+                    className="popOver"
                     open={open}
                     popover={popover}
                     handlePopoverClose={handlePopoverClose}

@@ -12,9 +12,7 @@ const OwnList = () => {
   const [filter, setFilter] = useState("both");
 
   useEffect(() => {
-    if (document.getElementById("dogs")) {
-      document.getElementById("dogs").classList.add("selected");
-    }
+      document.getElementById("dogs")?.classList.add("selected");
     const getOwnDogs = async () => {
       try {
         const storedToken = localStorage.getItem("authToken");
@@ -29,9 +27,7 @@ const OwnList = () => {
     };
     getOwnDogs();
     return () => {
-      if (document.getElementById("dogs")) {
-        document.getElementById("dogs").classList.remove("selected");
-      }
+        document.getElementById("dogs")?.classList.remove("selected");
     };
   }, []);
 
