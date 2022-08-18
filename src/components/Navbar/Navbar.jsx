@@ -218,6 +218,11 @@ const Navbar = ({ themeMode, setThemeMode }) => {
         </NavLink>
         <div className="right-navbar-container">
           <IconButton
+            className={
+                    isHomePage
+                      ? "animated-menu-button"
+                      : ""
+                  }
             onClick={() => changeTheme()}
             sx={{ ml: 1 }}
             color="inherit"
@@ -230,10 +235,9 @@ const Navbar = ({ themeMode, setThemeMode }) => {
           </IconButton>
           <div>
             <IconButton
-              className={isHomePage ? "animated-menu-button" : ""}
               onClick={handleClick}
             >
-              <MenuRoundedIcon fontSize="large" style={{ color: "black" }} />
+              <MenuRoundedIcon fontSize="large" className={isHomePage ? "animated-menu-button" : ""} />
             </IconButton>
             <StyledMenu
               id="demo-customized-menu"
