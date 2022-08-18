@@ -166,21 +166,21 @@ const Navbar = ({ themeMode, setThemeMode }) => {
           )}
         </div>
         <div className="right-navbar-container">
-          {!isHomePage ? 
-          <IconButton
-            onClick={() => changeTheme()}
-            sx={{ ml: 1 }}
-            color="inherit"
-          >
-            {themeMode ? (
-              <Brightness4Icon  style={{ color: "#000" }} />
-            ) : (
-              <Brightness7Icon />
-            )}
-          </IconButton>
-          :
-          ""
-          }
+          {!isHomePage ? (
+            <IconButton
+              onClick={() => changeTheme()}
+              sx={{ ml: 1 }}
+              color="inherit"
+            >
+              {themeMode ? (
+                <Brightness4Icon style={{ color: "#000" }} />
+              ) : (
+                <Brightness7Icon />
+              )}
+            </IconButton>
+          ) : (
+            ""
+          )}
 
           {isLoggedIn && (
             <Button
@@ -188,7 +188,9 @@ const Navbar = ({ themeMode, setThemeMode }) => {
               variant="contained"
               endIcon={<LogoutIcon />}
               onClick={removeUser}
-            >     Sign Out
+            >
+              {" "}
+              Sign Out
             </Button>
           )}
           {!isLoggedIn && isSignInPage ? (
@@ -217,27 +219,28 @@ const Navbar = ({ themeMode, setThemeMode }) => {
           />
         </NavLink>
         <div className="right-navbar-container">
-          <IconButton
-            className={
-                    isHomePage
-                      ? "animated-menu-button"
-                      : ""
-                  }
-            onClick={() => changeTheme()}
-            sx={{ ml: 1 }}
-            color="inherit"
-          >
-            {themeMode ? (
-              <Brightness4Icon style={{ color: "#000" }} />
-            ) : (
-              <Brightness7Icon />
-            )}
-          </IconButton>
-          <div>
+          {isHomePage ? (
+            ""
+          ) : (
             <IconButton
-              onClick={handleClick}
+              onClick={() => changeTheme()}
+              sx={{ ml: 1 }}
+              color="inherit"
             >
-              <MenuRoundedIcon fontSize="large" className={isHomePage ? "animated-menu-button" : ""} />
+              {themeMode ? (
+                <Brightness4Icon style={{ color: "#000" }} />
+              ) : (
+                <Brightness7Icon />
+              )}
+            </IconButton>
+          )}
+
+          <div>
+            <IconButton onClick={handleClick}>
+              <MenuRoundedIcon
+                fontSize="large"
+                className={isHomePage ? "animated-menu-button" : "menu-button"}
+              />
             </IconButton>
             <StyledMenu
               id="demo-customized-menu"
@@ -352,7 +355,7 @@ const Navbar = ({ themeMode, setThemeMode }) => {
                   <Divider sx={{ my: 0.5 }} />
                   <MenuItem
                     onClick={() => {
-		                  handleClose();
+                      handleClose();
                       removeUser();
                     }}
                     disableRipple

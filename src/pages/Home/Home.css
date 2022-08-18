@@ -15,6 +15,9 @@
     display: flex;
     align-items: center;
 }
+.menu-button {
+    color: black;
+}
 .animated-navlink-item,
 .animated-menu-button {
     animation: changeColor 60s infinite;
