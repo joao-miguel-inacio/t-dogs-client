@@ -21,7 +21,7 @@ const Browse = () => {
   const [touchEnd, setTouchEnd] = useState(0);
 
   useEffect(() => {
-    if(document.getElementById("browse")){
+    if (document.getElementById("browse")) {
       document.getElementById("browse").classList.add("selected");
     }
     const fetchAvailableDogs = async () => {
@@ -47,7 +47,9 @@ const Browse = () => {
     };
     fetchProfileData();
     return () => {
-      document.getElementById("browse").classList.remove("selected");
+      if (document.getElementById("browse")) {
+        document.getElementById("browse").classList.remove("selected");
+      }
     };
   }, []);
   const moveToNextDog = () => {
@@ -62,31 +64,37 @@ const Browse = () => {
     setTimeout(moveToNextDog, 1500);
   };
   const handleRightClick = async () => {
-    console.log("currentDog.childFriendly", currentDog.childFriendly)
-    console.log("user.hasChildren", user.hasChildren)
+    console.log("currentDog.childFriendly", currentDog.childFriendly);
+    console.log("user.hasChildren", user.hasChildren);
     if (
       (currentDog.childFriendly && user.hasChildren) ||
       user.hasChildren === false
     ) {
-      console.log("currentDog.requiresExperience", currentDog.requiresExperience)
-      console.log("user.hasExperience", user.hasExperience)
+      console.log(
+        "currentDog.requiresExperience",
+        currentDog.requiresExperience
+      );
+      console.log("user.hasExperience", user.hasExperience);
       if (
         (currentDog.requiresExperience && user.hasExperience) ||
         currentDog.requiresExperience === false
       ) {
-        console.log("currentDog.goodWithOtherDogs", currentDog.goodWithOtherDogs)
-        console.log("user.hasPets", user.hasPets)
+        console.log(
+          "currentDog.goodWithOtherDogs",
+          currentDog.goodWithOtherDogs
+        );
+        console.log("user.hasPets", user.hasPets);
         if (
           (user.hasPets && currentDog.goodWithOtherDogs) ||
           user.hasPets === false
         ) {
-          console.log("currentDog.price", currentDog.price)
-            console.log("user.willingToPay", user.willingToPay)
+          console.log("currentDog.price", currentDog.price);
+          console.log("user.willingToPay", user.willingToPay);
           if (
             (currentDog.price > 0 && user.willingToPay) ||
             currentDog.price === 0
           ) {
-            console.log("MATCH")
+            console.log("MATCH");
             // setAble(false);
             // setOpen(true);
             // const storedToken = localStorage.getItem("authToken");
