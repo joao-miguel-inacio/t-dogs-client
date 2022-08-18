@@ -28,6 +28,7 @@ const FormProfileEdit = () => {
     phoneNumber: "",
     profilePicture: "",
   });
+
   const [image, setImage] = useState(null);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
@@ -82,7 +83,11 @@ const FormProfileEdit = () => {
           </Typography>
           <div className="avatar-container">
             <Avatar
-              src={image ? window.URL.createObjectURL(image) : userData.profilePicture}              
+              src={
+                image
+                  ? window.URL.createObjectURL(image)
+                  : userData.profilePicture
+              }
               alt={userData.name}
               sx={{ width: 156, height: 156 }}
             />
@@ -144,7 +149,7 @@ const FormProfileEdit = () => {
                 />
               </div>
 
-              { userData.userType === "isBuyer" ? (
+              {userData.userType === "isBuyer" ? (
                 ""
               ) : (
                 <div className="input-container">
@@ -152,7 +157,7 @@ const FormProfileEdit = () => {
                     <LocalPhoneIcon />
                   </Icon>
                   <TextField
-                    type="tel"
+                    type="number"
                     name="phoneNumber"
                     label="Phone"
                     value={userData.phoneNumber}
@@ -163,7 +168,7 @@ const FormProfileEdit = () => {
               )}
             </div>
 
-            { userData.userType === "isBuyer"  ? (
+            {userData.userType === "isBuyer" ? (
               <>
                 <div className="form-container">
                   <Typography variant="h5" className="question-text">
