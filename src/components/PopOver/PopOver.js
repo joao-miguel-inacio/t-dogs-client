@@ -1,6 +1,7 @@
 import React from 'react';
 import Popover from "@mui/material/Popover";
 import Typography from '@mui/material/Typography';
+import "./PopOver.css";
 
 const PopOver = ({open, popover, handlePopoverClose, popOverMessage}) => {
   return (

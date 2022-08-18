@@ -15,10 +15,10 @@ import BadgeIcon from "@mui/icons-material/Badge";
 import EmailIcon from "@mui/icons-material/Email";
 import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
-import PopOver from "../../components/PopOver";
 import { Avatar, Button } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import { Link } from "react-router-dom";
+import PopOver from "../../components/PopOver/PopOver";
 
 const DogDetails = ({ themeMode }) => {
   const { id } = useParams();
@@ -117,6 +117,22 @@ const DogDetails = ({ themeMode }) => {
               onMouseLeave={handlePopoverClose}
             />
           );
+          default:
+            return (
+              <img
+                className="dog-size-image"
+                src="https://res.cloudinary.com/dvru7nv6q/image/upload/v1660689211/T-Dogs/dog-size-medium-white_j6nrdu.png"
+                alt="medium"
+                onTouchStart={(e) =>
+                  handlePopoverOpen(e, `${dogDetails.name} is a medium size dog`)
+                }
+                onMouseEnter={(e) =>
+                  handlePopoverOpen(e, `${dogDetails.name} is a medium size dog`)
+                }
+                onTouchEnd={handlePopoverClose}
+                onMouseLeave={handlePopoverClose}
+              />
+            );
       }
     } else {
       switch (size) {
@@ -168,6 +184,22 @@ const DogDetails = ({ themeMode }) => {
               onMouseLeave={handlePopoverClose}
             />
           );
+          default:
+            return (
+              <img
+                className="dog-size-image"
+                src="https://res.cloudinary.com/dvru7nv6q/image/upload/v1659517103/T-Dogs/dog-size-medium_qja8il.png"
+                alt="medium"
+                onTouchStart={(e) =>
+                  handlePopoverOpen(e, `${dogDetails.name} is a medium size dog`)
+                }
+                onMouseEnter={(e) =>
+                  handlePopoverOpen(e, `${dogDetails.name} is a medium size dog`)
+                }
+                onTouchEnd={handlePopoverClose}
+                onMouseLeave={handlePopoverClose}
+              />
+            );
       }
     }
   };

@@ -14,7 +14,7 @@ import EuroIcon from "@mui/icons-material/Euro";
 import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
 import "./Profile.css";
 import Navbar2 from "../../components/Navbar2/Navbar2";
-import PopOver from "../../components/PopOver";
+import PopOver from "../../components/PopOver/PopOver";
 
 const Profile = ({ themeMode }) => {
   const [user, setUser] = useState({});
