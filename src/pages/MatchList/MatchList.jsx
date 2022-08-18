@@ -5,6 +5,7 @@ import Navbar2 from "../../components/Navbar2/Navbar2";
 import DogList from "../../components/DogList/DogList";
 import { Button, ButtonGroup } from "@mui/material";
 
+
 const MatchList = ({ themeMode }) => {
   const [matchedDogs, setMatchedDogs] = useState();
   const [selectedDogs, setSelectedDogs] = useState();
@@ -20,10 +21,7 @@ const MatchList = ({ themeMode }) => {
   useEffect(() => {
     const getMatchedDogs = async () => {
       try {
-        const storedToken = localStorage.getItem("authToken");
-        const response = await service.get(`/user/matchlist`, {
-          headers: { Authorization: `Bearer ${storedToken}` },
-        });
+        const response = await service.getMatchList();
         setMatchedDogs(response.data);
         setSelectedDogs(response.data);
       } catch (error) {

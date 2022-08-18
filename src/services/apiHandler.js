@@ -45,19 +45,6 @@ service.isLoggedIn = async () => {
   }
 };
 
-/* service.dogCreate = async (data) => {
-  try {
-    const storedToken = localStorage.getItem("authToken");
-    const { newDog } = await service.post("/owner", data, {
-      headers: { Authorization: `Bearer ${storedToken}` },
-    });
-  
-    return newDog;
-  } catch (error) {
-    errorHandler(error);
-  }
-}; */
-
 service.dogCreate = async (dog) => {
   try {
     const { dogCreate } = await service.post("/owner", dog);
@@ -94,8 +81,6 @@ service.getUserInfo = async () => {
   }
 };
 
-// get profile Data
-
 service.editProfile = async (data) => {
   try {
     const storedToken = localStorage.getItem("authToken");
@@ -108,6 +93,17 @@ service.editProfile = async (data) => {
   }
 };
 
+service.getMatchList = async () => {
+  try {
+    const storedToken = localStorage.getItem("authToken");
+    const response = await service.get(`/user/matchlist`, {
+      headers: { Authorization: `Bearer ${storedToken}` },
+    });
+    return response;
+  } catch (error) {
+    errorHandler(error);
+  }
+};
 //! Error handling to use in the catch
 function errorHandler(error) {
   if (error.response.data) {
