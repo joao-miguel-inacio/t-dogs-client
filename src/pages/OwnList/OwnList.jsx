@@ -6,7 +6,7 @@ import DogList from "../../components/DogList/DogList";
 import { Link } from "react-router-dom";
 import { Button, ButtonGroup } from "@mui/material";
 
-const OwnList = () => {
+const OwnList = ({themeMode}) => {
   const [ownDogs, setOwnDogs] = useState();
   const [selectedDogs, setSelectedDogs] = useState();
   const [filter, setFilter] = useState("both");
@@ -56,6 +56,41 @@ const OwnList = () => {
         >
           Create A Dog
         </Button>
+        {themeMode ? 
+        <ButtonGroup variant="outlined">
+          <Button
+            name="adopted"
+            onClick={handleClick}
+            className={
+              filter === "adopted"
+                ? "white outlined-button clicked"
+                : "white outlined-button"
+            }
+          >
+            Adopted
+          </Button>
+          <Button
+            name="available"
+            onClick={handleClick}
+            className={
+              filter === "available"
+                ? "white outlined-button clicked"
+                : "white outlined-button"
+            }
+          >
+            Available
+          </Button>
+          <Button
+            name="both"
+            onClick={handleClick}
+            className={
+              filter === "both" ? "white outlined-button clicked" : "white outlined-button"
+            }
+          >
+            Both
+          </Button>
+        </ButtonGroup>
+        :
         <ButtonGroup variant="outlined">
           <Button
             name="adopted"
@@ -89,8 +124,9 @@ const OwnList = () => {
             Both
           </Button>
         </ButtonGroup>
+        }
       </div>
-      <DogList dogs={selectedDogs} owner={true} />
+      <DogList dogs={selectedDogs} owner={true} themeMode={themeMode} />
     </div>
   );
 };

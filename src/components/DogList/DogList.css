@@ -57,6 +57,9 @@
     #ff655b
   ) !important;
 }
+.white{
+  color: white !important;
+}
 @media screen and (min-width: 481px) {
   .card {
     flex-direction: row;
