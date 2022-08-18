@@ -93,6 +93,18 @@ service.editProfile = async (data) => {
   }
 };
 
+service.getOwnList = async () => {
+  try{
+    const storedToken = localStorage.getItem("authToken");
+        const response = await service.get(`/owner`, {
+          headers: { Authorization: `Bearer ${storedToken}` },
+        });
+        return response;
+  } catch (error) {
+    errorHandler(error);
+  }
+};
+
 service.getMatchList = async () => {
   try {
     const storedToken = localStorage.getItem("authToken");

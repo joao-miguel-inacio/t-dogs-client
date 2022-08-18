@@ -6,19 +6,16 @@ import DogList from "../../components/DogList/DogList";
 import { Link } from "react-router-dom";
 import { Button, ButtonGroup } from "@mui/material";
 
-const OwnList = ({themeMode}) => {
+const OwnList = ({ themeMode }) => {
   const [ownDogs, setOwnDogs] = useState();
   const [selectedDogs, setSelectedDogs] = useState();
   const [filter, setFilter] = useState("both");
 
   useEffect(() => {
-      document.getElementById("dogs")?.classList.add("selected");
+    document.getElementById("dogs")?.classList.add("selected");
     const getOwnDogs = async () => {
       try {
-        const storedToken = localStorage.getItem("authToken");
-        const response = await service.get(`/owner`, {
-          headers: { Authorization: `Bearer ${storedToken}` },
-        });
+        const response = await service.getOwnList();
         setOwnDogs(response.data);
         setSelectedDogs(response.data);
       } catch (error) {
@@ -27,7 +24,7 @@ const OwnList = ({themeMode}) => {
     };
     getOwnDogs();
     return () => {
-        document.getElementById("dogs")?.classList.remove("selected");
+      document.getElementById("dogs")?.classList.remove("selected");
     };
   }, []);
 
@@ -56,75 +53,79 @@ const OwnList = ({themeMode}) => {
         >
           Create A Dog
         </Button>
-        {themeMode ? 
-        <ButtonGroup variant="outlined">
-          <Button
-            name="adopted"
-            onClick={handleClick}
-            className={
-              filter === "adopted"
-                ? "white outlined-button clicked"
-                : "white outlined-button"
-            }
-          >
-            Adopted
-          </Button>
-          <Button
-            name="available"
-            onClick={handleClick}
-            className={
-              filter === "available"
-                ? "white outlined-button clicked"
-                : "white outlined-button"
-            }
-          >
-            Available
-          </Button>
-          <Button
-            name="both"
-            onClick={handleClick}
-            className={
-              filter === "both" ? "white outlined-button clicked" : "white outlined-button"
-            }
-          >
-            Both
-          </Button>
-        </ButtonGroup>
-        :
-        <ButtonGroup variant="outlined">
-          <Button
-            name="adopted"
-            onClick={handleClick}
-            className={
-              filter === "adopted"
-                ? "outlined-button clicked"
-                : "outlined-button"
-            }
-          >
-            Adopted
-          </Button>
-          <Button
-            name="available"
-            onClick={handleClick}
-            className={
-              filter === "available"
-                ? "outlined-button clicked"
-                : "outlined-button"
-            }
-          >
-            Available
-          </Button>
-          <Button
-            name="both"
-            onClick={handleClick}
-            className={
-              filter === "both" ? "outlined-button clicked" : "outlined-button"
-            }
-          >
-            Both
-          </Button>
-        </ButtonGroup>
-        }
+        {themeMode ? (
+          <ButtonGroup variant="outlined">
+            <Button
+              name="adopted"
+              onClick={handleClick}
+              className={
+                filter === "adopted"
+                  ? "white outlined-button clicked"
+                  : "white outlined-button"
+              }
+            >
+              Adopted
+            </Button>
+            <Button
+              name="available"
+              onClick={handleClick}
+              className={
+                filter === "available"
+                  ? "white outlined-button clicked"
+                  : "white outlined-button"
+              }
+            >
+              Available
+            </Button>
+            <Button
+              name="both"
+              onClick={handleClick}
+              className={
+                filter === "both"
+                  ? "white outlined-button clicked"
+                  : "white outlined-button"
+              }
+            >
+              Both
+            </Button>
+          </ButtonGroup>
+        ) : (
+          <ButtonGroup variant="outlined">
+            <Button
+              name="adopted"
+              onClick={handleClick}
+              className={
+                filter === "adopted"
+                  ? "outlined-button clicked"
+                  : "outlined-button"
+              }
+            >
+              Adopted
+            </Button>
+            <Button
+              name="available"
+              onClick={handleClick}
+              className={
+                filter === "available"
+                  ? "outlined-button clicked"
+                  : "outlined-button"
+              }
+            >
+              Available
+            </Button>
+            <Button
+              name="both"
+              onClick={handleClick}
+              className={
+                filter === "both"
+                  ? "outlined-button clicked"
+                  : "outlined-button"
+              }
+            >
+              Both
+            </Button>
+          </ButtonGroup>
+        )}
       </div>
       <DogList dogs={selectedDogs} owner={true} themeMode={themeMode} />
     </div>
