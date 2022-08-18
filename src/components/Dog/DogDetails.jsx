@@ -66,21 +66,6 @@ const DogDetails = ({ themeMode }) => {
     fetchData();
   }, []);
 
-  useEffect(() => {
-    if (themeMode) {
-      const collection = document.getElementsByClassName("responsive-icons");
-      for (let i = 0; i < collection.length; i++) {
-        collection.item(i).style.color = "white";
-      }
-    }
-    return () => {
-      const collection = document.getElementsByClassName("responsive-icons");
-      for (let i = 0; i < collection.length; i++) {
-        collection.item(i).style.color = "grey";
-      }
-    };
-  }, [themeMode]);
-
   const displayDogSize = (size) => {
     if (themeMode) {
       switch (size) {
@@ -267,8 +252,8 @@ const DogDetails = ({ themeMode }) => {
                     fontSize="large"
                     className={
                       themeMode
-                        ? "white icon responsive-icons"
-                        : "grey icon responsive-icons"
+                        ? "white icon"
+                        : "grey icon"
                     }
                     aria-owns={open ? "mouse-over-popover" : undefined}
                     aria-haspopup="true"
@@ -332,8 +317,8 @@ const DogDetails = ({ themeMode }) => {
                     fontSize="large"
                     className={
                       themeMode
-                        ? "white icon responsive-icons"
-                        : "grey icon responsive-icons"
+                        ? "white icon"
+                        : "grey icon"
                     }
                     aria-owns={open ? "mouse-over-popover" : undefined}
                     aria-haspopup="true"
@@ -397,8 +382,8 @@ const DogDetails = ({ themeMode }) => {
                     fontSize="large"
                     className={
                       themeMode
-                        ? "white icon responsive-icons"
-                        : "grey icon responsive-icons"
+                        ? "white icon"
+                        : "grey icon"
                     }
                     aria-owns={open ? "mouse-over-popover" : undefined}
                     aria-haspopup="true"
@@ -464,8 +449,8 @@ const DogDetails = ({ themeMode }) => {
                     fontSize="large"
                     className={
                       themeMode
-                        ? "white icon responsive-icons"
-                        : "grey icon responsive-icons"
+                        ? "white icon"
+                        : "grey icon"
                     }
                     aria-owns={open ? "mouse-over-popover" : undefined}
                     aria-haspopup="true"
@@ -523,8 +508,8 @@ const DogDetails = ({ themeMode }) => {
                     fontSize="large"
                     className={
                       themeMode
-                        ? "white icon responsive-icons"
-                        : "grey icon responsive-icons"
+                        ? "white icon"
+                        : "grey icon"
                     }
                     aria-owns={open ? "mouse-over-popover" : undefined}
                     aria-haspopup="true"
@@ -588,8 +573,8 @@ const DogDetails = ({ themeMode }) => {
                     fontSize="large"
                     className={
                       themeMode
-                        ? "white icon responsive-icons"
-                        : "grey icon responsive-icons"
+                        ? "white icon"
+                        : "grey icon"
                     }
                     aria-owns={open ? "mouse-over-popover" : undefined}
                     aria-haspopup="true"

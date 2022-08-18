@@ -48,21 +48,6 @@ const Profile = ({ themeMode }) => {
     };
   }, []);
 
-  useEffect(() => {
-    if (themeMode) {
-      const collection = document.getElementsByClassName("responsive-icons");
-      for (let i = 0; i < collection.length; i++) {
-        collection.item(i).style.color = "white";
-      }
-    }
-    return () => {
-      const collection = document.getElementsByClassName("responsive-icons");
-      for (let i = 0; i < collection.length; i++) {
-        collection.item(i).style.color = "grey";
-      }
-    };
-  }, [themeMode]);
-
   const displayUserData = () => {
     return (
       <>
@@ -74,7 +59,7 @@ const Profile = ({ themeMode }) => {
             sx={{ width: 224, height: 224 }}
           />
           <div className="small-container">
-            <div className="smaller-container grey responsive-icons">
+            <div className="smaller-container grey">
               <Icon className="icon">
                 <PersonIcon />
               </Icon>
@@ -83,7 +68,7 @@ const Profile = ({ themeMode }) => {
             <p className="user-info">{user.name}</p>
           </div>
           <div className="small-container">
-            <div className="smaller-container grey responsive-icons">
+            <div className="smaller-container grey">
               <Icon className="icon">
                 <LocationOnIcon />
               </Icon>
@@ -95,7 +80,7 @@ const Profile = ({ themeMode }) => {
           {user.description ? (
             <>
               <div className="small-container">
-                <div className="smaller-container grey responsive-icons">
+                <div className="smaller-container grey">
                   <Icon className="icon">
                     <InfoIcon />
                   </Icon>
@@ -136,8 +121,8 @@ const Profile = ({ themeMode }) => {
                   <SchoolIcon
                     className={
                       themeMode
-                        ? "white user-details responsive-icons"
-                        : "grey user-details responsive-icons"
+                        ? "white user-details"
+                        : "grey user-details"
                     }
                     aria-owns={open ? "mouse-over-popover" : undefined}
                     aria-haspopup="true"
@@ -184,8 +169,8 @@ const Profile = ({ themeMode }) => {
                     id="icon"
                     className={
                       themeMode
-                        ? "white user-details responsive-icons"
-                        : "grey user-details responsive-icons"
+                        ? "white user-details"
+                        : "grey user-details"
                     }
                     aria-owns={open ? "mouse-over-popover" : undefined}
                     aria-haspopup="true"
@@ -232,8 +217,8 @@ const Profile = ({ themeMode }) => {
                     id="icon"
                     className={
                       themeMode
-                        ? "white user-details responsive-icons"
-                        : "grey user-details responsive-icons"
+                        ? "white user-details"
+                        : "grey user-details"
                     }
                     aria-owns={open ? "mouse-over-popover" : undefined}
                     aria-haspopup="true"
@@ -280,8 +265,8 @@ const Profile = ({ themeMode }) => {
                     id="icon"
                     className={
                       themeMode
-                        ? "white user-details responsive-icons"
-                        : "grey user-details responsive-icons"
+                        ? "white user-details"
+                        : "grey user-details"
                     }
                     aria-owns={open ? "mouse-over-popover" : undefined}
                     aria-haspopup="true"
@@ -306,7 +291,7 @@ const Profile = ({ themeMode }) => {
             <>
               {user.phoneNumber ? (
                 <div className="small-container">
-                  <div className="smaller-container grey responsive-icons">
+                  <div className="smaller-container grey">
                     <Icon className="icon">
                       <LocalPhoneIcon />
                     </Icon>
