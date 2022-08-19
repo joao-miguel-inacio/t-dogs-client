@@ -223,8 +223,8 @@ dog - Schema.Types.ObjectId // ref: "Dog"
 
 ### Git
 
-[Client repository Link](https://github.com/joaoMiguelInacio/t-dogs-client)
-[Server repository Link](https://github.com/joaoMiguelInacio/t-dogs-server)
+- [Client repository Link](https://github.com/joaoMiguelInacio/t-dogs-client)
+- [Server repository Link](https://github.com/joaoMiguelInacio/t-dogs-server)
 
 ### Prezi
 
