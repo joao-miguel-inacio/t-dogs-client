@@ -219,7 +219,7 @@ dog - Schema.Types.ObjectId // ref: "Dog"
 
 ### Trello
 
-[Trello](https://trello.com/b/VrglkNq4/t-dogs))
+[Trello](https://trello.com/b/VrglkNq4/t-dogs)
 
 ### Git
 
