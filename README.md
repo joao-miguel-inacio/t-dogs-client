@@ -85,15 +85,15 @@ This will be based on what the buyers and the dog's needs are.
 | Owner         |            |                           |                                              |
 | /own-list     |  OwnList   | user only <PrivateRoute>  | Shows a list with all the dogs owned by the logged in owner. Each dog has a link to a page displaying its own details and a link to edit. |
 | /dog-create   |  DogCreate | user only <PrivateRoute>  | Shows a list with all the dogs owned by the logged in owner. Each dog has a link to a page displaying its own details and a link to edit. |
-| /:id/dog-edit |  DogEdit   | user only <PrivateRoute>  | Shows a list with all the dogs owned by the logged in owner. Each dog has a link to a page displaying its own details and a link to edit. |
+| /:id/dog-edit |  DogEdit   | user only <PrivateRoute>  | Dog edit form, navigate to dog own list after editing. |
 |               |            |                           |                                                    |
 | Buyer         |            |                           |                                              |
-| /browse       |  Browse    | user only <PrivateRoute>  | Shows a list with all the dogs owned by the logged in owner. Each dog has a link to a page displaying its own details and a link to edit. |
+| /browse       |  Browse    | user only <PrivateRoute>  | Shows all available dogs, one at a time. User can drag left (desktop) or swipe left (mobile) or click the left button to dislike a dog. User can drag right (desktop) or swipe right (mobile) or click the right button to like a dog. Liking a dog is following by testing the compability between the dog and the user logged in and if they are deemed compatible a message pops up saying "It is a Match". If is it a Match, the dog is added to the logged in user's matchList. |
 | /match-list   |  MatchList | user only <PrivateRoute>  | Shows a list with all the dogs matched with the logged in buyer. Each dog has a link to a page displaying its own details. |
-| /no-more-dogs |  NotFound  | user only <PrivateRoute>  |  |
+| /no-more-dogs |  NotFound  | user only <PrivateRoute>  |  Shows a page with a message saying there are no more dogs to display in browse.|
 |               |            |                           |                |
 | Common        |            |                           |                                                    |
-| /*            | NotFound   | public <Route>            | redirect to DogDetails                             |
+| /*            | NotFound   | public <Route>            | Shows a page with a Not Found Message and a link to homepage. |
 
 ## Components
 
