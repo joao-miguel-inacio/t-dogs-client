@@ -69,6 +69,32 @@ This will be based on what the buyers and the dog's needs are.
 
 ## Routes
 
+| Path          | Element    | Permissions              | Behaviour                                          |
+| ------------- | :-------:  | ------------------------ | -------------------------------------------------- |
+| /             |    Home    | public <Route>           | HomePage                                           |
+| /about        |    About   | public <Route>           | Shows a welcome page with information on who is the app designed to and  how to use it.|
+|               |            |                          |                                                    |
+| /signup       |   Signup   | anon only <Route>        | Sign up form, link to sign in, navigate to signin after signup.|
+| /signin       |   Signin   | anon only <Route>         | Sign in form, link to sign up, navigate to homepage after login.|
+|               |            |                           |                                                    |
+| Common        |            |                           |                                                    |
+| /:id          |    Dog     | user only <PrivateRoute>  | Shows a page with all the dog details. If user is the dog owner, a button to edit this dog is shown. If user is a buyer a section with the dog owner's details is shown. |
+| /profile      |Profile     | user only <PrivateRoute>  | Shows the user own profile and a link to edit.     |
+| /profile-edit |ProfileEdit | user only <PrivateRoute>  | Profile edit form, navigate to profile after editing. |
+|               |            |                           |                                                    |
+| Owner         |            |                           |                                              |
+| /own-list     |  OwnList   | user only <PrivateRoute>  | Shows a list with all the dogs owned by the logged in owner. Each dog has a link to a page displaying its own details and a link to edit. |
+| /dog-create   |  DogCreate | user only <PrivateRoute>  | Shows a list with all the dogs owned by the logged in owner. Each dog has a link to a page displaying its own details and a link to edit. |
+| /:id/dog-edit |  DogEdit   | user only <PrivateRoute>  | Shows a list with all the dogs owned by the logged in owner. Each dog has a link to a page displaying its own details and a link to edit. |
+|               |            |                           |                                                    |
+| Buyer         |            |                           |                                              |
+| /browse       |  Browse    | user only <PrivateRoute>  | Shows a list with all the dogs owned by the logged in owner. Each dog has a link to a page displaying its own details and a link to edit. |
+| /match-list   |  MatchList | user only <PrivateRoute>  | Shows a list with all the dogs matched with the logged in buyer. Each dog has a link to a page displaying its own details. |
+| /no-more-dogs |  NotFound  | user only <PrivateRoute>  |  |
+|               |            |                           |                |
+| Common        |            |                           |                                                    |
+| /*            | NotFound   | public <Route>            | redirect to DogDetails                             |
+
 ## Components
 
 ## Services
