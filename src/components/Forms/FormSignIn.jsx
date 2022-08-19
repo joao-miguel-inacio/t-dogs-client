@@ -25,8 +25,8 @@ const FormSignIn = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await service.signin(user);
-      storeToken(res.authToken);
+      const response = await service.signin(user);
+      storeToken(response.authToken);
       await authenticateUser();
       navigate("/");
     } catch (error) {

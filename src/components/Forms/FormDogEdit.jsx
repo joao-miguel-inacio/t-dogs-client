@@ -47,7 +47,7 @@ const FormDogEdit = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const { data } = await service.get(`common/${id}`);
+        const { data } = await service.getDogInfo(id);
         setDog(data.dog);
       } catch (error) {
         console.log(error);
@@ -63,15 +63,12 @@ const FormDogEdit = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const storedToken = localStorage.getItem("authToken");
       const dogData = new FormData();
       dogData.append("image", image);
       for (const [key, value] of Object.entries(dog)) {
         dogData.append(key, value);
       }
-      await service.put(`/owner/${id}`, dogData, {
-        headers: { Authorization: `Bearer ${storedToken}` },
-      });
+      await service.dogEdit(id, dogData);
       navigate("/own-list");
     } catch (error) {
       setError(error.message);

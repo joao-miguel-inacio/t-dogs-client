@@ -42,10 +42,7 @@ const DogDetails = ({ themeMode }) => {
   useEffect(() => {
     const fetchDogDetails = async () => {
       try {
-        const storedToken = localStorage.getItem("authToken");
-        const response = await service.get(`/common/${id}`, {
-          headers: { Authorization: `Bearer ${storedToken}` },
-        });
+        const response = await service.getDogInfo(id);
         setDogDetails(response.data.dog);
       } catch (error) {
         console.log(error.message);

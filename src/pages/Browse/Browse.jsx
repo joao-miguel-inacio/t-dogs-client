@@ -26,12 +26,9 @@ const Browse = () => {
     document.getElementById("browse")?.classList.add("selected");
     const fetchAvailableDogs = async () => {
       try {
-        const storedToken = localStorage.getItem("authToken");
-        const response = await service.get(`/user`, {
-          headers: { Authorization: `Bearer ${storedToken}` },
-        });
-        setAvailableDogs(response.data);
-        setCurrentDog(response.data[0]);
+        const response = await service.getAvailableDogs ();
+        setAvailableDogs(response);
+        setCurrentDog(response[0]);
       } catch (error) {
         console.log(error);
       }
@@ -39,8 +36,8 @@ const Browse = () => {
     fetchAvailableDogs();
     const fetchProfileData = async () => {
       try {
-        const response = await service.get(`/common`);
-        setUser(response.data.user);
+        const response = await service.getUserInfo();
+        setUser(response);
       } catch (error) {
         console.log(error);
       }

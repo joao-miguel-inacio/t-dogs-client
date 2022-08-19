@@ -16,7 +16,7 @@ const UserWrapper = ({ children }) => {
 		const storedToken = localStorage.getItem("authToken");
 		if (storedToken) {
 			try {
-				const user = await service.isLoggedIn()
+				const user = await service.isLoggedIn();
 				// Just a fancy console.log 😁
 				console.log(
 					`%c${user.email} is logged in`,

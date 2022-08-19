@@ -36,8 +36,8 @@ const Profile = ({ themeMode }) => {
     document.getElementById("profile")?.classList.add("selected");
     const fetchProfileData = async () => {
       try {
-        const response = await service.get(`/common`);
-        setUser(response.data.user);
+        const response = await service.getUserInfo();
+        setUser(response);
       } catch (error) {
         console.log(error);
       }

@@ -54,9 +54,12 @@ service.dogCreate = async (dog) => {
   }
 };
 
-service.dogEdit = async (dog) => {
+service.dogEdit = async (id, dog) => {
   try {
-    const { dogEdit } = await service.put("/owner", dog);
+    const storedToken = localStorage.getItem("authToken");
+    const { dogEdit } = await service.put(`/owner/${id}`, dog, {
+      headers: { Authorization: `Bearer ${storedToken}` },
+    });
     return dogEdit;
   } catch (error) {
     errorHandler(error);
@@ -72,9 +75,24 @@ service.getOwnedDogs = async (dog) => {
   }
 };
 
+service.getDogInfo = async (id) => {
+  try {
+    const storedToken = localStorage.getItem("authToken");
+    const response = await service.get(`/common/${id}`, {
+      headers: { Authorization: `Bearer ${storedToken}` },
+    });
+    return response;
+  } catch (error) {
+    errorHandler(error);
+  }
+};
+
 service.getUserInfo = async () => {
   try {
-    const user = await service.get("/common");
+    const storedToken = localStorage.getItem("authToken");
+    const user = await service.get("/common", {
+      headers: { Authorization: `Bearer ${storedToken}` },
+    });
     return user.data.user;
   } catch (error) {
     errorHandler(error);
@@ -94,12 +112,12 @@ service.editProfile = async (data) => {
 };
 
 service.getOwnList = async () => {
-  try{
+  try {
     const storedToken = localStorage.getItem("authToken");
-        const response = await service.get(`/owner`, {
-          headers: { Authorization: `Bearer ${storedToken}` },
-        });
-        return response;
+    const response = await service.get(`/owner`, {
+      headers: { Authorization: `Bearer ${storedToken}` },
+    });
+    return response;
   } catch (error) {
     errorHandler(error);
   }
@@ -116,6 +134,19 @@ service.getMatchList = async () => {
     errorHandler(error);
   }
 };
+
+service.getAvailableDogs = async () => {
+  try {
+    const storedToken = localStorage.getItem("authToken");
+    const response = await service.get(`/user`, {
+      headers: { Authorization: `Bearer ${storedToken}` },
+    });
+    return response.data;
+  } catch (error) {
+    errorHandler(error);
+  }
+};
+
 //! Error handling to use in the catch
 function errorHandler(error) {
   if (error.response.data) {
