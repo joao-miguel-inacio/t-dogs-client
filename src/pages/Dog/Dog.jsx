@@ -1,4 +1,4 @@
-import DogDetails from "../../components/Dog/DogDetails";
+import DogDetails from "../../components/DogDetails/DogDetails";
 import Navbar2 from "../../components/Navbar2/Navbar2";
 import { useEffect } from "react";
 import "./Dog.css";
