@@ -73,6 +73,27 @@ This will be based on what the buyers and the dog's needs are.
 
 ## Services
 
+### Auth service
+- service.signup
+- service.signin
+- service.isLoggedIn
+
+### API service
+
+#### Common
+- service.getDogInfo
+- service.getUserInfo
+- service.editProfile
+
+#### Owners 
+- service.getOwnList
+- service.dogCreate
+- service.dogEdit
+
+#### Buyer
+- service.getAvailableDogs
+- service.getMatchList
+
 # Server
 
 ## Models
