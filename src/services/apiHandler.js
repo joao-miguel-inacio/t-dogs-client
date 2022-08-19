@@ -45,33 +45,6 @@ service.isLoggedIn = async () => {
   }
 };
 
-service.dogCreate = async (dog) => {
-  try {
-    const { dogCreate } = await service.post("/owner", dog);
-    return dogCreate;
-  } catch (error) {
-    errorHandler(error);
-  }
-};
-
-service.dogEdit = async (id, dog) => {
-  try {
-    const { dogEdit } = await service.put(`/owner/${id}`, dog);
-    return dogEdit;
-  } catch (error) {
-    errorHandler(error);
-  }
-};
-
-service.getOwnedDogs = async (dog) => {
-  try {
-    const { allOwnedDogs } = await service.get("/owner", dog);
-    return allOwnedDogs;
-  } catch (error) {
-    errorHandler(error);
-  }
-};
-
 service.getDogInfo = async (id) => {
   try {
     const response = await service.get(`/common/${id}`);
@@ -108,10 +81,19 @@ service.getOwnList = async () => {
   }
 };
 
-service.getMatchList = async () => {
+service.dogCreate = async (dog) => {
   try {
-    const response = await service.get(`/user/matchlist`);
-    return response;
+    const { dogCreate } = await service.post("/owner", dog);
+    return dogCreate;
+  } catch (error) {
+    errorHandler(error);
+  }
+};
+
+service.dogEdit = async (id, dog) => {
+  try {
+    const { dogEdit } = await service.put(`/owner/${id}`, dog);
+    return dogEdit;
   } catch (error) {
     errorHandler(error);
   }
@@ -121,6 +103,15 @@ service.getAvailableDogs = async () => {
   try {
     const response = await service.get(`/user`);
     return response.data;
+  } catch (error) {
+    errorHandler(error);
+  }
+};
+
+service.getMatchList = async () => {
+  try {
+    const response = await service.get(`/user/matchlist`);
+    return response;
   } catch (error) {
     errorHandler(error);
   }
