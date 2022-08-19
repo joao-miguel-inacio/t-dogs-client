@@ -2,13 +2,13 @@
     display: block;
     max-width: 75%;
     margin: 5vw auto;
-    min-height: 50vh;
 }
 .about-image:hover{
     cursor: pointer;
 }
 .about-image-div{
     display: flex;
+    height: 50vh;
 }
 .about-div{
     margin: 5vh;
