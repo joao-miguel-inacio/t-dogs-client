@@ -96,6 +96,18 @@ This will be based on what the buyers and the dog's needs are.
 | /*            | NotFound   | public <Route>            | Shows a page with a Not Found Message and a link to homepage. |
 
 ## Components
+ 
+- DogDetails
+- DogList
+- Forms
+ -- Form Dog Create
+ -- Form Dog Edit
+ -- Form Profile Edit
+ -- Form Sign In
+ -- Form Sign Up
+- NavBar
+- NavBar2
+- PopOver
 
 ## Services
 
