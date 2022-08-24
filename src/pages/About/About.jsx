@@ -169,7 +169,7 @@ const About = ({ themeMode }) => {
         <h5>Developed by:</h5>
         <p>
           <a
-            href="https://www.linkedin.com/in/jo%C3%A3o-in%C3%A1cio-126174219/"
+            href="https://www.linkedin.com/in/joao-miguel-inacio/"
             target="_blank"
             rel="noreferrer"
             className={themeMode ? "text-item-white" : "text-item"}
