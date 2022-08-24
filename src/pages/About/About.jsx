@@ -189,7 +189,7 @@ const About = ({ themeMode }) => {
         <p>
           @{" "}
           <a
-            href="https://github.com/joaoMiguelInacio/t-dogs-client"
+            href="https://github.com/joao-miguel-inacio/t-dogs-client"
             target="_blank"
             rel="noreferrer"
             className={themeMode ? "text-item-white" : "text-item"}
@@ -198,7 +198,7 @@ const About = ({ themeMode }) => {
           </a>{" "}
           &{" "}
           <a
-            href="https://github.com/joaoMiguelInacio/t-dogs-server"
+            href="https://github.com/joao-miguel-inacio/t-dogs-server"
             target="_blank"
             rel="noreferrer"
             className={themeMode ? "text-item-white" : "text-item"}
